@@ -1,0 +1,294 @@
+/*
+ * WP Product Adder
+ * http://MarketINTO.net
+ *
+ * Copyright 2013 MarketINTO
+ * Free to use under the GPLv2 license.
+ * http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * Contributing author: Norbert Dreszer
+ */
+ 
+
+/* Product Archive */
+.product-subcategories li {
+display: inline-block;
+list-style-type: none;
+padding-bottom: 5px;
+font-size: 0.9em;
+}
+
+.product-subcategories table {
+border: none;
+}
+.product-subcategories table td {
+border: none;
+vertical-align: top;
+
+}
+
+.product-subcategories table td:first-child {
+white-space: nowrap; }
+
+.al_archive .product-attributes {
+max-width: 120px;
+position: absolute;
+left: 5px;
+bottom: 15px;
+background-color: rgba(0,82,0,0.8);
+z-index: 0;
+box-shadow: 0 0 5px #005200;
+padding: 2px;
+}
+
+.al_archive .product-attributes table {
+border: none;
+font-size: 12px;
+margin: 0;
+line-height: 0.2;
+color: #fff;
+}
+
+.al_archive .product-attributes table td {
+border: none;
+}
+
+.al_archive .product-attributes table tr td:nth-child(2) {
+text-align: center;
+}
+.al_archive .product-name {
+background-color: rgba(0,82,0,0.8);
+max-width: 80%;
+box-shadow: 0 0 5px #005200;
+padding: 5px;
+position: absolute;
+top: 10px;
+left: 5px;
+color: #fff;
+font-weight: bold;
+}
+
+.al_archive .product-price {
+position: absolute;
+right: 10px;
+bottom: 10px;
+background-color: rgba(253,0,2,0.8);
+max-width: 80%;
+box-shadow: 0 0 5px #fff;
+padding: 5px;
+border:none;
+font-size: 30px;
+color: #fff;
+}
+
+.archive .al_product .entry-header {
+margin-bottom: 0px;
+}
+
+.al_archive {
+max-width: 45%;
+min-height: 170px;
+background-size: 100% auto;
+box-shadow: 0 0 5px #005200;
+position: relative;
+cursor: pointer;
+float:left;
+width: 100%;
+margin: 25px 25px 5px 5px;
+}
+
+.archive article.al_product {
+padding: 0px;
+}
+
+.al_archive:hover {
+opacity: 0.9;
+}
+
+.al_archive:active {
+transform: scale(0.97);
+-webkit-transform:scale(0.97); 
+-moz-transform:scale(0.97); 
+-o-transform:scale(0.97); 
+-ms-transform:scale(0.97); 
+}
+
+/* Product Page */
+.product-details table {
+vertical-align: middle;
+margin: 0px;
+border: none;
+}
+
+.product-details table  td {
+border: none;
+padding: 0px;
+}
+
+.price-value {
+font-size: 30px;
+color: rgb(253, 0, 2);
+}
+
+.product-details  {
+vertical-align: middle;
+display: table-cell;
+width: 50%;
+height: 135px;
+}
+
+.price-column {
+width: 30%;
+}
+
+.al_product .details-thumbnail {
+min-height: 135px;
+}
+.al_product img.wp-post-image {
+    height: auto;
+    max-width: 50%;
+	float:right;
+	}
+
+	.product-details .shortdesc {
+padding-right: 20px;
+}
+
+/* Product Settings Page */
+.tab-menu {
+border-bottom: 2px solid #000000;
+padding: 0px !important;
+position: relative;
+z-index: 1;
+}
+.tab-menu a {
+color: #000000;
+border-top: 1px solid #000000;
+border-left: 1px solid #000000;
+border-right: 1px solid #000000;
+padding: 10px;
+text-decoration: none;
+background-color: #ededed;
+display:inline-block;
+position: relative;
+top: 2px;
+z-index: 0;
+
+}
+
+.tab-menu a.current {
+color: #000000;
+background-color: #ffffff;
+/* border-top: 1px solid #d54e21;
+border-left: 1px solid #d54e21;
+border-right: 1px solid #d54e21;*/
+border-bottom: 2px solid #ffffff; 
+z-index:2;
+}
+.warning {
+background-color: #fefccb;
+background-image: url('images/warning.png');
+}
+
+.al-box.info {
+background-color: #dbecff;
+background-image: url('images/info.png');
+}
+
+.al-box {
+background-repeat: no-repeat;
+background-position: 1%;
+padding: 10px 10px 10px 60px;
+font-weight: bold;
+margin: 10px 0 10px 0;
+position: relative;
+display: block;
+width: 100%;
+min-width: 300px;
+max-width: 509px;
+}
+
+#product_listing_url {
+width: 100px;
+}
+
+.admin-media-image {
+max-width: 150px;
+}
+
+.plugin-logo {
+position: absolute;
+right: 15px;
+top: 45px;
+}
+
+.plugin-logo-pl {
+position: absolute;
+right: 15px;
+top: 41px;
+}
+
+#admin-number-field {
+width: 50px;
+}
+
+.product-settings-table {
+width: auto;
+}
+
+.product-settings-table th {
+padding: 7px 19px 8px;
+}
+
+.product-settings-table td {
+text-align: center;
+}
+
+.lp-column {
+vertical-align: middle !important;
+}
+
+/* Product Edit Page */
+.shipping-label {
+width: 100%;
+}
+
+.shipping-value {
+width: 100%;
+}
+
+.shipping-label-column {
+width: 66%;
+}
+.shipping-value {
+width: 60%;
+margin-right: 3px;
+}
+
+.attribute-value, .attribute-unit {
+width: 85%;
+}
+
+.attributes-label-column {
+width: 50%;
+}
+.attribute-label {
+width: 100%;
+}
+
+#al_product_desc_editor_ifr, #al_product_shortdesc_editor_ifr, #wp-al_product_shortdesc_editor-editor-container {
+background-color: #ffffff;
+}
+
+.post-php .al-box, .post-new-php .al-box {
+min-width: 187px;
+max-width: 256px;
+width: 74%;
+font-weight: normal;
+}
+
+#page {
+background-image: url('/wp-content/uploads/2013/12/Btlo6.png');
+background-repeat: repeat-y;
+background-position: 100% 0%;
+}
