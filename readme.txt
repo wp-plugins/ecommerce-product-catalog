@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping
 Requires at least: 3.5
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -83,6 +83,14 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Minor bug fixes and improvements
+
 = 1.0 =
 
 * Initial Release
+
+== Upgrade Notice ==
+
+Minor bug fixes and improvements.

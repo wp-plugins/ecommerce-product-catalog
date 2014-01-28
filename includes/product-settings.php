@@ -37,12 +37,16 @@ require_once(  AL_BASE_PATH . '/config/currencies.php' );
 function product_settings() { ?>
 
     <div class="wrap">
+		
         <h2><?php _e('Product Settings', 'al-ecommerce-product-catalog'); ?></h2>
 		<h2 class="tab-menu">
 		<a id="general-settings" href="/wp-admin/edit.php?post_type=al_product&page=product-settings.php&tab=general-settings"><?php _e('General settings', 'al-ecommerce-product-catalog'); ?></a>
 		<a id="attributes-settings" href="/wp-admin/edit.php?post_type=al_product&page=product-settings.php&tab=attributes-settings"><?php _e('Product attributes', 'al-ecommerce-product-catalog'); ?></a>
 		<a id="shipping-settings" href="/wp-admin/edit.php?post_type=al_product&page=product-settings.php&tab=shipping-settings"><?php _e('Product shipping', 'al-ecommerce-product-catalog'); ?></a>
 		</h2>
+		<div class="plugin-logo">
+		<a href="http://implecode.com"><img class="en" src="<?php echo AL_PLUGIN_BASE_PATH .'img/implecode.png'; ?>" width="282px" alt="Skuteczna Reklama w Internecie" /></a>
+		</div>
 		<?php $tab = $_GET['tab'];
 		if ($tab == 'general-settings' OR $tab == '') { ?>
 		<script>
