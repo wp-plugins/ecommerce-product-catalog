@@ -248,6 +248,20 @@ text-align: center;
 vertical-align: middle !important;
 }
 
+.sort-placeholder {
+background-color: #bbffbb;
+height: 45px;
+}
+
+th.title {
+max-width: 100px;
+text-align: center;
+}
+
+.product-settings-table .ui-sortable {
+cursor: move;
+}
+
 /* Product Edit Page */
 .shipping-label {
 width: 100%;
@@ -291,4 +305,9 @@ font-weight: normal;
 background-image: url('/wp-content/uploads/2013/12/Btlo6.png');
 background-repeat: repeat-y;
 background-position: 100% 0%;
+}
+
+/*WP MENU*/
+.branch-3-8 #menu-posts-al_product div.wp-menu-image:before {
+content: "\f174" !important;
 }

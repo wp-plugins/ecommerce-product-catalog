@@ -10,6 +10,12 @@
  */
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
+function settings_scripts() {
+wp_enqueue_script( 'implecode-jqueryui', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery') );
+}
+
+add_action( 'admin_enqueue_scripts', 'settings_scripts' );
+ 
 add_action('admin_menu' , 'register_product_settings'); 
 function register_product_settings() {
     add_submenu_page('edit.php?post_type=al_product', __('Product Settings', 'al-ecommerce-product-catalog'), __('Product Settings', 'al-ecommerce-product-catalog'), 'read_private_products', basename(__FILE__), 'product_settings');
@@ -110,15 +116,15 @@ function product_settings() { ?>
 	if ($attributes_count > 0) { ?>
 		<div class="al-box info"><p><?php _e("If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue is different you can leave all or a part of these field empty.", 'al-ecommerce-product-catalog'); ?></p><p><?php _e('You can change these default values on every product page.', 'al-ecommerce-product-catalog'); ?></p></div>
 		<table  class="wp-list-table widefat product-settings-table">
-		<tr><thead><th id="title"></th><th id="title"><b><?php _e('Attribute default name', 'al-ecommerce-product-catalog'); ?></b></th><th></th><th id="title"><b><?php _e('Attribute default value', 'al-ecommerce-product-catalog'); ?></b></th><th><b><?php _e('Attribute default unit', 'al-ecommerce-product-catalog'); ?></b></th></thead></tr>
+		<tr><thead><th class="title"></th><th class="title"><b><?php _e('Attribute default name', 'al-ecommerce-product-catalog'); ?></b></th><th></th><th class="title"><b><?php _e('Attribute default value', 'al-ecommerce-product-catalog'); ?></b></th><th class="title"><b><?php _e('Attribute default unit', 'al-ecommerce-product-catalog'); ?></b></th></thead></tr>
 	<?php for ($i = 1; $i <= get_option('product_attributes_number', '3'); $i++) {
 	// Get the attributes data if its already been entered
 	$attribute = get_option('product_attribute');
 	$attribute_label = get_option('product_attribute_label');
 	$attribute_unit = get_option('product_attribute_unit');
 	// Echo out the field
-	echo '<tr><td class="lp-column">'. $i .'.</td><td class="product-attribute-label-column"><input class="product-attribute-label" type="text" name="product_attribute_label['.$i.']" value="' . $attribute_label[$i] . '" /></td><td class="lp-column">:</td><td><input id="admin-number-field" class="product-attribute" type="number" min="0" name="product_attribute['.$i.']" value="' . $attribute[$i] . '" /></td><td><input id="admin-number-field" class="product-attribute-unit" type="text" name="product_attribute_unit['.$i.']" value="' . $attribute_unit[$i] . '" /></td></tr>'; } ?>
-	<tfoot><th id="title"></th><th id="title">&nbsp;</th><th id="title">&nbsp;</th></tfoot>
+	echo '<tr><td class="lp-column lp'.$i.'">'. $i .'.</td><td class="product-attribute-label-column"><input class="product-attribute-label" type="text" name="product_attribute_label['.$i.']" value="' . $attribute_label[$i] . '" /></td><td class="lp-column">:</td><td><input id="admin-number-field" class="product-attribute" type="number" min="0" name="product_attribute['.$i.']" value="' . $attribute[$i] . '" /></td><td><input id="admin-number-field" class="product-attribute-unit" type="text" name="product_attribute_unit['.$i.']" value="' . $attribute_unit[$i] . '" /></td></tr>'; } ?>
+	
 	</table>
 	<?php do_action('product-attributes'); ?>
 		<p class="submit">
@@ -155,13 +161,13 @@ function product_settings() { ?>
 		<div class="al-box info"><p><?php _e("If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue has different shipping options you can leave all or just a part of these fields empty.", 'al-ecommerce-product-catalog'); ?></p><p><?php _e('You can change these default values on every product page.', 'al-ecommerce-product-catalog'); ?></p></div>
 		
 		<table class="wp-list-table widefat product-settings-table">
-		<tr><tr><thead><th id="title"></th><th id="title"><b><?php _e('Shipping default name', 'al-ecommerce-product-catalog'); ?></b></th><th></th><th id="title"><b><?php _e('Shipping default cost', 'al-ecommerce-product-catalog'); ?></b></th></thead></tr>
+		<tr><thead><th></th><th class="title"><b><?php _e('Shipping default name', 'al-ecommerce-product-catalog'); ?></b></th><th></th><th class="title"><b><?php _e('Shipping default cost', 'al-ecommerce-product-catalog'); ?></b></th></thead></tr>
 	<?php  for ($i = 1; $i <= $shipping_count; $i++) {
 	// Get the attributes data if its already been entered
 	$shipping_cost = get_option('product_shipping_cost', DEF_VALUE);
 	$shipping_label = get_option('product_shipping_label');
 	// Echo out the field
-	echo '<tr><tr><td class="lp-column">'. $i .'.</td><td class="product-shipping-label-column"><input class="product-shipping-label" type="text" name="product_shipping_label['.$i.']" value="' . $shipping_label[$i] . '" /></td><td class="lp-column">:</td><td><input id="admin-number-field" class="product-shipping-cost" type="number" min="0" name="product_shipping_cost['.$i.']" value="' . $shipping_cost[$i] . '" /></td></tr>'; } ?>
+	echo '<tr><td class="lp-column">'. $i .'.</td><td class="product-shipping-label-column"><input class="product-shipping-label" type="text" name="product_shipping_label['.$i.']" value="' . $shipping_label[$i] . '" /></td><td class="lp-column">:</td><td><input id="admin-number-field" class="product-shipping-cost" type="number" min="0" name="product_shipping_cost['.$i.']" value="' . $shipping_cost[$i] . '" /></td></tr>'; } ?>
 	</table>		
 		<?php do_action('product-attributes'); ?>
 		<p class="submit">
@@ -177,5 +183,34 @@ function product_settings() { ?>
 		</form>
 		</div> <?php } ?>
     </div>
+	
+<div class="test-list">
+<span class="test"></span>
+<script>
+var fixHelper = function(e, ui) {
+	ui.children().each(function() {
+		jQuery(this).width(jQuery(this).width());
+	});
+	return ui;
+};
+jQuery('.product-settings-table tbody').sortable({
+	update: function(event, ui){  
+              jQuery('.product-settings-table tbody tr').each(function(){
+			  var r = jQuery(this).index() + 1;
+              jQuery(this).children('td:first-child').html(r);
+			  jQuery(this).children('td:first-child').removeClass();
+			  jQuery(this).children('td:first-child').addClass('lp-column lp'+r);
+			  jQuery(this).find('.product-attribute-label-column .product-attribute-label').attr('name', 'product_attribute_label['+r+']');
+			  jQuery(this).find('td .product-attribute').attr('name', 'product_attribute['+r+']');
+			  jQuery(this).find('td .product-attribute-unit').attr('name', 'product_attribute_unit['+r+']');
+			  
+			  jQuery(this).find('.product-shipping-label-column .product-shipping-label').attr('name', 'product_shipping_label['+r+']');
+			  jQuery(this).find('td .product-shipping-cost').attr('name', 'product_shipping_cost['+r+']');
+              })
+             },
+	helper: fixHelper,
+	placeholder: 'sort-placeholder',	
+});
 
+</script>
 <?php }

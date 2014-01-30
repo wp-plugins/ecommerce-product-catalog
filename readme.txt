@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: impleCode, ndre
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@implecode.com&item_name=Donation+for+impleCode
-Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping
+Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 1.0.2
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,12 +16,15 @@ Reward your Wordpress website with beautifull and easy to use product catalog. e
 
 = FEATURES =
 
+You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/ "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com "impleCode - open-source plugin developer").
+
 * __Unlimited number of products__ - Add as many products to your catalog as you need
 * __Usefull Product categories__ - You can divide your products into categories if you need to
 * __Intuitive Catalog Settings__ - You can fully customize your product catalog
 * __Product Attributes__ - You can specify attributes for each product
 * __Product Shipping__ - You can specify shipping options for each product
 * __25 currencies available__ - You can choose from 25 different currencies
+* __Drag-and-Drop functionality__ - Highly intuitive interface to manage Product Attributes and Shipping Options
 
 And more to come every week!
 
@@ -61,7 +64,7 @@ Yes, you can use any html buttons on your product description.
 
 = Will eCommerce Product Catalog work with my theme? =
 
-Yes. eCommerce Product Catalog will work with any theme but in some cases may require some styling to make it match nicely.
+Yes. eCommerce Product Catalog will work with any theme but in some cases may require some styling to make it match nicely. Please see [Theme Integration Guide](http://implecode.com/wordpress/product-catalog/theme-integration-guide/ "eCommerce Product Catalog Theme Integration Guide on impleCode.com") for help.
 
 = Where can I request new features, themes and extensions? =
 
@@ -83,6 +86,11 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.1.2 =
+
+* Feature - Drag-and-Drop functionality on Product Attributes and Shipping Options
+* Minor improvements
+
 = 1.0.2 =
 
 * Minor improvements
@@ -97,4 +105,4 @@ Documentation will be available soon on impleCode.com.
 
 == Upgrade Notice ==
 
-Minor bug fixes and improvements.
+New feature - Drag-and-Drop functionality.

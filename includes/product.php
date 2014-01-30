@@ -15,9 +15,9 @@ require_once('product-categories.php');
 
 add_action( 'init', 'create_product' );
 function create_product() {
-
-	register_post_type( 'al_product',
-		array(
+global $wp_version;
+if ( $wp_version < 3.8 ) {
+	$reg_settings = array(
 			'labels' => array(
 				'name' => __('Products', 'al-ecommerce-product-catalog'),
 				'singular_name' => __('Product', 'al-ecommerce-product-catalog'),
@@ -54,8 +54,48 @@ function create_product() {
 				'delete_post' => 'delete_product',
 				'read_post' => 'read_product',
 			),
-		)
-	);
+		); }
+	else {
+	$reg_settings = array(
+			'labels' => array(
+				'name' => __('Products', 'al-ecommerce-product-catalog'),
+				'singular_name' => __('Product', 'al-ecommerce-product-catalog'),
+				'add_new'            => __( 'Add New Product','al-ecommerce-product-catalog'),
+				'add_new_item'       => __( 'Add New Product','al-ecommerce-product-catalog'),
+				'edit_item'          => __( 'Edit Product','al-ecommerce-product-catalog'),
+				'new_item'           => __( 'Add New Product','al-ecommerce-product-catalog'),
+				'view_item'          => __( 'View Product','al-ecommerce-product-catalog'),
+				'search_items'       => __( 'Search Products','al-ecommerce-product-catalog'),
+				'not_found'          => __( 'No Products found','al-ecommerce-product-catalog'),
+				'not_found_in_trash' => __( 'No Products found in trash','al-ecommerce-product-catalog')
+			),
+		'public' => true,
+		'has_archive' => true,
+		'rewrite' => array('slug' => get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog'))),
+		'supports' => array( 'title', 'thumbnail'),
+		'extras' => array('enter_title_here'=>__('Enter product name here', 'al-ecommerce-product-catalog')),
+		'register_meta_box_cb' => 'add_product_metaboxes',
+		'taxonomies' => array('al_product_cat'),
+		'capability_type' => 'product',
+		'capabilities' => array(
+				'publish_posts' => 'publish_products',
+				'edit_posts' => 'edit_products',
+				'edit_others_posts' => 'edit_others_products',
+				'edit_published_posts' => 'edit_published_products',
+				'edit_private_posts' => 'edit_private_products',
+				'delete_posts' => 'delete_products',
+				'delete_others_posts' => 'delete_others_products',
+				'delete_private_posts' => 'delete_private_products',
+				'delete_published_posts' => 'delete_published_products',
+				'read_private_posts' => 'read_private_products',
+				'edit_post' => 'edit_product',
+				'delete_post' => 'delete_product',
+				'read_post' => 'read_product',
+			),
+		);
+	}
+
+	register_post_type( 'al_product', $reg_settings);
 	flush_rewrite_rules();
 }
 
