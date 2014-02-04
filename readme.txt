@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: impleCode, ndre
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@implecode.com&item_name=Donation+for+impleCode
-Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin
-Requires at least: 3.5
+Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts
+Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -86,7 +86,12 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
-= 1.1.2 =
+= 1.1.1 - 04/02/2014 =
+
+* Tweak - Drag-and-Drop functionality also on product edit pages
+* Fix - Drag-and-Drop functionality is now smoother
+
+= 1.1.0 =
 
 * Feature - Drag-and-Drop functionality on Product Attributes and Shipping Options
 * Minor improvements

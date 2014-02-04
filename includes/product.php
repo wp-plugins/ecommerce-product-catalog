@@ -4,7 +4,7 @@
  *
  * Here all product fields are defined.
  *
- * @version		1.0.0
+ * @version		1.1.1
  * @package		ecommerce-product-catalog/includes
  * @author 		Norbert Dreszer
  */
@@ -146,7 +146,7 @@ function al_product_shipping() {
 	echo '<input type="hidden" name="shippingmeta_noncename" id="shippingmeta_noncename" value="' .
 	wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
 	$currency = get_option('product_currency', DEF_CURRENCY);
-	echo '<table>';
+	echo '<table class="sort-settings shipping"><tbody>';
 	for ($i = 1; $i <= get_option('product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER); $i++) {
 	// Get the shipping data if its already been entered
 	$shipping_option = get_option('product_shipping_cost');
@@ -161,7 +161,7 @@ function al_product_shipping() {
 	else { $shipping_label = $shipping_label_option[$i]; }
 	// Echo out the fields
 	echo '<tr><td class="shipping-label-column"><input class="shipping-label" type="text" name="_shipping-label'.$i.'" value="' . $shipping_label  . '" /></td><td><input class="shipping-value" type="number" min="0" name="_shipping'.$i.'" value="' . $shipping  . '" />'. $currency .'</td></tr>'; }
-	echo '</table>';
+	echo '</tbody></table>';
 }
 
 // The Product attributes Metabox
@@ -170,7 +170,7 @@ function al_product_attributes() {
 	// Noncename needed to verify where the data originated
 	echo '<input type="hidden" name="attributesmeta_noncename" id="attributesmeta_noncename" value="' .
 	wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
-	echo '<table>';
+	echo '<table class="sort-settings attributes">';
 	echo '<div class="al-box info">'. __('Only attributes with values set will be shown on product page.', 'al-ecommerce-product-catalog') .'</div>';
 	for ($i = 1; $i <= get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER); $i++) {
 	// Get the attributes data if its already been entered
@@ -191,7 +191,9 @@ function al_product_attributes() {
 	else { $attributes_unit = $attributes_unit_option[$i]; }
 	// Echo out the field
 	echo '<tr><td class="attributes-label-column"><input class="attribute-label" type="text" name="_attribute-label'.$i.'" value="' . $attributes_label  . '" /></td><td> : <input class="attribute-value" type="text" name="_attribute'.$i.'" value="' . $attributes  . '" /></td><td><input class="attribute-unit" type="text" name="_attribute-unit'.$i.'" value="' . $attributes_unit  . '" /></td></tr>'; }
-	echo '</table>';
+	echo '</tbody></table>'; ?>
+
+<?php
 }
 
 // The Product Short Description Metabox

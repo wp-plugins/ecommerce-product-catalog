@@ -219,13 +219,8 @@ max-width: 150px;
 .plugin-logo {
 position: absolute;
 right: 0px;
-bottom:20px;
-}
-
-.plugin-logo-pl {
-position: absolute;
-right: 15px;
-top: 41px;
+bottom:25px;
+z-index: 9999;
 }
 
 #admin-number-field {
@@ -250,7 +245,11 @@ vertical-align: middle !important;
 
 .sort-placeholder {
 background-color: #bbffbb;
-height: 45px;
+height: 46px;
+}
+.sort-settings-placeholder {
+background-color: #bbffbb;
+height: 30px;
 }
 
 th.title {
@@ -258,7 +257,7 @@ max-width: 100px;
 text-align: center;
 }
 
-.product-settings-table .ui-sortable {
+.product-settings-table .ui-sortable, .sort-settings .ui-sortable {
 cursor: move;
 }
 
