@@ -53,10 +53,12 @@ else {$page_title = __( 'All Products', 'al-ecommerce-product-catalog' ); } ?>
 		<div class="product-name"><?php the_title(); ?></div>
 		<?php
 		$attributes_number = get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER);
+		$at_val = '';
+		$any_attribute_value = '';
 		for ($i = 1; $i <= $attributes_number; $i++) {
 		$at_val = get_post_meta($post->ID, "_attribute".$i, true);
 		if (! empty($at_val)) {
-		$any_attribute_value = $at_val; }
+		$any_attribute_value = $at_val.$i; }
 		}
 		if ($attributes_number > 0 AND ! empty($any_attribute_value)) { ?>
 		<div class="product-attributes">
@@ -69,8 +71,13 @@ else {$page_title = __( 'All Products', 'al-ecommerce-product-catalog' ); } ?>
 		echo '<tr><td>'. get_post_meta($post->ID, "_attribute-label".$i, true) . '</td><td>' . get_post_meta($post->ID, "_attribute".$i, true). ' '. get_post_meta($post->ID, "_attribute-unit".$i, true) .'</td></tr>'; } } ?>
 		
 		</table>
-		</div> <?php } ?>
-		<div class="product-price"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></div></div></a>		
+		</div> <?php } 
+		$price_value = get_post_meta($post->ID, "_price", true);
+		if (!empty($price_value)) {
+		?>
+		<div class="product-price"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></div>
+		<?php } ?>
+		</div></a>		
 
 			<?php endwhile; ?></div></article>
 	

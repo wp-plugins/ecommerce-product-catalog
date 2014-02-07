@@ -30,31 +30,39 @@ vertical-align: top;
 .product-subcategories table td:first-child {
 white-space: nowrap; }
 
-.al_archive .product-attributes {
+#content .al_archive .product-attributes {
 max-width: 120px;
 position: absolute;
 left: 5px;
 bottom: 15px;
+background-color: rgb(0,82,0);
 background-color: rgba(0,82,0,0.8);
 z-index: 0;
 box-shadow: 0 0 5px #005200;
-padding: 2px;
+padding: 5px;
 }
 
-.al_archive .product-attributes table {
+#content .al_archive .product-attributes table {
 border: none;
 font-size: 12px;
 margin: 0;
-line-height: 0.2;
+line-height: 14px;
 color: #fff;
+box-shadow: none;
 }
 
-.al_archive .product-attributes table td {
+#content .al_archive .product-attributes table td {
 border: none;
+padding: 0;
 }
 
-.al_archive .product-attributes table tr td:nth-child(2) {
+#content .al_archive .product-attributes table tr {
+background: transparent;
+}
+
+#content .al_archive .product-attributes table tr td:nth-child(2) {
 text-align: center;
+padding-left: 5px;
 }
 .al_archive .product-name {
 background-color: rgba(0,82,0,0.8);
@@ -77,7 +85,7 @@ max-width: 80%;
 box-shadow: 0 0 5px #fff;
 padding: 5px;
 border:none;
-font-size: 30px;
+font-size: 1.6em;
 color: #fff;
 }
 
@@ -86,7 +94,8 @@ margin-bottom: 0px;
 }
 
 .al_archive {
-max-width: 45%;
+max-width: 44%;
+min-width: 262px;
 min-height: 170px;
 background-size: 100% auto;
 box-shadow: 0 0 5px #005200;
@@ -94,7 +103,8 @@ position: relative;
 cursor: pointer;
 float:left;
 width: 100%;
-margin: 25px 25px 5px 5px;
+margin: 5px 25px 25px 5px;
+line-height: 1.5;
 }
 
 .archive article.al_product {
@@ -113,6 +123,13 @@ transform: scale(0.97);
 -ms-transform:scale(0.97); 
 }
 
+.post-type-archive-al_product .site-content article {
+border: none;
+}
+
+.single-al_product .site-content .hentry.has-post-thumbnail {
+margin-top: 0 !important;
+}
 /* Product Page */
 .product-details table {
 vertical-align: middle;

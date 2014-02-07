@@ -11,14 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 get_header(); ?>
 
-<div id="container" class="content-area">
-		<div id="content" class="site-content" role="main">
+	<div id="container">
+		<div id="content" class="site-content">
 			 
 			<?php content_product_adder(); ?>
 				
 
 		</div><!-- #content -->
-</div>
+	</div>
  
 <?php get_sidebar(); ?>
 

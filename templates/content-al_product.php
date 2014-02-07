@@ -20,13 +20,21 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			<?php if (has_post_thumbnail()) {the_post_thumbnail('medium');} else { echo default_product_thumbnail();}?>
 		</div>
 		<div class="product-details">
-		<table><tr>
-			<td><?php _e( 'Product Price','al-ecommerce-product-catalog') ?>:</td><td class="price-value"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></td>
+		<table>
+		<?php $price_value = get_post_meta($post->ID, "_price", true);
+		if (!empty($price_value)) { ?>
+			<tr><td><?php _e( 'Product Price','al-ecommerce-product-catalog') ?>:</td><td class="price-value"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></td>
 			</tr>
-			<?php 
+			<?php }
 			$shipping_options = get_option('product_shipping_options_number',DEF_SHIPPING_OPTIONS_NUMBER);
-			$shipping_option_1 = get_post_meta($post->ID, "_shipping1", true);
-			if ($shipping_options > 0 AND ! empty($shipping_option_1)) { ?>
+			$sh_val = '';
+		$any_shipping_value = '';
+		for ($i = 1; $i <= $shipping_options; $i++) {
+		$sh_val = get_post_meta($post->ID, "_shipping".$i, true);
+		if (! empty($sh_val)) {
+		$any_shipping_value = $sh_val; }
+		}
+			if ($shipping_options > 0 AND ! empty($any_shipping_value)) { ?>
 			<tr>
 			<td>
 			<?php _e( 'Product Shipping','al-ecommerce-product-catalog') ?>:</td><td><ul><?php for ($i = 1; $i <= $shipping_options; $i++) { 
@@ -46,7 +54,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</div><!-- .entry-meta -->
 		
 		<?php $attributes_number = get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER);
-		$attribute_value_1 = get_post_meta($post->ID, "_attribute1", true);
+		$at_val = '';
+		$any_attribute_value = '';
 		for ($i = 1; $i <= $attributes_number; $i++) {
 		$at_val = get_post_meta($post->ID, "_attribute".$i, true);
 		if (! empty($at_val)) {

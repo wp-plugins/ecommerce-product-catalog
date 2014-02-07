@@ -15,7 +15,7 @@ function al_product_adder_admin_notices_styles() {
 
 $template = get_option( 'template' );
 
-	if ( ! current_theme_supports( 'wp_product_adder' ) && ! in_array( $template, array( 'twentythirteen', 'twentyeleven', 'twentytwelve', 'twentyten' ) ) ) {
+	if ( ! current_theme_supports( 'wp_product_adder' ) && ! in_array( $template, array( 'twentythirteen', 'twentyeleven', 'twentytwelve', 'twentyten', 'twentyfourteen' ) ) ) {
 	
 	if ( ! empty( $_GET['hide_al_product_adder_support_check'] ) ) {
 			update_option( 'product_adder_theme_support_check', $template );

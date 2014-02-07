@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 get_header(); ?>
 
 	
-		<div id="content" class="site-content">
+		<div id="content" class="site-content" role="main">
 
 			<?php content_product_adder_single(); ?>
 

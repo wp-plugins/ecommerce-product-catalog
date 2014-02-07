@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,14 +25,26 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Product Shipping__ - You can specify shipping options for each product
 * __25 currencies available__ - You can choose from 25 different currencies
 * __Drag-and-Drop functionality__ - Highly intuitive interface to manage Product Attributes and Shipping Options
+* __Product Category Widget__ - Show your product categories in sidebar
+* __Completely Customizable Design__ - you can use your theme CSS, its great for designers and developers
+* __Abillity to Disable the eCommerce functionality__ - very handy if you just want to present your products
+* __Cross Browser Compatibility__ - works in all major browsers: IE7, IE8, IE9, Safari, Firefox, Chrome, Opera
+* __Product Archive Page__ - choose the URL to display your products
 
 And more to come every week!
+
+= Translations =
+
+* English - default, always included
+* *Your translation? - [Just send it in](http://implecode.com/contact/)*
+
+*Note:* All our plugins are localized/translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/).
 
 == Installation ==
 
 = Minimum Requirements =
 
-* WordPress 3.5 or greater
+* WordPress 3.0 or greater
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
 
@@ -57,6 +69,10 @@ Automatic updates should work like a charm; as always though, ensure you backup 
 If on the off-chance you do encounter issues with the product catalog pages after an update you simply need to flush the permalinks by going to WordPress > Settings > Permalinks and hitting 'save'. That should return things to normal.
 
 == Frequently Asked Questions ==
+
+= Is it possible to use eCommerce product catalog without ecommerce functionality? =
+
+Yes, just leave the product price empty and you will disable ecommerce functionality.
 
 = Are there any payment gateways? =
 
@@ -86,6 +102,10 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.1.2 - 07/02/2014 =
+
+* Tweak - Compatibility with third-party themes improved
+
 = 1.1.1 - 04/02/2014 =
 
 * Tweak - Drag-and-Drop functionality also on product edit pages
@@ -110,4 +130,4 @@ Documentation will be available soon on impleCode.com.
 
 == Upgrade Notice ==
 
-New feature - Drag-and-Drop functionality.
+* Better compatibility with third-party themes.
