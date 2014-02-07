@@ -4,7 +4,7 @@
  *
  * Here current theme is checked for compatibility with WP PRODUCT ADDER.
  *
- * @version		1.1.1
+ * @version		1.1.2
  * @package		ecommerce-product-catalog/functions
  * @author 		Norbert Dreszer
  */
