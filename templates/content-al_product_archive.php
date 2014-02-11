@@ -4,7 +4,7 @@
  *
  * 
  *
- * @version		1.1.2
+ * @version		1.1.3
  * @package		ecommerce-product-catalog/templates
  * @author 		Norbert Dreszer
  */
@@ -13,13 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <? if (is_tax()) { $the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); $page_title = __( 'All', 'al-ecommerce-product-catalog' ) .' '.$the_tax->name; }
 else {$page_title = __( 'All Products', 'al-ecommerce-product-catalog' ); } ?>
 				<header class="entry-header">
-				<h1 class="archive-title"><?php
+				<?php 
+				if (! is_tax()) {
+				content_product_adder_archive_before(); } ?>
+				<h2 class="archive-title"><?php
 					
 						echo $page_title;
 					
-				?></h1>
+				?></h2>
 				
 				<?php if (is_tax()) {
+				echo '<div class="entry-content">'.term_description().'</div>';
 				$term = get_queried_object()->term_id; 
 				$taxonomy_name = 'al_product-cat'; 
 				$product_subcategories = wp_list_categories('show_option_none=No_cat&echo=0&title_li=&taxonomy='.$taxonomy_name.'&child_of='.$term); 

@@ -11,6 +11,11 @@
  
 
 /* Product Archive */
+
+.archive-title {
+margin-top: 10px;
+}
+
 .product-subcategories li {
 display: inline-block;
 list-style-type: none;
@@ -276,6 +281,10 @@ text-align: center;
 
 .product-settings-table .ui-sortable, .sort-settings .ui-sortable {
 cursor: move;
+}
+
+.archive-url {
+font-size: 15px;
 }
 
 /* Product Edit Page */

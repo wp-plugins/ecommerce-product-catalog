@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,7 +12,7 @@ impleCode eCommerce Product Catalog is great choice to sell easy and quick or ju
 
 == Description ==
 
-Reward your Wordpress website with beautifull and easy to use product catalog. eCommerce Product Catalog is powerfull and basic at the same time. It is built by impleCode and more futures are added every week. Expect hight quality code witch is great value not only for Merchants but also for Developers and Theme Constructors.
+Reward your Wordpress website with beautifull and easy to use product catalog. eCommerce Product Catalog is powerful and basic at the same time. It is built by impleCode and more futures are added every week. Expect high quality code which is great value not only for Merchants but also for Developers and Theme Constructors.
 
 = FEATURES =
 
@@ -29,7 +29,7 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Completely Customizable Design__ - you can use your theme CSS, its great for designers and developers
 * __Abillity to Disable the eCommerce functionality__ - very handy if you just want to present your products
 * __Cross Browser Compatibility__ - works in all major browsers: IE7, IE8, IE9, Safari, Firefox, Chrome, Opera
-* __Product Archive Page__ - choose the URL to display your products
+* __Product Archive Page__ - choose a Wordpress page to display your products
 
 And more to come every week!
 
@@ -38,7 +38,7 @@ And more to come every week!
 * English - default, always included
 * *Your translation? - [Just send it in](http://implecode.com/contact/)*
 
-*Note:* All our plugins are localized/translateable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/).
+*Note:* All our plugins are localized/translatable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/).
 
 == Installation ==
 
@@ -56,7 +56,7 @@ In the search field type “impleCode” and click Search Plugins. Once you’ve
 
 = Manual installation =
 
-The manual installation method involves downloading our product catalog plugin and uploading it to your webserver via your favourite FTP application.
+The manual installation method involves downloading our product catalog plugin and uploading it to your web-server via your favourite FTP application.
 
 1. Download the plugin file to your computer and unzip it
 2. Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation’s wp-content/plugins/ directory.
@@ -102,6 +102,13 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.1.2 - 11/02/2014 =
+
+* Tweak - Product listing page select feature improved
+* Tweak - Ability to choose product listing from existing pages
+* Tweak - Ability to display custom text above product listing
+* Tweak - Ability to display category description
+
 = 1.1.2 - 07/02/2014 =
 
 * Tweak - Compatibility with third-party themes improved
@@ -130,4 +137,7 @@ Documentation will be available soon on impleCode.com.
 
 == Upgrade Notice ==
 
-* Better compatibility with third-party themes.
+* Tweak - Product listing page select feature improved
+* Tweak - Ability to choose product listing from existing pages
+* Tweak - Ability to display custom text above product listing
+* Tweak - Ability to display category description
