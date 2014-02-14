@@ -103,7 +103,7 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
-= 1.1.4 - 11/02/2014 =
+= 1.1.4 - 14/02/2014 =
 
 * Feature - Front-end labels manager
 * Feature - Ability to disable product archive
