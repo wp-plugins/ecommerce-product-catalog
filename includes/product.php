@@ -13,9 +13,18 @@
 require_once('product-categories.php');
 // require_once('product-types.php');
 
+function frontend_scripts() {
+	if (!is_admin()) {
+		wp_enqueue_script('jquery');
+	}
+}
+add_action('init', 'frontend_scripts');
+
 add_action( 'init', 'create_product' );
 function create_product() {
 global $wp_version;
+$enable_product_listing = get_option('enable_product_listing', 1);
+if ($enable_product_listing == 1) {$product_listing_t = true;} else {$product_listing_t = false;}
 if ( $wp_version < 3.8 ) {
 	$reg_settings = array(
 			'labels' => array(
@@ -31,7 +40,7 @@ if ( $wp_version < 3.8 ) {
 				'not_found_in_trash' => __( 'No Products found in trash','al-ecommerce-product-catalog')
 			),
 		'public' => true,
-		'has_archive' => true,
+		'has_archive' => $product_listing_t,
 		'rewrite' => array('slug' => get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog'))),
 		'supports' => array( 'title', 'thumbnail'),
 		'extras' => array('enter_title_here'=>__('Enter product name here', 'al-ecommerce-product-catalog')),
@@ -70,7 +79,7 @@ if ( $wp_version < 3.8 ) {
 				'not_found_in_trash' => __( 'No Products found in trash','al-ecommerce-product-catalog')
 			),
 		'public' => true,
-		'has_archive' => true,
+		'has_archive' => $product_listing_t,
 		'rewrite' => array('slug' => get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog'))),
 		'supports' => array( 'title', 'thumbnail'),
 		'extras' => array('enter_title_here'=>__('Enter product name here', 'al-ecommerce-product-catalog')),

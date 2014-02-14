@@ -9,20 +9,35 @@
  * @author 		Norbert Dreszer
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
- global $post; ?>
-<? if (is_tax()) { $the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); $page_title = __( 'All', 'al-ecommerce-product-catalog' ) .' '.$the_tax->name; }
-else {$page_title = __( 'All Products', 'al-ecommerce-product-catalog' ); } ?>
-				<header class="entry-header">
+global $post; 
+$default_archive_names = default_archive_names();
+$archive_names = get_option( 'archive_names', $default_archive_names);
+
+if (is_tax()) { $the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); 
+$page_title = $archive_names['all_prefix'] .' '.$the_tax->name; }
+else {$page_title = $archive_names['all_products']; } ?>
+				<header <?php post_class('entry-header'); ?>>
 				<?php 
+				if (! is_tax()) { 
+				 content_product_adder_archive_before_title(); } ?>
+				</header> 
+			
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><div class="entry-content">
+			
+			<?php 
 				if (! is_tax()) {
-				content_product_adder_archive_before(); } ?>
+				$before_archive = content_product_adder_archive_before();
+				if ( $before_archive != '<div class="entry-summary"></div>') {
+				 echo $before_archive; } } 
+				if ( $before_archive != '<div class="entry-summary"></div>') { 
+				 ?>
 				<h2 class="archive-title"><?php
 					
 						echo $page_title;
 					
 				?></h2>
 				
-				<?php if (is_tax()) {
+				<?php } if (is_tax()) {
 				echo '<div class="entry-content">'.term_description().'</div>';
 				$term = get_queried_object()->term_id; 
 				$taxonomy_name = 'al_product-cat'; 
@@ -34,16 +49,8 @@ else {$page_title = __( 'All Products', 'al-ecommerce-product-catalog' ); } ?>
 				?> 
 				</div>
 				
-				<?php } }
-				if ( is_post_type_archive() ) {
-				$page_id = 51;
-				$page = get_post($page_id);
-				$content = apply_filters ("the_content", $page->post_content);
-				echo "<p>$content</p>"; } ?>
-				</header> 
-			
-			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>><div class="entry-content">
-			
+				<?php } } ?>
+				
 			<?php while ( have_posts() ) : the_post(); ?>
 				
 				<a href="<?php the_permalink(); ?>"><div class="al_archive" style='background-image:url(" <?php 

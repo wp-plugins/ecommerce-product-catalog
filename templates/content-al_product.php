@@ -9,7 +9,10 @@
  * @author 		Norbert Dreszer
  */
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
- global $post; ?>
+global $post; 
+$default_single_names = default_single_names();
+$single_names = get_option( 'single_names', $default_single_names);
+?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">
@@ -23,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<table>
 		<?php $price_value = get_post_meta($post->ID, "_price", true);
 		if (!empty($price_value)) { ?>
-			<tr><td><?php _e( 'Product Price','al-ecommerce-product-catalog') ?>:</td><td class="price-value"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></td>
+			<tr><td><?php echo $single_names['product_price'] ?></td><td class="price-value"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></td>
 			</tr>
 			<?php }
 			$shipping_options = get_option('product_shipping_options_number',DEF_SHIPPING_OPTIONS_NUMBER);
@@ -37,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			if ($shipping_options > 0 AND ! empty($any_shipping_value)) { ?>
 			<tr>
 			<td>
-			<?php _e( 'Product Shipping','al-ecommerce-product-catalog') ?>:</td><td><ul><?php for ($i = 1; $i <= $shipping_options; $i++) { 
+			<?php echo $single_names['product_shipping'] ?></td><td><ul><?php for ($i = 1; $i <= $shipping_options; $i++) { 
 			$shipping_value = get_post_meta($post->ID, "_shipping".$i, true);
 			if (! empty($shipping_value)) {echo '<li>'. get_post_meta($post->ID, "_shipping-label".$i, true) . ' : ' . $shipping_value . ' ' . get_option('product_currency',DEF_CURRENCY) . '</li>'; } }?></td>
 			</tr> <?php } ?>
@@ -63,14 +66,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		}
 		if ($attributes_number > 0 AND ! empty($any_attribute_value)) { ?>
 		<div class="product-features">
-		<h3><?php _e( 'Product Features', 'al-ecommerce-product-catalog' ); ?></h3>
+		<h3><?php echo $single_names['product_features']; ?></h3>
 		<table class="features-table">
 		<?php 
 		
 		for ($i = 1; $i <= $attributes_number; $i++) { 
 		$attribute_value = get_post_meta($post->ID, "_attribute".$i, true);
 		if (! empty($attribute_value)) {
-		echo '<tr><td>'. get_post_meta($post->ID, "_attribute-label".$i, true) . '</td><td>' . get_post_meta($post->ID, "_attribute".$i, true). ' '. get_post_meta($post->ID, "_attribute-unit".$i, true) .'</td></tr>'; } } ?>
+		echo '<tr><td class="attribute-label-single">'. get_post_meta($post->ID, "_attribute-label".$i, true) . '</td><td>' . get_post_meta($post->ID, "_attribute".$i, true). ' '. get_post_meta($post->ID, "_attribute-unit".$i, true) .'</td></tr>'; } } ?>
 		
 		</table>
 		
@@ -82,14 +85,15 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Products:', 'al-ecommerce-product-catalog' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); } ?>
 	
 	<div class="after-product-description">
-	<div class="product-subcategories"><table><tr><td><?php _e( 'See also different', 'al-ecommerce-product-catalog' );?>:</td><td><?php 
-				// $term = get_queried_object()->term_id; 
-				$taxonomy_name = 'al_product-cat'; 
+	<?php 		$taxonomy_name = 'al_product-cat'; 
 				$terms = wp_get_post_terms($post->ID, $taxonomy_name, array("fields" => "ids"));
-				$term = $terms[0];
-				wp_list_categories('title_li=&taxonomy='.$taxonomy_name.'&child_of='.$term); ?> 
-				</td></tr></table></div>
-	<a href="<?php product_listing_url(); ?>"><<	 <?php _e( 'return to products', 'al-ecommerce-product-catalog' ); ?></a>
+				$term = $terms[0];				
+				$categories = wp_list_categories('title_li=&taxonomy='.$taxonomy_name.'&include='.$term.'&echo=0&hierarchical=0'); 
+				if ($categories != '<li class="cat-item-none">No categories</li>') { ?>
+	<div class="product-subcategories"><table><tr><td><?php echo $single_names['other_categories']; ?></td><td>
+	<?php echo $categories; ?>
+				</td></tr></table></div> <?php } ?>
+	<a href="<?php product_listing_url(); ?>"><?php echo $single_names['return_to_archive']; ?></a>
 	<?php  do_action('after-product-description'); ?></div>
 	
 	 

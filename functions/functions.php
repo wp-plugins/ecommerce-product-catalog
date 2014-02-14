@@ -29,7 +29,11 @@ return $url;
  }
  
 function product_listing_url() {
-echo '../';
+	if ( get_option('permalink_structure') ) { 
+			$listing_url = site_url(). '/' .get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog')). '/'; }
+	else {
+			$listing_url = get_post_type_archive_link( 'al_product' ); }
+	echo $listing_url;
 }
 function upload_product_image($name, $button_value, $option_name) { 
 global $name, $button_value, $option_name;

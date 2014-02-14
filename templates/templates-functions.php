@@ -30,7 +30,12 @@ include 'content-al_product.php';
 function content_product_adder_archive_before() {
 $page_id = get_option('product_archive');
 $page = get_post($page_id);
+return '<div class="entry-summary">'.$page->post_content.'</div>';
+}
+
+function content_product_adder_archive_before_title() {
+$page_id = get_option('product_archive');
+$page = get_post($page_id);
 echo '<h1 class="entry-title">'.$page->post_title.'</h1>';
-echo '<div class="entry-content">'.$page->post_content.'</div>';
 }
 ?>

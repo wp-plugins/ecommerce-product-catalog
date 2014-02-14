@@ -30,6 +30,7 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Abillity to Disable the eCommerce functionality__ - very handy if you just want to present your products
 * __Cross Browser Compatibility__ - works in all major browsers: IE7, IE8, IE9, Safari, Firefox, Chrome, Opera
 * __Product Archive Page__ - choose a Wordpress page to display your products
+* __Front-end Labels Manager__ - with eCommerce Product Catalog you can manage everything your clients can see
 
 And more to come every week!
 
@@ -102,7 +103,14 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
-= 1.1.2 - 11/02/2014 =
+= 1.1.4 - 11/02/2014 =
+
+* Feature - Front-end labels manager
+* Feature - Ability to disable product archive
+* Tweak - Better handling of none permalink structure
+* Fix - URLs in admin fixed when WordPress is installed in subdirectory
+
+= 1.1.3 - 11/02/2014 =
 
 * Tweak - Product listing page select feature improved
 * Tweak - Ability to choose product listing from existing pages
