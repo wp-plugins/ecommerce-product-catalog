@@ -16,6 +16,8 @@ require_once('product-categories.php');
 function frontend_scripts() {
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
+		wp_register_script('colorbox', AL_PLUGIN_BASE_PATH.'js/colorbox/jquery.colorbox-min.js', array('jquery'));
+		wp_register_style('colorbox', AL_PLUGIN_BASE_PATH.'js/colorbox/colorbox.css');
 	}
 }
 add_action('init', 'frontend_scripts');

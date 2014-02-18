@@ -12,7 +12,14 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $post; 
 $default_single_names = default_single_names();
 $single_names = get_option( 'single_names', $default_single_names);
-?>
+$enable_catalog_lightbox = get_option('catalog_lightbox', 1);
+if ($enable_catalog_lightbox == 1) { ?>
+<script>
+jQuery(document).ready(function(){
+				jQuery(".a-product-image").colorbox({transition: 'elastic', initialWidth: 200});
+});
+</script>
+<?php } ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">
@@ -20,7 +27,14 @@ $single_names = get_option( 'single_names', $default_single_names);
 		</header>
 		<div class="entry-content product-entry">
 		<div class="entry-thumbnail product-image">
-			<?php if (has_post_thumbnail()) {the_post_thumbnail('medium');} else { echo default_product_thumbnail();}?>
+			<?php if (has_post_thumbnail()) { 
+				if ($enable_catalog_lightbox == 1) {
+					$img_url = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'large'); ?>
+					<a class="a-product-image" href="<?php echo $img_url[0];?>"><?php the_post_thumbnail('medium');?></a> <?php } 
+				else {
+				the_post_thumbnail('medium'); }
+			} 
+			else { echo default_product_thumbnail();}?>
 		</div>
 		<div class="product-details">
 		<table>
@@ -93,8 +107,11 @@ $single_names = get_option( 'single_names', $default_single_names);
 	<div class="product-subcategories"><table><tr><td><?php echo $single_names['other_categories']; ?></td><td>
 	<?php echo $categories; ?>
 				</td></tr></table></div> <?php } ?>
-	<a href="<?php product_listing_url(); ?>"><?php echo $single_names['return_to_archive']; ?></a>
 	<?php  do_action('after-product-description'); ?></div>
+	<?php $enable_product_listing = get_option('enable_product_listing', 1);
+	if ($enable_product_listing == 1) { ?>
+	<a href="<?php echo product_listing_url(); ?>"><?php echo $single_names['return_to_archive']; ?></a>
+	<?php } ?>
 	
 	 
 	</div></article><!-- .entry-content -->

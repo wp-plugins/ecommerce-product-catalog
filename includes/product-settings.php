@@ -29,6 +29,8 @@ function product_settings_list() {
 
 require_once(  AL_BASE_PATH . '/config/currencies.php' );
 require_once(  AL_BASE_PATH . '/templates/themes/default-theme.php' );
+require_once(  AL_BASE_PATH . '/templates/themes/classic-list.php' );
+require_once(  AL_BASE_PATH . '/templates/themes/classic-grid.php' );
 require_once(  AL_BASE_PATH . '/includes/settings/general.php' );
 require_once(  AL_BASE_PATH . '/includes/settings/attributes.php' );
 require_once(  AL_BASE_PATH . '/includes/settings/shipping.php' );

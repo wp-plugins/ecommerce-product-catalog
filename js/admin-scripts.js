@@ -1,7 +1,7 @@
 /**
  * Plugin compatibility checker
  *
- * Here current theme is checked for compatibility with WP PRODUCT ADDER.
+ * Here current theme is checked for compatibility with eCommerce Product Catalog.
  *
  * @version		1.1.1
  * @package		ecommerce-product-catalog/functions

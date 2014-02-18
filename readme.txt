@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: impleCode, ndre
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@implecode.com&item_name=Donation+for+impleCode
-Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts
+Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.1.4
+Stable tag: 1.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,18 +21,29 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Unlimited number of products__ - Add as many products to your catalog as you need
 * __Usefull Product categories__ - You can divide your products into categories if you need to
 * __Intuitive Catalog Settings__ - You can fully customize your product catalog
+* __[show_products] Shortcode__ - You can show products with shortcode whenever you want on the website
+* __Lightbox on product image__ - Display your product image in nice lightbox window
 * __Product Attributes__ - You can specify attributes for each product
 * __Product Shipping__ - You can specify shipping options for each product
+* __3 Product Listing Templates__ - You can choose from 3 completely different product listing templates
 * __25 currencies available__ - You can choose from 25 different currencies
 * __Drag-and-Drop functionality__ - Highly intuitive interface to manage Product Attributes and Shipping Options
 * __Product Category Widget__ - Show your product categories in sidebar
 * __Completely Customizable Design__ - you can use your theme CSS, its great for designers and developers
 * __Abillity to Disable the eCommerce functionality__ - very handy if you just want to present your products
 * __Cross Browser Compatibility__ - works in all major browsers: IE7, IE8, IE9, Safari, Firefox, Chrome, Opera
-* __Product Archive Page__ - choose a Wordpress page to display your products
+* __Product Archive Page__ - choose a WordPress page to display your products or use [show_products] shortcode
 * __Front-end Labels Manager__ - with eCommerce Product Catalog you can manage everything your clients can see
 
 And more to come every week!
+
+= Display Products with Shortcode =
+
+You can also use shortcode to show your products whenever you want on the website. Just paste on any page: [show_products] and you will display all products in place of the shortcode. 
+
+To show products from just one category, use: [show_products category="2"] where 2 is category ID (you can display several categories by inserting comma separated IDs). 
+
+To display products by IDs, use: [show_products product="5"], where 5 is product ID.
 
 = Translations =
 
@@ -103,6 +114,14 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.2.0 - 18/02/2014 =
+
+* Feature - 2 more product listing templates to choose
+* Feature - Ability to disable attributes table on Modern Grid Template
+* Feature - Lightbox feature on product image with ability to disable it
+* Feature - [show_products] shortcode added and usage instruction in settings menu
+* Tweak - Catalog Design tab in admin menu added
+
 = 1.1.4 - 14/02/2014 =
 
 * Feature - Front-end labels manager
@@ -145,7 +164,8 @@ Documentation will be available soon on impleCode.com.
 
 == Upgrade Notice ==
 
-* Tweak - Product listing page select feature improved
-* Tweak - Ability to choose product listing from existing pages
-* Tweak - Ability to display custom text above product listing
-* Tweak - Ability to display category description
+* Feature - 2 more product listing templates to choose
+* Feature - Ability to disable attributes table on Modern Grid Template
+* Feature - Lightbox feature on product image with ability to disable it
+* Feature - [show_products] shortcode added and usage instruction in settings menu
+* Tweak - Catalog Design tab in admin menu added

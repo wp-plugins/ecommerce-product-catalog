@@ -109,6 +109,7 @@ function general_settings_content() { ?>
 						<td><a target="_blank" class="archive-url" href="<?php echo product_listing_url() ?>"><?php echo product_listing_url(); ?></a></td>
 					</tr>
 				</table>
+				<div class="al-box info"><?php _e('You can also use shortcode to show your products whenever you want on the website. Just paste on any page: [show_products] and you will display all products in place of the shortcode. <br><br>To show products from just one category, use: [show_products category="2"] where 2 is category ID (you can display several categories by inserting comma separated IDs). <br><br>To display products by IDs, use: [show_products product="5"], where 5 is product ID.', 'al-ecommerce-product-catalog'); ?></div>
 				<h3><?php _e('Payment and currency', 'al-ecommerce-product-catalog'); ?></h3>
 				<?php _e('Your currency', 'al-ecommerce-product-catalog'); ?> 
 				<select id="product_currency" name="product_currency"> 

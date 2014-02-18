@@ -8,31 +8,63 @@
  * @package		ecommerce-product-catalog/templates/themes
  * @author 		Norbert Dreszer
  */
- 
- function example_default_archive_theme() { ?>
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
+ function example_default_archive_theme() { 
+ $default_modern_grid_settings = array (
+	'attributes' => 1,
+	);
+$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); ?>
  <div id="content">
  <a href="#default-theme"><div class="al_archive" style="background-image:url('<?php echo AL_PLUGIN_BASE_PATH .'templates/themes/img/example-product.jpg'; ?>'); background-position:center; ">
 				<div class="product-name">White Lamp</div>
+				<?php if ($modern_grid_settings['attributes'] == 1) {?>
 				<div class="product-attributes">
 				<table class="attributes-table">
 				<tbody><tr><td>Height</td><td>20 </td></tr><tr><td>Color</td><td>White </td></tr>		
 				</tbody></table>
-				</div><div class="product-price">10 USD</div>
+				</div> <?php } ?>
+				<div class="product-price">10 USD</div>
 				</div></a> 
 </div>
 <?php }
 
-function example_list_archive_theme() { ?>
-<div class="archive-listing list example"><a href="#list-theme"><span class="div-link"></span></a><div class="product-image" style="background-image:url('<?php echo AL_PLUGIN_BASE_PATH .'templates/themes/img/example-product.jpg'; ?>'); background-size: 150px; background-position: center;"></div><div class="product-name">White Lamp</div><div class="product-short-descr"><p>Fusce vestibulum augue ac quam tincidunt ullamcorper. Vestibulum scelerisque fermentum congue. Proin convallis dolor ac ipsum congue tincidunt. Donec ullamcorper ipsum id risus feugiat volutpat. Curabitur cursus mattis dui sit amet scelerisque. [...]</p>
-</div></div>
-<?php } 
-
-function example_grid_archive_theme() { ?>
-<div class="archive-listing grid example">
-		<a href="#grid-theme">
-		<div style="background-image:url('<?php echo AL_PLUGIN_BASE_PATH .'templates/themes/img/example-product.jpg'; ?>'); background-size: 200px; background-position: center; width:200px; height:200px;"></div>
-		<div class="product-name">White Lamp</div>
-		<div class="product-price">10 USD</div>
-		</a>
-</div>
+function default_archive_theme($post) { 
+$default_modern_grid_settings = array (
+	'attributes' => 1,
+	);
+$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); ?>
+			<a href="<?php the_permalink(); ?>"><div class="al_archive" style='background-image:url(" <?php 
+			if (wp_get_attachment_url( get_post_thumbnail_id($post->ID) )) {
+				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); 
+			} 
+			else {
+				$url = default_product_thumbnail_url(); 
+			}
+			echo $url; ?>"); background-position:center; '>
+		
+			<div class="product-name"><?php the_title(); ?></div>
+			<?php $attributes_number = get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER);
+			$at_val = '';
+			$any_attribute_value = '';
+			for ($i = 1; $i <= $attributes_number; $i++) {
+				$at_val = get_post_meta($post->ID, "_attribute".$i, true);
+				if (! empty($at_val)) {
+					$any_attribute_value = $at_val.$i; }
+			}
+			if ($attributes_number > 0 AND ! empty($any_attribute_value) AND $modern_grid_settings['attributes'] == 1) { ?>
+				<div class="product-attributes">
+					<table class="attributes-table">
+					<?php for ($i = 1; $i <= $attributes_number; $i++) { 
+						$attribute_value = get_post_meta($post->ID, "_attribute".$i, true);
+						if (! empty($attribute_value)) {
+							echo '<tr><td>'. get_post_meta($post->ID, "_attribute-label".$i, true) . '</td><td>' . get_post_meta($post->ID, "_attribute".$i, true). ' '. get_post_meta($post->ID, "_attribute-unit".$i, true) .'</td></tr>'; } } ?>
+					</table>
+				</div> 
+			<?php } 
+			$price_value = get_post_meta($post->ID, "_price", true);
+			if (!empty($price_value)) { ?>
+				<div class="product-price"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></div>
+			<?php } ?>
+			</div></a>		
 <?php } 

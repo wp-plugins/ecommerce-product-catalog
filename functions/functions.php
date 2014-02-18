@@ -33,7 +33,7 @@ function product_listing_url() {
 			$listing_url = site_url(). '/' .get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog')). '/'; }
 	else {
 			$listing_url = get_post_type_archive_link( 'al_product' ); }
-	echo $listing_url;
+	return $listing_url;
 }
 function upload_product_image($name, $button_value, $option_name) { 
 global $name, $button_value, $option_name;
@@ -73,4 +73,45 @@ jQuery('.media-image').attr("src", src);
 </script>
 <?php
 
+}
+
+function select_page($option_name,$first_option,$selected_value) {
+$args = array(
+		'sort_order' => 'ASC',
+		'sort_column' => 'post_title',
+		'hierarchical' => 1,
+		'exclude' => '',
+		'include' => '',
+		'meta_key' => '',
+		'meta_value' => '',
+		'authors' => '',
+		'child_of' => 0,
+		'parent' => -1,
+		'exclude_tree' => '',
+		'number' => '',
+		'offset' => 0,
+		'post_type' => 'page',
+		'post_status' => 'publish'
+		); 
+$pages = get_pages($args); 
+$select_box	= '<select id="'.$option_name.'" name="'.$option_name.'"><option value="noid">'.$first_option.'</option>';
+foreach ($pages as $page) { 
+	$select_box .= '<option name="' .$option_name. '[' .$page->ID. ']" value="' .$page->ID. '" ' .selected($page->ID, $selected_value, 0). '>' .$page->post_title. '</option>';
+	}  
+$select_box .= '</s1elect>';
+
+echo $select_box;
+}
+
+function show_page_link($page_id) {
+$page_url = post_permalink( $page_id );
+$page_link = '<a target="_blank" href='.$page_url.'>'.$page_url.'</a>';
+echo $page_link;
+}
+
+function verify_page_status($page_id) {
+$page_status = get_post_status( $page_id );
+if ($page_status != 'publish' AND $page_status != '') {
+echo '<div class="al-box warning">This page has wrong status: '.$page_status.'.<br>Don\'t forget to publish it before going live!</div>';
+}
 }

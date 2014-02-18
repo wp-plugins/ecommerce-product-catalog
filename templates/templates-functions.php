@@ -38,4 +38,61 @@ $page_id = get_option('product_archive');
 $page = get_post($page_id);
 echo '<h1 class="entry-title">'.$page->post_title.'</h1>';
 }
+
+function show_products_outside_loop($atts) {
+extract(shortcode_atts(array( 
+		'post_type' => 'al_product',
+		'category' => 2,
+		'product' => 0,
+    ), $atts));
+
+if ($product != 0) {
+	$product_array = explode(',', $product);
+	$query = new WP_Query( array (
+		'post_type' => 'al_product',
+		'post__in' => $product_array,
+		));
+}
+else {
+	$category_array = explode(',', $category);
+	$query = new WP_Query( array (
+		'post_type' => 'al_product',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'al_product-cat',
+				'field' => 'term_id',
+				'terms' => $category_array,
+			),
+		),
+		));
+}
+$inside = '';
+$archive_template = get_option( 'archive_template', 'default');
+if ($archive_template == 'default') {
+	while ( $query->have_posts() ) : $query->the_post(); global $post;
+		$inside .= default_archive_theme($post);
+	endwhile; wp_reset_postdata();
+}
+else if ($archive_template == 'list') {
+	while ( $query->have_posts() ) : $query->the_post(); global $post;
+		$inside .= list_archive_theme($post);
+	endwhile; wp_reset_postdata();
+}
+else {
+	while ( $query->have_posts() ) : $query->the_post(); global $post;
+		$inside .= grid_archive_theme($post);
+	endwhile; wp_reset_postdata();
+}
+return $inside;
+}
+
+add_shortcode('show_products', 'show_products_outside_loop');
+
+function single_scripts(){
+$enable_catalog_lightbox = get_option('catalog_lightbox', 1);
+if ($enable_catalog_lightbox == 1) {
+wp_enqueue_script('colorbox');
+wp_enqueue_style('colorbox');
+}}
+add_action( 'wp_enqueue_scripts', 'single_scripts' );
 ?>
