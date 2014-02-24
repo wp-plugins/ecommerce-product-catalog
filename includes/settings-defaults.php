@@ -1,0 +1,25 @@
+<?php
+/**
+ * Manages product settings defaults
+ *
+ * Here product settings defaults are defined and managed.
+ *
+ * @version		1.2.1
+ * @package		ecommerce-product-catalog/includes
+ * @author 		Norbert Dreszer
+ */
+
+define('DEFAULT_ARCHIVE_MULTIPLE_SETTINGS', serialize (array(
+	'archive_products_limit' => 10,
+	'category_archive_url' => 'product-category',
+	)));
+	
+define('DEFAULT_ARCHIVE_TEMPLATE', 'default');
+
+define('DEFAULT_DESIGN_SCHEMES', serialize (array(
+	'price-size' => 'big-price',
+	'price-color' => 'red-price',
+	'box-color' => 'green-box',
+	)));
+	
+define('ENABLE_CATALOG_LIGHTBOX', 1);

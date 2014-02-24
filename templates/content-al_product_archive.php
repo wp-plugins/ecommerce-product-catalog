@@ -21,7 +21,7 @@ else {$page_title = $archive_names['all_products']; } ?>
 	<?php if (! is_tax()) { content_product_adder_archive_before_title(); } ?>
 </header> 
 			
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="product_listing" <?php post_class(); ?>>
 	<div class="entry-content">
 		<?php if (! is_tax()) {
 			$before_archive = content_product_adder_archive_before();
@@ -44,7 +44,7 @@ else {$page_title = $archive_names['all_products']; } ?>
 				</div>
 			<?php } 
 		} 
-		$archive_template = get_option( 'archive_template', 'default');
+		$archive_template = get_option( 'archive_template', DEFAULT_ARCHIVE_TEMPLATE);
 		if ($archive_template == 'default') {
 			while ( have_posts() ) : the_post(); 
 				default_archive_theme($post);
@@ -58,8 +58,8 @@ else {$page_title = $archive_names['all_products']; } ?>
 				grid_archive_theme($post);
 			endwhile; 
 		}
-		?>
+		?><span class="clear"></span>
 	</div>
-</article>
-<?php echo paginate_links( $args ); ?>
 	
+</article>
+	<?php product_archive_pagination(); ?>

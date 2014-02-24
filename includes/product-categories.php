@@ -16,6 +16,7 @@ add_action( 'init', 'create_product_categories', 0 );
 
 // create two taxonomies, genres and writers for the post type "book"
 function create_product_categories() {
+$archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
 	// Add new taxonomy, make it hierarchical (like categories)
 	$labels = array(
 		'name'              => __( 'Product Categories', 'al-ecommerce-product-catalog' ),
@@ -37,7 +38,7 @@ function create_product_categories() {
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite'           => array( 'slug' => 'product-category' ),
+		'rewrite'           => array( 'slug' => $archive_multiple_settings['category_archive_url'], 'with_front' => false ),
 		'capabilities' => array (
             'manage_terms' => 'manage_product_categories', 
             'edit_terms' => 'edit_product_categories',
@@ -47,6 +48,7 @@ function create_product_categories() {
 	);
 
 	register_taxonomy( 'al_product-cat', array( 'al_product' ), $args );
+	flush_rewrite_rules();
 }
 
 ?>

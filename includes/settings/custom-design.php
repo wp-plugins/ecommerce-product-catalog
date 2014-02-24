@@ -18,6 +18,8 @@ function design_settings() {
  	register_setting('product_design', 'archive_template');
 	register_setting('product_design', 'modern_grid_settings');
 	register_setting('single_design', 'catalog_lightbox');
+	// register_setting('single_design', 'single_styles');
+	register_setting('design_schemes', 'design_schemes');
 }
 add_action('product-settings-list','design_settings');
 
@@ -29,6 +31,7 @@ function custom_design_content() { ?>
 			<h3>
 				<a id="archive-design" class="element current" href="./edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=archive-design"><?php _e('Product Listing', 'al-ecommerce-product-catalog'); ?></a>
 				<a id="single-design" class="element" href="./edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=single-design"><?php _e('Single Product', 'al-ecommerce-product-catalog'); ?></a>
+				<a id="design-schemes" class="element" href="./edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=design-schemes"><?php _e('Design Schemes', 'al-ecommerce-product-catalog'); ?></a>
 				<?php do_action('custom-design-submenu'); ?>
 			</h3>
 		</div>
@@ -90,9 +93,10 @@ if ($submenu == 'single-design') { ?>
 	jQuery('.settings-submenu a#single-design').addClass('current');
 </script>
 <form method="post" action="options.php">
-	<?php settings_fields('single_design'); $enable_catalog_lightbox = get_option('catalog_lightbox', 1); ?>
+	<?php settings_fields('single_design'); 
+	$enable_catalog_lightbox = get_option('catalog_lightbox', ENABLE_CATALOG_LIGHTBOX); ?>
 	<h2><?php _e('Design Settings', 'al-ecommerce-product-catalog'); ?></h2>
-	<h3><?php _e('Single Product', 'al-ecommerce-product-catalog'); ?></h3>
+	<h3><?php _e('Product Gallery', 'al-ecommerce-product-catalog'); ?></h3>
 		<input type="checkbox" name="catalog_lightbox" value="1"<?php checked( 1, $enable_catalog_lightbox ); ?> /><?php _e('Enable lightbox on product image', 'al-ecommerce-product-catalog'); ?>
 	<p class="submit">
 		<input type="submit" class="button-primary" value="<?php _e('Save changes', 'al-ecommerce-product-catalog'); ?>" />
@@ -101,3 +105,69 @@ if ($submenu == 'single-design') { ?>
 <?php } }
 
 add_action('custom-design-settings','single_custom_design');
+
+function color_schemes() { 
+$tab = $_GET['tab'];
+$submenu = $_GET['submenu']; 
+if ($submenu == 'design-schemes') { ?>
+<script>
+	jQuery('.settings-submenu a').removeClass('current');
+	jQuery('.settings-submenu a#design-schemes').addClass('current');
+</script>
+<form method="post" action="options.php">
+	<?php settings_fields('design_schemes');
+	$custom_single_styles = unserialize (DEFAULT_DESIGN_SCHEMES);
+	$design_schemes = get_option('design_schemes', $custom_single_styles); ?>
+	<h2><?php _e('Design Settings', 'al-ecommerce-product-catalog'); ?></h2>
+	<h3><?php _e('Design Schemes', 'al-ecommerce-product-catalog'); ?></h3>
+	<div class="al-box info"><p><?php _e("Changing design schemes has almost always impact on various elements. For example changing price color has impact on single product page and archive page price color.", 'al-ecommerce-product-catalog'); ?></p><p><?php _e('You can figure it out by checking "impact" column.', 'al-ecommerce-product-catalog'); ?></p></div>
+	<table style="clear:right" class="wp-list-table widefat product-settings-table">
+	<thead>
+	<th><strong><?php _e('Setting', 'al-ecommerce-product-catalog'); ?></strong></th>
+	<th><strong><?php _e('Value', 'al-ecommerce-product-catalog'); ?></strong></th>
+	<th><strong><?php _e('Example Effect', 'al-ecommerce-product-catalog'); ?></strong></th>
+	<th><strong><?php _e('Impact', 'al-ecommerce-product-catalog'); ?></strong></th>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?php _e('Price Size', 'al-ecommerce-product-catalog'); ?></td>
+			<td><select id="single_price" name="design_schemes[price-size]">
+			<option name="design_schemes[big-price]" value="big-price"<?php selected('big-price', $design_schemes['price-size']); ?>><?php _e('Big', 'al-ecommerce-product-catalog'); ?></option>
+			<option name="design_schemes[small-price]" value="small-price"<?php selected('small-price', $design_schemes['price-size']); ?>><?php _e('Small', 'al-ecommerce-product-catalog'); ?></option>
+			</select></td>
+			<td rowspan=2 class="price-value example <?php design_schemes(); ?>"><?php do_action('example_price'); ?></td>
+			<td><?php _e('single product', 'al-ecommerce-product-catalog'); ?></td>
+		</tr>
+		<tr>
+			<td><?php _e('Price Color', 'al-ecommerce-product-catalog'); ?></td>
+			<td>
+				<select id="single_price" name="design_schemes[price-color]">
+					<option name="design_schemes[red-price]" value="red-price"<?php selected('red-price', $design_schemes['price-color']); ?>><?php _e('Red', 'al-ecommerce-product-catalog'); ?></option>
+					<option name="design_schemes[orange-price]" value="orange-price"<?php selected('orange-price', $design_schemes['price-color']); ?>><?php _e('Orange', 'al-ecommerce-product-catalog'); ?></option>
+					<option name="design_schemes[green-price]" value="green-price"<?php selected('green-price', $design_schemes['price-color']); ?>><?php _e('Green', 'al-ecommerce-product-catalog'); ?></option>
+				</select>
+			</td>
+			<td><?php _e('single product', 'al-ecommerce-product-catalog'); ?>, <?php _e('product archive', 'al-ecommerce-product-catalog'); ?></td>
+		</tr>
+		<tr>
+			<td><?php _e('Boxes Color', 'al-ecommerce-product-catalog'); ?></td>
+			<td>
+				<select id="box_schemes" name="design_schemes[box-color]">
+					<option name="design_schemes[red-box]" value="red-box"<?php selected('red-box', $design_schemes['box-color']); ?>><?php _e('Red', 'al-ecommerce-product-catalog'); ?></option>
+					<option name="design_schemes[orange-box]" value="orange-box"<?php selected('orange-box', $design_schemes['box-color']); ?>><?php _e('Orange', 'al-ecommerce-product-catalog'); ?></option>
+					<option name="design_schemes[green-box]" value="green-box"<?php selected('green-box', $design_schemes['box-color']); ?>><?php _e('Green', 'al-ecommerce-product-catalog'); ?></option>
+				</select>
+			</td>
+			<td><div class="product-name example <?php design_schemes('box'); ?>">Exclusive Red Lamp</div></td>
+			<td><?php _e('product archive title', 'al-ecommerce-product-catalog'); ?>, <?php _e('archive pagination', 'al-ecommerce-product-catalog'); ?></td>
+		</tr>
+	</tbody>
+	</table>
+	<?php do_action('color_schemes_settings'); ?>
+	<p class="submit">
+		<input type="submit" class="button-primary" value="<?php _e('Save changes', 'al-ecommerce-product-catalog'); ?>" />
+	</p>
+</form>
+<?php } }
+
+add_action('custom-design-settings','color_schemes');

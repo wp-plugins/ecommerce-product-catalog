@@ -33,7 +33,9 @@ function default_archive_theme($post) {
 $default_modern_grid_settings = array (
 	'attributes' => 1,
 	);
-$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); ?>
+$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); 
+$product_currency = get_option('product_currency',DEF_CURRENCY);
+$price_value = get_post_meta($post->ID, "_price", true); ?>
 			<a href="<?php the_permalink(); ?>"><div class="al_archive" style='background-image:url(" <?php 
 			if (wp_get_attachment_url( get_post_thumbnail_id($post->ID) )) {
 				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); 
@@ -43,7 +45,7 @@ $modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid
 			}
 			echo $url; ?>"); background-position:center; '>
 		
-			<div class="product-name"><?php the_title(); ?></div>
+			<div class="product-name <?php design_schemes('box'); ?>"><?php the_title(); ?></div>
 			<?php $attributes_number = get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER);
 			$at_val = '';
 			$any_attribute_value = '';
@@ -62,9 +64,7 @@ $modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid
 					</table>
 				</div> 
 			<?php } 
-			$price_value = get_post_meta($post->ID, "_price", true);
-			if (!empty($price_value)) { ?>
-				<div class="product-price"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></div>
-			<?php } ?>
+			do_action('archive_price', $price_value, $product_currency); ?>
+			
 			</div></a>		
 <?php } 

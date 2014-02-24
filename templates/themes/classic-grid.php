@@ -20,7 +20,9 @@ function example_grid_archive_theme() { ?>
 </div>
 <?php }
 
-function grid_archive_theme($post) { ?>
+function grid_archive_theme($post) { 
+$product_currency = get_option('product_currency',DEF_CURRENCY);
+$price_value = get_post_meta($post->ID, "_price", true);?>
 <div class="archive-listing grid">
 		<a href="<?php the_permalink(); ?>">
 		<div style="background-image:url('<?php 
@@ -32,9 +34,7 @@ function grid_archive_theme($post) { ?>
 			}
 			echo $url; ?>'); background-size: 200px; background-position: center; width:200px; height:200px;"></div>
 		<div class="product-name"><?php the_title(); ?></div>
-		<?php $price_value = get_post_meta($post->ID, "_price", true);
-		if (!empty($price_value)) { ?>
-		<div class="product-price"><?php echo get_post_meta($post->ID, "_price", true); ?> <?php echo get_option('product_currency',DEF_CURRENCY); ?></div> <?php } ?>
+		<?php do_action('archive_price', $price_value, $product_currency);  ?>
 		</a>
 </div>
 <?php }

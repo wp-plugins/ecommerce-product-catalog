@@ -1,10 +1,10 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: impleCode, ndre
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=paypal@implecode.com&item_name=Donation+for+impleCode
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,6 +25,7 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Lightbox on product image__ - Display your product image in nice lightbox window
 * __Product Attributes__ - You can specify attributes for each product
 * __Product Shipping__ - You can specify shipping options for each product
+* __Design Schemes__ - You can choose color and size of product catalog elements
 * __3 Product Listing Templates__ - You can choose from 3 completely different product listing templates
 * __25 currencies available__ - You can choose from 25 different currencies
 * __Drag-and-Drop functionality__ - Highly intuitive interface to manage Product Attributes and Shipping Options
@@ -35,7 +36,7 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Product Archive Page__ - choose a WordPress page to display your products or use [show_products] shortcode
 * __Front-end Labels Manager__ - with eCommerce Product Catalog you can manage everything your clients can see
 
-And more to come every week!
+And more to come every week! Future functions are specified in the "Current Donation Goal" section.
 
 = Display Products with Shortcode =
 
@@ -44,6 +45,17 @@ You can also use shortcode to show your products whenever you want on the websit
 To show products from just one category, use: [show_products category="2"] where 2 is category ID (you can display several categories by inserting comma separated IDs). 
 
 To display products by IDs, use: [show_products product="5"], where 5 is product ID.
+
+= Current Donation Goal =
+
+Currently we are working on:
+
+* Feature - [show_categories] shortcode to show category listing on any page
+* Feature - Search widget for products
+* Feature - Ability to add separate sidebars for eCommerce Product Catalog
+* Feature - Ability to choose different price formats such as $2500, USD2500 etc.
+
+**If you want to say thanks by donating us [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
 
 = Translations =
 
@@ -114,6 +126,17 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.3.0 - 24/02/2014 =
+
+* Feature - Ability to change colors and size of certain elements
+* Feature - Ability to set maximum products in one product listing page
+* Feature - Pagination added to product listing
+* Feature - Ability to set maximum products showed with [show_products] shortcode
+* Feature - Ability to choose product categories parent slug
+* Tweak - Design Schemes submenu added to Catalog Design menu
+* Fix - [show_products] shortcode now displays products correctly even if no category and product IDs are set
+* Fix - Blog permalinks have no impact on products now
+
 = 1.2.0 - 18/02/2014 =
 
 * Feature - 2 more product listing templates to choose
@@ -164,8 +187,11 @@ Documentation will be available soon on impleCode.com.
 
 == Upgrade Notice ==
 
-* Feature - 2 more product listing templates to choose
-* Feature - Ability to disable attributes table on Modern Grid Template
-* Feature - Lightbox feature on product image with ability to disable it
-* Feature - [show_products] shortcode added and usage instruction in settings menu
-* Tweak - Catalog Design tab in admin menu added
+* Feature - Ability to change colors and size of certain elements
+* Feature - Ability to set maximum products in one product listing page
+* Feature - Pagination added to product listing
+* Feature - Ability to set maximum products showed with [show_products] shortcode
+* Feature - Ability to choose product categories parent slug
+* Tweak - Design Schemes submenu added to Catalog Design menu
+* Fix - [show_products] shortcode now displays products correctly even if no category and product IDs are set
+* Fix - Blog permalinks have no impact on products now

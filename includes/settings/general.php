@@ -20,6 +20,7 @@ function general_settings() {
 	register_setting('product_settings', 'product_currency');
 	register_setting('product_settings', 'product_archive');
 	register_setting('product_settings', 'enable_product_listing');
+	register_setting('product_settings', 'archive_multiple_settings');
 }
 add_action('product-settings-list','general_settings');
 
@@ -47,6 +48,7 @@ function general_settings_content() { ?>
 				$product_listing_url = get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog'));
 				$product_archive_created = get_option('product_archive_page_id','0');
 				$product_archive = get_option('product_archive', $product_archive_created);
+				$archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
 				$page_get = get_page_by_path( $product_listing_url );
 				if ($product_archive != '') {
 					$new_product_listing_url = get_page_uri( $product_archive ); 
@@ -77,36 +79,23 @@ function general_settings_content() { ?>
 					</tr>
 					<tr>
 						<td>
-							<?php $args = array(
-								'sort_order' => 'ASC',
-								'sort_column' => 'post_title',
-								'hierarchical' => 1,
-								'exclude' => '',
-								'include' => '',
-								'meta_key' => '',
-								'meta_value' => '',
-								'authors' => '',
-								'child_of' => 0,
-								'parent' => -1,
-								'exclude_tree' => '',
-								'number' => '',
-								'offset' => 0,
-								'post_type' => 'page',
-								'post_status' => 'publish'
-							); 
-							$pages = get_pages($args);  ?>
-							<?php _e('Choose Product Listing Page', 'al-ecommerce-product-catalog'); ?>: </td><td>
-							<select id="product_archive" name="product_archive">
-								<option value="noid"><?php _e( 'Default', 'al-ecommerce-product-catalog' ); ?></option>
-								<?php foreach ($pages as $page) {?>
-									<option name="product_archive[<?php echo $page->ID; ?>]" value="<?php echo $page->ID; ?>"<?php selected( $page->ID == $product_archive); ?>><?php echo $page->post_title; ?></option>
-								<?php }  ?>
-							</select>
+							<?php _e('Choose Product Listing Page', 'al-ecommerce-product-catalog'); ?>: 
+						</td>
+						<td>
+							<?php select_page('product_archive', __( 'Default', 'al-ecommerce-product-catalog' ), $product_archive); ?>
 						</td>
 					</tr>
 					<tr>
 						<td><?php _e('Product listing URL', 'al-ecommerce-product-catalog'); ?>:</td>
 						<td><a target="_blank" class="archive-url" href="<?php echo product_listing_url() ?>"><?php echo product_listing_url(); ?></a></td>
+					</tr>
+					<tr>
+						<td><?php _e('Product listing shows at most', 'al-ecommerce-product-catalog'); ?> </td>
+						<td><input size="30" type="number" step="1" min="0" name="archive_multiple_settings[archive_products_limit]" id="archive_products_limit" value="<?php echo $archive_multiple_settings['archive_products_limit']; ?>" /> <?php _e('products', 'al-ecommerce-product-catalog'); ?>.</td>
+					</tr>
+					<tr>
+						<td><?php _e('Categories Parent URL', 'al-ecommerce-product-catalog'); ?> </td>
+						<td><input type="text" name="archive_multiple_settings[category_archive_url]" id="category_archive_url" value="<?php echo $archive_multiple_settings['category_archive_url']; ?>" /></td>
 					</tr>
 				</table>
 				<div class="al-box info"><?php _e('You can also use shortcode to show your products whenever you want on the website. Just paste on any page: [show_products] and you will display all products in place of the shortcode. <br><br>To show products from just one category, use: [show_products category="2"] where 2 is category ID (you can display several categories by inserting comma separated IDs). <br><br>To display products by IDs, use: [show_products product="5"], where 5 is product ID.', 'al-ecommerce-product-catalog'); ?></div>

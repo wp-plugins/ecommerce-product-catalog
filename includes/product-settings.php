@@ -5,7 +5,7 @@
  * Here product settings are defined and managed.
  *
  * @version		1.1.4
- * @package		ecommerce-product-catalog/functions
+ * @package		ecommerce-product-catalog/includes
  * @author 		Norbert Dreszer
  */
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
