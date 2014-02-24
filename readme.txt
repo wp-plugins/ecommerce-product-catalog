@@ -55,7 +55,7 @@ Currently we are working on:
 * Feature - Ability to add separate sidebars for eCommerce Product Catalog
 * Feature - Ability to choose different price formats such as $2500, USD2500 etc.
 
-**If you want to say thanks by donating us [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
+**If you want to say thanks by donating to this plugin [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
 
 = Translations =
 
