@@ -36,7 +36,9 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Product Archive Page__ - choose a WordPress page to display your products or use [show_products] shortcode
 * __Front-end Labels Manager__ - with eCommerce Product Catalog you can manage everything your clients can see
 
-And more to come every week! Future functions are specified in the "Current Donation Goal" section.
+And more to come every week! 
+
+Future functions are specified in the "Current Donation Goal" section.
 
 = Display Products with Shortcode =
 
