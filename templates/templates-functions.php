@@ -115,7 +115,10 @@ add_action( 'pre_get_posts', 'set_products_limit' );
  
 function set_products_limit( $query ) {
 $archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
-if ( ! is_admin() && $query->is_main_query() ) {
+if ( ! is_admin() && $query->is_main_query() && is_post_type_archive( 'al_product' ) ) {
+	$query->set( 'posts_per_page', $archive_multiple_settings['archive_products_limit'] );
+}
+else if ( ! is_admin() && $query->is_main_query() && is_tax( 'al_product-cat' ) ) {
 	$query->set( 'posts_per_page', $archive_multiple_settings['archive_products_limit'] );
 }
 }
