@@ -15,7 +15,8 @@ $archive_names = get_option( 'archive_names', $default_archive_names);
 
 if (is_tax()) { $the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); 
 $page_title = $archive_names['all_prefix'] .' '.$the_tax->name; }
-else {$page_title = $archive_names['all_products']; } ?>
+else {$page_title = $archive_names['all_products']; }
+echo product_breadcrumbs(); ?>
 				
 <header <?php post_class('entry-header'); ?>>
 	<?php if (! is_tax()) { content_product_adder_archive_before_title(); } ?>

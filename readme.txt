@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -19,6 +19,7 @@ Reward your Wordpress website with beautifull and easy to use product catalog. e
 You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/ "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com "impleCode - open-source plugin developer").
 
 * __Unlimited number of products__ - Add as many products to your catalog as you need
+* __SEO Friendly__ - Give your site nice boost in search engines with SEO optimized product pages
 * __Usefull Product categories__ - You can divide your products into categories if you need to
 * __Intuitive Catalog Settings__ - You can fully customize your product catalog
 * __[show_products] Shortcode__ - You can show products with shortcode whenever you want on the website
@@ -30,11 +31,13 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __25 currencies available__ - You can choose from 25 different currencies
 * __Drag-and-Drop functionality__ - Highly intuitive interface to manage Product Attributes and Shipping Options
 * __Product Category Widget__ - Show your product categories in sidebar
+* __Product Search Widget__ - Give your users useful search function
 * __Completely Customizable Design__ - you can use your theme CSS, its great for designers and developers
 * __Abillity to Disable the eCommerce functionality__ - very handy if you just want to present your products
 * __Cross Browser Compatibility__ - works in all major browsers: IE7, IE8, IE9, Safari, Firefox, Chrome, Opera
 * __Product Archive Page__ - choose a WordPress page to display your products or use [show_products] shortcode
 * __Front-end Labels Manager__ - with eCommerce Product Catalog you can manage everything your clients can see
+* __Product Breadcrumbs__ - you can use SEO friendly product breadcrumbs
 
 And more to come every week! 
 
@@ -128,6 +131,12 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.4.0 - 03/03/2014 =
+
+* Feature - Ability to enable SEO friendly breadcrumbs
+* Feature - Ability to disable image on single product page
+* Feature - Product Search Widget
+
 = 1.3.1 - 25/02/2014 =
 
 * Fix - Product listing maximum elements no longer have impact on blog archive
@@ -193,11 +202,6 @@ Documentation will be available soon on impleCode.com.
 
 == Upgrade Notice ==
 
-* Feature - Ability to change colors and size of certain elements
-* Feature - Ability to set maximum products in one product listing page
-* Feature - Pagination added to product listing
-* Feature - Ability to set maximum products showed with [show_products] shortcode
-* Feature - Ability to choose product categories parent slug
-* Tweak - Design Schemes submenu added to Catalog Design menu
-* Fix - [show_products] shortcode now displays products correctly even if no category and product IDs are set
-* Fix - Blog permalinks have no impact on products now
+* Feature - Ability to enable SEO friendly breadcrumbs
+* Feature - Ability to disable image on single product page
+* Feature - Product Search Widget

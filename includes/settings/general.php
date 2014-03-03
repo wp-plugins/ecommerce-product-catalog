@@ -25,10 +25,6 @@ function general_settings() {
 add_action('product-settings-list','general_settings');
 
 function general_settings_content() { ?>
-	<script>
-	jQuery('.settings-submenu a').removeClass('current');
-	jQuery('.settings-submenu a#general-settings').addClass('current');
-	</script>
 	<?php $submenu = $_GET['submenu'];?>
 	<div class="overall-product-settings" style="clear:both;">
 		<div class="settings-submenu">
@@ -39,6 +35,10 @@ function general_settings_content() { ?>
 		</div>
 		
 	<?php if ($submenu == 'general-settings' OR $submenu == '') { ?>
+	<script>
+	jQuery('.settings-submenu a').removeClass('current');
+	jQuery('.settings-submenu a#general-settings').addClass('current');
+	</script>
 		<div class="setting-content submenu">
 		<h2><?php _e('General Settings', 'al-ecommerce-product-catalog'); ?></h2>
 			<form method="post" action="options.php">
@@ -91,7 +91,7 @@ function general_settings_content() { ?>
 					</tr>
 					<tr>
 						<td><?php _e('Product listing shows at most', 'al-ecommerce-product-catalog'); ?> </td>
-						<td><input size="30" type="number" step="1" min="0" name="archive_multiple_settings[archive_products_limit]" id="archive_products_limit" value="<?php echo $archive_multiple_settings['archive_products_limit']; ?>" /> <?php _e('products', 'al-ecommerce-product-catalog'); ?>.</td>
+						<td><input size="30" class="number-box" type="number" step="1" min="0" name="archive_multiple_settings[archive_products_limit]" id="archive_products_limit" value="<?php echo $archive_multiple_settings['archive_products_limit']; ?>" /> <?php _e('products', 'al-ecommerce-product-catalog'); ?>.</td>
 					</tr>
 					<tr>
 						<td><?php _e('Categories Parent URL', 'al-ecommerce-product-catalog'); ?> </td>
@@ -99,6 +99,17 @@ function general_settings_content() { ?>
 					</tr>
 				</table>
 				<div class="al-box info"><?php _e('You can also use shortcode to show your products whenever you want on the website. Just paste on any page: [show_products] and you will display all products in place of the shortcode. <br><br>To show products from just one category, use: [show_products category="2"] where 2 is category ID (you can display several categories by inserting comma separated IDs). <br><br>To display products by IDs, use: [show_products product="5"], where 5 is product ID.', 'al-ecommerce-product-catalog'); ?></div>
+				<h3><?php _e('Product Breadcrumbs', 'al-ecommerce-product-catalog'); ?></h3>
+				<table>
+					<tr>
+						<td><?php _e('Enable Product Breadcrumbs:', 'al-ecommerce-product-catalog'); ?> </td>
+						<td><input type="checkbox" name="archive_multiple_settings[enable_product_breadcrumbs]" value="1"<?php checked( 1 == $archive_multiple_settings['enable_product_breadcrumbs'] ); ?> /></td>
+					</tr>
+					<tr>
+						<td><?php _e('Product listing breadcrumbs title:', 'al-ecommerce-product-catalog'); ?> </td>
+						<td><input type="text" name="archive_multiple_settings[breadcrumbs_title]" id="breadcrumbs_title" value="<?php echo $archive_multiple_settings['breadcrumbs_title']; ?>" /></td>
+					</tr>
+				</table>
 				<h3><?php _e('Payment and currency', 'al-ecommerce-product-catalog'); ?></h3>
 				<?php _e('Your currency', 'al-ecommerce-product-catalog'); ?> 
 				<select id="product_currency" name="product_currency"> 

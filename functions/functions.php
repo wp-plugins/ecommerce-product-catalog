@@ -16,7 +16,7 @@ function default_product_thumbnail() {
  }
  else {$url = AL_PLUGIN_BASE_PATH .'img/no-default-thumbnail.png';}
 
-return '<img src="'.$url.'"  />';
+return '<img width="150px" src="'.$url.'"  />';
  }
 
 function default_product_thumbnail_url() {
@@ -235,8 +235,7 @@ if (! empty($product_description)) { ?>
 
 add_action('after_product_details','show_product_description', 10, 2);
 
-function show_related_categories($post, $single_names) {
-$taxonomy_name = 'al_product-cat'; 
+function show_related_categories($post, $single_names, $taxonomy_name) { 
 $terms = wp_get_post_terms($post->ID, $taxonomy_name, array("fields" => "ids"));
 $term = $terms[0];				
 $categories = wp_list_categories('title_li=&taxonomy='.$taxonomy_name.'&include='.$term.'&echo=0&hierarchical=0'); 
@@ -255,7 +254,7 @@ if ($categories != '<li class="cat-item-none">No categories</li>') { ?>
 	</div> 
 <?php }
 }
-add_action('single_product_end','show_related_categories', 10, 2);
+add_action('single_product_end','show_related_categories', 10, 3);
 
 /* Archive Functions */
 function show_archive_price($price_value,$product_currency) {
@@ -267,3 +266,82 @@ if (!empty($price_value)) { ?>
 }
 
 add_action('archive_price', 'show_archive_price',10,2);
+
+function get_quasi_post_type() {
+$post_type = get_post_type();
+$quasi_post_type = substr($post_type,0,10);
+return $quasi_post_type;
+}
+
+function current_currency($catalog_id = null) {
+$currency = get_option('product_currency', DEF_CURRENCY);
+return $currency;
+}
+
+function product_breadcrumbs() {
+global $post;
+$post_type = get_post_type();
+$home_page = get_home_url();
+if (function_exists('additional_product_listing_url') AND $post_type != 'al_product') {
+$catalog_id = catalog_id($post_type);
+$product_archives = additional_product_listing_url();
+$product_archive = $product_archives[$catalog_id];
+$archives_ids = get_option('additional_product_archive_id');
+$breadcrumbs_options = get_option('product_breadcrumbs', unserialize (DEFAULT_PRODUCT_BREADCRUMBS));
+if ($breadcrumbs_options['enable_product_breadcrumbs'][$catalog_id] != 1) {
+return;
+}
+$product_archive_title_options = $breadcrumbs_options['breadcrumbs_title'][$catalog_id];
+if ($product_archive_title_options != '') {
+$product_archive_title = $product_archive_title_options;
+}
+else {
+$product_archive_title = get_the_title($archives_ids[$catalog_id]);
+}}
+else {
+$archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
+if ($archive_multiple_settings['enable_product_breadcrumbs'] != 1) {
+return;
+}
+
+$product_archive = product_listing_url(); 
+if ($archive_multiple_settings['breadcrumbs_title'] != '') {
+$product_archive_title = $archive_multiple_settings['breadcrumbs_title'];
+}
+else {
+$product_archive_title = get_the_title(get_option('product_archive', get_option('product_archive_page_id','0'))); } }
+$current_product = get_the_title($post->ID);
+if (is_single()) {
+return '<p id="breadcrumbs">
+<span xmlns:v="http://rdf.data-vocabulary.org/#">
+	<span typeof="v:Breadcrumb">
+		<a href="'.$home_page.'" rel="v:url" property="v:title">Home</a>
+	</span> » 
+	<span typeof="v:Breadcrumb">
+		<a href="'.$product_archive.'" rel="v:url" property="v:title">'.$product_archive_title.'</a>
+	</span> » 
+	<span typeof="v:Breadcrumb">
+		<span class="breadcrumb_last" property="v:title">'.$current_product.'</span>
+	</span>
+</span>
+</p>'; }
+else {
+return '<p id="breadcrumbs">
+<span xmlns:v="http://rdf.data-vocabulary.org/#">
+	<span typeof="v:Breadcrumb">
+		<a href="'.$home_page.'" rel="v:url" property="v:title">Home</a>
+	</span> » 
+	<span typeof="v:Breadcrumb">
+		<span class="breadcrumb_last" property="v:title">'.$product_archive_title.'</span>
+	</span>
+</span>
+</p>';
+}
+}
+
+function al_product_register_widgets() {
+	register_widget( 'product_cat_widget' );
+	register_widget( 'product_widget_search' );
+}
+
+add_action( 'widgets_init', 'al_product_register_widgets' );

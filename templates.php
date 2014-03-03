@@ -37,34 +37,34 @@ add_filter( 'template_include', 'al_product_adder_custom_template' );
 }
 	
 	function al_product_adder_template($template) {
-	if ( 'al_product' == get_post_type()) {
+	if ( 'al_product' == get_quasi_post_type()) {
 	    return get_theme_root() . '/'. get_template() . '/product-adder.php'; }
 
     return $template; }
 	
 	function al_product_adder_custom_template($template) {
-	if ( 'al_product' == get_post_type()) {
+	if ( 'al_product' == get_quasi_post_type()) {
 	    return dirname( __FILE__ ) . '/templates/product-adder.php'; }
 
     return $template; }
 	
 	// templates from woothemes
 	function al_product_adder_woo_template($template) {
-	if ( 'al_product' == get_post_type()) {
+	if ( 'al_product' == get_quasi_post_type()) {
 	    return dirname( __FILE__ ) . '/templates/product-woo-adder.php'; }
 
     return $template; }
 	
 	// no sidebar on content page
 	function al_product_adder_nosidebar_template($template) {
-	if ( 'al_product' == get_post_type()) {
+	if ( 'al_product' == get_quasi_post_type()) {
 	    return dirname( __FILE__ ) . '/templates/product-nosidebar-adder.php'; }
 
     return $template; }
 	
 		// twentyten - primary replaced by container id
 	function al_product_adder_twentyten_template($template) {
-	if ( 'al_product' == get_post_type()) {
+	if ( 'al_product' == get_quasi_post_type()) {
 	    return dirname( __FILE__ ) . '/templates/product-twentyten-adder.php'; }
 
     return $template; }

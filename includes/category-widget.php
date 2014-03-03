@@ -1,4 +1,14 @@
 <?php
+/**
+ * Manages product category widget
+ *
+ * Here product category widget is defined.
+ *
+ * @version		1.4.0
+ * @package		ecommerce-product-catalog/includes
+ * @author 		Norbert Dreszer
+ */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class product_cat_widget extends WP_Widget {
 
@@ -85,9 +95,3 @@ class product_cat_widget extends WP_Widget {
 <?php
 	}
 }
-
-function al_product_register_widgets() {
-	register_widget( 'product_cat_widget' );
-}
-
-add_action( 'widgets_init', 'al_product_register_widgets' );

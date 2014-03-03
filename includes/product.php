@@ -11,6 +11,7 @@
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 require_once('product-categories.php');
+require_once('search-widget.php');
 // require_once('product-types.php');
 
 function frontend_scripts() {
@@ -65,6 +66,7 @@ if ( $wp_version < 3.8 ) {
 				'delete_post' => 'delete_product',
 				'read_post' => 'read_product',
 			),
+		'exclude_from_search' => true,
 		); }
 	else {
 	$reg_settings = array(
@@ -103,6 +105,7 @@ if ( $wp_version < 3.8 ) {
 				'delete_post' => 'delete_product',
 				'read_post' => 'read_product',
 			),
+		'exclude_from_search' => true,
 		);
 	}
 
@@ -188,11 +191,11 @@ function al_product_attributes() {
 	$attributes_option = get_option('product_attribute');
 	$attributes_label_option = get_option('product_attribute_label');
 	$attributes_unit_option = get_option('product_attribute_unit');
-	$attributes_option_field = get_post_meta($post->ID, '_attribute'.$i, true);
+	$attributes_option_field = get_post_meta($post->ID, '_attribute'.$i, false);
 	$attributes_label_option_field = get_post_meta($post->ID, '_attribute-label'.$i, true);
 	$attributes_unit_option_field = get_post_meta($post->ID, '_attribute-unit'.$i, true);
 	if (! empty($attributes_option_field)) {
-	$attributes = $attributes_option_field; }
+	$attributes = $attributes_option_field[0]; }
 	else { $attributes = $attributes_option[$i]; }
 	if (! empty($attributes_label_option_field)) {
 	$attributes_label = $attributes_label_option_field; }
@@ -233,6 +236,7 @@ function al_product_desc() {
 function wpt_save_products_meta($post_id, $post) {
 	// verify this came from the our screen and with proper authorization,
 	// because save_post can be triggered at other times
+	$post_type_now = substr($post->post_type,0,10);
 	if ( !wp_verify_nonce( $_POST['pricemeta_noncename'], plugin_basename(__FILE__) )) {
 	return $post->ID;
 	}
@@ -253,14 +257,21 @@ function wpt_save_products_meta($post_id, $post) {
 	$product_meta['_attribute-unit'.$i] = $_POST['_attribute-unit'.$i];}
 	// Add values of $events_meta as custom fields
 	foreach ($product_meta as $key => $value) { // Cycle through the $events_meta array!
-		if(! $post->post_type == 'al_product' ) return; // Don't store custom data twice
+		if(! $post_type_now == 'al_product' ) return; // Don't store custom data twice
 		$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
-		if(get_post_meta($post->ID, $key, FALSE)) { // If the custom field already has a value
+		
+		$current_value = get_post_meta( $post->ID, $key, true );
+		
+		if (isset($value) && ! isset($current_value)) {
+			add_post_meta( $post->ID, $key, $value, true );
+		}
+		else if(isset($value) && $value != $current_value) { // If the custom field already has a value
 			update_post_meta($post->ID, $key, $value);
 			
 		} // else if ($value == 0) {update_post_meta($post->ID, $key, '0'); }
-		else { // If the custom field doesn't have a value
-			add_post_meta($post->ID, $key, $value);
+		else if (! isset($value) && $current_value) { // If the custom field doesn't have a value
+			delete_post_meta($post->ID, $key);
+			// add_post_meta($post->ID, $key, $value);
 		}
 		// if(!$value) delete_post_meta($post->ID, $key); // Delete if blank
 	}

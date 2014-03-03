@@ -18,7 +18,7 @@ function design_settings() {
  	register_setting('product_design', 'archive_template');
 	register_setting('product_design', 'modern_grid_settings');
 	register_setting('single_design', 'catalog_lightbox');
-	// register_setting('single_design', 'single_styles');
+	register_setting('single_design', 'multi_single_options');
 	register_setting('design_schemes', 'design_schemes');
 }
 add_action('product-settings-list','design_settings');
@@ -94,10 +94,14 @@ if ($submenu == 'single-design') { ?>
 </script>
 <form method="post" action="options.php">
 	<?php settings_fields('single_design'); 
-	$enable_catalog_lightbox = get_option('catalog_lightbox', ENABLE_CATALOG_LIGHTBOX); ?>
+	$enable_catalog_lightbox = get_option('catalog_lightbox', ENABLE_CATALOG_LIGHTBOX);
+	$single_options = get_option('multi_single_options', unserialize(MULTI_SINGLE_OPTIONS)); ?>
 	<h2><?php _e('Design Settings', 'al-ecommerce-product-catalog'); ?></h2>
 	<h3><?php _e('Product Gallery', 'al-ecommerce-product-catalog'); ?></h3>
-		<input type="checkbox" name="catalog_lightbox" value="1"<?php checked( 1, $enable_catalog_lightbox ); ?> /><?php _e('Enable lightbox on product image', 'al-ecommerce-product-catalog'); ?>
+		<input type="checkbox" name="multi_single_options[enable_product_gallery]" value="1"<?php checked( 1, $single_options['enable_product_gallery'] ); ?> /><?php _e('Enable product image', 'al-ecommerce-product-catalog'); ?></br>
+		<input type="checkbox" name="catalog_lightbox" value="1"<?php checked( 1, $enable_catalog_lightbox ); ?> /><?php _e('Enable lightbox on product image', 'al-ecommerce-product-catalog'); 
+	
+	do_action('single_product_design'); ?>
 	<p class="submit">
 		<input type="submit" class="button-primary" value="<?php _e('Save changes', 'al-ecommerce-product-catalog'); ?>" />
 	</p>
