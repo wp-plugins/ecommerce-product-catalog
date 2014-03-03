@@ -56,9 +56,10 @@ To display products by IDs, use: [show_products product="5"], where 5 is product
 Currently we are working on:
 
 * Feature - [show_categories] shortcode to show category listing on any page
-* Feature - Search widget for products
 * Feature - Ability to add separate sidebars for eCommerce Product Catalog
 * Feature - Ability to choose different price formats such as $2500, USD2500 etc.
+* Tweak - better text attributes handling
+* Feature - Ability to choose custom currency 
 
 **If you want to say thanks by donating to this plugin [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
 
