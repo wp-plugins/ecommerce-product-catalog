@@ -345,3 +345,15 @@ function al_product_register_widgets() {
 }
 
 add_action( 'widgets_init', 'al_product_register_widgets' );
+
+function permalink_options_update() {
+update_option('al_permalink_options_update', 1);
+}
+
+function check_permalink_options_update() {
+$options_update = get_option('al_permalink_options_update', 0);
+if ($options_update == 1) {
+flush_rewrite_rules(false);
+update_option('al_permalink_options_update', 0);
+}
+}

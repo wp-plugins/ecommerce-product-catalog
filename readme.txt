@@ -132,6 +132,11 @@ Documentation will be available soon on impleCode.com.
 
 == Changelog ==
 
+= 1.4.1 - 04/03/2014 =
+
+* Tweak - Code optimisation for even better performance
+* Fix - No more categories error on certain permalinks settings
+
 = 1.4.0 - 03/03/2014 =
 
 * Feature - Ability to enable SEO friendly breadcrumbs

@@ -125,7 +125,9 @@ function general_settings_content() { ?>
 			</form>
 		</div> 
 	<?php } 
-	do_action('general_settings'); ?>
+	do_action('general_settings'); 
+	
+	permalink_options_update(); ?>
 	</div>
 
 <?php }

@@ -10,10 +10,6 @@
  */
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-require_once('product-categories.php');
-require_once('search-widget.php');
-// require_once('product-types.php');
-
 function frontend_scripts() {
 	if (!is_admin()) {
 		wp_enqueue_script('jquery');
@@ -28,6 +24,7 @@ function create_product() {
 global $wp_version;
 $enable_product_listing = get_option('enable_product_listing', 1);
 if ($enable_product_listing == 1) {$product_listing_t = true;} else {$product_listing_t = false;}
+$slug = untrailingslashit(get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog')));
 if ( $wp_version < 3.8 ) {
 	$reg_settings = array(
 			'labels' => array(
@@ -44,7 +41,7 @@ if ( $wp_version < 3.8 ) {
 			),
 		'public' => true,
 		'has_archive' => $product_listing_t,
-		'rewrite' => array('slug' => get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog')), 'with_front' => false),
+		'rewrite' => array('slug' => $slug, 'with_front' => false),
 		'supports' => array( 'title', 'thumbnail'),
 		'extras' => array('enter_title_here'=>__('Enter product name here', 'al-ecommerce-product-catalog')),
 		'register_meta_box_cb' => 'add_product_metaboxes',
@@ -66,7 +63,7 @@ if ( $wp_version < 3.8 ) {
 				'delete_post' => 'delete_product',
 				'read_post' => 'read_product',
 			),
-		'exclude_from_search' => true,
+		'exclude_from_search' => false,
 		); }
 	else {
 	$reg_settings = array(
@@ -84,7 +81,7 @@ if ( $wp_version < 3.8 ) {
 			),
 		'public' => true,
 		'has_archive' => $product_listing_t,
-		'rewrite' => array('slug' => get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog')), 'with_front' => false),
+		'rewrite' => array('slug' => $slug, 'with_front' => false),
 		'supports' => array( 'title', 'thumbnail'),
 		'extras' => array('enter_title_here'=>__('Enter product name here', 'al-ecommerce-product-catalog')),
 		'register_meta_box_cb' => 'add_product_metaboxes',
@@ -105,12 +102,13 @@ if ( $wp_version < 3.8 ) {
 				'delete_post' => 'delete_product',
 				'read_post' => 'read_product',
 			),
-		'exclude_from_search' => true,
+		'exclude_from_search' => false,
 		);
 	}
 
 	register_post_type( 'al_product', $reg_settings);
-	flush_rewrite_rules();
+	// flush_rewrite_rules(false);
+	check_permalink_options_update();
 }
 
 
@@ -302,6 +300,8 @@ function do_thumb_1($content){
 	 return str_replace(__('Remove featured image'), __('Remove product image', 'al-ecommerce-product-catalog'),$content);
 }
 
-
+require_once('product-categories.php');
+require_once('search-widget.php');
+// require_once('product-types.php');
 
 ?>

@@ -12,7 +12,7 @@
  
  require_once('category-widget.php');
 // hook into the init action and call create_book_taxonomies when it fires
-add_action( 'init', 'create_product_categories', 0 );
+add_action( 'init', 'create_product_categories');
 
 // create two taxonomies, genres and writers for the post type "book"
 function create_product_categories() {
@@ -47,8 +47,9 @@ $archive_multiple_settings = get_option('archive_multiple_settings', unserialize
             )
 	);
 
-	register_taxonomy( 'al_product-cat', array( 'al_product' ), $args );
-	flush_rewrite_rules();
+	register_taxonomy( 'al_product-cat', 'al_product', $args );
+	register_taxonomy_for_object_type( 'al_product-cat', 'al_product' );
+	// flush_rewrite_rules(false);
 }
 
 ?>
