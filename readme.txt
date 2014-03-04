@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
