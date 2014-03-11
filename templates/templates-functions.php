@@ -11,10 +11,10 @@
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
 function content_product_adder() {
-if (is_archive()) {
+if (is_archive() || is_search()) {
 content_product_adder_archive();
 }
-else  {
+else {
 content_product_adder_single();
 }
 }
@@ -115,7 +115,7 @@ add_action( 'pre_get_posts', 'set_products_limit' );
  
 function set_products_limit( $query ) {
 $archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
-if ( ! is_admin() && $query->is_main_query() && is_post_type_archive( 'al_product' ) ) {
+if ( ! is_admin() && is_post_type_archive( 'al_product' ) || is_tax('al_product-cat') ) {
 	$query->set( 'posts_per_page', $archive_multiple_settings['archive_products_limit'] );
 }
 }

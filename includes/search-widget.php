@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class product_widget_search extends WP_Widget {
 
 	function __construct() {
-		$widget_ops = array('classname' => 'product_widget_search', 'description' => __( 'A search form for your products.', 'al-ecommerce-product-catalog') );
+		$widget_ops = array('classname' => 'product_widget_search widget_search', 'description' => __( 'A search form for your products.', 'al-ecommerce-product-catalog') );
 		parent::__construct('product_search', __('Product Search', 'al-ecommerce-product-catalog'), $widget_ops);
 	}
 
@@ -28,8 +28,8 @@ class product_widget_search extends WP_Widget {
 		// Use current theme search form if it exists
 		echo '<form role="search" method="get" id="product_search_form" action="'.home_url( '/' ).'">
 <input type="hidden" name="post_type" value="al_product" />
-<input class="product-search-box" type="text" value="" name="s" />
-<input class="product-search-submit" type="submit" value="Search" />
+<input class="product-search-box" type="text" value="" id="s" name="s" placeholder="Search" />
+<input class="product-search-submit" type="submit" name="submit" id="searchsubmit" value="Search" />
 </form>';
 
 		echo $after_widget;

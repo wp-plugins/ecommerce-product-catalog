@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function example_grid_archive_theme() { ?>
 <div class="archive-listing grid example">
 		<a href="#grid-theme">
-		<div style="background-image:url('<?php echo AL_PLUGIN_BASE_PATH .'templates/themes/img/example-product.jpg'; ?>'); background-size: 200px; background-position: center; width:200px; height:200px;"></div>
+		<div style="background-image:url('<?php echo AL_PLUGIN_BASE_PATH .'templates/themes/img/example-product.jpg'; ?>');" class="classic-grid-element"></div>
 		<div class="product-name">White Lamp</div>
 		<div class="product-price">10 USD</div>
 		</a>
@@ -32,7 +32,7 @@ $price_value = get_post_meta($post->ID, "_price", true);?>
 			else {
 				$url = default_product_thumbnail_url(); 
 			}
-			echo $url; ?>'); background-size: 200px; background-position: center; width:200px; height:200px;"></div>
+			echo $url; ?>');" class="classic-grid-element"></div>
 		<div class="product-name"><?php the_title(); ?></div>
 		<?php do_action('archive_price', $price_value, $product_currency);  ?>
 		</a>

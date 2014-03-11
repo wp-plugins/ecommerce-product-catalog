@@ -100,7 +100,7 @@ vertical-align: top;
 .product-subcategories table td:first-child {
 white-space: nowrap; }
 
-#content .al_archive .product-attributes {
+.product-list .al_archive .product-attributes, #content .al_archive .product-attributes {
 max-width: 120px;
 position: absolute;
 left: 5px;
@@ -112,7 +112,7 @@ box-shadow: 0 0 5px #005200;
 padding: 5px;
 }
 
-#content .al_archive .product-attributes table {
+.product-list .al_archive .product-attributes table, #content .al_archive .product-attributes table {
 border: none;
 font-size: 12px;
 margin: 0;
@@ -121,16 +121,16 @@ color: #fff;
 box-shadow: none;
 }
 
-#content .al_archive .product-attributes table td {
+.product-list .al_archive .product-attributes table td, #content .al_archive .product-attributes table td {
 border: none;
 padding: 0;
 }
 
-#content .al_archive .product-attributes table tr {
+.product-list .al_archive .product-attributes table tr, #content .al_archive .product-attributes table tr {
 background: transparent;
 }
 
-#content .al_archive .product-attributes table tr td:nth-child(2) {
+.product-list .al_archive .product-attributes table tr td:nth-child(2), #content .al_archive .product-attributes table tr td:nth-child(2) {
 text-align: center;
 padding-left: 5px;
 }
@@ -224,6 +224,10 @@ margin: 5px 25px 25px 5px;
 line-height: 1.5;
 }
 
+.modern-grid-element {
+background-position:center;
+background-repeat: no-repeat;
+}
 .archive article.al_product {
 padding: 0px;
 }
@@ -301,6 +305,14 @@ font-weight: bold;
 max-width: 190px;
 margin-right: 18px;
 float: left;
+}
+
+.grid.archive-listing .classic-grid-element {
+background-size: 200px; 
+background-position: center; 
+background-repeat: no-repeat;
+width:200px; 
+height:200px;
 }
 
 .grid.archive-listing.example {
@@ -416,7 +428,7 @@ padding: 10px 0 0 0;
 clear: both;
 }
 
-.single-al_product .al_product .entry-content {
+.single .product-entry {
 margin: 0;
 }
 
@@ -669,14 +681,4 @@ font-weight: normal;
 /*WP MENU*/
 .branch-3-8 #menu-posts-al_product div.wp-menu-image:before {
 content: "\f174" !important;
-}
-
-/* Product Search */
-.product-search-submit {
-max-width: 35%;
-float: right;
-}
-
-.product-search-box {
-max-width: 60%;
 }

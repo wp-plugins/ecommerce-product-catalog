@@ -118,14 +118,15 @@ function general_settings_content() { ?>
 						<option name="product_currency[<?php echo $currency; ?>]" value="<?php echo $currency; ?>"<?php selected( $currency == $product_currency); ?>><?php echo $currency; ?></option>
 					<?php endforeach; ?>
 				</select>
-				<?php do_action('product-settings'); ?>
+				<?php do_action('general-settings'); ?>
 				<p class="submit">
 					<input type="submit" class="button-primary" value="<?php _e('Save changes', 'al-ecommerce-product-catalog'); ?>" />
 				</p>
 			</form>
 		</div> 
 	<?php } 
-	do_action('general_settings'); 
+	do_action('product-settings'); 
+	
 	
 	permalink_options_update(); ?>
 	</div>

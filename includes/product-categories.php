@@ -11,13 +11,12 @@
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
  require_once('category-widget.php');
-// hook into the init action and call create_book_taxonomies when it fires
+
 add_action( 'init', 'create_product_categories');
 
-// create two taxonomies, genres and writers for the post type "book"
+
 function create_product_categories() {
 $archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
-	// Add new taxonomy, make it hierarchical (like categories)
 	$labels = array(
 		'name'              => __( 'Product Categories', 'al-ecommerce-product-catalog' ),
 		'singular_name'     => __( 'Product Category', 'al-ecommerce-product-catalog' ),
@@ -50,6 +49,7 @@ $archive_multiple_settings = get_option('archive_multiple_settings', unserialize
 	register_taxonomy( 'al_product-cat', 'al_product', $args );
 	register_taxonomy_for_object_type( 'al_product-cat', 'al_product' );
 	// flush_rewrite_rules(false);
+	check_permalink_options_update();
 }
 
 ?>

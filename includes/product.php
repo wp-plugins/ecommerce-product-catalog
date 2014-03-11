@@ -108,7 +108,7 @@ if ( $wp_version < 3.8 ) {
 
 	register_post_type( 'al_product', $reg_settings);
 	// flush_rewrite_rules(false);
-	check_permalink_options_update();
+	
 }
 
 

@@ -36,14 +36,14 @@ $default_modern_grid_settings = array (
 $modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); 
 $product_currency = get_option('product_currency',DEF_CURRENCY);
 $price_value = get_post_meta($post->ID, "_price", true); ?>
-			<a href="<?php the_permalink(); ?>"><div class="al_archive" style='background-image:url(" <?php 
+			<a href="<?php the_permalink(); ?>"><div class="al_archive modern-grid-element" style='background-image:url(" <?php 
 			if (wp_get_attachment_url( get_post_thumbnail_id($post->ID) )) {
 				$url = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); 
 			} 
 			else {
 				$url = default_product_thumbnail_url(); 
 			}
-			echo $url; ?>"); background-position:center; '>
+			echo $url; ?>");'>
 		
 			<div class="product-name <?php design_schemes('box'); ?>"><?php the_title(); ?></div>
 			<?php $attributes_number = get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER);

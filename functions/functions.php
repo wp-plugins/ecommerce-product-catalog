@@ -267,8 +267,9 @@ if (!empty($price_value)) { ?>
 
 add_action('archive_price', 'show_archive_price',10,2);
 
-function get_quasi_post_type() {
-$post_type = get_post_type();
+function get_quasi_post_type($post_type = null) {
+if (empty($post_type)) {
+$post_type = get_post_type(); }
 $quasi_post_type = substr($post_type,0,10);
 return $quasi_post_type;
 }
