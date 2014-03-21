@@ -146,9 +146,8 @@ function al_product_price() {
 	wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
 	// Get the price data if its already been entered
 	$price = get_post_meta($post->ID, '_price', true);
-	$currency = get_option('product_currency', DEF_CURRENCY);
 	// Echo out the field
-	echo '<table><tr><td class="price-column"><input type="number" min="0" name="_price" value="' . $price  . '" class="widefat" /></td><td>'. $currency .'</td></tr></table>';
+	echo '<table><tr><td class="price-column"><input type="number" min="0" step="0.01" name="_price" value="' . $price  . '" class="widefat" /></td><td>'. product_currency() .'</td></tr></table>';
 }
 
 // The Product Shipping Metabox
@@ -231,52 +230,43 @@ function al_product_desc() {
 }
 
 // Save the Metabox Data
-function wpt_save_products_meta($post_id, $post) {
-	// verify this came from the our screen and with proper authorization,
-	// because save_post can be triggered at other times
+function implecode_save_products_meta($post_id, $post) {
 	$post_type_now = substr($post->post_type,0,10);
-	if ( !wp_verify_nonce( $_POST['pricemeta_noncename'], plugin_basename(__FILE__) )) {
+	if($post_type_now == 'al_product' ) {
+	$pricemeta_noncename = isset($_POST['pricemeta_noncename']) ? $_POST['pricemeta_noncename'] : '';
+	if ( !empty($pricemeta_noncename) && !wp_verify_nonce( $pricemeta_noncename, plugin_basename(__FILE__) )) {
 	return $post->ID;
 	}
-	// Is the user allowed to edit the post or page?
 	if ( !current_user_can( 'edit_post', $post->ID ))
 		return $post->ID;
-	// OK, we're authenticated: we need to find and save the data
-	// We'll put it into an array to make it easier to loop though.
-	$product_meta['_price'] = $_POST['_price'];
-	$product_meta['_shortdesc'] = $_POST['_shortdesc'];
-	$product_meta['_desc'] = $_POST['_desc'];
+	$product_meta['_price'] = !empty($_POST['_price']) ? $_POST['_price'] : '';
+	$product_meta['_shortdesc'] = !empty($_POST['_shortdesc']) ? $_POST['_shortdesc'] : '';
+	$product_meta['_desc'] = !empty($_POST['_desc']) ? $_POST['_desc'] : '';
 	for ($i = 1; $i <= get_option('product_shipping_options_number',DEF_SHIPPING_OPTIONS_NUMBER); $i++) {
-	$product_meta['_shipping'.$i] = $_POST['_shipping'.$i];
-	$product_meta['_shipping-label'.$i] = $_POST['_shipping-label'.$i];	}
+	$product_meta['_shipping'.$i] = !empty($_POST['_shipping'.$i]) ? $_POST['_shipping'.$i] : '';
+	$product_meta['_shipping-label'.$i] = !empty($_POST['_shipping-label'.$i]) ? $_POST['_shipping-label'.$i] : '';
+	}
 	for ($i = 1; $i <= get_option('product_attributes_number',DEF_ATTRIBUTES_OPTIONS_NUMBER); $i++) {
-	$product_meta['_attribute'.$i] = $_POST['_attribute'.$i];
-	$product_meta['_attribute-label'.$i] = $_POST['_attribute-label'.$i];
-	$product_meta['_attribute-unit'.$i] = $_POST['_attribute-unit'.$i];}
-	// Add values of $events_meta as custom fields
-	foreach ($product_meta as $key => $value) { // Cycle through the $events_meta array!
-		if(! $post_type_now == 'al_product' ) return; // Don't store custom data twice
-		$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
-		
+	$product_meta['_attribute'.$i] = !empty($_POST['_attribute'.$i]) ? $_POST['_attribute'.$i] : '';
+	$product_meta['_attribute-label'.$i] = !empty($_POST['_attribute-label'.$i]) ? $_POST['_attribute-label'.$i] : '';
+	$product_meta['_attribute-unit'.$i] = !empty($_POST['_attribute-unit'.$i]) ? $_POST['_attribute-unit'.$i] : '';
+	}
+	foreach ($product_meta as $key => $value) { 
+		if(! $post_type_now == 'al_product' ) return; 
+		$value = implode(',', (array)$value); 
 		$current_value = get_post_meta( $post->ID, $key, true );
-		
 		if (isset($value) && ! isset($current_value)) {
 			add_post_meta( $post->ID, $key, $value, true );
 		}
-		else if(isset($value) && $value != $current_value) { // If the custom field already has a value
+		else if(isset($value) && $value != $current_value) { 
 			update_post_meta($post->ID, $key, $value);
-			
-		} // else if ($value == 0) {update_post_meta($post->ID, $key, '0'); }
-		else if (! isset($value) && $current_value) { // If the custom field doesn't have a value
+		} 
+		else if (! isset($value) && $current_value) { 
 			delete_post_meta($post->ID, $key);
-			// add_post_meta($post->ID, $key, $value);
 		}
-		// if(!$value) delete_post_meta($post->ID, $key); // Delete if blank
-	}
+	} }
 }
-
-
-add_action('save_post', 'wpt_save_products_meta', 1, 2); // save the custom fields
+add_action('save_post', 'implecode_save_products_meta', 1, 2);
 
 add_action('do_meta_boxes', 'change_image_box');
 function change_image_box()
@@ -285,12 +275,12 @@ function change_image_box()
     add_meta_box('postimagediv', __('Product Image','al-ecommerce-product-catalog'), 'post_thumbnail_meta_box', 'al_product', 'side', 'high');
 }	
 
-add_action('admin_head-post-new.php',change_thumbnail_html);
-add_action('admin_head-post.php',change_thumbnail_html);
+add_action('admin_head-post-new.php', 'change_thumbnail_html');
+add_action('admin_head-post.php', 'change_thumbnail_html');
 function change_thumbnail_html( $content ) {
     if ('al_product' == $GLOBALS['post_type'])
-      add_filter('admin_post_thumbnail_html',do_thumb);
-	  add_filter('admin_post_thumbnail_html',do_thumb_1);
+      add_filter('admin_post_thumbnail_html', 'do_thumb');
+	  add_filter('admin_post_thumbnail_html', 'do_thumb_1');
 }
 function do_thumb($content){
 	 return str_replace(__('Set featured image'), __('Set product image', 'al-ecommerce-product-catalog'),$content);

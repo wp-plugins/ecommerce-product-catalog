@@ -18,14 +18,15 @@ $page_title = $archive_names['all_prefix'] .' '.$the_tax->name; }
 else {$page_title = $archive_names['all_products']; }
 echo product_breadcrumbs(); ?>
 				
+
+			
+<article id="product_listing" <?php post_class(); ?>>
 <header <?php post_class('entry-header'); ?>>
 	<?php if (! is_tax()) { content_product_adder_archive_before_title(); } ?>
 </header> 
-			
-<article id="product_listing" <?php post_class(); ?>>
 	<div class="entry-content">
-		<?php if (! is_tax()) {
-			$before_archive = content_product_adder_archive_before();
+		<?php $before_archive = content_product_adder_archive_before(); 
+		if (! is_tax()) {			
 			if ( $before_archive != '<div class="entry-summary"></div>') {
 				echo $before_archive; } 
 			} 

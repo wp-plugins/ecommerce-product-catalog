@@ -11,8 +11,12 @@
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
 function settings_scripts() {
-wp_enqueue_script( 'implecode-jqueryui', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery') );
-wp_enqueue_script( 'admin-scripts', AL_PLUGIN_BASE_PATH.'js/admin-scripts.js', array('implecode-jqueryui') );
+$screen = get_current_screen();
+if ($screen->id == 'al_product_page_product-settings' || $screen->id == 'al_product') {
+wp_register_script( 'implecode-jqueryui', '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js', array('jquery') );
+wp_enqueue_script( 'implecode-jqueryui' );
+wp_register_script( 'admin-scripts', AL_PLUGIN_BASE_PATH.'js/admin-scripts.js', array('implecode-jqueryui') );
+wp_enqueue_script( 'admin-scripts' ); }
 }
 
 add_action( 'admin_enqueue_scripts', 'settings_scripts' );
@@ -44,7 +48,7 @@ function product_settings() { ?>
 		<h2 class="tab-menu">
 			<?php do_action('settings-menu'); ?>
 		</h2>
-		<?php $tab = $_GET['tab'];
+		<?php $tab = isset($_GET['tab']) ? $_GET['tab'] : ''; 
 		
 		/*GENERAL SETTINGS*/
 		

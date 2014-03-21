@@ -65,7 +65,7 @@ if ($submenu == 'archive-design') { ?>
 					<td class="with-additional-styling"><input type="radio" name="archive_template" value="default"<?php checked( 'default' == $archive_template ); ?>><?php _e('Modern Grid', 'al-ecommerce-product-catalog'); ?></td>
 					<td rowspan="2" class="theme-example"><?php example_default_archive_theme(); ?></td>
 				</tr>
-				<tr><td class="additional-styling"><strong><?php _e('Additional Settings', 'al-ecommerce-product-catalog'); ?></strong><br><input type="checkbox" name="modern_grid_settings[attributes]" value="1"<?php checked( 1 == $modern_grid_settings['attributes'] ); ?>><?php _e('Show Attributes', 'al-ecommerce-product-catalog'); ?></td></tr>
+				<tr><td class="additional-styling"><strong><?php _e('Additional Settings', 'al-ecommerce-product-catalog'); ?></strong><br><input type="checkbox" name="modern_grid_settings[attributes]" value="1"<?php checked( 1, isset($modern_grid_settings['attributes']) ? $modern_grid_settings['attributes'] : '' ); ?>><?php _e('Show Attributes', 'al-ecommerce-product-catalog'); ?></td></tr>
 				<tr id="list-theme">
 					<td class="with-additional-styling"><input type="radio" name="archive_template" value="list"<?php checked( 'list' == $archive_template ); ?>><?php _e('Classic List', 'al-ecommerce-product-catalog'); ?></td>
 					<td class="theme-example"><?php example_list_archive_theme(); ?></td>
@@ -98,7 +98,7 @@ if ($submenu == 'single-design') { ?>
 	$single_options = get_option('multi_single_options', unserialize(MULTI_SINGLE_OPTIONS)); ?>
 	<h2><?php _e('Design Settings', 'al-ecommerce-product-catalog'); ?></h2>
 	<h3><?php _e('Product Gallery', 'al-ecommerce-product-catalog'); ?></h3>
-		<input type="checkbox" name="multi_single_options[enable_product_gallery]" value="1"<?php checked( 1, $single_options['enable_product_gallery'] ); ?> /><?php _e('Enable product image', 'al-ecommerce-product-catalog'); ?></br>
+		<input type="checkbox" name="multi_single_options[enable_product_gallery]" value="1"<?php checked( 1, isset($single_options['enable_product_gallery']) ? $single_options['enable_product_gallery'] : '' ); ?> /><?php _e('Enable product image', 'al-ecommerce-product-catalog'); ?></br>
 		<input type="checkbox" name="catalog_lightbox" value="1"<?php checked( 1, $enable_catalog_lightbox ); ?> /><?php _e('Enable lightbox on product image', 'al-ecommerce-product-catalog'); 
 	
 	do_action('single_product_design'); ?>

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.8.1
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -28,7 +28,7 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Product Shipping__ - You can specify shipping options for each product
 * __Color & Size Change__ - You can choose color and size of product catalog elements
 * __3 Product Listing Templates__ - You can choose from 3 completely different product listing templates
-* __25 currencies available__ - You can choose from 25 different currencies
+* __25 currencies available__ - You can choose from 25 different currencies or just insert custom currency
 * __Drag-and-Drop functionality__ - Highly intuitive interface to manage Product Attributes and Shipping Options
 * __Product Category Widget__ - Show your product categories in sidebar
 * __Product Search Widget__ - Give your users useful search function
@@ -56,16 +56,16 @@ To display products by IDs, use: [show_products product="5"], where 5 is product
 Currently we are working on:
 
 * Feature - [show_categories] shortcode to show category listing on any page
-* Feature - Ability to add separate sidebars for eCommerce Product Catalog
 * Feature - Ability to choose different price formats such as $2500, USD2500 etc.
 * Tweak - better text attributes handling
-* Feature - Ability to choose custom currency 
 
 **If you want to say thanks by donating to this plugin [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
 
 = Translations =
 
 * English - default, always included
+* Polish
+* Hebrew - Thanks to Ahrale
 * *Your translation? - [Just send it in](http://implecode.com/contact/)*
 
 *Note:* All our plugins are localized/translatable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/).
@@ -131,6 +131,14 @@ Documentation will be available soon on impleCode.com.
 4. Default product single page.
 
 == Changelog ==
+
+= 1.4.3 - 21/03/2014 =
+
+* Tweak - Allow to choose custom currency
+* Tweak - Allow text formatting and shortcodes on product listing page
+* Tweak - Allow text formatting and shortcodes on short description
+* Tweak - Code improvements for even better performance
+* Fix - Now decimal price setting is working on chrome
 
 = 1.4.2 - 11/03/2014 =
 

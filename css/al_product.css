@@ -225,7 +225,7 @@ line-height: 1.5;
 }
 
 .modern-grid-element {
-background-position:center;
+background-position: 0% 50%;
 background-repeat: no-repeat;
 }
 .archive article.al_product {
@@ -459,6 +459,11 @@ max-width: 200px;
 .number-box {
 width: 50px;
 }
+
+.small_text_box {
+width: 70px;
+}
+
 #implecode_settings {
 min-height: 533px;
 }

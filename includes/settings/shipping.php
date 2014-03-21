@@ -50,7 +50,9 @@ jQuery('.settings-submenu a#shipping-settings').addClass('current');
 	// Get the attributes data if its already been entered
 	$shipping_cost = get_option('product_shipping_cost', DEF_VALUE);
 	$shipping_label = get_option('product_shipping_label');
-	// Echo out the field
+	$shipping_label[$i] = isset($shipping_label[$i]) ? $shipping_label[$i] : '';
+	$shipping_cost[$i] = isset($shipping_cost[$i]) ? $shipping_cost[$i] : '';
+	// Echo out the field 
 	echo '<tr><td class="lp-column">'. $i .'.</td><td class="product-shipping-label-column"><input class="product-shipping-label" type="text" name="product_shipping_label['.$i.']" value="' . $shipping_label[$i] . '" /></td><td class="lp-column">:</td><td><input id="admin-number-field" class="product-shipping-cost" type="number" min="0" name="product_shipping_cost['.$i.']" value="' . $shipping_cost[$i] . '" /></td></tr>'; } ?>
 	</tbody></table>		
 		<?php do_action('product-attributes'); ?>

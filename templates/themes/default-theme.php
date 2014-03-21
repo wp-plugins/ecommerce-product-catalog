@@ -14,7 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  $default_modern_grid_settings = array (
 	'attributes' => 1,
 	);
-$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); ?>
+$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); 
+$modern_grid_settings['attributes'] = isset($modern_grid_settings['attributes']) ? $modern_grid_settings['attributes'] : '' ?>
  <div id="content">
  <a href="#default-theme"><div class="al_archive" style="background-image:url('<?php echo AL_PLUGIN_BASE_PATH .'templates/themes/img/example-product.jpg'; ?>'); background-position:center; ">
 				<div class="product-name">White Lamp</div>
@@ -34,7 +35,7 @@ $default_modern_grid_settings = array (
 	'attributes' => 1,
 	);
 $modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings); 
-$product_currency = get_option('product_currency',DEF_CURRENCY);
+$modern_grid_settings['attributes'] = isset($modern_grid_settings['attributes']) ? $modern_grid_settings['attributes'] : '';
 $price_value = get_post_meta($post->ID, "_price", true); ?>
 			<a href="<?php the_permalink(); ?>"><div class="al_archive modern-grid-element" style='background-image:url(" <?php 
 			if (wp_get_attachment_url( get_post_thumbnail_id($post->ID) )) {
@@ -64,7 +65,7 @@ $price_value = get_post_meta($post->ID, "_price", true); ?>
 					</table>
 				</div> 
 			<?php } 
-			do_action('archive_price', $price_value, $product_currency); ?>
+			do_action('archive_price', $price_value); ?>
 			
 			</div></a>		
 <?php } 

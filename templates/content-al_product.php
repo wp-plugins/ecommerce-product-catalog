@@ -15,7 +15,6 @@ $taxonomies = get_object_taxonomies($current_post_type);
 
 $default_single_names = default_single_names();
 $single_names = get_option( 'single_names', $default_single_names);
-$product_currency = get_option('product_currency',DEF_CURRENCY);
 $enable_catalog_lightbox = get_option('catalog_lightbox', 1);
 if ($enable_catalog_lightbox == 1) { ?>
 <script>
@@ -32,7 +31,7 @@ echo product_breadcrumbs();
 <article id="post-<?php the_ID(); ?>" <?php post_class('al_product'); ?>>
 	<header class="entry-header">
 		<h1 class="entry-title product-name"><?php the_title(); ?></h1>
-		<?php do_action('single_product_header', $post, $single_names, $product_currency); ?>
+		<?php do_action('single_product_header', $post, $single_names); ?>
 	</header>
 	<div class="entry-content product-entry">
 	<?php if ($single_options['enable_product_gallery'] == 1) {  ?>
@@ -47,7 +46,7 @@ echo product_breadcrumbs();
 			else { echo default_product_thumbnail();}?>
 		</div> <?php } else { $details_class = 'no-image'; } ?>
 		<div class="product-details <?php echo $details_class; ?>">
-			<?php do_action('product_details', $post, $single_names, $product_currency); ?>
+			<?php do_action('product_details', $post, $single_names); ?>
 		</div>
 		<div class="entry-meta">
 			<?php edit_post_link( __( 'Edit Product', 'al-ecommerce-product-catalog' ), '<span class="edit-link">', '</span>' ); ?>

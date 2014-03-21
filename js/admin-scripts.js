@@ -1,12 +1,8 @@
-/**
- * Plugin compatibility checker
- *
- * Here current theme is checked for compatibility with eCommerce Product Catalog.
- *
- * @version		1.1.1
- * @package		ecommerce-product-catalog/functions
- * @author 		Norbert Dreszer
- */
+/*!
+	impleCode Admin scripts v1.0.0 - 2014-02-11
+	Adds appropriate scripts to admin settings
+	(c) 2014 Norbert Dreszer - http://implecode.com
+*/
 
 jQuery(document).ready(function() {
 var fixHelper = function(e, ui) {

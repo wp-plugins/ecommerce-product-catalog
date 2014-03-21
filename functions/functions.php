@@ -35,15 +35,16 @@ function product_listing_url() {
 			$listing_url = get_post_type_archive_link( 'al_product' ); }
 	return $listing_url;
 }
-function upload_product_image($name, $button_value, $option_name) { 
-global $name, $button_value, $option_name;
+function upload_product_image($name, $button_value, $option_name, $option_value = null, $default_image = null) { 
 wp_enqueue_media(); 
-if (get_option($option_name)) {
-$src = get_option($option_name);}
-else {$src = AL_PLUGIN_BASE_PATH .'img/no-default-thumbnail.png'; } ?>
+if (empty($option_value)) { $option_value = get_option($option_name); }
+if (empty($default_image)) {$default_image = AL_PLUGIN_BASE_PATH .'img/no-default-thumbnail.png';}
+if ($option_value) {
+$src = $option_value;}
+else {$src = $default_image; } ?>
  <div class="custom-uploader">
- <input hidden="hidden" type="text" id="default" value="<?php echo AL_PLUGIN_BASE_PATH .'img/no-default-thumbnail.png'; ?>" />
-  <input hidden="hidden" type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo get_option($option_name); ?>" />
+ <input hidden="hidden" type="text" id="default" value="<?php echo $default_image; ?>" />
+  <input hidden="hidden" type="text" name="<?php echo $option_name; ?>" id="<?php echo $name; ?>" value="<?php echo $option_value; ?>" />
   <div class="admin-media-image"><img class="media-image" src="<?php echo $src; ?>" width="100%" height="100%" /></div>
   <a href="#" class="button insert-media add_media" name="<?php echo $name; ?>_button" id="button_<?php echo $name; ?>"><span class="wp-media-buttons-icon"></span> <?php echo $button_value; ?></a>
   <a class="button" id="reset-image-button" href="#"><?php _e('Reset image', 'al-ecommerce-product-catalog'); ?></a>
@@ -51,7 +52,7 @@ else {$src = AL_PLUGIN_BASE_PATH .'img/no-default-thumbnail.png'; } ?>
 <script>
 jQuery(document).ready(function()
 {
-jQuery('#button_<?php echo $name; ?>').click(function()
+jQuery('#button_<?php echo $name; ?>').on('click', function()
 {
 wp.media.editor.send.attachment = function(props, attachment)
 {
@@ -65,7 +66,7 @@ return false;
 });
 });
 
-jQuery('#reset-image-button').click(function() {
+jQuery('#reset-image-button').on('click', function() {
 jQuery('#<?php echo $name; ?>').val('');
 src = jQuery('#default').val();
 jQuery('.media-image').attr("src", src);
@@ -144,20 +145,30 @@ echo '2500.00 EUR';
 }
 add_action('example_price','example_price');
 
-function show_price($post, $single_names, $product_currency) {
+function show_price($post, $single_names) {
 $price_value = get_post_meta($post->ID, "_price", true);
 if (!empty($price_value)) { ?>
 	<table class="price-table">
 		<tr>
 			<td><?php echo $single_names['product_price'] ?></td>
-			<td class="price-value <?php design_schemes(); ?>"><?php echo $price_value; ?> <?php echo $product_currency; ?></td>
+			<td class="price-value <?php design_schemes(); ?>"><?php echo $price_value; ?> <?php echo product_currency(); ?></td>
 		</tr>
 	</table>
 <?php }
 }
-add_action('product_details','show_price', 7, 3);
+add_action('product_details','show_price', 7, 2);
 
-function show_shipping_options($post, $single_names, $product_currency) {
+function product_currency() {
+$product_currency = get_option('product_currency',DEF_CURRENCY);
+$product_currency_settings = get_option('product_currency_settings', unserialize(DEF_CURRENCY_SETTINGS));
+if (! empty($product_currency_settings['custom_symbol'])) {
+$currency = $product_currency_settings['custom_symbol'];
+}
+else {$currency = $product_currency; }
+return $currency;
+}
+
+function show_shipping_options($post, $single_names) {
 $shipping_options = get_option('product_shipping_options_number',DEF_SHIPPING_OPTIONS_NUMBER);
 $sh_val = '';
 $any_shipping_value = '';
@@ -177,7 +188,7 @@ if ($shipping_options > 0 AND ! empty($any_shipping_value)) { ?>
 					<?php for ($i = 1; $i <= $shipping_options; $i++) { 
 						$shipping_value = get_post_meta($post->ID, "_shipping".$i, true);
 						if (! empty($shipping_value)) {
-							echo '<li>'. get_post_meta($post->ID, "_shipping-label".$i, true) . ' : ' . $shipping_value . ' ' . $product_currency . '</li>'; 
+							echo '<li>'. get_post_meta($post->ID, "_shipping-label".$i, true) . ' : ' . $shipping_value . ' ' . product_currency() . '</li>'; 
 						}
 					}?>
 				</ul>
@@ -187,15 +198,16 @@ if ($shipping_options > 0 AND ! empty($any_shipping_value)) { ?>
 <?php }
 }
 
-add_action('product_details','show_shipping_options', 9, 3);
+add_action('product_details','show_shipping_options', 9, 2);
 
-function show_short_desc($post, $single_names, $product_currency) { 
-$shortdesc = get_post_meta($post->ID, "_shortdesc", true); ?>
+function show_short_desc($post, $single_names) { 
+$shortdesc = get_post_meta($post->ID, "_shortdesc", true); 
+$content = apply_filters ("the_content", $shortdesc); ?>
 <div class="shortdesc">
-	<?php echo $shortdesc; ?>
+	<?php echo $content; ?>
 </div>
 <?php }
-add_action('product_details','show_short_desc', 5, 3);
+add_action('product_details','show_short_desc', 5, 2);
 
 function show_product_attributes($post, $single_names) {
 $attributes_number = get_option('product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER);
@@ -237,7 +249,10 @@ add_action('after_product_details','show_product_description', 10, 2);
 
 function show_related_categories($post, $single_names, $taxonomy_name) { 
 $terms = wp_get_post_terms($post->ID, $taxonomy_name, array("fields" => "ids"));
-$term = $terms[0];				
+if (empty($terms)) {
+return;
+}
+$term = $terms[0];
 $categories = wp_list_categories('title_li=&taxonomy='.$taxonomy_name.'&include='.$term.'&echo=0&hierarchical=0'); 
 if ($categories != '<li class="cat-item-none">No categories</li>') { ?>
 	<div class="product-subcategories">
@@ -257,26 +272,21 @@ if ($categories != '<li class="cat-item-none">No categories</li>') { ?>
 add_action('single_product_end','show_related_categories', 10, 3);
 
 /* Archive Functions */
-function show_archive_price($price_value,$product_currency) {
+function show_archive_price($price_value) {
 if (!empty($price_value)) { ?>
 	<div class="product-price <?php design_schemes('color'); ?>">
-		<?php echo $price_value.' '.$product_currency; ?>
+		<?php echo $price_value.' '.product_currency(); ?>
 	</div>
 <?php }
 }
 
-add_action('archive_price', 'show_archive_price',10,2);
+add_action('archive_price', 'show_archive_price',10,1);
 
 function get_quasi_post_type($post_type = null) {
 if (empty($post_type)) {
 $post_type = get_post_type(); }
 $quasi_post_type = substr($post_type,0,10);
 return $quasi_post_type;
-}
-
-function current_currency($catalog_id = null) {
-$currency = get_option('product_currency', DEF_CURRENCY);
-return $currency;
 }
 
 function product_breadcrumbs() {
@@ -289,7 +299,7 @@ $product_archives = additional_product_listing_url();
 $product_archive = $product_archives[$catalog_id];
 $archives_ids = get_option('additional_product_archive_id');
 $breadcrumbs_options = get_option('product_breadcrumbs', unserialize (DEFAULT_PRODUCT_BREADCRUMBS));
-if ($breadcrumbs_options['enable_product_breadcrumbs'][$catalog_id] != 1) {
+if (!empty($breadcrumbs_options['enable_product_breadcrumbs'][$catalog_id]) && $breadcrumbs_options['enable_product_breadcrumbs'][$catalog_id] != 1) {
 return;
 }
 $product_archive_title_options = $breadcrumbs_options['breadcrumbs_title'][$catalog_id];
@@ -301,7 +311,7 @@ $product_archive_title = get_the_title($archives_ids[$catalog_id]);
 }}
 else {
 $archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
-if ($archive_multiple_settings['enable_product_breadcrumbs'] != 1) {
+if (!empty($archive_multiple_settings['enable_product_breadcrumbs']) && $archive_multiple_settings['enable_product_breadcrumbs'] != 1) {
 return;
 }
 
@@ -343,6 +353,7 @@ return '<p id="breadcrumbs">
 function al_product_register_widgets() {
 	register_widget( 'product_cat_widget' );
 	register_widget( 'product_widget_search' );
+do_action('implecode_register_widgets');
 }
 
 add_action( 'widgets_init', 'al_product_register_widgets' );

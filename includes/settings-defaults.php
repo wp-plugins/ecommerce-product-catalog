@@ -9,6 +9,8 @@
  * @author 		Norbert Dreszer
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 define('DEFAULT_ARCHIVE_MULTIPLE_SETTINGS', serialize (array(
 	'archive_products_limit' => 10,
 	'category_archive_url' => 'product-category',
@@ -29,3 +31,8 @@ define('ENABLE_CATALOG_LIGHTBOX', 1);
 define('MULTI_SINGLE_OPTIONS', serialize (array(
 	'enable_product_gallery' => 1,
 	)));
+	
+define('DEF_CURRENCY_SETTINGS', serialize (array(
+	'custom_symbol' => '',
+	)));
+	
