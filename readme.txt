@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.9
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,6 +66,7 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 = Translations =
 
 * English - default, always included
+* Spanish - Thanks to Andrew
 * Polish - Thanks to [Norbert](http://profiles.wordpress.org/ndre/)
 * Hebrew - Thanks to Ahrale
 * *Your translation? - [Just send it in](http://implecode.com/contact/)*
@@ -133,6 +134,11 @@ Documentation will be available soon on impleCode.com.
 4. Default product single page.
 
 == Changelog ==
+
+= 1.5.1 - 05/05/2014 =
+
+* Localization - Spanish language added
+* Tweak - Minor improvements for even better performance
 
 = 1.5.0 - 15/04/2014 =
 

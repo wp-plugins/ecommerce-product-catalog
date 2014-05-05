@@ -3,16 +3,16 @@ msgstr ""
 "Project-Id-Version: eCommerce Product Catalog by impleCode v1.5.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-04-18 06:02:36+0000\n"
-"Last-Translator: Ahrale <contact@atar4u.com>\n"
-"Language-Team: Ahrale, Atar4U.com <contact@atar4u.com>\n"
+"PO-Revision-Date: 2014-04-18 06:20:41+0000\n"
+"Last-Translator: Andrew Kurtis <andrewk@webhostinghub.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: CSL v1.x\n"
-"X-Poedit-Language: Hebrew\n"
-"X-Poedit-Country: ISRAEL\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
 "X-Poedit-Basepath: ../\n"
@@ -23,386 +23,391 @@ msgstr ""
 #: includes/settings/general.php:102
 #@ al-ecommerce-product-catalog
 msgid "Categories Parent URL"
-msgstr "כתובת URL של אב קטגוריות"
+msgstr "URL Categorías Padres"
 
 #: includes/settings/general.php:98
 #@ al-ecommerce-product-catalog
 msgid "Product listing shows at most"
-msgstr "רשימת המוצרים תציג לכל היותר"
+msgstr "Listado de productos muestra un máximo de"
 
 #: includes/settings/custom-design.php:166
 #@ al-ecommerce-product-catalog
 msgid "archive pagination"
-msgstr "עימוד ארכיון"
+msgstr "archivo de paginación de archivos"
 
 #: includes/settings/custom-design.php:166
 #@ al-ecommerce-product-catalog
 msgid "product archive title"
-msgstr "כותרת ארכיון מוצרים"
+msgstr "Título Archivo de producto"
 
 #: includes/settings/custom-design.php:157
 #@ al-ecommerce-product-catalog
 msgid "Boxes Color"
-msgstr "צבע התיבות"
+msgstr "Color de cajas"
 
 #: includes/settings/custom-design.php:154
 #@ al-ecommerce-product-catalog
 msgid "product archive"
-msgstr "ארכיון מוצרים"
+msgstr "archivo de productos"
 
 #: includes/settings/custom-design.php:151
 #: includes/settings/custom-design.php:162
 #@ al-ecommerce-product-catalog
 msgid "Green"
-msgstr "ירוק"
+msgstr "Verde"
 
 #: includes/settings/custom-design.php:150
 #: includes/settings/custom-design.php:161
 #@ al-ecommerce-product-catalog
 msgid "Orange"
-msgstr "כתום"
+msgstr "Naranja"
 
 #: includes/settings/custom-design.php:149
 #: includes/settings/custom-design.php:160
 #@ al-ecommerce-product-catalog
 msgid "Red"
-msgstr "אדום"
+msgstr "Rojo"
 
 #: includes/settings/custom-design.php:146
 #@ al-ecommerce-product-catalog
 msgid "Price Color"
-msgstr "צבע המחיר"
+msgstr "Color de Precio"
 
 #: includes/settings/custom-design.php:143
 #: includes/settings/custom-design.php:154
 #@ al-ecommerce-product-catalog
 msgid "single product"
-msgstr "מוצר יחיד"
+msgstr "Producto único"
 
 #: includes/settings/custom-design.php:140
 #@ al-ecommerce-product-catalog
 msgid "Small"
-msgstr "קטן"
+msgstr "Pequeño"
 
 #: includes/settings/custom-design.php:139
 #@ al-ecommerce-product-catalog
 msgid "Big"
-msgstr "גדול"
+msgstr "Grande"
 
 #: includes/settings/custom-design.php:137
 #@ al-ecommerce-product-catalog
 msgid "Price Size"
-msgstr "גודל המחיר"
+msgstr "Tamaño de Precio"
 
 #: includes/settings/custom-design.php:133
 #@ al-ecommerce-product-catalog
 msgid "Impact"
-msgstr "השפעה"
+msgstr "Impacto"
 
 #: includes/settings/custom-design.php:132
 #@ al-ecommerce-product-catalog
 msgid "Example Effect"
-msgstr "אפקט דוגמה"
+msgstr "Ejemplo Efecto"
 
 #: includes/settings/custom-design.php:131
 #@ al-ecommerce-product-catalog
 msgid "Value"
-msgstr "ערך"
+msgstr "Valor"
 
 #: includes/settings/custom-design.php:130
 #@ al-ecommerce-product-catalog
 msgid "Setting"
-msgstr "הגדרות"
+msgstr "Configuración"
 
 #: includes/settings/custom-design.php:127
 #@ al-ecommerce-product-catalog
 msgid "You can figure it out by checking \"impact\" column."
-msgstr "תוכל להבין את זה על-ידי בדיקת העמודה \"השפעה\"."
+msgstr "Usted puede averiguarlo consultando la columna \"impacto\"."
 
 #: includes/settings/custom-design.php:127
 #@ al-ecommerce-product-catalog
 msgid "Changing design schemes has almost always impact on various elements. For example changing price color has impact on single product page and archive page price color."
-msgstr "לשינוי ערכת עיצוב יש תמיד השפעה על אלמנטים שונים. למשל לשינוי צבע מחיר המוצר יש השפעה על צבע המחיר בדף מוצר יחיד ובדף ארכיון."
+msgstr "Cambiar esquemas de diseño casi siempre tiene un impacto en varios elementos. . Por ejemplo el cambio de color de precio tiene un impacto en la página de producto único y de color de página de precio de archivo"
 
 #: includes/settings/custom-design.php:100
 #@ al-ecommerce-product-catalog
 msgid "Product Gallery"
-msgstr "גלריית מוצרים"
+msgstr "Galería de Productos"
 
 #: includes/settings/custom-design.php:34
 #: includes/settings/custom-design.php:126
 #@ al-ecommerce-product-catalog
 msgid "Design Schemes"
-msgstr "ערכות עיצוב"
+msgstr "Esquemas Diseño"
 
 #: theme-product_adder_support.php:36
 #@ al-ecommerce-product-catalog
 msgid "Hide this notice"
-msgstr "הסתר הודעה זו"
+msgstr "Ocultar este aviso"
 
 #: theme-product_adder_support.php:36
 #@ al-ecommerce-product-catalog
 msgid "Theme Integration Guide"
-msgstr "מדריך שילוב בערכת הנושא"
+msgstr "Guía de integración temática"
 
 #: includes/settings/shipping.php:64
 #@ al-ecommerce-product-catalog
 msgid "Shipping disabled. To enable set minimum 1 shipping option."
-msgstr "המשלוח כבוי. כדי להפעיל יש להגדיר לפחות אפשרות משלוח אחת."
+msgstr "Envío deshabilitado. Para habilitar establezca la opción de envío con mínimo 1."
 
 #: includes/settings/shipping.php:48
 #@ al-ecommerce-product-catalog
 msgid "Shipping default cost"
-msgstr "מחיר ברירת המחדל למשלוח"
+msgstr "Costo predeterminado Envío"
+
+#: includes/settings/shipping.php:48
+#@ al-ecommerce-product-catalog
+msgid "Shipping default name"
+msgstr "Nombre predeterminado Envío"
 
 #: includes/settings/shipping.php:45
 #@ al-ecommerce-product-catalog
 msgid "If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue has different shipping options you can leave all or just a part of these fields empty."
-msgstr "אם תמלא את השדות שלהלן, המערכת תמלא אוטומטית שדות בדפי מוצר כך שלא תצטרך להזין אותם בכל פעם שאתה מוסיף מוצר</p><p>כאשר לכל מוצר בקטלוג שלך יש אפשרות משלוח שונה אפשר להשאיר את כל השדות שלהלן או את חלקן ריקים."
+msgstr "Si usted llena los campos a continuación, el sistema llenará de forma automática los campos en las páginas de productos para que usted no tenga que llenarlos cada vez que se agrega producto. </p> <p>Cuando cada producto de su catálogo cuenta con diferentes opciones de envío, puede dejar la totalidad o sólo una parte de estos campos en blanco."
 
 #: includes/settings/shipping.php:40
 #@ al-ecommerce-product-catalog
 msgid "Number of shipping options"
-msgstr "מספר אפשרויות המשלוח"
+msgstr "Número de Opciones de envío"
 
 #: includes/settings/shipping.php:37
 #@ al-ecommerce-product-catalog
 msgid "Product shipping options"
-msgstr "אפשרויות משלוח המוצר"
+msgstr "Opciones de envío del producto"
 
 #: includes/settings/shipping.php:34
 #@ al-ecommerce-product-catalog
 msgid "Shipping Settings"
-msgstr "הגדרות משלוח"
+msgstr "Configuración de Envío"
 
 #: includes/settings/shipping.php:12
 #@ al-ecommerce-product-catalog
 msgid "Product shipping"
-msgstr "משלוח המוצר"
+msgstr "Envío de Producto"
 
 #: includes/settings/general.php:121
 #@ al-ecommerce-product-catalog
 msgid "Your currency"
-msgstr "סוג המטבע"
+msgstr "Su divisa"
 
 #: includes/settings/general.php:119
 #@ al-ecommerce-product-catalog
 msgid "Payment and currency"
-msgstr "תשלום ומטבע"
+msgstr "Pago y divisa"
 
 #: includes/settings/general.php:107
 #@ al-ecommerce-product-catalog
 msgid "You can also use shortcode to show your products whenever you want on the website. Just paste on any page: [show_products] and you will display all products in place of the shortcode. <br><br>To show products from just one category, use: [show_products category=\"2\"] where 2 is category ID (you can display several categories by inserting comma separated IDs). <br><br>To display products by IDs, use: [show_products product=\"5\"], where 5 is product ID."
-msgstr "אפשר להשתמש גם בקיצור קוד כדי להציג את המוצר שלך בכל מקום שתרצה באתר. רק הדבק בכל דף שהוא: [show_products] וזה יציג את רשימת כל המוצרים במקום קיצור הקוד. <br><br>כדי להציג מוצרים מקטגוריה אחת בלבד, השתמש ב: [show_products category=\"2\"] כאשר 2 הוא מזהה קטגוריה (ניתן להציג מספר קטגוריות על-ידי הוספת מזהי קטגוריה מופרדים בפסיק). <br><br>כדי להציג מוצרים יחידים באמצעות המזהים שלהם השתמש ב: [show_products product=\"5\"], כאשר 5 הוא מזהה המוצר."
+msgstr "También puede utilizar código corto para mostrar sus productos siempre que lo desee en la página web. Sólo tiene que pegar en cualquier página: [show_products] y se mostrarán todos los productos en lugar del código corto. <br><br> Para mostrar los productos de una sola categoría, use: [show_products categoría=\"2\"], donde 2 es la ID de categoría (se puede visualizar la mayoría de categorías mediante la inserción de identificadores separados por comas). <br><br> Para mostrar productos por identificaciones, use: [show_products producto =\"5 \"], donde 5 es ID del producto."
 
 #: includes/settings/general.php:94
 #@ al-ecommerce-product-catalog
 msgid "Product listing URL"
-msgstr "כתובת URL של רשימת המוצרים"
+msgstr "URL del listado de productos"
 
 #: includes/settings/general.php:90
 #@ al-ecommerce-product-catalog
 msgid "Default"
-msgstr "ברירת המחדל"
+msgstr "Predetermiando"
 
 #: includes/settings/general.php:87
 #@ al-ecommerce-product-catalog
 msgid "Choose Product Listing Page"
-msgstr "בחר דף רשימת מוצרים"
+msgstr "Elija Página de Listado de productos"
 
 #: includes/settings/general.php:79
 #@ al-ecommerce-product-catalog
 msgid "Enable Product Listing Page"
-msgstr "הפעל דף רשימת מוצרים"
+msgstr "Habilitar Página de Listado de productos"
 
 #: includes/settings/general.php:75
 #@ al-ecommerce-product-catalog
 msgid "Product listing page"
-msgstr "דף רשימת מוצרים"
+msgstr "Página de listado de productos"
 
 #: includes/settings/general.php:68
 #@ al-ecommerce-product-catalog
 msgid "Product default image"
-msgstr "תמונת ברירת המחדל של המוצר"
+msgstr "Imagen por defecto de los productos"
 
 #: includes/settings/general.php:36
 #: includes/settings/general.php:47
 #@ al-ecommerce-product-catalog
 msgid "General Settings"
-msgstr "הגדרות כלליות"
+msgstr "Configuración general"
 
 #: includes/settings/general.php:15
 #@ al-ecommerce-product-catalog
 msgid "Product settings"
-msgstr "הגדרות מוצר"
+msgstr "Configuración producto"
 
 #: includes/settings/general.php:71
 #@ al-ecommerce-product-catalog
 msgid "Change default thumbnail"
-msgstr "שנה את ברירת המחדל של התמונה הממוזערת"
+msgstr "Cambiar miniaturas por defecto"
 
 #: includes/settings/custom-names.php:103
 #@ al-ecommerce-product-catalog
 msgid "Category Prefix"
-msgstr "קידומת קטגוריה"
+msgstr "Prefijo de la categoría"
 
 #: includes/settings/custom-names.php:102
 #@ al-ecommerce-product-catalog
 msgid "Product Archive Title"
-msgstr "כותרת ארכיון מוצרים"
+msgstr "Título del Archivo de productos"
 
 #: includes/settings/custom-names.php:98
 #@ al-ecommerce-product-catalog
 msgid "Archive Labels"
-msgstr "תוויות ארכיון"
+msgstr "Etiquetas Archivos"
 
 #: includes/settings/custom-names.php:76
 #@ al-ecommerce-product-catalog
 msgid "Return to Products"
-msgstr "חזור למוצרים"
+msgstr "Regresar a Productos"
 
 #: includes/settings/custom-names.php:75
 #@ al-ecommerce-product-catalog
 msgid "Another Categories"
-msgstr "קטגוריות אחרות"
+msgstr "Otras Categorías"
 
 #: includes/settings/custom-names.php:74
 #@ al-ecommerce-product-catalog
 msgid "Features Label"
-msgstr "תווית התכונות"
+msgstr "Etiqueta características"
 
 #: includes/settings/custom-names.php:73
 #@ al-ecommerce-product-catalog
 msgid "Shipping Label"
-msgstr "תווית המשלוח"
+msgstr "Etiqueta de envío"
 
 #: includes/settings/custom-names.php:72
 #@ al-ecommerce-product-catalog
 msgid "Price Label"
-msgstr "תווית המחיר"
+msgstr "Etiqueta Precio"
 
 #: includes/settings/custom-names.php:70
 #: includes/settings/custom-names.php:100
 #@ al-ecommerce-product-catalog
 msgid "Front-end Text"
-msgstr "טקסט קדמי"
+msgstr "Texto front-end"
 
 #: includes/settings/custom-names.php:70
 #: includes/settings/custom-names.php:100
 #@ al-ecommerce-product-catalog
 msgid "Front-end Element"
-msgstr "אלמנט קדמי"
+msgstr "Elemento front-end"
 
 #: includes/settings/custom-names.php:68
 #@ al-ecommerce-product-catalog
 msgid "Single Product Labels"
-msgstr "תוויות מוצר יחיד"
+msgstr "Etiquetas Producto Único"
 
 #: includes/settings/custom-names.php:54
 #@ al-ecommerce-product-catalog
 msgid "Archives"
-msgstr "ארכיון"
+msgstr "Archivos"
 
 #: includes/settings/custom-names.php:34
 #: includes/settings/custom-names.php:67
 #: includes/settings/custom-names.php:97
 #@ al-ecommerce-product-catalog
 msgid "Front-end Labels"
-msgstr "תוויות צד קדמי"
+msgstr "Etiquetas de Front-end"
 
 #: includes/settings/custom-names.php:27
 #@ al-ecommerce-product-catalog
 msgid "All"
-msgstr "הכל"
+msgstr "Todos"
 
 #: includes/settings/custom-names.php:26
 #@ al-ecommerce-product-catalog
 msgid "All Products"
-msgstr "כל המוצרים"
+msgstr "Todos los productos"
 
 #: includes/settings/custom-names.php:18
 #@ al-ecommerce-product-catalog
 msgid "<< return to products"
-msgstr "חזור אל המוצרים >>"
+msgstr "<< regresar a los productos"
 
 #: includes/settings/custom-names.php:17
 #@ al-ecommerce-product-catalog
 msgid "See also different:"
-msgstr "ראה גם אחרים:"
+msgstr "Ver también diferentes"
 
 #: includes/settings/custom-names.php:16
 #@ al-ecommerce-product-catalog
 msgid "Product Features"
-msgstr "תכונות המוצר"
+msgstr "Características del Producto"
 
 #: includes/settings/custom-names.php:15
 #@ al-ecommerce-product-catalog
 msgid "Product Shipping:"
-msgstr "משלוח המוצר:"
+msgstr "Producto para envío:"
 
 #: includes/settings/custom-names.php:14
 #@ al-ecommerce-product-catalog
 msgid "Product Price:"
-msgstr "מחיר המוצר:"
+msgstr "Precio del producto:"
 
 #: includes/settings/custom-design.php:102
 #@ al-ecommerce-product-catalog
 msgid "Enable lightbox on product image"
-msgstr "הפעל תיבת תמונה"
+msgstr "Habilitar lightbox en la imagen del producto"
 
 #: includes/settings/custom-design.php:74
 #@ al-ecommerce-product-catalog
 msgid "Classic Grid"
-msgstr "פריסת רשת קלאסית"
+msgstr "Rejilla clásica"
 
 #: includes/settings/custom-design.php:70
 #@ al-ecommerce-product-catalog
 msgid "Classic List"
-msgstr "רשימה קלאסית"
+msgstr "Lista Clásica"
 
 #: includes/settings/custom-design.php:68
 #@ al-ecommerce-product-catalog
 msgid "Show Attributes"
-msgstr "הצג תכונות"
+msgstr "Mostrar atributos"
 
 #: includes/settings/custom-design.php:68
 #@ al-ecommerce-product-catalog
 msgid "Additional Settings"
-msgstr "הגדרות נוספות"
+msgstr "Configuración adicional"
 
 #: includes/settings/custom-design.php:65
 #@ al-ecommerce-product-catalog
 msgid "Modern Grid"
-msgstr "רשת מודרנית"
+msgstr "Rejilla Moderna"
 
 #: includes/settings/custom-design.php:59
 #: includes/settings/custom-design.php:99
 #: includes/settings/custom-design.php:125
 #@ al-ecommerce-product-catalog
 msgid "Design Settings"
-msgstr "הגדרות עיצוב"
+msgstr "Configuración diseño"
 
 #: includes/settings/custom-design.php:33
 #: includes/settings/custom-names.php:53
 #@ al-ecommerce-product-catalog
 msgid "Single Product"
-msgstr "מוצר יחיד"
+msgstr "Producto Único"
 
 #: includes/settings/custom-design.php:32
 #: includes/settings/custom-design.php:60
 #@ al-ecommerce-product-catalog
 msgid "Product Listing"
-msgstr "רשימת מוצרים"
+msgstr "Listado de productos"
 
 #: includes/settings/custom-design.php:12
 #@ al-ecommerce-product-catalog
 msgid "Catalog Design"
-msgstr "עיצוב קטלוג"
+msgstr "Diseño de Catálogo"
 
 #: includes/settings/attributes.php:85
 #@ al-ecommerce-product-catalog
 msgid "Attributes disabled. To enable set minimum 1 attribute."
-msgstr "התכונות כבויות. כדי להפעיל אותן יש להגדר לפחות תכונה אחת."
+msgstr "Atributos deshabilitados Para habilitar establezca por lo menos 1 atributo."
 
 #: includes/settings/attributes.php:78
 #: includes/settings/custom-design.php:80
@@ -414,110 +419,136 @@ msgstr "התכונות כבויות. כדי להפעיל אותן יש להגד�
 #: includes/settings/shipping.php:60
 #@ al-ecommerce-product-catalog
 msgid "Save changes"
-msgstr "שמירה"
+msgstr "Guardar cambios"
 
 #: includes/settings/attributes.php:57
 #@ al-ecommerce-product-catalog
 msgid "Attribute default unit"
-msgstr "יחידת ברירת המחדל של התכונה"
+msgstr "Unidad atributo predeterminado"
 
 #: includes/settings/attributes.php:56
 #@ al-ecommerce-product-catalog
 msgid "Attribute default value"
-msgstr "ערך ברירת המחדל של התכונה"
+msgstr "Valor predeterminado del atributo"
+
+#: includes/settings/attributes.php:54
+#@ al-ecommerce-product-catalog
+msgid "Attribute default name"
+msgstr "Nombre predeterminado del atributo"
 
 #: includes/settings/attributes.php:49
 #: includes/settings/shipping.php:45
 #@ al-ecommerce-product-catalog
 msgid "You can change these default values on every product page."
-msgstr "אפשר לשנות את ערכי ברירת המחדל האלו בכל דף מוצר."
+msgstr "Puede cambiar estos valores predeterminados en cada página de producto."
 
 #: includes/settings/attributes.php:49
 #@ al-ecommerce-product-catalog
 msgid "If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue is different you can leave all or a part of these field empty."
-msgstr "אם תמלא את השדות שלהלן, המערכת תמלא אותן אוטומטית בדפי מוצר, כך שלא תצטרך להזין אותם כל פעם מחדש כאשר אתה מוסיף מוצר.</p><p>כאשר כל מוצר בקטלוג שלך שונה, ניתן להשאיר את כל השדות הללו או חלקם ריקים."
+msgstr "Si usted llena los campos a continuación, el sistema de forma automática llenará los campos en las páginas de productos para que no tenga que rellenarlos cada vez que añada producto. </p><p> Cuando todos los productos de su catálogo son diferentes, usted puede dejar la totalidad o una parte de éstos campos vacíos."
+
+#: includes/settings/attributes.php:42
+#: includes/settings/shipping.php:40
+#@ al-ecommerce-product-catalog
+msgid "Update"
+msgstr "Actualizar"
 
 #: includes/settings/attributes.php:42
 #@ al-ecommerce-product-catalog
 msgid "Number of product attributes"
-msgstr "מספר תכונות המוצר"
+msgstr "Número de atributos de producto"
 
 #: includes/settings/attributes.php:38
 #@ al-ecommerce-product-catalog
 msgid "Product attributes options"
-msgstr "אפשרויות תכונות המוצר"
+msgstr "Opciones de atributos de producto"
 
 #: includes/settings/attributes.php:35
 #@ al-ecommerce-product-catalog
 msgid "Attributes Settings"
-msgstr "הגדרות תכונות"
+msgstr "Configuración de atributos"
 
 #: includes/product.php:300
 #@ al-ecommerce-product-catalog
 msgid "Remove product image"
-msgstr "הסר את תמונת המוצר"
+msgstr "Eliminar imagen del producto"
 
 #: includes/product.php:296
 #@ al-ecommerce-product-catalog
 msgid "Set product image"
-msgstr "קבע את תמונת המוצר"
+msgstr "Establecer imagen del producto"
 
 #: includes/product.php:285
 #@ al-ecommerce-product-catalog
 msgid "Product Image"
-msgstr "תמונת המוצר"
+msgstr "Imagen del producto"
 
 #: includes/product.php:179
 #@ al-ecommerce-product-catalog
 msgid "Only attributes with values set will be shown on product page."
-msgstr "דף המוצר יציג רק תכונות עם ערכים מוגדרים"
+msgstr "Sólo los atributos con valores establecidos se mostrarán en la página del producto."
 
 #: includes/product.php:132
 #: includes/settings/attributes.php:12
 #@ al-ecommerce-product-catalog
 msgid "Product attributes"
-msgstr "תכונות המוצר"
+msgstr "Atributos de producto"
+
+#: includes/product.php:130
+#@ al-ecommerce-product-catalog
+msgid "Product Shipping"
+msgstr "Envios de producto"
+
+#: includes/product.php:128
+#@ al-ecommerce-product-catalog
+msgid "Product Price"
+msgstr "Precio del producto"
+
+#: includes/product.php:127
+#@ al-ecommerce-product-catalog
+msgid "Product description"
+msgstr "Descripción del producto"
 
 #: includes/product.php:126
 #@ al-ecommerce-product-catalog
 msgid "Product short description"
-msgstr "תיאור קצר של המוצר"
+msgstr "Descripción corta del producto"
 
 #: functions/base.php:18
 #@ al-ecommerce-product-catalog
 msgid "Enter product name here"
-msgstr "הזן כאן את שם המוצר"
+msgstr "Introduzca el nombre del producto aquí"
 
 #: includes/product.php:40
 #: includes/product.php:79
 #@ al-ecommerce-product-catalog
 msgid "No Products found in trash"
-msgstr "לא נמצאו מוצרים באשפה"
+msgstr "No se han encontrado Productos en la basura"
 
 #: includes/product.php:39
 #: includes/product.php:78
 #@ al-ecommerce-product-catalog
 msgid "No Products found"
-msgstr "לא נמצא אף מוצר"
+msgstr "No se encontraron productos"
 
 #: includes/product.php:38
 #: includes/product.php:77
 #@ al-ecommerce-product-catalog
 msgid "Search Products"
-msgstr "חיפוש מוצרים"
+msgstr "Buscar Productos"
 
 #: includes/product.php:37
 #: includes/product.php:76
 #@ al-ecommerce-product-catalog
 msgid "View Product"
-msgstr "הצג את המוצר"
+msgstr "Ver producto"
 
 #: includes/product.php:35
 #: includes/product.php:74
 #: templates/content-al_product.php:39
 #@ al-ecommerce-product-catalog
 msgid "Edit Product"
-msgstr "עריכת המוצר"
+msgstr "Editar producto"
 
 #: includes/product.php:33
 #: includes/product.php:34
@@ -527,157 +558,157 @@ msgstr "עריכת המוצר"
 #: includes/product.php:75
 #@ al-ecommerce-product-catalog
 msgid "Add New Product"
-msgstr "הוספת מוצר חדש"
+msgstr "Agregar Nuevo Producto"
 
 #: includes/product.php:32
 #: includes/product.php:71
 #@ al-ecommerce-product-catalog
 msgid "Product"
-msgstr "מוצר"
+msgstr "Producto"
 
 #: includes/product-types.php:35
 #@ al-ecommerce-product-catalog
 msgid "No product types found."
-msgstr "לא נמצאו סוגי מוצרים."
+msgstr "No hay tipos de productos encontrados."
 
 #: includes/product-types.php:34
 #@ al-ecommerce-product-catalog
 msgid "Choose from the most used product types"
-msgstr "בחר מסוגי המוצר שהכי בשימוש"
+msgstr "Elija entre los tipos de productos más utilizados"
 
 #: includes/product-types.php:33
 #@ al-ecommerce-product-catalog
 msgid "Add or remove product types"
-msgstr "הוספה או הסרה של סוגי מוצר"
+msgstr "Añadir o eliminar tipos de productos"
 
 #: includes/product-types.php:32
 #@ al-ecommerce-product-catalog
 msgid "Separate product types with commas"
-msgstr "סוגי מוצר מופרדים בפסיק"
+msgstr "Separe tipos de productos con comas"
 
 #: includes/product-types.php:31
 #@ al-ecommerce-product-catalog
 msgid "New Product Type"
-msgstr "סוג מוצר חדש"
+msgstr "Nuevo Tipo de producto"
 
 #: includes/product-types.php:30
 #@ al-ecommerce-product-catalog
 msgid "Add New Product Type"
-msgstr "הוספת סוג מוצר חדש"
+msgstr "Crear Nuevo Tipo de producto"
 
 #: includes/product-types.php:29
 #@ al-ecommerce-product-catalog
 msgid "Update Product Type"
-msgstr "עדכון סוג מוצר"
+msgstr "Actualizar Tipo de producto"
 
 #: includes/product-types.php:28
 #@ al-ecommerce-product-catalog
 msgid "Edit Product Type"
-msgstr "עריכת סוג מוצר"
+msgstr "Editar tipo de producto"
 
 #: includes/product-types.php:25
 #@ al-ecommerce-product-catalog
 msgid "All Product Types"
-msgstr "כל סוגי המוצרים"
+msgstr "Todos los Tipos de productos"
 
 #: includes/product-types.php:24
 #@ al-ecommerce-product-catalog
 msgid "Popular Product Types"
-msgstr "סוגי מוצרים פופולריים"
+msgstr "Tipos populares de productos"
 
 #: includes/product-types.php:23
 #@ al-ecommerce-product-catalog
 msgid "Search Product Types"
-msgstr "חיפוש סוגי מוצרים"
+msgstr "Buscar Tipos de productos"
 
 #: includes/product-types.php:22
 #@ al-ecommerce-product-catalog
 msgid "Product Type"
-msgstr "סוג מוצר"
+msgstr "Tipo de producto"
 
 #: includes/product-types.php:21
 #: includes/product-types.php:36
 #@ al-ecommerce-product-catalog
 msgid "Product Types"
-msgstr "סוגי מוצרים"
+msgstr "Tipos de producto"
 
 #: includes/product-settings.php:26
 #@ al-ecommerce-product-catalog
 msgid "Product Settings"
-msgstr "הגדרות מוצר"
+msgstr "Ajustes Producto"
 
 #: includes/product-categories.php:30
 #@ al-ecommerce-product-catalog
 msgid "New Product Category"
-msgstr "קטגוריית מוצר חדשה"
+msgstr "Nueva Categoría de producto"
 
 #: includes/product-categories.php:29
 #@ al-ecommerce-product-catalog
 msgid "Add New Product Category"
-msgstr "הוספת קטגוריית מוצר חדשה"
+msgstr "Añadir Nueva categoría de Producto"
 
 #: includes/product-categories.php:28
 #@ al-ecommerce-product-catalog
 msgid "Update Product Category"
-msgstr "עדכון קטגוריית מוצר"
+msgstr "Actualización de productos"
 
 #: includes/product-categories.php:27
 #@ al-ecommerce-product-catalog
 msgid "Edit Product Category"
-msgstr "עריכת קטגוריית מוצר"
+msgstr "Editar Categoría de Producto"
 
 #: includes/product-categories.php:26
 #@ al-ecommerce-product-catalog
 msgid "Parent Product Category:"
-msgstr "קטגוריית אב של מוצר:"
+msgstr "Categoría Padre de Producto:"
 
 #: includes/product-categories.php:25
 #@ al-ecommerce-product-catalog
 msgid "Parent Product Category"
-msgstr "קטגורית אב של מוצר"
+msgstr "Categoría Padre de producto"
 
 #: includes/product-categories.php:24
 #@ al-ecommerce-product-catalog
 msgid "All Product Categories"
-msgstr "כל קטגוריות המוצרים"
+msgstr "Todas las categorías de productos"
 
 #: includes/product-categories.php:23
 #@ al-ecommerce-product-catalog
 msgid "Search Product Categories"
-msgstr "חיפוש בקטגוריות המוצרים"
+msgstr "Buscar Categorías de Productos"
 
 #: includes/product-categories.php:22
 #@ al-ecommerce-product-catalog
 msgid "Product Category"
-msgstr "קטגוריית מוצר"
+msgstr "Categoría de Productos"
 
 #: includes/category-widget.php:91
 #@ al-ecommerce-product-catalog
 msgid "Show product counts"
-msgstr "הצג ספירת מוצר"
+msgstr "Mostrar conteos de productos"
 
 #: includes/category-widget.php:35
 #@ al-ecommerce-product-catalog
 msgid "Select Product Category"
-msgstr "בחירת קטגוריית מוצר"
+msgstr "Seleccionar Categoría  de producto"
 
 #: includes/category-widget.php:17
 #: includes/product-categories.php:21
 #: includes/product-categories.php:31
 #@ al-ecommerce-product-catalog
 msgid "Product Categories"
-msgstr "קטגוריות מוצר"
+msgstr "Categorías de producto"
 
 #: includes/category-widget.php:16
 #@ al-ecommerce-product-catalog
 msgid "A list or dropdown of product categories"
-msgstr "רשימה או רשימה נפתחת של קטגוריות מוצר"
+msgstr "Una lista o desplegables de categorías de productos"
 
 #: functions/functions.php:50
 #: includes/settings/settings-functions.php:64
 #@ al-ecommerce-product-catalog
 msgid "Reset image"
-msgstr "איפוס תמונה"
+msgstr "Restablecer imagen"
 
 #: functions/functions.php:33
 #: includes/product.php:27
@@ -686,80 +717,65 @@ msgstr "איפוס תמונה"
 #: includes/settings/general.php:99
 #@ al-ecommerce-product-catalog
 msgid "products"
-msgstr "מוצרים"
+msgstr "productos"
 
 #: functions/activation.php:13
 #: includes/product.php:31
 #: includes/product.php:70
 #@ al-ecommerce-product-catalog
 msgid "Products"
-msgstr "מוצרים"
+msgstr "Productos"
 
 #: includes/category-widget.php:84
 #: includes/search-widget.php:42
 #@ al-ecommerce-product-catalog
 msgid "Title:"
-msgstr ""
+msgstr "Título:"
 
 #: includes/category-widget.php:88
 #@ al-ecommerce-product-catalog
 msgid "Display as dropdown"
-msgstr ""
+msgstr "Mostrar como lista desplegable"
 
 #: includes/category-widget.php:94
 #@ al-ecommerce-product-catalog
 msgid "Show hierarchy"
-msgstr ""
+msgstr "Mostrar jerarquía"
 
 #: includes/product.php:296
 #@ default
 msgid "Set featured image"
-msgstr ""
+msgstr "Establecer imagen destacada"
 
 #: includes/product.php:300
 #@ default
 msgid "Remove featured image"
-msgstr ""
+msgstr "Eliminar imagen destacada"
 
 #: includes/search-widget.php:16
 #@ al-ecommerce-product-catalog
 msgid "A search form for your products."
-msgstr ""
+msgstr "Un formulario de búsqueda para sus productos."
 
 #: includes/search-widget.php:17
 #@ al-ecommerce-product-catalog
 msgid "Product Search"
-msgstr ""
+msgstr "Buscar Producto"
 
 #: includes/settings/custom-design.php:101
 #@ al-ecommerce-product-catalog
 msgid "Enable product image"
-msgstr ""
+msgstr "Habilitar imagen de producto"
 
 #: includes/settings/general.php:108
 #@ al-ecommerce-product-catalog
 msgid "Product Breadcrumbs"
-msgstr ""
+msgstr "Breadcrumbs de Producto"
 
 #: includes/settings/general.php:111
 #@ al-ecommerce-product-catalog
 msgid "Enable Product Breadcrumbs:"
-msgstr ""
-
-#: includes/product.php:127
-#@ al-ecommerce-product-catalog
-msgid "Product description"
-msgstr ""
-
-#: includes/product.php:128
-#@ al-ecommerce-product-catalog
-msgid "Product Price"
-msgstr ""
-
-#: includes/product.php:130
-#@ al-ecommerce-product-catalog
-msgid "Product Shipping"
-msgstr ""
+msgstr "Habilitar Breadcrumbs del producto"
 
 #: includes/product.php:314
 #@ default
@@ -790,17 +806,6 @@ msgstr ""
 #: includes/product.php:321
 #@ default
 msgid "M j, Y @ G:i"
-msgstr ""
-
-#: includes/settings/attributes.php:42
-#: includes/settings/shipping.php:40
-#@ al-ecommerce-product-catalog
-msgid "Update"
-msgstr ""
-
-#: includes/settings/attributes.php:54
-#@ al-ecommerce-product-catalog
-msgid "Attribute default name"
 msgstr ""
 
 #: includes/settings/general.php:115
@@ -846,11 +851,6 @@ msgstr ""
 #: includes/settings/general.php:139
 #@ al-ecommerce-product-catalog
 msgid "Off"
-msgstr ""
-
-#: includes/settings/shipping.php:48
-#@ al-ecommerce-product-catalog
-msgid "Shipping default name"
 msgstr ""
 
 #: theme-product_adder_support.php:35
