@@ -16,7 +16,7 @@ Reward your Wordpress website with beautifull and easy to use product catalog. e
 
 = FEATURES =
 
-You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/ "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com "impleCode - open-source plugin developer").
+You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/#cam=wordpress-org-catalog-page&key=ecommerce-product-catalog "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
 
 * __Unlimited number of products__ - Add as many products to your catalog as you need
 * __SEO Friendly__ - Give your site nice boost in search engines with SEO optimized product pages
@@ -113,7 +113,7 @@ Yes, you can use any html buttons on your product description.
 
 = Will eCommerce Product Catalog work with my theme? =
 
-Yes. eCommerce Product Catalog will work with any theme but in some cases may require some styling to make it match nicely. Please see [Theme Integration Guide](http://implecode.com/wordpress/product-catalog/theme-integration-guide/ "eCommerce Product Catalog Theme Integration Guide on impleCode.com") for help.
+Yes. eCommerce Product Catalog will work with any theme but in some cases may require some styling to make it match nicely. Please see [Theme Integration Guide](http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=wordpress-org-catalog-faq&key=catalog-integration "eCommerce Product Catalog Theme Integration Guide on impleCode.com") for help.
 
 = Where can I request new features, themes and extensions? =
 
