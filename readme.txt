@@ -16,7 +16,7 @@ Reward your Wordpress website with beautifull and easy to use product catalog. e
 
 = FEATURES =
 
-You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/#cam=wordpress-org-catalog-page&key=ecommerce-product-catalog "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
+You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/?cam=wordpress-org-catalog-page&key=ecommerce-product-catalog#contents_table "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
 
 * __Unlimited number of products__ - Add as many products to your catalog as you need
 * __SEO Friendly__ - Give your site nice boost in search engines with SEO optimized product pages
