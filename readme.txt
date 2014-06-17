@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory
 Requires at least: 3.0
 Tested up to: 3.9.1
-Stable tag: 1.5.7
+Stable tag: 1.5.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -134,6 +134,13 @@ Documentation will be available soon on impleCode.com.
 4. Default product single page.
 
 == Changelog ==
+
+= 1.5.8 - 17/06/2014 =
+
+* Tweak - ability to set SEO title from product settings
+* Tweak - support menu added to product settings
+* Fix - product search improvements
+* Fix - default search widget will not use product themes
 
 = 1.5.7 - 10/06/2014 =
 
