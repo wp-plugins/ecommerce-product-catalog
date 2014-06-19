@@ -109,15 +109,23 @@ Yes, just leave the product price empty and you will disable ecommerce functiona
 
 = Are there any payment gateways? =
 
-Yes, you can use any html buttons on your product description.
+There is PayPal Gateway available on the [extensions page](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-faq&key=extensions-page#conversion_boosters "eCommerce Product Catalog Theme Integration Guide on impleCode.com").
 
 = Will eCommerce Product Catalog work with my theme? =
 
 Yes. eCommerce Product Catalog will work with any theme but in some cases may require some styling to make it match nicely. Please see [Theme Integration Guide](http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=wordpress-org-catalog-faq&key=catalog-integration "eCommerce Product Catalog Theme Integration Guide on impleCode.com") for help.
 
+= Why product image is not working? =
+
+If you cannot add product image it means that your theme is not supporting featured image feature. Please see [WordPress Codex](http://codex.wordpress.org/Post_Thumbnails "Featured image support").
+
+= How to change category prefix "All"? =
+
+To change category prefix or any other front-end text go to product settings > Front-end labels and change to empty or any value.
+
 = Where can I request new features, themes and extensions? =
 
-We are available on the support forum.
+We are available on the support forum and through impleCode website.
 
 = Where can I report bugs and contribute to the project? =
 
@@ -125,7 +133,7 @@ Bugs can be reported on the support forum.
 
 = Where can I find impleCode documentation and user guides? =
 
-Documentation will be available soon on impleCode.com.
+Documentation is available [here](http://implecode.com/wordpress/product-catalog/#cam=wordpress-org-catalog-faq&key=catalog-docs "eCommerce Product Catalog Documentation on impleCode.com").
 
 == Screenshots ==
 1. Product edit/add screen.
