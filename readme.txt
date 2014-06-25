@@ -12,7 +12,7 @@ impleCode eCommerce Product Catalog is great choice to sell easy and quick or ju
 
 == Description ==
 
-Reward your Wordpress website with beautifull and easy to use product catalog. eCommerce Product Catalog is powerful and basic at the same time. It is built by impleCode and more futures are added every week. Expect high quality code which is great value not only for Merchants but also for Developers and Theme Constructors.
+Reward your Wordpress website with beautiful and easy to use product catalog. eCommerce Product Catalog is powerful and basic at the same time. It is built by impleCode and more futures are added every week. Expect high quality code which is great value not only for Merchants but also for Developers and Theme Constructors.
 
 = FEATURES =
 
@@ -170,7 +170,7 @@ Documentation is available [here](http://implecode.com/wordpress/product-catalog
 
 = 1.5.4 - 28/05/2014 =
 
-* Tweak - Added settings & premium support urls on plugin list
+* Tweak - Added settings & premium support URLs on plugin list
 * Tweak - Some code improvements for even better performance
 
 = 1.5.3 - 21/05/2014 =
