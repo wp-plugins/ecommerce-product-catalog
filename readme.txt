@@ -8,11 +8,11 @@ Stable tag: 1.6.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-impleCode eCommerce Product Catalog is great choice to sell easy and quick or just beautifully present products on Wordpress website.
+impleCode eCommerce Product Catalog is great choice to sell easy and quick or just beautifully present products on WordPress website.
 
 == Description ==
 
-Reward your Wordpress website with beautiful and easy to use product catalog. eCommerce Product Catalog is powerful and basic at the same time. It is built by impleCode and more futures are added every week. Expect high quality code which is great value not only for Merchants but also for Developers and Theme Constructors.
+Reward your WordPress website with beautiful and easy to use product catalog. eCommerce Product Catalog is powerful and basic at the same time. It is built by impleCode and more futures are added every week. Expect high quality code which is great value not only for Merchants but also for Developers and Theme Constructors.
 
 = FEATURES =
 
@@ -44,7 +44,7 @@ And more to come every week!
 
 Future functions are specified in the "Current Donation Goal" section.
 
-= Display Products with Shortcode =
+= Display Products with a Shortcode =
 
 You can also use shortcode to show your products whenever you want on the website. Just paste on any page: [show_products] and you will display all products in place of the shortcode. 
 
@@ -57,6 +57,7 @@ To display products by IDs, use: [show_products product="5"], where 5 is product
 Currently we are working on:
 
 * Feature - [show_categories] shortcode to show category listing on any page
+* Tweak - usability improvements in admin
 
 **If you want to say thanks by donating to this plugin [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
 
