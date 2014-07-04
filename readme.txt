@@ -1,4 +1,4 @@
-=== Plugin Name ===
+﻿=== Plugin Name ===
 Contributors: impleCode, ndre
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
@@ -16,7 +16,7 @@ Reward your WordPress website with beautiful and easy to use product catalog. eC
 
 = FEATURES =
 
-You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/#cam=wordpress-org-catalog-page&key=ecommerce-product-catalog "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
+You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/?cam=wordpress-org-catalog-page&key=ecommerce-product-catalog#contents_table "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
 
 * __Unlimited number of products__ - Add as many products to your catalog as you need
 * __SEO Friendly__ - Give your site nice boost in search engines with SEO optimized product pages
@@ -51,6 +51,10 @@ You can also use shortcode to show your products whenever you want on the websit
 To show products from just one category, use: [show_products category="2"] where 2 is category ID (you can display several categories by inserting comma separated IDs). 
 
 To display products by IDs, use: [show_products product="5"], where 5 is product ID.
+
+= eCommerce Product Catalog Extensions =
+
+The feature packed extensions is that what makes eCommerce Product Catalog even more outstanding. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
 
 = Current Donation Goal =
 
