@@ -146,6 +146,8 @@ Documentation is available [here](http://implecode.com/wordpress/product-catalog
 2. Product catalog settings.
 3. Default product catalog archive.
 4. Default product single page.
+5. Classic grid product catalog archive.
+6. Classic list product catalog archive.
 
 == Changelog ==
 
