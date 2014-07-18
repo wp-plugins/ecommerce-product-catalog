@@ -18,8 +18,8 @@ Reward your WordPress website with beautiful and easy to use product catalog. eC
 
 You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/?cam=wordpress-org-catalog-page&key=ecommerce-product-catalog#contents_table "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
 
-* __Unlimited number of products__ - Add as many products to your catalog as you need
-* __SEO Friendly__ - Give your site nice boost in search engines with SEO optimized product pages
+* __Unlimited number of products__ - Add as many products to the catalog as needed
+* __SEO Friendly__ - Give the site nice boost in search engines with SEO optimized product pages
 * __Usefull Product categories__ - Divide the products into categories when needed
 * __Intuitive Catalog Settings__ - Fully customize the product catalog
 * __[show_products] Shortcode__ - Show products with shortcode whenever it’s desired on the website
@@ -40,9 +40,7 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 * __Front-end Labels Manager__ - manage everything users can see
 * __Product Breadcrumbs__ - use SEO friendly product breadcrumbs
 
-And more to come every week! 
-
-Future functions are specified in the "Current Donation Goal" section.
+And more to come every week!
 
 = Display Products with a Shortcode =
 
@@ -55,15 +53,6 @@ To display products by IDs, use: [show_products product="5"], where 5 is product
 = eCommerce Product Catalog Extensions =
 
 The feature packed extensions is that what makes eCommerce Product Catalog more specialized solution. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
-
-= Current Donation Goal =
-
-Currently we are working on:
-
-* Feature - [show_categories] shortcode to show category listing on any page
-* Tweak - usability improvements in admin
-
-**If you want to say thanks by donating to this plugin [using PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4 "eCommerce Product Catalog Donation URL"), feel free ;-)**
 
 = Get involved =
 Developers can contribute to the source code on the [eCommerce Product Catalog GitHub Repository](https://github.com/impleCode/ecommerce-product-catalog).
