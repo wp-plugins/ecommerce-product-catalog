@@ -27,8 +27,8 @@ function implecode_custom_support_settings_content() { ?>
 	</script>
 		<div class="setting-content submenu support-tab">
 			<h2><?php _e('impleCode Support', 'al-ecommerce-product-catalog'); ?></h2>
-			<p><?php _e('<b>eCommerce Product Catalog is free to use</b> - life is wonderful and lovely! However, it is required a great deal of time and effort to develop  such a software. If you found eCommerce Product Catalog useful or it saved you some amount of time you can support its development by making a small donation. This will act as an incentive for me to carry on developing. You get some useful software and I get to carry on making it. Everybody wins.','al-ecommerce-product-catalog'); ?></p>
-			<p><?php _e('This awesome plugin is developed under impleCode brand which is a legally operating company. It means that <b>you can get even more value</b> if you prefer to. Choose between:', 'al-ecommerce-product-catalog') ?></p>
+			<p><?php _e('<b>eCommerce Product Catalog is free to use</b>, however it is required a great deal of time and effort to develop such a software. If you found eCommerce Product Catalog useful or it saved you some amount of time you can support its development by buying premium support or an extension. This is better than a donation, because you get even more value with it. All the income from premium support and extensions goes for eCommerce Product Catalog and its extensions development. Everybody wins.','al-ecommerce-product-catalog'); ?></p>
+			<p><?php _e('This awesome plugin is developed under impleCode brand which is a legally operating company. It means that <b>you can be assured that the high quality development will be continuous</b>.', 'al-ecommerce-product-catalog') ?></p>
 			<table>
 			<tr>
 			<td>
