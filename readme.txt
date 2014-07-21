@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: impleCode, ndre
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=E2MNWQKN7VPK4
+Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpress-org-catalog-page&key=donate-link
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.6.2
+Stable tag: 1.6.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -150,6 +150,12 @@ Documentation is available [here](http://implecode.com/wordpress/product-catalog
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 1.6.3 - 21/07/2014 =
+
+* Fix - More unified styling for features table
+* Tweak - Default product image moved to catalog desing settings
+* Tweak - Even better performance for shortcode product listings
 
 = 1.6.2 - 14/07/2014 =
 
