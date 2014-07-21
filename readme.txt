@@ -42,8 +42,6 @@ You can read all about [eCommerce Product Catalog](http://implecode.com/wordpres
 
 And more to come every week! 
 
-Future functions are specified in the "Current Donation Goal" section.
-
 = Display Products with a Shortcode =
 
 Use the shortcode to show products whenever needed on the website. Just paste on any page: [show_products] and watch all products in place of the shortcode. 
