@@ -130,6 +130,14 @@ Bugs can be reported on the support forum.
 
 Documentation is available [here](http://implecode.com/wordpress/product-catalog/#cam=wordpress-org-catalog-faq&key=catalog-docs "eCommerce Product Catalog Documentation on impleCode.com").
 
+= Is this an ecommerce plugin? =
+
+Yes, but it is not a store. See the question below.
+
+= What's the difference between eCommerce Product Catalog and classic ecommerce plugin (e.g. store)? =
+
+This is not a store. It's main purpose is to present products or services on the website in a convenient and easy to manage way. It's more lightweight than most of eCommerce Plugins. It's commonly used for company pages or blogs with product catalogue. It's easily CSS customisable and has 3 themes for product listings in the default version. It can be extended to work with product quotes (for products without price), order forms (for product with price), payment gateways, PDF specifications and even separate catalogues with separate menus in admin. 
+
 == Screenshots ==
 1. Product edit/add screen.
 2. Product catalog settings.
