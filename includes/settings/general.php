@@ -134,9 +134,14 @@ function general_settings_content() { ?>
 				)
 				); 
 				implecode_settings_radio(__('Space between currency & price', 'al-ecommerce-product-catalog'), 'product_currency_settings[price_space]', $product_currency_settings['price_space'], array('on' => __('On<br>', 'al-ecommerce-product-catalog'), 'off' => __('Off', 'al-ecommerce-product-catalog')));
+				$local['mon_thousands_sep'] = ',';
+				$local['decimal_point'] = '.';
+				$product_currency_settings['th_sep'] = isset($product_currency_settings['th_sep']) ? $product_currency_settings['th_sep'] :$local['mon_thousands_sep'];
+				$product_currency_settings['dec_sep'] = isset($product_currency_settings['dec_sep']) ? $product_currency_settings['dec_sep'] :$local['decimal_point'];
+				implecode_settings_text(__('Thousands Separator', 'al-ecommerce-product-catalog'), 'product_currency_settings[th_sep]', $product_currency_settings['th_sep'], null, 1, 'small_text_box');
+				implecode_settings_text(__('Decimal Separator', 'al-ecommerce-product-catalog'), 'product_currency_settings[dec_sep]', $product_currency_settings['dec_sep'], null, 1, 'small_text_box');
 				?>
 				</table>
-				
 				<?php do_action('general-settings'); ?>
 				<p class="submit">
 					<input type="submit" class="button-primary" value="<?php _e('Save changes', 'al-ecommerce-product-catalog'); ?>" />

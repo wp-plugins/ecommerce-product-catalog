@@ -456,6 +456,10 @@ border: 0;
 border:0;
 }
 
+#product_features {
+clear: both;
+}
+
 #product_features table {
 width: 100%;
 border: 0;
@@ -636,6 +640,11 @@ max-width: 300px;
 
 #admin-number-field, #archive_products_limit, input.admin-number-field{
 width: 50px;
+}
+
+input[name="_price"] {
+width: 90px;
+text-align: center;
 }
 
 .product-settings-table {

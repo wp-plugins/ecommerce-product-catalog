@@ -40,10 +40,5 @@ echo product_breadcrumbs();
 		<div class="after-product-description">
 			<?php  do_action('single_product_end', $post, $single_names, $taxonomies[0]); ?>
 		</div>
-	
-		<?php $enable_product_listing = get_option('enable_product_listing', 1);
-		if ($enable_product_listing == 1) { ?>
-			<a href="<?php echo product_listing_url(); ?>"><?php echo $single_names['return_to_archive']; ?></a>
-		<?php } ?>
 	</div>
 </article>

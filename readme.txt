@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.6.3
+Stable tag: 1.6.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,11 +12,13 @@ eCommerce Product Catalog plugin is a great choice to sell easy and quick or jus
 
 == Description ==
 
-Reward your WordPress website with beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by impleCode and more features are added every week. Expect high quality code which is great value not only for Merchants but also for Developers and Theme Constructors.
+Reward your WordPress website with a beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by the experienced folk at impleCode who constantly develops the core and the extensions. Expect high quality code which is great value not only for Developers and Theme Constructors but also for Merchants and Webmasters.
+
+This eCommerce plugin is a great solution for those who look for an easy way to implement product management to the WordPress website. eCommerce Product Catalog is supported on WordPress forums, Premium Support and an extensive documentation. This eCommerce store like solution works with any theme and most of WordPress plugins. It is based on custom post types.
 
 = FEATURES =
 
-You can read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/?cam=wordpress-org-catalog-page&key=ecommerce-product-catalog#contents_table "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
+Read all about [eCommerce Product Catalog](http://implecode.com/wordpress/product-catalog/?cam=wordpress-org-catalog-page&key=ecommerce-product-catalog#contents_table "eCommerce Product Catalog Website") features on the [impleCode website](http://implecode.com/#cam=wordpress-org-catalog-page&key=implecode-website "impleCode - open-source plugin developer").
 
 * __Unlimited number of products__ - Add as many products to the catalog as needed
 * __SEO Friendly__ - Give the site nice boost in search engines with SEO optimized product pages
@@ -52,7 +54,7 @@ To display products by IDs, use: [show_products product="5"], where 5 is product
 
 = eCommerce Product Catalog Extensions =
 
-The feature packed extensions is that what makes eCommerce Product Catalog plugin a more specialized solution. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
+This eCommerce plugin is extendable. The feature packed extensions is that what makes eCommerce Product Catalog plugin a more specialized solution. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
 
 = Get involved =
 Developers can contribute to the source code on the [eCommerce Product Catalog GitHub Repository](https://github.com/impleCode/ecommerce-product-catalog).
@@ -147,6 +149,11 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 1.6.4 - 29/07/2014 =
+
+* Tweak - Ability to set custom decimal and thousands separator for a price
+* Tweak - Price fields now are wider for usability purpose
 
 = 1.6.3 - 21/07/2014 =
 

@@ -74,6 +74,7 @@ function custom_names_content() { ?>
 		<tr><td><?php _e('Features Label', 'al-ecommerce-product-catalog'); ?></td><td><input type="text" name="single_names[product_features]" value="<?php echo $single_names['product_features']; ?>" /></td></tr>
 		<tr><td><?php _e('Another Categories', 'al-ecommerce-product-catalog'); ?></td><td><input type="text" name="single_names[other_categories]" value="<?php echo $single_names['other_categories']; ?>" /></td></tr>
 		<tr><td><?php _e('Return to Products', 'al-ecommerce-product-catalog'); ?></td><td><input type="text" name="single_names[return_to_archive]" value="<?php echo $single_names['return_to_archive']; ?>" /></td></tr>
+		<?php do_action('single_names_table', $single_names) ?>
 		</tbody>
 		</table>
 		</div>

@@ -30,7 +30,7 @@ function implecode_settings_checkbox($option_label, $option_name, $option_enable
 return echo_ic_setting($return, $echo);
 }
 
-function implecode_settings_text($option_label, $option_name, $option_value, $required = null, $echo = 1) { 
+function implecode_settings_text($option_label, $option_name, $option_value, $required = null, $echo = 1, $class = null) { 
 if ($required != '') {
 	$regired_field = 'required="required"';
 	$star = '<span class="star"> *</span>';
@@ -41,7 +41,7 @@ else {
 } 
 	$return = '<tr>';
 		$return .= '<td>'. $option_label.$star .':</td>';
-		$return .= '<td><input '. $regired_field .' type="text" name="'. $option_name .'" value="'. $option_value .'" /></td>';
+		$return .= '<td><input '. $regired_field .' class="'.$class.'" type="text" name="'. $option_name .'" value="'. $option_value .'" /></td>';
 	$return .= '</tr>';
 return echo_ic_setting($return, $echo);
 }
