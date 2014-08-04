@@ -15,6 +15,7 @@ $taxonomies = get_object_taxonomies($current_post_type);
 $details_class = '';
 $default_single_names = default_single_names();
 $single_names = get_option( 'single_names', $default_single_names);
+$single_names['product_sku'] = isset($single_names['product_sku']) ? $single_names['product_sku'] : 'SKU:';
 $single_options = get_option('multi_single_options', unserialize(MULTI_SINGLE_OPTIONS));
 do_action('single_product_begin');
 echo product_breadcrumbs();

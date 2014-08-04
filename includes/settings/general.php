@@ -142,6 +142,11 @@ function general_settings_content() { ?>
 				implecode_settings_text(__('Decimal Separator', 'al-ecommerce-product-catalog'), 'product_currency_settings[dec_sep]', $product_currency_settings['dec_sep'], null, 1, 'small_text_box');
 				?>
 				</table>
+				<h3><?php _e('Additional Settings', 'al-ecommerce-product-catalog'); ?></h3>
+				<table><?php 
+				$archive_multiple_settings['disable_sku'] = isset($archive_multiple_settings['disable_sku']) ? $archive_multiple_settings['disable_sku'] : '';
+				implecode_settings_checkbox(__('Disable SKU', 'al-ecommerce-product-catalog'), 'archive_multiple_settings[disable_sku]', $archive_multiple_settings['disable_sku']) ?>
+				</table>
 				<?php do_action('general-settings'); ?>
 				<p class="submit">
 					<input type="submit" class="button-primary" value="<?php _e('Save changes', 'al-ecommerce-product-catalog'); ?>" />

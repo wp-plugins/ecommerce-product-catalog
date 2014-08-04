@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 1.6.4
+Stable tag: 1.7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,6 +13,8 @@ eCommerce Product Catalog plugin is a great choice to sell easy and quick or jus
 == Description ==
 
 Reward your WordPress website with a beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by the experienced folk at impleCode who constantly develops the core and the extensions. Expect high quality code which is great value not only for Developers and Theme Constructors but also for Merchants and Webmasters.
+
+https://www.youtube.com/watch?v=yw_2ifyTTag
 
 This eCommerce plugin is a great solution for those who look for an easy way to implement product management to the WordPress website. eCommerce Product Catalog is supported on WordPress forums, Premium Support and an extensive documentation. This eCommerce store like solution works with any theme and most of WordPress plugins. It is based on custom post types.
 
@@ -63,6 +65,7 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 
 * English - default, always included
 * Spanish - Thanks to Andrew
+* French - Thanks to Denis
 * Polish - Thanks to [Norbert](http://profiles.wordpress.org/ndre/)
 * Hebrew - Thanks to Ahrale
 * Bosnian - Thanks to Faruk
@@ -149,6 +152,13 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 1.7.0 - 29/07/2014 =
+
+* Feature - SKU field with disable feature
+* Tweak - Price on product list in admin
+* Tweak - Image on product list in admin
+* Localisation - French language added
 
 = 1.6.4 - 29/07/2014 =
 
