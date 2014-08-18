@@ -59,7 +59,7 @@ if ($submenu == 'archive-design') { ?>
 	);
 	$modern_grid_settings = get_option( 'modern_grid_settings', $default_modern_grid_settings);
 	$default_classic_grid_settings = array (
-	'entries' => '',
+	'entries' => 3,
 	);
 	$classic_grid_settings = get_option( 'classic_grid_settings', $default_classic_grid_settings);?>
 	<h2><?php _e('Design Settings', 'al-ecommerce-product-catalog'); ?></h2>
