@@ -37,6 +37,11 @@ function custom_design_content() { ?>
 				<?php do_action('custom-design-submenu'); ?>
 			</h3>
 		</div>
+		<?php 
+		$submenu = $_GET['submenu']; 
+		if ($submenu == 'single-design') { 
+			doc_helper(__('gallery', 'al-ecommerce-product-catalog'), 'product-gallery');
+		} ?>
 		<div class="setting-content submenu">
 		<?php do_action('custom-design-settings');?>
 		
