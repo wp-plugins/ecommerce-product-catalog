@@ -64,14 +64,12 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 = Translations =
 
 * English - default, always included
-
 * Bosnian - Thanks to Faruk
 * French - Thanks to Denis
 * German - Thanks to Peter
 * Hebrew - Thanks to Ahrale
 * Polish - Thanks to [Norbert](http://profiles.wordpress.org/ndre/)
 * Spanish - Thanks to Andrew
-
 * *Your translation? - [Just send it in](http://implecode.com/contact/)*
 
 *Note:* All our plugins are localized/translatable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we recommend the awesome ["Codestyling Localization" plugin](http://wordpress.org/extend/plugins/codestyling-localization/).
