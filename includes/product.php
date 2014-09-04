@@ -252,8 +252,17 @@ function implecode_save_products_meta($post_id, $post) {
 	if ( !empty($pricemeta_noncename) && !wp_verify_nonce( $pricemeta_noncename, plugin_basename(__FILE__) )) {
 	return $post->ID;
 	}
+	if (! isset($_POST['action'])) {
+	return $post->ID;
+	}
+	else if ( isset($_POST['action']) && $_POST['action'] != 'editpost') {
+	return $post->ID;
+	}
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
+		return $post->ID;
+	}
+	if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+		return $post->ID;
 	}
 	if ( !current_user_can( 'edit_post', $post->ID ))
 		return $post->ID;
