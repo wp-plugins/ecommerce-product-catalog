@@ -156,7 +156,7 @@ function general_settings_content() { ?>
 				</tbody>
 				</table>
 				<script>jQuery(document).ready(function() {
-				jQuery("input[name=\"product_currency_settings[price_enable]\"]").click(function() {
+				jQuery("input[name=\"product_currency_settings[price_enable]\"]").change(function() {
 					if (jQuery(this).val() == 'off') {
 						jQuery("#payment_table tbody").hide("slow");
 					}
@@ -164,7 +164,7 @@ function general_settings_content() { ?>
 						jQuery("#payment_table tbody").show("slow");
 					}
 				});
-				jQuery("input[name=\"product_currency_settings[price_enable]\"]").click();
+				jQuery("input[name=\"product_currency_settings[price_enable]\"]").change();
 				});</script>
 				<h3><?php _e('Additional Settings', 'al-ecommerce-product-catalog'); ?></h3>
 				<table><?php 

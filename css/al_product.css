@@ -502,6 +502,12 @@ width: 60%;
 line-height: 1;
 }
 
+#product_details.no-image {
+float: none;
+clear: none;
+max-width: 100%;
+}
+
 .product-details.no-image{
 vertical-align: top;
 height: auto;
