@@ -129,13 +129,13 @@ $output = $design_schemes['price-size'];
 else if ($which == 'box') {
 $output = $design_schemes['box-color'];
 }
+else if ($which == 'none') {
+$output = '';
+}
 else {
 $output = $design_schemes['price-color'].' '.$design_schemes['price-size'];
 }
-if ($echo == 1) {
-echo $output; }
-else if ($echo == 0) {
-return $output; }
+return echo_ic_setting(apply_filters('design_schemes_output', $output), $echo);
 }
 
 /* Single Product Functions */
