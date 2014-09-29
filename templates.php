@@ -236,4 +236,26 @@ exit();
 }
 
 add_action('admin_init', 'create_sample_product_with_redirect');
+
+function implecode_supported_themes() {
+return array( 'twentythirteen', 'twentyeleven', 'twentytwelve', 'twentyten', 'twentyfourteen' );
+}
+
+function is_theme_implecode_supported() {
+$template = get_option( 'template' );
+$return = false;
+if (in_array( $template, implecode_supported_themes() ) || current_theme_supports( 'ecommerce-product-catalog' )) {
+$return = true;
+}
+return $return;
+}
+
+function is_advanced_mode_forced() {
+$template = get_option( 'template' );
+$return = false;
+if (is_theme_implecode_supported() || is_integraton_file_active() ) {
+$return = true;
+}
+return $return;
+}
 ?>
