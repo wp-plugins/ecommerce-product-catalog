@@ -122,7 +122,7 @@ add_filter("the_content", "product_page_content");
 
 function theme_integration_shortcode($atts) {
 $current_mode = get_real_integration_mode();
-if (current_user_can("administrator")) {
+if (current_user_can("administrator") && ! is_advanced_mode_forced()) {
 extract(shortcode_atts( array(
 'class' => 'relative-box',
 ), $atts ));
