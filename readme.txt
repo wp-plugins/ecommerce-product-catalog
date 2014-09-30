@@ -12,7 +12,7 @@ eCommerce Product Catalog plugin is a great choice to sell easy and quick or jus
 
 == Description ==
 
-Reward your WordPress website with a beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by the experienced folk at impleCode who constantly develops the core and the extensions. Expect high quality code which is great value not only for Developers and Theme Constructors but also for Merchants and Webmasters.
+Reward your WordPress website with a beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by the experienced folk at impleCode who constantly develops the core and the extensions. Expect high quality code which is great value not only for Developers and Theme Constructors but also for Merchants and Webmasters. 
 
 https://www.youtube.com/watch?v=FgSOAgsnDqA
 
