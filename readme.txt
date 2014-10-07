@@ -12,11 +12,11 @@ eCommerce Product Catalog plugin is a great choice to sell easy and quick or jus
 
 == Description ==
 
-Reward your WordPress website with a beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by the experienced folk at impleCode who constantly develops the core and the extensions. Expect high quality code which is great value not only for Developers and Theme Constructors but also for Merchants and Webmasters.
+Reward your WordPress website with a beautiful and easy to use product catalogue. eCommerce Product Catalog plugin is powerful and basic at the same time. It is built by the experienced folk at impleCode who constantly develops the core and the [extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extension-link#extensions "eCommerce Product Catalog Extensions"). Expect high quality code which is great value not only for Developers and Theme Constructors but also for Merchants and Webmasters.
 
 https://www.youtube.com/watch?v=FgSOAgsnDqA
 
-This eCommerce plugin is a great solution for those who look for an easy way to implement product management to the WordPress website. eCommerce Product Catalog is supported on WordPress forums, Premium Support and an extensive documentation. This eCommerce store like solution works with any theme and most of WordPress plugins. It is based on custom post types.
+This eCommerce plugin is a great solution for those who look for an easy way to implement product management to the WordPress website. eCommerce Product Catalog is supported on [WordPress forums](https://wordpress.org/support/plugin/ecommerce-product-catalog "eCommerce Product Catalog Forum"), [Premium Support](http://implecode.com/wordpress/plugins/premium-support/?cam=wordpress-org-catalog-page&key=premium-support-link "eCommerce Product Catalog Premium Support") and has a [documentation](http://implecode.com/docs/ecommerce-product-catalog/?cam=wordpress-org-catalog-page&key=docs-link "eCommerce Product Catalog Documentation") publicly available. This eCommerce store like solution works with any theme and most of WordPress plugins. It is based on custom post types.
 
 = FEATURES =
 
