@@ -61,6 +61,7 @@ color:#F48702;
 #implecode_settings .settings-wrapper {
 display: table;
 padding-top: 20px;
+width: 100%;
 }
 
 #implecode_settings .settings-submenu {
