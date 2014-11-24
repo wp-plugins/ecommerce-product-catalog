@@ -176,7 +176,7 @@ function general_settings_content() { ?>
 						<option name="product_currency[<?php echo $currency; ?>]" value="<?php echo $currency; ?>"<?php selected( $currency, $product_currency); ?>><?php echo $currency; ?></option>
 					<?php endforeach; ?>
 				</select></td>	
-				<td rowspan="2"><div class="al-box info"><?php _e('If you choose custom currency symbol, it will override "Your Currency" setting. This is very handy if you want to use not supported currency or a preferred symbol for your currency.', 'al-ecommerce-product-catalog'); ?></div></td>
+				<td rowspan="4"><div class="al-box info"><?php _e('If you choose custom currency symbol, it will override "Your Currency" setting. This is very handy if you want to use not supported currency or a preferred symbol for your currency.', 'al-ecommerce-product-catalog'); ?></div></td>
 				</tr>
 				<tr>
 						<td><?php _e('Custom Currency Symbol', 'al-ecommerce-product-catalog'); ?>: </td>

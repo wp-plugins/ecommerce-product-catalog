@@ -107,7 +107,7 @@ $post = array(
 'post_status' => 'publish',
 'post_type' => 'al_product',
 );
-$id = wp_insert_post($post); 
+$id = wp_insert_post($post);
 if ($id != false) {
 	update_post_meta($id, '_price', $data['product_price']);
 	update_post_meta($id, '_shortdesc', $data['product_short_desc']);

@@ -155,6 +155,11 @@ This is not a store. It's main purpose is to present products or services on the
 
 == Changelog ==
 
+= 2.0.1 - 24/11/2014 =
+
+* Tweak - separate permissions for product settings edit
+* Tweak - minor product settings styling improvement
+
 = 2.0.0 - 17/11/2014 =
 
 * Feature - Ability to display product categories above products
