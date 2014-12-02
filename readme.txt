@@ -43,6 +43,7 @@ Read all about [eCommerce Product Catalog](http://implecode.com/wordpress/produc
 * __Product Archive Page__ - choose a WordPress page to display the products or use [show_products] shortcode
 * __Front-end Labels Manager__ - manage everything users can see
 * __Product Breadcrumbs__ - use SEO friendly product breadcrumbs
+* __Product Import__ - import unlimited amount of products with a CSV
 
 And more to come every week! 
 
@@ -79,7 +80,7 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 
 = Minimum Requirements =
 
-* WordPress 3.0 or greater
+* WordPress 3.5 or greater
 * PHP version 5.2.4 or greater
 * MySQL version 5.0 or greater
 
