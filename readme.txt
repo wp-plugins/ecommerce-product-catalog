@@ -3,7 +3,7 @@ Contributors: impleCode, ndre
 Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpress-org-catalog-page&key=donate-link
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: 2.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -54,6 +54,10 @@ Use the shortcode to show products whenever needed on the website. Just paste on
 To show products from just one category, use: [show_products category="2"] where 2 is category ID (it's possible to display several categories by inserting comma separated IDs). 
 
 To display products by IDs, use: [show_products product="5"], where 5 is product ID.
+
+= Display Categories with a Shortcode =
+
+You can use [show_categories] shortcode to show the product categories on home page or any other WordPress page.
 
 = eCommerce Product Catalog Extensions =
 
