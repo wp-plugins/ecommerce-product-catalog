@@ -76,9 +76,9 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 * Polish - Thanks to Norbert
 * Serbian - Thanks to Ogi
 * Spanish - Thanks to Andrew and Norbert
-* *Your translation? - [Just send it in](http://translate.implecode.com/projects#cam=wordpress-org-catalog-page&key=translation-link)*
+* *Your translation? - [Just send it in](http://translate.implecode.com/projects/ecommerce-product-catalog#cam=wordpress-org-catalog-page&key=translation-link)*
 
-*Note:* All our plugins are localized/translatable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we invite you to join this huge impleCode [translation project](http://translate.implecode.com/projects#cam=wordpress-org-catalog-page&key=translation-link).
+*Note:* All our plugins are localized/translatable by default. This is very important for all users worldwide. So please contribute your language to the plugin to make it even more useful. For translating we invite you to join this huge impleCode [translation project](http://translate.implecode.com/projects/ecommerce-product-catalog#cam=wordpress-org-catalog-page&key=translation-link).
 
 == Installation ==
 
