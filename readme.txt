@@ -59,6 +59,10 @@ To display products by IDs, use: [show_products product="5"], where 5 is product
 
 You can use [show_categories] shortcode to show the product categories on home page or any other WordPress page.
 
+= Product Catalog without Price =
+
+Easily disable price from both front-end and back-end by switching one setting.
+
 = eCommerce Product Catalog Extensions =
 
 This eCommerce plugin is extensible. The feature packed extensions is that what makes eCommerce Product Catalog plugin a more specialized solution. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
