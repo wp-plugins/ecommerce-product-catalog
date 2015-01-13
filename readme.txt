@@ -65,9 +65,9 @@ Easily disable price from both front-end and back-end by switching one setting.
 
 eCommerce Product Catalog comes with two widgets: 
 
-1. Product Categories - show all product categories in CSS customisable list. The widget has also several customisation settings.
+__1. Product Categories__ - show all product categories in CSS customisable list. The widget has also several customisation settings.
 
-2. Product Search - generates a search form that allows to search the products in the catalog.
+__2. Product Search__ - generates a search form that allows to search the products in the catalog.
 
 = eCommerce Product Catalog Extensions =
 
