@@ -63,6 +63,14 @@ You can use [show_categories] shortcode to show the product categories on home p
 
 Easily disable price from both front-end and back-end by switching one setting.
 
+= Smart Widgets =
+
+eCommerce Product Catalog comes with two widgets: 
+
+1. Product Categories - show all product categories in CSS customisable list. The widget has also several customisation settings.
+
+2. Product Search - generates a search form that allows to search the products in the catalog.
+
 = eCommerce Product Catalog Extensions =
 
 This eCommerce plugin is extensible. The feature packed extensions is that what makes eCommerce Product Catalog plugin a more specialized solution. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
