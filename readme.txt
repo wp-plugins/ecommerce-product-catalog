@@ -45,11 +45,9 @@ Read all about [eCommerce Product Catalog](http://implecode.com/wordpress/produc
 * __Product Breadcrumbs__ - use SEO friendly product breadcrumbs
 * __Product Import__ - import unlimited amount of products with a CSV
 
-And more to come every week! 
-
 = Display Products with a Shortcode =
 
-Use the shortcode to show products whenever needed on the website. Just paste on any page: [show_products] and watch all products in place of the shortcode. 
+Use the shortcode to show products whenever needed on the website. Just paste on any page: [show_products] and watch all products in place of the shortcode.
 
 To show products from just one category, use: [show_products category="2"] where 2 is category ID (it's possible to display several categories by inserting comma separated IDs). 
 
