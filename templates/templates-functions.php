@@ -67,7 +67,7 @@ extract(shortcode_atts(array(
 		'products_limit' => -1,
 		'archive_template' => get_option( 'archive_template', 'default'),
 		'design_scheme' => '',
-		'sort' => 1,
+		'sort' => 0,
     ), $atts));
 $product_sort = $sort;
 if ($product != 0) {

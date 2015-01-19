@@ -350,6 +350,10 @@ font-family: 'Source Sans Pro',Arial,sans-serif;
 line-height:23px;
 }
 
+.locale-nl-nl .doc-helper .doc-name {
+font-size: 18px;
+}
+
 .doc-helper .doc-description {
 font-size: 14px;
 padding: 5px 0;
