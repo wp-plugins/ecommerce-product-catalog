@@ -174,6 +174,7 @@ This is not a store. It's main purpose is to present products or services on the
 
 = 2.1.2 - 26/01/2014 = 
 
+* Fix - Product Catalog paging numbers points to the top of the page
 * Localisation - French language improved thanks to James via translate.implecode.com
 * Localisation - Polish language improved thanks to Norbert via translate.implecode.com
 * Localisation - Dutch language improved thanks to Pieter via translate.implecode.com
