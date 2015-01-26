@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -81,9 +81,10 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 * English - default, always included
 * Bosnian - Thanks to Faruk
 * Dutch - Thanks to Pieter via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
-* French - Thanks to Denis
+* French - Thanks to Denis & James via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * German - Thanks to Peter
 * Hebrew - Thanks to Ahrale
+* Norwegian - Thanks to Oyvind via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Polish - Thanks to Norbert
 * Serbian - Thanks to Ogi
 * Spanish - Thanks to Andrew and Norbert
@@ -170,6 +171,17 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 2.1.2 - 26/01/2014 = 
+
+* Localisation - French language improved thanks to James via translate.implecode.com
+* Localisation - Polish language improved thanks to Norbert via translate.implecode.com
+* Localisation - Dutch language improved thanks to Pieter via translate.implecode.com
+* Localisation - Bulgarian language improved thanks to Valentina via translate.implecode.com
+* Localisation - Russian language introduced thanks to Gregory via translate.implecode.com
+* Localisation - Norwegian language introduced thanks to Oyvind via translate.implecode.com
+
+Thank you on behalf of all eCommerce Product Catalog users!
 
 = 2.1.1 - 19/01/2014 = 
 
