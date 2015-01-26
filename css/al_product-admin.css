@@ -302,6 +302,7 @@ position: fixed;
 
 #implecode_settings .helpers .doc-helper{
 position: relative;
+overflow: hidden;
 }
 
 .doc-helper {
