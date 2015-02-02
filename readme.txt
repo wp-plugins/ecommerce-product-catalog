@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -80,6 +80,7 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 
 * English - default, always included
 * Bosnian - Thanks to Faruk
+* Bulgarian - Thanks to Valentina and Koceto via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Dutch - Thanks to Pieter via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * French - Thanks to Denis & James via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * German - Thanks to Peter
@@ -172,19 +173,26 @@ This is not a store. It's main purpose is to present products or services on the
 
 == Changelog ==
 
-= 2.1.2 - 26/01/2014 = 
+= 2.1.3 - 02/02/2015 = 
+
+* Localisation - Bulgarian language improved thanks to Koceto via http://translate.implecode.com
+* Localisation - Russian language improved thanks to Gregory via http://translate.implecode.com
+* Localisation - Czech language introduced thanks to Martin via http://translate.implecode.com
+* Localisation - Finnish language introduced thanks to Pekka via http://translate.implecode.com
+
+= 2.1.2 - 26/01/2015 = 
 
 * Fix - Product Catalog paging numbers points to the top of the page
-* Localisation - French language improved thanks to James via translate.implecode.com
-* Localisation - Polish language improved thanks to Norbert via translate.implecode.com
-* Localisation - Dutch language improved thanks to Pieter via translate.implecode.com
-* Localisation - Bulgarian language improved thanks to Valentina via translate.implecode.com
-* Localisation - Russian language introduced thanks to Gregory via translate.implecode.com
-* Localisation - Norwegian language introduced thanks to Oyvind via translate.implecode.com
+* Localisation - French language improved thanks to James via http://translate.implecode.com
+* Localisation - Polish language improved thanks to Norbert via http://translate.implecode.com
+* Localisation - Dutch language improved thanks to Pieter via http://translate.implecode.com
+* Localisation - Bulgarian language improved thanks to Valentina via http://translate.implecode.com
+* Localisation - Russian language introduced thanks to Gregory via http://translate.implecode.com
+* Localisation - Norwegian language introduced thanks to Oyvind via http://translate.implecode.com
 
 Thank you on behalf of all eCommerce Product Catalog users!
 
-= 2.1.1 - 19/01/2014 = 
+= 2.1.1 - 19/01/2015 = 
 
 * Tweak - the product shortcode does not show sort dropdown by default
 * Localisation - Dutch language introduced thanks to Pieter via translate.implecode.com
