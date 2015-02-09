@@ -11,6 +11,7 @@
 function epc_activation_function() {
 create_products_page();
 create_sample_product();
+implecode_plugin_review_notice_hide();
 permalink_options_update();
 }
 

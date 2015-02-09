@@ -86,7 +86,7 @@ jQuery('.media-image').attr("src", src);
 
 }
 
-function select_page($option_name,$first_option,$selected_value) {
+function select_page($option_name,$first_option,$selected_value, $buttons = false, $custom_view_url = false) {
 $args = array(
 		'sort_order' => 'ASC',
 		'sort_column' => 'post_title',
@@ -105,11 +105,20 @@ $args = array(
 		'post_status' => 'publish'
 		); 
 $pages = get_pages($args); 
-$select_box = '<select id="'.$option_name.'" name="'.$option_name.'"><option value="noid">'.$first_option.'</option>';
+$select_box = '<div class="select-page-wrapper"><select id="'.$option_name.'" name="'.$option_name.'"><option value="noid">'.$first_option.'</option>';
 foreach ($pages as $page) { 
 	$select_box .= '<option name="' .$option_name. '[' .$page->ID. ']" value="' .$page->ID. '" ' .selected($page->ID, $selected_value, 0). '>' .$page->post_title. '</option>';
 	}  
 $select_box .= '</select>';
+if ($buttons && $selected_value != 'noid' && ! empty($selected_value)) {
+	$edit_link = get_edit_post_link( $selected_value );
+	$front_link = $custom_view_url ? $custom_view_url : get_permalink($selected_value);
+	if (!empty($edit_link)) {
+		$select_box .= ' <a class="button button-small" style="vertical-align: middle;" href="'.$edit_link.'">'.__('Edit').'</a>';
+		$select_box .= ' <a class="button button-small" style="vertical-align: middle;" href="'.$front_link.'">'.__('View Page').'</a>';
+	}
+}
+$select_box .= '</div>';
 
 echo $select_box;
 }
@@ -702,7 +711,13 @@ if ((isset($product_sort) && $product_sort == 1) || !isset($product_sort)) {
 		$option = '<option value="'.$name.'" '.selected($name, $selected, 0).'>'.$value.'</option>';
 		echo apply_filters('product_order_dropdown_options', $option, $name, $value, $multiple_settings, $selected);
 	}
-	echo '</select></form>';
+	echo '</select>';
+	foreach ($_GET as $key => $get_value) {
+		if ($key != 'product_order') {
+			echo '<input type="hidden" value="'.$get_value.'" name="'.$key.'" />';
+		}
+	}
+	echo '</form>';
 	echo '<script>jQuery("#product_order_selector").change(function() { jQuery("#product_order").submit(); });</script>';
 }
 }
@@ -712,4 +727,9 @@ function translate_product_order() {
 $orderby = ($_GET['product_order'] == 'product-name') ? 'title' : $_GET['product_order'];
 $orderby = apply_filters('product_order_translate', $orderby);
 return $orderby;
+}
+
+function ic_products_count() {
+$count = wp_count_posts('al_product');
+return $count->publish;
 }

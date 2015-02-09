@@ -10,12 +10,16 @@
  */
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
-function implecode_settings_radio($option_label, $option_name, $option_value, $elements = array(), $echo = 1) {
+function implecode_settings_radio($option_label, $option_name, $option_value, $elements = array(), $echo = 1, $tip = '') {
+	if (!empty($tip) && !is_array($tip)) {
+		$tip = 'title="'.$tip.'"';
+	} 
 	$return = '<tr>';
 		$return .= '<td>'. $option_label .':</td>';
 		$return .= '<td>';
-		foreach ($elements as $key => $element) { 
-		$return .= '<input type="radio" class="number_box" name="'. $option_name .'" value="'. $key .'"'. checked( $key, $option_value, 0).'/>'. $element;
+		foreach ($elements as $key => $element) {
+			$show_tip = is_array($tip) ? 'title="'.$tip[$key].'" ' : $tip;
+			$return .= '<input type="radio" '.$show_tip.'class="number_box" name="'. $option_name .'" value="'. $key .'"'. checked( $key, $option_value, 0).'/>'. $element;
 		} 
 		$return .= '</td>';
 	$return .= '</tr>';
@@ -44,7 +48,7 @@ function implecode_settings_checkbox($option_label, $option_name, $option_enable
 return echo_ic_setting($return, $echo);
 }
 
-function implecode_settings_text($option_label, $option_name, $option_value, $required = null, $echo = 1, $class = null) { 
+function implecode_settings_text($option_label, $option_name, $option_value, $required = null, $echo = 1, $class = null, $tip = null) { 
 if ($required != '') {
 	$regired_field = 'required="required"';
 	$star = '<span class="star"> *</span>';
@@ -52,10 +56,11 @@ if ($required != '') {
 else {
 	$regired_field = '';
 	$star = '';
-} 
+}
+$tip = !empty($tip) ? 'title="'.$tip.'" ' : ''; 
 	$return = '<tr>';
 		$return .= '<td>'. $option_label.$star .':</td>';
-		$return .= '<td><input '. $regired_field .' class="'.$class.'" type="text" name="'. $option_name .'" value="'. $option_value .'" /></td>';
+		$return .= '<td><input '. $regired_field .' class="'.$class.'" '.$tip.'type="text" name="'. $option_name .'" value="'. $option_value .'" /></td>';
 	$return .= '</tr>';
 return echo_ic_setting($return, $echo);
 }
