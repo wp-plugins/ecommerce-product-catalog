@@ -83,4 +83,33 @@ jQuery(function() {
 			show: {delay: 200},
 		});
 	});
+
+	jQuery(".add_catalog_media").click(function() {
+		var clicked = jQuery(this);
+		var upload_type = clicked.parent("div").children("#upload_type").val();
+		wp.media.editor.send.attachment = function(props, attachment) {
+			if (upload_type == "url") {
+				clicked.parent("div").children("#uploaded_image").val(attachment.url);
+			}
+			else {
+				clicked.parent("div").children("#uploaded_image").val(attachment.id);
+			}
+			clicked.prev("div").children("img").attr("src", attachment.url);
+			clicked.prev("div").children(".catalog-reset-image-button").show();
+			clicked.prev("div.implecode-admin-media-image.empty").removeClass('empty');
+			clicked.hide();
+		}
+		wp.media.editor.open(jQuery(this));
+		return false;
+	});
+
+	jQuery(".catalog-reset-image-button").click(function() {
+		var clicked = jQuery(this);
+		clicked.parent("div").prev("#uploaded_image").val("");
+		src = jQuery("#default").val();
+		clicked.next(".media-image").attr("src", src);
+		clicked.parent("div").next(".add_catalog_media").show();
+		clicked.parent(".implecode-admin-media-image").addClass('empty');
+		clicked.hide();
+	});
 });

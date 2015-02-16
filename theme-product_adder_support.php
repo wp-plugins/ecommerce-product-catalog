@@ -24,7 +24,7 @@ if (current_user_can('activate_plugins')) {
 			product_adder_theme_check_notice();
 		}
 	} 
-	if (is_ic_admin_page()) {
+	if (is_ic_catalog_admin_page()) {
 		if ( false === get_transient( 'implecode_hide_plugin_review_info' ) && ic_products_count() > 5) {
 			implecode_plugin_review_notice();
 		}

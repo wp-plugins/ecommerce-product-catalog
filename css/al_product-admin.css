@@ -203,6 +203,8 @@ padding: 0px 20px;
 min-width: 280px;
 }
 
+
+
 .admin-media-image {
 max-width: 150px;
 height: auto;
@@ -444,7 +446,7 @@ content: "\f238";
 }
 
 .setting-content select {
-max-width: 250px;
+max-width: 150px;
 }
 
 div.setting-content table td {
@@ -484,6 +486,86 @@ width: 3%;
 
 #al_product_attributes .ui-sortable tr td:last-child input, #al_product_shipping .ui-sortable tr td:last-child input{
 max-width: 75%;
+}
+
+#implecode_settings .al_archive {
+height: 170px;
+width: 262px;
+max-width: 100%;
+}
+
+#implecode_settings .classic-grid.archive-listing {
+width: 190px;
+}
+
+#implecode_settings .classic-grid.archive-listing h3{
+border-bottom: 0;
+}
+
+#implecode_settings .classic-grid.archive-listing h3:before{
+display: none;
+}
+
+/* Image Picker */
+.custom-uploader {
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+div.implecode-admin-media-image {
+    width: 150px;
+    height: 150px;
+    border: 2px dashed #A8A8A8;
+    position: relative;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.implecode-admin-media-image.empty {
+    display: block;
+    margin: 0 auto;
+}
+
+.custom-uploader a.add_catalog_media {
+    margin-top: 7px;
+}
+
+.custom-uploader {
+    height: 191px;
+    width: auto;
+    overflow: hidden;
+}
+
+div.implecode-admin-media-image.empty:before {
+    font-family: dashicons;
+    content: "\f161";
+    color: #A8A8A8;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: block;
+    line-height: 150px;
+    font-size: 70px;
+    position: absolute;
+    z-index: 1;
+}
+
+div.implecode-admin-media-image img {
+    position: relative;
+    z-index: 10;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.catalog-reset-image-button {
+    position: absolute;
+    top: 2px;
+    left: 90%;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    z-index: 99;
 }
 
 /* Product Edit Page */

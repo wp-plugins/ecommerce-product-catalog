@@ -1,4 +1,10 @@
 jQuery(document).ready(function($) {
+	reponsive_product_catalog();
+	$(window).resize( function() {
+		reponsive_product_catalog();
+	});
+	
+	
   $.ic = {
     /**
      * Implement a WordPress-link Hook System for Javascript 
@@ -59,3 +65,20 @@ jQuery(document).ready(function($) {
       }
   }
 });
+
+function reponsive_product_catalog() {
+var list_width = jQuery(".product-list").width();
+var product_page_width = jQuery("article.al_product").width();
+if (list_width < 600) {
+	jQuery(".product-list").addClass("responsive");
+}
+else {
+	jQuery(".product-list").removeClass("responsive");
+}
+if (product_page_width < 600) {
+	jQuery("article.al_product").addClass("responsive");
+}
+else {
+	jQuery("article.al_product").removeClass("responsive");
+}
+}

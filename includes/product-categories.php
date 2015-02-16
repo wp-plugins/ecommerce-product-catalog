@@ -10,7 +10,7 @@
  */
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  
- require_once('category-widget.php');
+ require_once(AL_BASE_PATH. '/includes/category-widget.php');
 
 add_action( 'init', 'create_product_categories');
 
@@ -56,7 +56,7 @@ $names['singular'] = ucfirst($names['singular']);
 	register_taxonomy( 'al_product-cat', 'al_product', $args );
 	register_taxonomy_for_object_type( 'al_product-cat', 'al_product' );
 	// flush_rewrite_rules(false);
-	check_permalink_options_update();
+//	check_permalink_options_update();
 }
 
 ?>

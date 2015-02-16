@@ -25,7 +25,7 @@ function general_settings() {
 	register_setting('product_settings', 'enable_product_listing');
 	register_setting('product_settings', 'archive_multiple_settings');
 }
-add_action('product-settings-list','general_settings');
+add_action('product-settings-list', 'general_settings' );
 
 function general_settings_content() { ?>
 	<?php $submenu = isset($_GET['submenu']) ? $_GET['submenu'] : '';?>
@@ -50,8 +50,7 @@ function general_settings_content() { ?>
 				$product_currency_settings = get_currency_settings();
 				$enable_product_listing = get_option('enable_product_listing', 1);
 				$product_listing_url = get_option('product_listing_url', __('products', 'al-ecommerce-product-catalog'));
-				$product_archive_created = get_option('product_archive_page_id','0');
-				$product_archive = get_option('product_archive', $product_archive_created);
+				$product_archive = get_product_listing_id();
 				$archive_multiple_settings = get_multiple_settings();
 				$page_get = get_page_by_path( $product_listing_url );
 				if ($product_archive != '') {
@@ -255,8 +254,7 @@ return $product_currency_settings;
 
 function get_multiple_settings() {
 $archive_multiple_settings = get_option('archive_multiple_settings', unserialize (DEFAULT_ARCHIVE_MULTIPLE_SETTINGS));
-$template = get_option( 'template' );
-if (is_advanced_mode_forced() || (isset($_GET['test_advanced']) && ($_GET['test_advanced'] == 1 || $_GET['test_advanced'] == 'ok'))) {
+	if (is_advanced_mode_forced() || (isset($_GET['test_advanced']) && ($_GET['test_advanced'] == 1 || $_GET['test_advanced'] == 'ok'))) {
 $archive_multiple_settings['integration_type'] = 'advanced';
 }
 else {
@@ -270,7 +268,7 @@ $archive_multiple_settings['category_archive_url'] = empty($archive_multiple_set
 $archive_multiple_settings['product_listing_cats'] = isset($archive_multiple_settings['product_listing_cats']) ? $archive_multiple_settings['product_listing_cats'] : 'on';
 $archive_multiple_settings['category_top_cats'] = isset($archive_multiple_settings['category_top_cats']) ? $archive_multiple_settings['category_top_cats'] : 'on';
 $archive_multiple_settings['cat_template'] = isset($archive_multiple_settings['cat_template']) ? $archive_multiple_settings['cat_template'] : 'template';
-$archive_multiple_settings['product_order'] = isset($archive_multiple_settings['product_order']) ? $archive_multiple_settings['product_order'] : 'date';
+$archive_multiple_settings['product_order'] = isset($archive_multiple_settings['product_order']) ? $archive_multiple_settings['product_order'] : 'newest';
 $archive_multiple_settings['catalog_plural'] = isset($archive_multiple_settings['catalog_plural']) ? $archive_multiple_settings['catalog_plural'] : __('Products', 'al-ecommerce-product-catalog');
 $archive_multiple_settings['catalog_singular'] = isset($archive_multiple_settings['catalog_singular']) ? $archive_multiple_settings['catalog_singular'] : __('Product', 'al-ecommerce-product-catalog');
 return $archive_multiple_settings;
@@ -291,4 +289,10 @@ return $settings['integration_type'];
 function get_product_sort_options() {
 $sort_options = apply_filters('product_sort_options', array('newest' => __('Sort by Newest<br>', 'al-ecommerce-product-catalog'), 'product-name' => __('Sort by Product Name<br>', 'al-ecommerce-product-catalog')));
 return $sort_options;
+}
+
+function get_product_listing_id() {
+	$product_archive_created = get_option('product_archive_page_id','0');
+	$listing_id = get_option('product_archive', $product_archive_created);
+	return $listing_id;
 }

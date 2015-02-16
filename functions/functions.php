@@ -209,6 +209,7 @@ $price_value = apply_filters('product_price', get_post_meta($product_id, "_price
 else {
 $price_value = apply_filters('unfiltered_product_price', get_post_meta($product_id, "_price", true), $product_id);
 }
+	$price_value = (is_ic_price_enabled()) ? $price_value : '';
 return $price_value;
 }
 
@@ -364,9 +365,9 @@ add_action('archive_price', 'show_archive_price',10,1);
 function set_archive_price($archive_price, $post) {
 $price_value = product_price($post->ID);
 if (!empty($price_value)) {
-$archive_price = '<div class="product-price '. design_schemes('color', 0).'">';
+$archive_price = '<span class="product-price '. design_schemes('color', 0).'">';
 $archive_price .= price_format($price_value);
-$archive_price .= '</div>';
+$archive_price .= '</span>';
 }
 return $archive_price;
 }
@@ -374,10 +375,14 @@ return $archive_price;
 add_filter('archive_price_filter', 'set_archive_price', 10, 2);
 
 function get_quasi_post_type($post_type = null) {
-if (empty($post_type)) {
-$post_type = get_post_type(); }
-$quasi_post_type = substr($post_type,0,10);
-return $quasi_post_type;
+	if (empty($post_type) && is_home_archive()) {
+		$post_type = 'al_product';
+	}
+	else if (empty($post_type)) {
+		$post_type = get_post_type();
+	}
+	$quasi_post_type = substr($post_type,0,10);
+	return $quasi_post_type;
 }
 
 function product_breadcrumbs() {
@@ -454,14 +459,17 @@ add_action( 'widgets_init', 'al_product_register_widgets' );
 function permalink_options_update() {
 update_option('al_permalink_options_update', 1);
 }
+if (! function_exists('check_permalink_options_update')) {
+	function check_permalink_options_update() {
+		$options_update = get_option( 'al_permalink_options_update', 'none' );
+		if ( $options_update != 'none' ) {
+			flush_rewrite_rules( false );
+			update_option( 'al_permalink_options_update', 'none' );
+		}
+	}
+}
+add_action('init', 'check_permalink_options_update', 99);
 
-function check_permalink_options_update() {
-$options_update = get_option('al_permalink_options_update', 'none');
-if ($options_update != 'none') {
-flush_rewrite_rules(false);
-update_option('al_permalink_options_update', 'none');
-}
-}
 function is_lightbox_enabled() {
 $enable_catalog_lightbox = get_option('catalog_lightbox', 1);
 $return = false;
@@ -601,7 +609,7 @@ echo $text;
 echo '</div>';
 }
 
-function get_product_image_id( $attachment_url = '' ) {
+function get_product_image_id( $attachment_url = '') {
 global $wpdb;
 $attachment_id = false;
 if ( '' == $attachment_url )

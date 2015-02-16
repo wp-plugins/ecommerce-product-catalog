@@ -34,6 +34,8 @@ if ($enable_product_listing == 1 && get_integration_type() != 'simple') {
 	$product_listing_t = false;
 }
 $names = get_catalog_names();
+	$query_var = sanitize_title(strtolower($names['singular']));
+	$query_var = (strpos($query_var, '%') !== false) ? __('product', 'al-ecommerce-product-catalog') : $query_var;
 if ( $wp_version < 3.8 ) {
 	$reg_settings = array(
 			'labels' => array(
@@ -51,7 +53,7 @@ if ( $wp_version < 3.8 ) {
 		'public' => true,
 		'has_archive' => $product_listing_t,
 		'rewrite' => array('slug' => apply_filters ('product_slug_value_register', $slug), 'with_front' => false),
-		'query_var' => strtolower($names['singular']),
+		'query_var' => $query_var,
 		'supports' => array( 'title', 'thumbnail'),
 		'register_meta_box_cb' => 'add_product_metaboxes',
 		'taxonomies' => array('al_product_cat'),
@@ -91,7 +93,7 @@ if ( $wp_version < 3.8 ) {
 		'public' => true,
 		'has_archive' => $product_listing_t,
 		'rewrite' => array('slug' => apply_filters ('product_slug_value_register', $slug), 'with_front' => false),
-		'query_var' => strtolower($names['singular']),
+		'query_var' => $query_var,
 		'supports' => array( 'title', 'thumbnail'),
 		'register_meta_box_cb' => 'add_product_metaboxes',
 		'taxonomies' => array('al_product-cat'),
@@ -133,12 +135,11 @@ function product_icons() {
 }
 
 function add_product_metaboxes() {
-	$product_currency = get_currency_settings();
 	$names = get_catalog_names();
 	$names['singular'] = ucfirst($names['singular']);
 	add_meta_box('al_product_short_desc', sprintf(__('%s Short Description', 'al-ecommerce-product-catalog'), $names['singular']), 'al_product_short_desc', 'al_product', apply_filters('short_desc_box_column','normal'), apply_filters('short_desc_box_priority','default'));
 	add_meta_box('al_product_desc', sprintf(__('%s description', 'al-ecommerce-product-catalog'), $names['singular']), 'al_product_desc', 'al_product', apply_filters('desc_box_column','normal'), apply_filters('desc_box_priority','default'));
-	if ($product_currency['price_enable'] == 'on') {
+	if (is_ic_price_enabled()) {
 		add_meta_box('al_product_price', sprintf(__('%s Details', 'al-ecommerce-product-catalog'), $names['singular']), 'al_product_price', 'al_product', apply_filters('product_price_box_column','side'), apply_filters('product_price_box_priority','default'));
 	}
 	if (get_option('product_shipping_options_number',DEF_SHIPPING_OPTIONS_NUMBER) > 0) {
@@ -359,8 +360,8 @@ return $messages;
 
 add_filter('post_updated_messages', 'set_product_messages' );
 
-require_once('product-categories.php');
-require_once('search-widget.php');
+require_once(AL_BASE_PATH. '/includes/product-categories.php');
+require_once(AL_BASE_PATH. '/includes/search-widget.php');
 // require_once('product-types.php');
 
 ?>

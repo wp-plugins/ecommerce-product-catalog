@@ -31,7 +31,7 @@ function map_product_settings_capability( $cap ) {
 function product_settings_list() {
 	do_action('product-settings-list');
 }
-add_action('admin_init', 'product_settings_list');
+add_action('admin_init', 'product_settings_list', 20);
 
 require_once(  AL_BASE_PATH . '/config/currencies.php' );
 require_once(  AL_BASE_PATH . '/templates/themes/default-theme.php' );
