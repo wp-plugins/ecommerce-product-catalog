@@ -8,15 +8,19 @@ Stable tag: 2.1.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-eCommerce Product Catalog responsive plugin is a great choice to sell easy and quick or just beautifully present products on WordPress website.
+100% free, responsive product catalog 
+
+eCommerce Product Catalog 100% responsive plugin is a great and free choice to sell easy and quick or just beautifully present products on WordPress website.
 
 == Description ==
 
-Reward your WordPress website with a beautiful and easy to use responsive product catalogue. eCommerce Product Catalog plugin is powerful and simple at the same time. 
+Reward your WordPress website with a beautiful and easy to use 100% responsive product catalogue. eCommerce Product Catalog plugin is powerful, highly customizable and simple solution that works with any theme and most of WordPress plugins. It will make your web development even more effective. 
 
-It is built by the experienced folk at impleCode who constantly develops the core and the [extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extension-link#extensions "eCommerce Product Catalog Extensions"). 
+It is built from the ground at impleCode. The plugin, [documentation](http://implecode.com/docs/ecommerce-product-catalog/?cam=wordpress-org-catalog-page&key=docs-link "eCommerce Product Catalog Documentation") and the [extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extension-link#extensions "eCommerce Product Catalog Extensions") are in constant development. New features, tweaks and fixes come regularly.
 
-Expect high quality code which is great value not only for Merchants and Webmasters but also for Developers and Theme Constructors.
+Expect high quality code, beautiful design and detailed documentation which is great value not only for Webmasters, Developers and Theme Constructors but also for newbies less experienced in web development.
+
+Make sure to visit eCommerce Product Catalog [live demo](http://demo.implecode.com) with multiple possible configurations.
 
 https://www.youtube.com/watch?v=FgSOAgsnDqA
 
