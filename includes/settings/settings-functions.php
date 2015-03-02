@@ -112,7 +112,11 @@ if (! function_exists('echo_ic_setting')) {
 			$style = 'style="display: none"';
 		}
 		$content .= '<span '.$style.' option_name="'.$option_name.'" class="catalog-reset-image-button">X</span>';
-		$content .= '<img class="media-image" name="'. $option_name.'_image" src="'. $image_src.'" />';
+        $style = '';
+        if (empty($image_src)) {
+            $style = ' style="display: none"';
+        }
+            $content .= '<img'.$style.' class="media-image" name="' . $option_name . '_image" src="' . $image_src . '" />';
 		$content .= '</div>';
 //}
 		$style = '';

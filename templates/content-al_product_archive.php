@@ -12,9 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $post;
 $default_archive_names = default_archive_names();
 $multiple_settings = get_multiple_settings();
-$archive_names = get_option( 'archive_names', $default_archive_names);
+$archive_names = get_archive_names();
 
-if (is_tax()) {
+/*if (is_tax()) {
 	$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 	$page_title = $archive_names['all_prefix'] .' '.$the_tax->name;
 }
@@ -23,19 +23,20 @@ else if (is_search()) {
 }
 else {
 	$page_title = $archive_names['all_products'];
-}
+}*/
+$page_title = get_the_title();
 echo product_breadcrumbs(); ?>
 				
 
 			
 <article id="product_listing" <?php post_class('al_product responsive'); ?>>
 <header <?php post_class('entry-header'); ?>><?php
-	if (! is_tax() && ! is_search()) {
-		content_product_adder_archive_before_title();
-	}
-	else {
+//	if (! is_tax() && ! is_search()) {
+//		content_product_adder_archive_before_title();
+//	}
+//	else {
 		echo '<h1 class="entry-title">'.$page_title.'</h1>';
-	} ?>
+//	} ?>
 </header> 
 	<div class="entry-content">
 		<?php $before_archive = content_product_adder_archive_before();

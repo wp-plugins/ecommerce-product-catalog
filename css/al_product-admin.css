@@ -753,6 +753,10 @@ font-size: 14px;
 padding: 5px 0;
 }
 
+.doc-helper .doc-description input.search-field {
+max-width: 70%;
+}
+
 .doc-helper .doc-button {
 float:left;
 clear: left;

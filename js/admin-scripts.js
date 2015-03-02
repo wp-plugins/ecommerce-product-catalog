@@ -95,6 +95,7 @@ jQuery(function() {
 				clicked.parent("div").children("#uploaded_image").val(attachment.id);
 			}
 			clicked.prev("div").children("img").attr("src", attachment.url);
+            clicked.prev("div").children("img").show();
 			clicked.prev("div").children(".catalog-reset-image-button").show();
 			clicked.prev("div.implecode-admin-media-image.empty").removeClass('empty');
 			clicked.hide();
@@ -108,6 +109,12 @@ jQuery(function() {
 		clicked.parent("div").prev("#uploaded_image").val("");
 		src = jQuery("#default").val();
 		clicked.next(".media-image").attr("src", src);
+        if (src != '') {
+            clicked.next(".media-image").show();
+        }
+        else {
+            clicked.next(".media-image").hide();
+        }
 		clicked.parent("div").next(".add_catalog_media").show();
 		clicked.parent(".implecode-admin-media-image").addClass('empty');
 		clicked.hide();

@@ -120,4 +120,56 @@ function column_orderby_price( $query ) {
         $query->set('meta_key','_price');  
         $query->set('orderby','meta_value_num');  
     }  
-} 
+}
+
+function restrict_listings_by_product_cat() {
+    global $typenow;
+    global $wp_query;
+    if ($typenow == 'al_product' ) {
+        $taxonomy = 'al_product-cat';
+        $current_taxonomy = get_taxonomy($taxonomy);
+        $selected = isset($wp_query->query['al_product-cat']) ? $wp_query->query['al_product-cat'] : '';
+        wp_dropdown_categories(
+            array(
+                'walker'=> new ic_walker_tax_slug_dropdown(),
+                'value'=>'slug',
+                'show_option_all' =>  __("All", "al-ecommerce-product-catalog").' '.$current_taxonomy->label,
+                'taxonomy'        =>  $taxonomy,
+                'name'            =>  'al_product-cat',
+                'orderby'         =>  'name',
+                'selected'        =>  $selected,
+                'hierarchical'    =>  true,
+                'depth'           =>  3,
+                'show_count'      =>  true,
+                'hide_empty'      =>  true,
+            )
+        );
+    }
+}
+add_action('restrict_manage_posts','restrict_listings_by_product_cat');
+
+class ic_walker_tax_slug_dropdown extends Walker_CategoryDropdown{
+
+    function start_el(&$output, $category, $depth = 0, $args = array(), $id = 0) {
+        $pad = str_repeat('&nbsp;', $depth * 3);
+        $cat_name = apply_filters('list_cats', $category->name, $category);
+
+        if( !isset($args['value']) ){
+            $args['value'] = ( $category->taxonomy != 'category' ? 'slug' : 'id' );
+        }
+
+        $value = ($args['value']=='slug' ? $category->slug : $category->term_id );
+
+        $output .= "\t<option class=\"level-$depth\" value=\"".$value."\"";
+        if ( $value === (string) $args['selected'] ){
+            $output .= ' selected="selected"';
+        }
+        $output .= '>';
+        $output .= $pad.$cat_name;
+        if ( $args['show_count'] )
+            $output .= '&nbsp;&nbsp;('. $category->count .')';
+
+        $output .= "</option>\n";
+    }
+
+}

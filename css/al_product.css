@@ -32,7 +32,7 @@ margin: 0;
 }
 
 .product-archive-nav li {
-	display: inline;
+	display: inline-block;
 }
 
 .product-archive-nav li a,
@@ -114,7 +114,8 @@ vertical-align: top;
 white-space: nowrap; }
 
 .product-list .al_archive .product-attributes, #content .al_archive .product-attributes, .al_archive .product-attributes {
-max-width: 120px;
+max-width: 43%;
+    max-height: 30%;
 position: absolute;
 left: 5px;
 bottom: 15px;
@@ -1043,6 +1044,9 @@ float: none;
 .responsive.al_product h1 {
 font-size: 24px;
 }
+    .responsive .al_archive .product-attributes table.attributes-table tr td {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 400px) {
@@ -1090,6 +1094,7 @@ font-size: 24px;
 .responsive .al_archive .product-price, .responsive  .al_archive .product-name {
 font-size: 12px;
 }
+
 .responsive .al_archive {
 min-width: 90%;
 min-height: 100px

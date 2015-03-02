@@ -11,7 +11,14 @@
  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 function is_ic_catalog_page() {
-    if (is_ic_product_page() || is_ic_product_listing()) {
+    if (is_ic_product_page() || is_ic_product_listing() || is_ic_taxonomy_page()) {
+        return true;
+    }
+    return false;
+}
+
+function is_ic_taxonomy_page() {
+    if (is_tax(product_taxonomy_array())) {
         return true;
     }
     return false;
