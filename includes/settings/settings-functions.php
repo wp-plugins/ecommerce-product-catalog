@@ -42,10 +42,13 @@ if (! function_exists('echo_ic_setting')) {
 		return echo_ic_setting( $return, $echo );
 	}
 
-	function implecode_settings_checkbox( $option_label, $option_name, $option_enabled, $echo = 1 ) {
+	function implecode_settings_checkbox( $option_label, $option_name, $option_enabled, $echo = 1, $tip = '' ) {
+        if ( ! empty( $tip ) && ! is_array( $tip ) ) {
+            $tip = 'title="' . $tip . '" ';
+        }
 		$return = '<tr>';
 		$return .= '<td>' . $option_label . ':</td>';
-		$return .= '<td><input type="checkbox" name="' . $option_name . '" value="1"' . checked( 1, $option_enabled, 0 ) . '/></td>';
+		$return .= '<td><input '.$tip.'type="checkbox" name="' . $option_name . '" value="1"' . checked( 1, $option_enabled, 0 ) . '/></td>';
 		$return .= '</tr>';
 
 		return echo_ic_setting( $return, $echo );
