@@ -173,3 +173,54 @@ class ic_walker_tax_slug_dropdown extends Walker_CategoryDropdown{
     }
 
 }
+
+add_action( 'quick_edit_custom_box', 'display_custom_quickedit_product', 10, 2 );
+
+function display_custom_quickedit_product( $column_name, $post_type ) {
+    static $product_quick_edit_nonce = TRUE;
+    if ( $product_quick_edit_nonce ) {
+        $product_quick_edit_nonce = FALSE;
+        wp_nonce_field( plugin_basename( __FILE__ ), 'al_product_quick_edit_nonce' );
+    }
+
+    ?>
+    <fieldset class="inline-edit-col-right inline-edit-product">
+        <div class="inline-edit-col column-<?php echo $column_name; ?>">
+            <label class="inline-edit-group">
+                <?php
+                switch ( $column_name ) {
+                    case 'price':
+                        ?><span class="title"><?php _e('Price', 'al-ecommerce-product-catalog') ?></span><input type="number" min="0" step="0.01" name="_price" value="" class="widefat" /><?php echo product_currency();
+                        break;
+                }
+                ?>
+            </label>
+        </div>
+    </fieldset>
+<?php
+}
+
+add_action( 'save_post', 'save_product_quick_edit' );
+
+function save_product_quick_edit( $product_id ) {
+    /* in production code, $slug should be set only once in the plugin,
+       preferably as a class property, rather than in each function that needs it.
+     */
+    $slug = 'al_product';
+    if ( $slug !== $_POST['post_type'] ) {
+        return;
+    }
+    if ( !current_user_can('edit_product', $product_id) ) {
+        return;
+    }
+    $_POST += array("{$slug}_quick_edit_nonce" => '');
+    if ( !wp_verify_nonce( $_POST["{$slug}_quick_edit_nonce"],
+        plugin_basename( __FILE__ ) ) )
+    {
+        return;
+    }
+
+    if ( isset( $_REQUEST['_price'] ) ) {
+        update_post_meta( $product_id, '_price', $_REQUEST['_price'] );
+    }
+}

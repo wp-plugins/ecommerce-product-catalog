@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 2.1.8
+Stable tag: 2.1.9
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -94,11 +94,12 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 * English - default, always included
 * Bosnian - Thanks to Faruk
 * Bulgarian - Thanks to Valentina and Koceto via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
-* Croatian - Thanks to Vedran
+* Croatian - Thanks to Vedran 
 * Dutch - Thanks to Pieter via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * French - Thanks to Denis & James via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * German - Thanks to Peter
 * Hebrew - Thanks to Ahrale
+* Japanese - Thanks to Diginatu via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Norwegian - Thanks to Oyvind via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Polish - Thanks to Norbert
 * Serbian - Thanks to Ogi
@@ -187,6 +188,15 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 2.1.9 - 10/03/2015 = 
+
+* Tweak - Limit modern grid width
+* Tweak - ability to edit price in quick edit
+* Tweak - child and parent category classes for classic list
+* Tweak - show default attributes values only when adding new product
+* Tweak - better integration with twenty fifteen theme
+* Localisation - Japanese language introduced thanks to Diginatu by http://translate.implecode.com
 
 = 2.1.8 - 03/03/2015 = 
 

@@ -344,3 +344,21 @@ function get_product_listing_title () {
     }
     return $page_title;
 }
+
+
+function product_listing_current_nav_class($classes, $item)
+{
+    global $post;
+    if (isset($post->ID) && $item->object_id == get_product_listing_id() && is_post_type_archive('al_product')) {
+        $current_post_type = get_post_type_object(get_post_type($post->ID));
+        $current_post_type_slug = $current_post_type->rewrite['slug'];
+        $current_post_type_slug = !empty($current_post_type_slug) ? '/' . $current_post_type_slug . '/' : $current_post_type_slug;
+        $menu_slug = strtolower(trim($item->url));
+        if (strpos($menu_slug, $current_post_type_slug) !== false) {
+            $classes[] = 'current-menu-item';
+        }
+    }
+    return $classes;
+}
+
+add_action('nav_menu_css_class', 'product_listing_current_nav_class', 10, 2);

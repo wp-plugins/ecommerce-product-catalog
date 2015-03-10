@@ -39,7 +39,6 @@ return false;
 }
 
 function is_ic_admin_page() {
-$screen = get_current_screen();
 if (is_ic_catalog_admin_page() || isset($_GET['page']) && $_GET['page'] == 'implecode-settings') {
 	return true;
 }
@@ -72,6 +71,14 @@ function is_ic_sku_enabled() {
 
 function ic_string_contains($string, $contains) {
     if (strpos($string,$contains) !== false) {
+        return true;
+    }
+    return false;
+}
+
+function is_ic_new_product_screen() {
+    $screen = get_current_screen();
+    if( is_ic_catalog_admin_page() && $screen->action == 'add'){
         return true;
     }
     return false;

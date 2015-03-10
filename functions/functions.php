@@ -177,14 +177,32 @@ function design_schemes($which = null, $echo = 1)
 function single_product_header($post, $single_names)
 {
     if (get_integration_type() != 'simple') { ?>
-        <header class="entry-header">
-        <h1 class="entry-title product-name"><?php the_title(); ?></h1>
+        <header class="entry-header product-page-header">
         <?php do_action('single_product_header', $post, $single_names); ?>
         </header><?php
     }
 }
-
 add_action('before_product_entry', 'single_product_header', 10, 2);
+
+function add_product_name() {
+    echo '<h1 class="entry-title product-name">'. get_the_title() .'</h1>';
+}
+add_action('single_product_header', 'add_product_name');
+
+function product_listing_header($post, $archive_names)
+{
+    if (get_integration_type() != 'simple') { ?>
+    <header class="entry-header product-listing-header">
+        <?php do_action('product_listing_header', $post, $archive_names); ?>
+        </header><?php
+    }
+}
+add_action('before_product_listing_entry', 'product_listing_header', 10, 2);
+
+function add_product_listing_name() {
+    echo '<h1 class="entry-title product-listing-name">'. get_the_title() .'</h1>';
+}
+add_action('product_listing_header', 'add_product_listing_name');
 
 function example_price()
 {
@@ -507,6 +525,21 @@ function product_breadcrumbs()
         }
     }
 }
+
+function get_product_name($product_id = null) {
+    return get_the_title($product_id);
+}
+
+function get_product_url($product_id = null) {
+    return get_permalink($product_id);
+}
+
+function add_product_breadcrumbs() {
+    echo product_breadcrumbs();
+}
+
+add_action('single_product_begin', 'add_product_breadcrumbs');
+add_action('product_listing_begin', 'add_product_breadcrumbs');
 
 function al_product_register_widgets()
 {
