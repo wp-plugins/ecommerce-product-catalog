@@ -4,7 +4,8 @@ jQuery(document).ready(function($) {
 	$(window).resize( function() {
 		reponsive_product_catalog();
                 setTimeout("modern_grid_font_size()",0)
-	});	
+	});
+        $(".a-product-image").colorbox(product_object.lightbox_settings);
 	
   $.ic = {
     /**

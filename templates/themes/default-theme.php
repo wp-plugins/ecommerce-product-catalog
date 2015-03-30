@@ -154,8 +154,8 @@ function get_default_category_theme( $product_cat, $archive_template ) {
 	} else {
 		$url = default_product_thumbnail_url();
 	}
-	$modern_grid_settings	 = get_modern_grid_settings();
-	$return					 = '<div class="al_archive modern-grid-element ' . product_listing_size_class( $thumbnail_product ) . '">';
+	//$modern_grid_settings	 = get_modern_grid_settings();
+	$return = '<div class="al_archive modern-grid-element ' . product_listing_size_class( $thumbnail_product ) . '">';
 	//$return .= '<a class="pseudo-a" href="' . get_term_link($product_cat) . '"></a>';
 	$return .= '<div class="pseudo"></div>';
 	$return .= '<a href="' . get_term_link( $product_cat ) . '"><img' . $img_class . ' src="' . $url . '" alt="' . $product_cat->name . '">';

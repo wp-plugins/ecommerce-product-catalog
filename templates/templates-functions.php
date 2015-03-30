@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) )
 	exit; // Exit if accessed directly
 
 function content_product_adder() {
-	if ( is_archive() || is_search() || is_home_archive() ) {
+	if ( is_archive() || is_search() || is_home_archive() ) { 
 		do_action( 'before_product_archive' );
 		content_product_adder_archive();
 	} else {

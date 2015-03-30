@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -98,6 +98,7 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 * Dutch - Thanks to Pieter via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * French - Thanks to Denis & James via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * German - Thanks to Peter
+* Greek - Thanks to Giorgos via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Hebrew - Thanks to Ahrale
 * Italian - Thanks to Fabio via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Japanese - Thanks to Diginatu via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
@@ -189,6 +190,15 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 2.2.3 - 30/03/2015 = 
+
+* Fix - layout fix on very small screens
+* Fix - color design scheme switch for modern grid fixed
+* Tweak - improved integration with some themes
+* Localisation - Greek language improved thanks to Giorgos via http://translate.implecode.com
+* Localisation - Spanish language improved thanks to Lucia via http://translate.implecode.com
+* Localisation - Chinese introduced improved thanks to Yuen Ka Hei via http://translate.implecode.com
 
 = 2.2.2 - 23/03/2015 = 
 
