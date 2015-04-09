@@ -13,6 +13,8 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package        ecommerce-product-catalog/
  * @author        Norbert Dreszer
  */
+require_once(AL_BASE_PATH . '/templates/templates-functions.php');
+
 add_action( 'after_setup_theme', 'initialize_product_adder_template', 11 );
 
 /**
@@ -20,7 +22,7 @@ add_action( 'after_setup_theme', 'initialize_product_adder_template', 11 );
  *
  */
 function initialize_product_adder_template() {
-	require_once(AL_BASE_PATH . '/templates/templates-functions.php');
+
 	$theme			 = get_option( 'template' );
 	$woothemes		 = array( "canvas", "woo", "al" );
 	$nosidebar		 = array( "twentyeleven" );
@@ -245,6 +247,7 @@ function erase_integration_type_select() {
 	$archive_multiple_settings = get_option( 'archive_multiple_settings', unserialize( DEFAULT_ARCHIVE_MULTIPLE_SETTINGS ) );
 	unset( $archive_multiple_settings[ 'integration_type' ] );
 	update_option( 'archive_multiple_settings', $archive_multiple_settings );
+	permalink_options_update();
 }
 
 add_action( 'switch_theme', 'erase_integration_type_select' );

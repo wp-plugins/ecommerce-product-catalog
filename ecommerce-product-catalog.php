@@ -4,7 +4,7 @@
  * Plugin Name: eCommerce Product Catalog by impleCode
  * Plugin URI: http://implecode.com/wordpress/product-catalog/#cam=in-plugin-urls&key=plugin-url
  * Description: WordPress eCommerce easy to use, powerful and beautiful plugin from impleCode. Great choice if you want to sell easy and quick. Or just beautifully present your products on WordPress website. Full WordPress integration does great job not only for Merchants but also for Developers and Theme Constructors.
- * Version: 2.2.4
+ * Version: 2.2.5
  * Author: impleCode
  * Author URI: http://implecode.com/#cam=in-plugin-urls&key=author-url
  * Text Domain: al-ecommerce-product-catalog
@@ -13,8 +13,9 @@
   Copyright: 2014 impleCode.
   License: GNU General Public License v3.0
   License URI: http://www.gnu.org/licenses/gpl-3.0.html */
-if ( !defined( 'ABSPATH' ) )
+if ( !defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
+}
 
 define( 'AL_BASE_PATH', dirname( __FILE__ ) );
 define( 'AL_PLUGIN_BASE_PATH', plugins_url( '/', __FILE__ ) );
@@ -61,10 +62,10 @@ function implecode_register_styles() {
 add_action( 'init', 'implecode_register_styles' );
 
 function implecode_run_admin_styles() {
+	wp_enqueue_style( 'al_product_styles' );
+	wp_enqueue_style( 'al_product_admin_styles' );
 	if ( is_ic_admin_page() ) {
-		wp_enqueue_style( 'al_product_admin_styles' );
 		wp_enqueue_script( 'admin-scripts' );
-		wp_enqueue_style( 'al_product_styles' );
 	}
 }
 

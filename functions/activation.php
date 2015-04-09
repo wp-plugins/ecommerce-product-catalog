@@ -98,21 +98,28 @@ function ecommerce_product_catalog_upgrade() {
 		if ( $database_plugin_version != $plugin_version ) {
 			update_option( 'ecommerce_product_catalog_ver', $plugin_version );
 			$first_version = (string) get_option( 'first_activation_version', $plugin_version );
-			if ( version_compare( $first_version, '1.9.0' ) < 0 ) {
+			if ( version_compare( $first_version, '1.9.0' ) < 0 && version_compare( $database_plugin_version, '2.2.4' ) < 0 ) {
 				$hide_info = 0;
 				enable_advanced_mode( $hide_info );
 			}
-			if ( version_compare( $first_version, '2.0.0' ) < 0 ) {
+			if ( version_compare( $first_version, '2.0.0' ) < 0 && version_compare( $database_plugin_version, '2.2.4' ) < 0 ) {
 				$archive_multiple_settings							 = get_multiple_settings();
 				$archive_multiple_settings[ 'product_listing_cats' ] = 'off';
 				$archive_multiple_settings[ 'cat_template' ]		 = 'link';
 				update_option( 'archive_multiple_settings', $archive_multiple_settings );
 			}
-			if ( version_compare( $first_version, '2.0.1' ) < 0 ) {
+			if ( version_compare( $first_version, '2.0.1' ) < 0 && version_compare( $database_plugin_version, '2.2.4' ) < 0 ) {
 				add_product_caps();
 			}
-			if ( version_compare( $first_version, '2.0.4' ) < 0 ) {
+			if ( version_compare( $first_version, '2.0.4' ) < 0 && version_compare( $database_plugin_version, '2.2.4' ) < 0 ) {
 				delete_transient( 'implecode_extensions_data' );
+			}
+			if ( version_compare( $first_version, '2.2.5' ) < 0 && version_compare( $database_plugin_version, '2.2.5' ) < 0 ) {
+				$archive_names							 = get_option( 'archive_names' );
+				$archive_names[ 'all_main_categories' ]	 = '';
+				$archive_names[ 'all_products' ]		 = '';
+				$archive_names[ 'all_subcategories' ]	 = '';
+				update_option( 'archive_names', $archive_names );
 			}
 			flush_rewrite_rules();
 		}

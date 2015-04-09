@@ -1,4 +1,8 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 /**
  * Manages product functions
  *
@@ -8,9 +12,12 @@
  * @package        ecommerce-product-catalog/functions
  * @author        Norbert Dreszer
  */
-if ( !defined( 'ABSPATH' ) )
-	exit; // Exit if accessed directly
 
+/**
+ * Returns default product image
+ *
+ * @return string
+ */
 function default_product_thumbnail() {
 	if ( get_option( 'default_product_thumbnail' ) ) {
 		$url = get_option( 'default_product_thumbnail' );
@@ -26,6 +33,11 @@ function default_product_thumbnail() {
 	return '<img src="' . $url . '"  />';
 }
 
+/**
+ * Returns default product image URL
+ *
+ * @return string
+ */
 function default_product_thumbnail_url() {
 	if ( get_option( 'default_product_thumbnail' ) ) {
 		$url = get_option( 'default_product_thumbnail' );
@@ -36,6 +48,11 @@ function default_product_thumbnail_url() {
 	return $url;
 }
 
+/**
+ * Returns product listing URL
+ *
+ * @return string
+ */
 function product_listing_url() {
 	if ( get_option( 'permalink_structure' ) ) {
 		$listing_url = site_url() . '/' . get_option( 'product_listing_url', __( 'products', 'al-ecommerce-product-catalog' ) ) . '/';
@@ -72,24 +89,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-		jQuery( document ).ready( function () {
-			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-				wp.media.editor.send.attachment = function ( props, attachment ) {
-					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-					jQuery( '.media-image' ).attr( "src", attachment.url );
-				}
+	    jQuery( document ).ready( function () {
+	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+	            wp.media.editor.send.attachment = function ( props, attachment ) {
+	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+	                jQuery( '.media-image' ).attr( "src", attachment.url );
+	            }
 
-				wp.media.editor.open( this );
+	            wp.media.editor.open( this );
 
-				return false;
-			} );
-		} );
+	            return false;
+	        } );
+	    } );
 
-		jQuery( '#reset-image-button' ).on( 'click', function () {
-			jQuery( '#<?php echo $name; ?>' ).val( '' );
-			src = jQuery( '#default' ).val();
-			jQuery( '.media-image' ).attr( "src", src );
-		} );
+	    jQuery( '#reset-image-button' ).on( 'click', function () {
+	        jQuery( '#<?php echo $name; ?>' ).val( '' );
+	        src = jQuery( '#default' ).val();
+	        jQuery( '.media-image' ).attr( "src", src );
+	    } );
 	</script>
 	<?php
 }
@@ -263,7 +280,7 @@ function product_price( $product_id, $unfiltered = null ) {
 
 /**
  * Returns product currency
- * 
+ *
  * @return string
  */
 function product_currency() {
@@ -300,7 +317,7 @@ function show_shipping_options( $post, $single_names ) {
 		<table class="shipping-table">
 			<tr>
 				<td>
-		<?php echo $single_names[ 'product_shipping' ] ?>
+					<?php echo $single_names[ 'product_shipping' ] ?>
 				</td>
 				<td>
 					<ul>
@@ -325,7 +342,7 @@ function show_short_desc( $post, $single_names ) {
 	$shortdesc = get_product_short_description( $post->ID );
 	?>
 	<div class="shortdesc">
-	<?php echo apply_filters( 'product_short_description', $shortdesc ); ?>
+		<?php echo apply_filters( 'product_short_description', $shortdesc ); ?>
 	</div>
 	<?php
 }
@@ -393,10 +410,19 @@ add_filter( 'product_simple_description', 'wpautop' );
 add_filter( 'product_simple_description', 'shortcode_unautop' );
 
 //add_filter('product_simple_description', 'do_shortcode', 11);
+add_action( 'single_product_end', 'show_related_categories', 10, 3 );
 
+/**
+ * Shows related categories table on product page
+ *
+ * @param object $post
+ * @param array $single_names
+ * @param string $taxonomy_name
+ * @return string
+ */
 function show_related_categories( $post, $single_names, $taxonomy_name ) {
 	$terms = wp_get_post_terms( $post->ID, $taxonomy_name, array( "fields" => "ids" ) );
-	if ( empty( $terms ) ) {
+	if ( empty( $terms ) || get_integration_type() == 'simple' ) {
 		return;
 	}
 	$term		 = $terms[ 0 ];
@@ -407,10 +433,10 @@ function show_related_categories( $post, $single_names, $taxonomy_name ) {
 			<table>
 				<tr>
 					<td>
-		<?php echo $single_names[ 'other_categories' ]; ?>
+						<?php echo $single_names[ 'other_categories' ]; ?>
 					</td>
 					<td>
-		<?php echo $categories; ?>
+						<?php echo $categories; ?>
 					</td>
 				</tr>
 			</table>
@@ -419,8 +445,6 @@ function show_related_categories( $post, $single_names, $taxonomy_name ) {
 	}
 }
 
-add_action( 'single_product_end', 'show_related_categories', 10, 3 );
-
 /* Archive Functions */
 
 function show_archive_price( $post ) {
@@ -428,7 +452,7 @@ function show_archive_price( $post ) {
 	if ( !empty( $price_value ) ) {
 		?>
 		<div class="product-price <?php design_schemes( 'color' ); ?>">
-		<?php echo price_format( $price_value ) ?>
+			<?php echo price_format( $price_value ) ?>
 		</div>
 		<?php
 	}
@@ -569,6 +593,9 @@ add_action( 'widgets_init', 'al_product_register_widgets' );
 
 if ( !function_exists( 'permalink_options_update' ) ) {
 
+	/**
+	 * Updates the permalink rewrite option that triggers the rewrite function
+	 */
 	function permalink_options_update() {
 		update_option( 'al_permalink_options_update', 1 );
 	}
@@ -576,6 +603,9 @@ if ( !function_exists( 'permalink_options_update' ) ) {
 }
 if ( !function_exists( 'check_permalink_options_update' ) ) {
 
+	/**
+	 * Checks if the permalinks should be rewritten and does it if necessary
+	 */
 	function check_permalink_options_update() {
 		$options_update = get_option( 'al_permalink_options_update', 'none' );
 		if ( $options_update != 'none' ) {
@@ -585,6 +615,7 @@ if ( !function_exists( 'check_permalink_options_update' ) ) {
 	}
 
 }
+
 add_action( 'init', 'check_permalink_options_update', 99 );
 
 function is_lightbox_enabled() {
@@ -780,17 +811,6 @@ function thumbnail_support_products() {
 
 add_action( 'after_setup_theme', 'thumbnail_support_products', 99 );
 
-function set_product_thumbnail_size_in_admin( $sizes ) { //print_r($sizes);
-	$post_type		 = get_post_type( $_REQUEST[ 'post_id' ] );
-	$product_types	 = product_post_type_array();
-	if ( in_array( $post_type, $product_types ) ) {
-		$sizes[ 'post-thumbnail' ] = array( 'width' => 150, 'height' => 150, 'crop' => false );
-	}
-	return $sizes;
-}
-
-add_filter( 'intermediate_image_sizes_advanced', 'set_product_thumbnail_size_in_admin', 10 );
-
 function set_product_order( $query ) {
 	if ( !isset( $_GET[ 'order' ] ) && $query->is_main_query() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' )) ) {
 		$archive_multiple_settings = get_multiple_settings();
@@ -848,7 +868,6 @@ function show_product_order_dropdown( $archive_template, $multiple_settings = nu
 			}
 		}
 		echo '</form>';
-		echo '<script>jQuery("#product_order_selector").change(function() { jQuery("#product_order").submit(); });</script>';
 	}
 }
 

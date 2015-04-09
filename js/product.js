@@ -8,6 +8,10 @@ jQuery(document).ready(function($) {
         if (typeof colorbox == 'object') {
         $(".a-product-image").colorbox(product_object.lightbox_settings);
         }
+        
+        jQuery("#product_order_selector").change(function() { 
+            jQuery("#product_order").submit(); 
+        });
 	
   $.ic = {
     /**

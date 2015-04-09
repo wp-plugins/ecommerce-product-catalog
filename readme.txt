@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -190,6 +190,18 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 2.2.5 - 09/04/2015 = 
+
+* Tweak - classic grid element width now adjusts to the theme content width. The product listing elements in one row will occupy the full width now
+* Tweak - page load on product listing is now faster because of product images optimisation (this works for all future products, if your want this for the product images that are already uploaded please use the Regenerate Thumbnails free WordPress plugin)
+* Tweak - SEO for classic grid improved
+* Tweak - SEO for classic list improved
+* Tweak - New headers "All Categories" and "Subcategories" on product listings before categories (by default disabled for existing installations)
+* Fix - no more changing category templates on plugin update
+* Fix - now it is possible to move the product.js to footer without breaking jQuery scripts
+* Fix - icons in admin work again
+* Fix - category image upload on localhost fixed 
 
 = 2.2.4 - 30/03/2015 = 
 
