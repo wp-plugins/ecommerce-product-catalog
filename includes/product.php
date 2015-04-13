@@ -161,7 +161,7 @@ function add_product_metaboxes() {
 	if ( get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER ) > 0 ) {
 		add_meta_box( 'al_product_attributes', sprintf( __( '%s Attributes', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), 'al_product_attributes', 'al_product', apply_filters( 'product_attributes_box_column', 'normal' ), apply_filters( 'product_attributes_box_priority', 'default' ) );
 	}
-	do_action( 'add_product_metaboxes' );
+	do_action( 'add_product_metaboxes', $names );
 }
 
 function al_product_price() {
@@ -367,16 +367,16 @@ function set_product_messages( $messages ) {
 
 		$messages[ $post_type ] = array(
 			0	 => '',
-			1	 => sprintf( __( $singular . ' updated. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ) ),
+			1	 => sprintf( __( '%s updated. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), $singular, esc_url( get_permalink( $post_ID ) ) ),
 			2	 => __( 'Custom field updated.' ),
 			3	 => __( 'Custom field deleted.' ),
-			4	 => __( $singular . ' updated.' ),
-			5	 => isset( $_GET[ 'revision' ] ) ? sprintf( __( $singular . ' restored to revision from %s' ), wp_post_revision_title( (int) $_GET[ 'revision' ], false ) ) : false,
-			6	 => sprintf( __( $singular . ' published. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ) ),
+			4	 => sprintf( __( '%s updated.', 'al-ecommerce-product-catalog' ), $singular ),
+			5	 => isset( $_GET[ 'revision' ] ) ? sprintf( __( $singular . ' restored to revision from %s' ), $singular, wp_post_revision_title( (int) $_GET[ 'revision' ], false ) ) : false,
+			6	 => sprintf( __( $singular . ' published. <a href="%s">View ' . strtolower( $singular ) . '</a>' ), esc_url( get_permalink( $post_ID ) ), $singular ),
 			7	 => __( 'Page saved.' ),
-			8	 => sprintf( __( $singular . ' submitted. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
-			9	 => sprintf( __( $singular . ' scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ) ),
-			10	 => sprintf( __( $singular . ' draft updated. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
+			8	 => sprintf( __( '%s submitted. <a target="_blank" href="%s">Preview %s</a>' ), $singular, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ), strtolower( $singular ) ),
+			9	 => sprintf( __( '%3$s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview ' . strtolower( $singular ) . '</a>' ), date_i18n( __( 'M j, Y @ G:i' ), strtotime( $post->post_date ) ), esc_url( get_permalink( $post_ID ) ), $singular ),
+			10	 => sprintf( __( '%s draft updated. <a target="_blank" href="%s">Preview ' . strtolower( $singular ) . '</a>' ), $singular, esc_url( add_query_arg( 'preview', 'true', get_permalink( $post_ID ) ) ) ),
 		);
 	}
 	return $messages;
@@ -384,11 +384,23 @@ function set_product_messages( $messages ) {
 
 add_filter( 'post_updated_messages', 'set_product_messages' );
 
+/**
+ * Returns product description
+ *
+ * @param int $product_id
+ * @return string
+ */
 function get_product_description( $product_id ) {
 	$product_desc = get_post_meta( $product_id, 'content', true );
 	return apply_filters( 'get_product_description', $product_desc, $product_id );
 }
 
+/**
+ * Returns product short description
+ * 
+ * @param int $product_id
+ * @return string
+ */
 function get_product_short_description( $product_id ) {
 	$product_desc = get_post_meta( $product_id, 'excerpt', true );
 	return apply_filters( 'get_product_short_description', $product_desc, $product_id );

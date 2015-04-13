@@ -89,24 +89,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-	    jQuery( document ).ready( function () {
-	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-	            wp.media.editor.send.attachment = function ( props, attachment ) {
-	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-	                jQuery( '.media-image' ).attr( "src", attachment.url );
-	            }
+		jQuery( document ).ready( function () {
+			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+				wp.media.editor.send.attachment = function ( props, attachment ) {
+					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+					jQuery( '.media-image' ).attr( "src", attachment.url );
+				}
 
-	            wp.media.editor.open( this );
+				wp.media.editor.open( this );
 
-	            return false;
-	        } );
-	    } );
+				return false;
+			} );
+		} );
 
-	    jQuery( '#reset-image-button' ).on( 'click', function () {
-	        jQuery( '#<?php echo $name; ?>' ).val( '' );
-	        src = jQuery( '#default' ).val();
-	        jQuery( '.media-image' ).attr( "src", src );
-	    } );
+		jQuery( '#reset-image-button' ).on( 'click', function () {
+			jQuery( '#<?php echo $name; ?>' ).val( '' );
+			src = jQuery( '#default' ).val();
+			jQuery( '.media-image' ).attr( "src", src );
+		} );
 	</script>
 	<?php
 }
@@ -707,9 +707,9 @@ function exclude_products_search( $search, &$wp_query ) {
 }
 
 function modify_product_search( $query ) {
-	if ( $query->is_search == 1 && isset( $query->query_vars[ 'post_type' ] ) && $query->query_vars[ 'post_type' ] != 'al_product' ) {
+	if ( !is_admin() && $query->is_search == 1 && isset( $query->query_vars[ 'post_type' ] ) && $query->query_vars[ 'post_type' ] != 'al_product' ) {
 		add_filter( 'posts_search', 'exclude_products_search', 10, 2 );
-	} else if ( $query->is_search == 1 && !isset( $query->query_vars[ 'post_type' ] ) ) {
+	} else if ( !is_admin() && $query->is_search == 1 && !isset( $query->query_vars[ 'post_type' ] ) ) {
 		add_filter( 'posts_search', 'exclude_products_search', 10, 2 );
 	}
 }
@@ -853,7 +853,7 @@ add_filter( 'shortcode_query', 'set_shortcode_product_order' );
 function show_product_order_dropdown( $archive_template, $multiple_settings = null ) {
 	$multiple_settings = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
 	global $product_sort;
-	if ( (isset( $product_sort ) && $product_sort == 1) || !isset( $product_sort ) ) {
+	if ( (isset( $product_sort ) && $product_sort == 1) || (!isset( $product_sort ) && !is_ic_shortcode_query()) ) {
 		$sort_options	 = get_product_sort_options();
 		$selected		 = isset( $_GET[ 'product_order' ] ) ? $_GET[ 'product_order' ] : $multiple_settings[ 'product_order' ];
 		echo '<form id="product_order"><select id="product_order_selector" name="product_order">';

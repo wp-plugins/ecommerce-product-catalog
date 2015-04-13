@@ -58,6 +58,19 @@ if ( !function_exists( 'echo_ic_setting' ) ) {
 		return echo_ic_setting( $return, $echo );
 	}
 
+	/**
+	 * Shows settings text fiels
+	 *
+	 * @param string $option_label
+	 * @param string $option_name
+	 * @param string|int $option_value
+	 * @param string $required
+	 * @param int $echo
+	 * @param string $class
+	 * @param string $tip
+	 * @param string $disabled
+	 * @return string
+	 */
 	function implecode_settings_text( $option_label, $option_name, $option_value, $required = null, $echo = 1,
 								   $class = null, $tip = null, $disabled = '' ) {
 		if ( !empty( $disabled ) ) {

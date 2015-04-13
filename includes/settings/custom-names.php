@@ -32,7 +32,8 @@ function default_archive_names() {
 		'all_products'			 => __( 'All Products', 'al-ecommerce-product-catalog' ),
 		'all_prefix'			 => __( 'All', 'al-ecommerce-product-catalog' ),
 		'all_main_categories'	 => __( 'Main Categories', 'al-ecommerce-product-catalog' ),
-		'all_subcategories'		 => __( 'Subcategories', 'al-ecommerce-product-catalog' )
+		'all_subcategories'		 => '[product_category_name] ' . __( 'subcategories', 'al-ecommerce-product-catalog' ),
+		'category_products'		 => '[product_category_name] ' . __( 'products', 'al-ecommerce-product-catalog' )
 	);
 
 	return $archive_names;
@@ -67,8 +68,8 @@ function custom_names_content() {
 		</div><?php if ( $submenu == 'single-names' ) { ?>
 			<div id="single_names" class="setting-content submenu">
 				<script>
-		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		            jQuery( '.settings-submenu a#single-names' ).addClass( 'current' );
+					jQuery( '.settings-submenu a' ).removeClass( 'current' );
+					jQuery( '.settings-submenu a#single-names' ).addClass( 'current' );
 				</script>
 				<form method="post" action="options.php">
 					<?php
@@ -102,8 +103,8 @@ function custom_names_content() {
 			?>
 			<div id="archive_names" class="setting-content submenu">
 				<script>
-		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		            jQuery( '.settings-submenu a#archive-names' ).addClass( 'current' );
+					jQuery( '.settings-submenu a' ).removeClass( 'current' );
+					jQuery( '.settings-submenu a#archive-names' ).addClass( 'current' );
 				</script>
 				<form method="post" action="options.php"><?php
 					settings_fields( 'product_names_archive' );
@@ -117,14 +118,16 @@ function custom_names_content() {
 					}
 					?>
 					<h3><?php _e( 'Product Listing Labels', 'al-ecommerce-product-catalog' ); ?></h3>
-					<table class="wp-list-table widefat product-settings-table" style="clear:right; text-align: left;">
-						<thead><th><strong><?php _e( 'Front-end Element', 'al-ecommerce-product-catalog' ); ?></strong></th><th><strong><?php _e( 'Front-end Text', 'al-ecommerce-product-catalog' ); ?></strong></th></thead>
+					<table class="wp-list-table widefat product-settings-table" style="clear:right; text-align: left; width: 100%;">
+						<style>.names-product-settings .setting-content th {text-align: left;}</style>
+						<thead><th><strong><?php _e( 'Front-end Element', 'al-ecommerce-product-catalog' ); ?></strong></th><th style="width:69%"><strong><?php _e( 'Front-end Text', 'al-ecommerce-product-catalog' ); ?></strong></th></thead>
 						<tbody>
 							<?php
-							implecode_settings_text( __( 'Product Archive Title', 'al-ecommerce-product-catalog' ), 'archive_names[all_products]', $archive_names[ 'all_products' ], null, 1, null, null, $disabled );
-							implecode_settings_text( __( 'Categories Header', 'al-ecommerce-product-catalog' ), 'archive_names[all_main_categories]', $archive_names[ 'all_main_categories' ], null, 1, null, null, $disabled );
-							implecode_settings_text( __( 'Subcategories Header', 'al-ecommerce-product-catalog' ), 'archive_names[all_subcategories]', $archive_names[ 'all_subcategories' ], null, 1, null, null, $disabled );
-							implecode_settings_text( __( 'Category Prefix', 'al-ecommerce-product-catalog' ), 'archive_names[all_prefix]', $archive_names[ 'all_prefix' ], null, 1, null, null, $disabled );
+							implecode_settings_text( __( 'Product Archive Title', 'al-ecommerce-product-catalog' ), 'archive_names[all_products]', $archive_names[ 'all_products' ], null, 1, 'wide', null, $disabled );
+							implecode_settings_text( __( 'Categories Header', 'al-ecommerce-product-catalog' ), 'archive_names[all_main_categories]', $archive_names[ 'all_main_categories' ], null, 1, 'wide', null, $disabled );
+							implecode_settings_text( __( 'Subcategories Header', 'al-ecommerce-product-catalog' ), 'archive_names[all_subcategories]', $archive_names[ 'all_subcategories' ], null, 1, 'wide', null, $disabled );
+							implecode_settings_text( __( 'Category Prefix', 'al-ecommerce-product-catalog' ), 'archive_names[all_prefix]', $archive_names[ 'all_prefix' ], null, 1, 'wide', null, $disabled );
+							implecode_settings_text( __( 'Category Products Header', 'al-ecommerce-product-catalog' ), 'archive_names[category_products]', $archive_names[ 'category_products' ], null, 1, 'wide', null, $disabled );
 							?>
 						</tbody>
 					</table>

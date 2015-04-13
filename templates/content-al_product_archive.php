@@ -34,7 +34,7 @@ do_action( 'product_listing_begin' );
 						echo '<div class="product-subcategories">' . $product_subcategories . '</div>';
 					}
 				} else {
-					$show_categories = do_shortcode( '[show_categories parent="0"]' );
+					$show_categories = do_shortcode( '[show_categories parent="0" shortcode_query="no"]' );
 					if ( !empty( $show_categories ) ) {
 						echo '<div class="product-subcategories ' . $archive_template . '">' . $show_categories;
 						if ( $archive_template != 'list' ) {
@@ -67,7 +67,7 @@ do_action( 'product_listing_begin' );
 						<?php
 					}
 				} else {
-					$show_categories = do_shortcode( '[show_categories parent=' . get_queried_object_id() . ']' );
+					$show_categories = do_shortcode( '[show_categories parent=' . get_queried_object_id() . ' shortcode_query=no]' );
 					if ( !empty( $show_categories ) ) {
 						do_action( 'before_category_subcategories' );
 						echo $show_categories;
@@ -79,7 +79,7 @@ do_action( 'product_listing_begin' );
 			}
 		}
 		do_action( 'before_product_list', $archive_template, $multiple_settings );
-		$product_list = '<div class="product-list responsive ' . product_list_class() . '">';
+		$product_list = '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class() . '">';
 		if ( is_home_archive() ) {
 			$args	 = array( 'post_type' => 'al_product' );
 			query_posts( $args );

@@ -1,5 +1,9 @@
 <?php
 
+if ( !defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
 /**
  * Manages product conditional functions
  *
@@ -9,9 +13,6 @@
  * @package		ecommerce-product-catalog/functions
  * @author 		Norbert Dreszer
  */
-if ( !defined( 'ABSPATH' ) )
-	exit; // Exit if accessed directly
-
 function is_ic_catalog_page() {
 	if ( is_ic_product_page() || is_ic_product_listing() || is_ic_taxonomy_page() ) {
 		return true;
@@ -88,7 +89,7 @@ function is_ic_new_product_screen() {
 
 /**
  * Checks if product gallery should be enabled
- * 
+ *
  * @return boolean
  */
 function is_ic_product_gallery_enabled() {
@@ -98,4 +99,79 @@ function is_ic_product_gallery_enabled() {
 		return true;
 	}
 	return false;
+}
+
+/**
+ * Checks if current product category has children
+ *
+ * @return boolean
+ */
+function has_category_children() {
+	$term		 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+	$children	 = get_term_children( $term->term_id, get_query_var( 'taxonomy' ) );
+	if ( sizeof( $children ) > 0 ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Checks if product has short description
+ *
+ * @param int $product_id
+ * @return boolean
+ */
+function has_product_short_description( $product_id ) {
+	$desc = get_product_short_description( $product_id );
+	if ( !empty( $desc ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Checks if product has long description
+ *
+ * @param int $product_id
+ * @return boolean
+ */
+function has_product_description( $product_id ) {
+	$desc = get_product_description( $product_id );
+	if ( !empty( $desc ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Ckecks if product has image attached
+ *
+ * @param int $product_id
+ * @return boolean
+ */
+function has_product_image( $product_id ) {
+	if ( has_post_thumbnail( $product_id ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Checks if current view is triggered by shortcode
+ *
+ * @global type $cat_shortcode_query
+ * @global type $shortcode_query
+ * @return boolean
+ */
+function is_ic_shortcode_query() {
+	global $cat_shortcode_query, $shortcode_query;
+	if ( (isset( $cat_shortcode_query ) && $cat_shortcode_query[ 'enable' ] == 'yes') || isset( $shortcode_query ) ) {
+		return true;
+	} else {
+		return false;
+	}
 }

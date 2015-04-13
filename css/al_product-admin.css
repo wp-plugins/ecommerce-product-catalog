@@ -362,6 +362,11 @@ padding: 30px 250px 0 0px;
 text-align: center;
 }
 
+.setting-content input.wide, .names-product-settings .setting-content td input.wide {
+    width: 100%;
+    text-align: left;
+}
+
 .names-product-settings .setting-content td, .design-product-settings .setting-content td {
 text-align: left;
 padding-left: 20px;
@@ -511,6 +516,8 @@ display: none;
   max-width: 170px;
   float: left;
   margin-right: 10px;
+  height: 150px;
+  width: 120px;
 }
 
 .list.example.archive-listing {
