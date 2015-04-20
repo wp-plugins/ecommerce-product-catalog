@@ -36,7 +36,8 @@ function custom_design_content() {
 			<h3>
 				<a id="archive-design" class="element current" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=archive-design' ) ?>"><?php _e( 'Product Listing', 'al-ecommerce-product-catalog' ); ?></a>
 				<a id="single-design" class="element" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=single-design' ) ?>"><?php _e( 'Product Page', 'al-ecommerce-product-catalog' ); ?></a>
-				<a id="design-schemes" class="element" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=design-schemes' ) ?>"><?php _e( 'Design Schemes', 'al-ecommerce-product-catalog' ); ?></a><?php do_action( 'custom-design-submenu' ); ?>
+				<a id="design-schemes" class="element" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=design-schemes' ) ?>"><?php _e( 'Design Schemes', 'al-ecommerce-product-catalog' ); ?></a>
+				<?php do_action( 'custom-design-submenu' ); ?>
 			</h3>
 		</div>
 		<div class="setting-content submenu"><?php do_action( 'custom-design-settings' ); ?>
@@ -59,8 +60,8 @@ function archive_custom_design() {
 	if ( $submenu == 'archive-design' ) {
 		?>
 		<script>
-		    jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		    jQuery( '.settings-submenu a#archive-design' ).addClass( 'current' );
+			jQuery( '.settings-submenu a' ).removeClass( 'current' );
+			jQuery( '.settings-submenu a#archive-design' ).addClass( 'current' );
 		</script>
 		<form method="post" action="options.php">
 			<?php
@@ -117,8 +118,8 @@ function single_custom_design() {
 	if ( $submenu == 'single-design' ) {
 		?>
 		<script>
-		    jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		    jQuery( '.settings-submenu a#single-design' ).addClass( 'current' );
+			jQuery( '.settings-submenu a' ).removeClass( 'current' );
+			jQuery( '.settings-submenu a#single-design' ).addClass( 'current' );
 		</script>
 		<form method="post" action="options.php">
 			<?php
@@ -158,8 +159,8 @@ function color_schemes() {
 	if ( $submenu == 'design-schemes' ) {
 		?>
 		<script>
-		    jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		    jQuery( '.settings-submenu a#design-schemes' ).addClass( 'current' );
+			jQuery( '.settings-submenu a' ).removeClass( 'current' );
+			jQuery( '.settings-submenu a#design-schemes' ).addClass( 'current' );
 		</script>
 		<form method="post" action="options.php">
 			<?php

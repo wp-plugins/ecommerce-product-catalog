@@ -230,7 +230,7 @@ function general_menu() {
 											?>
 											<option name="product_currency[<?php echo $currency; ?>]"
 													value="<?php echo $currency; ?>"<?php selected( $currency, $product_currency ); ?>><?php echo $currency; ?></option>
-		<?php endforeach; ?>
+												<?php endforeach; ?>
 									</select></td>
 								<td rowspan="4">
 									<div
@@ -269,7 +269,7 @@ function general_menu() {
 					<h3><?php _e( 'Additional Settings', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table><?php implecode_settings_checkbox( __( 'Disable SKU', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[disable_sku]', $archive_multiple_settings[ 'disable_sku' ] ) ?>
 					</table>
-		<?php do_action( 'general-settings' ); ?>
+					<?php do_action( 'general-settings' ); ?>
 					<p class="submit">
 						<input type="submit" class="button-primary"
 							   value="<?php _e( 'Save changes', 'al-ecommerce-product-catalog' ); ?>"/>
@@ -308,7 +308,7 @@ function get_currency_settings() {
 
 /**
  * Returns product currency code even if the currency symbol is set
- * 
+ *
  * @return string
  */
 function get_product_currency_code() {
@@ -333,7 +333,7 @@ function get_multiple_settings() {
 	$archive_multiple_settings[ 'product_order' ]		 = isset( $archive_multiple_settings[ 'product_order' ] ) ? $archive_multiple_settings[ 'product_order' ] : 'newest';
 	$archive_multiple_settings[ 'catalog_plural' ]		 = isset( $archive_multiple_settings[ 'catalog_plural' ] ) ? $archive_multiple_settings[ 'catalog_plural' ] : __( 'Products', 'al-ecommerce-product-catalog' );
 	$archive_multiple_settings[ 'catalog_singular' ]	 = isset( $archive_multiple_settings[ 'catalog_singular' ] ) ? $archive_multiple_settings[ 'catalog_singular' ] : __( 'Product', 'al-ecommerce-product-catalog' );
-	return $archive_multiple_settings;
+	return apply_filters( 'catalog_multiple_settings', $archive_multiple_settings );
 }
 
 function get_catalog_names() {

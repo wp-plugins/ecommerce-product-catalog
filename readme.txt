@@ -191,7 +191,11 @@ This is not a store. It's main purpose is to present products or services on the
 
 == Changelog ==
 
-= 2.2.6 - 09/04/2015 = 
+= 2.2.7 - 20/04/2015 = 
+
+* Fix - no more conflict with recent posts widget
+
+= 2.2.6 - 13/04/2015 = 
 
 * Tweak - support for shortcodes in product listing labels
 * Fix - auto adjust classic grid in show_categories shortcode

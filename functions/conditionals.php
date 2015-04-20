@@ -27,6 +27,11 @@ function is_ic_taxonomy_page() {
 	return false;
 }
 
+/**
+ * Checks if current page is main product listing
+ * 
+ * @return boolean
+ */
 function is_ic_product_listing() {
 	if ( is_post_type_archive( product_post_type_array() ) ) {
 		return true;
@@ -103,12 +108,17 @@ function is_ic_product_gallery_enabled() {
 
 /**
  * Checks if current product category has children
- *
+ * @param object $category
  * @return boolean
  */
-function has_category_children() {
-	$term		 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-	$children	 = get_term_children( $term->term_id, get_query_var( 'taxonomy' ) );
+function has_category_children( $category = null ) {
+	if ( !isset( $category ) ) {
+		$taxonomy	 = get_query_var( 'taxonomy' );
+		$category	 = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
+	} else {
+		$taxonomy = $category->taxonomy;
+	}
+	$children = get_term_children( $category->term_id, $taxonomy );
 	if ( sizeof( $children ) > 0 ) {
 		return true;
 	} else {

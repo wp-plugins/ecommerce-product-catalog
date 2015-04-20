@@ -126,15 +126,18 @@ function single_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'single_scripts' );
+add_action( 'pre_get_posts', 'set_products_limit' );
 
+/**
+ * Sets product limit on product listing pages
+ * @param object $query
+ */
 function set_products_limit( $query ) {
 	$archive_multiple_settings = get_multiple_settings();
-	if ( !is_admin() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' )) ) {
+	if ( !is_admin() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' )) && $query->is_main_query() ) {
 		$query->set( 'posts_per_page', $archive_multiple_settings[ 'archive_products_limit' ] );
 	}
 }
-
-add_action( 'pre_get_posts', 'set_products_limit' );
 
 function product_archive_pagination() {
 	if ( is_singular() )

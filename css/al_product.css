@@ -767,39 +767,6 @@ display: block;
     width: 100px;
 }
 
-/* Design Settings */
-.design-table td {
-    padding: 10px 20px;
-    border: 1px solid #b9b8b8;
-    background: #fff;
-
-}
-
-.design-table td.theme-example {
-    background: none;
-    border: none;
-}
-
-.design-table td.separator {
-    background: none;
-    border: none;
-}
-
-.design-table .theme-name {
-    font-size: 17px;
-    font-weight: bold;
-}
-
-td.additional-styling {
-    vertical-align: top;
-    padding: 0;
-    min-width: 200px;
-}
-
-td.with-additional-styling {
-    padding: 0;
-}
-
 /*
 .settings-submenu .element{
 line-height: 29px;
