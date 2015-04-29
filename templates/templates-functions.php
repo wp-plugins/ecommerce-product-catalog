@@ -139,9 +139,19 @@ function set_products_limit( $query ) {
 	}
 }
 
+add_action( 'product_listing_end', 'product_archive_pagination' );
+
+/**
+ * Adds paginaion to the product listings
+ *
+ * @global object $wp_query
+ * @return string
+ */
 function product_archive_pagination() {
-	if ( is_singular() )
+	if ( is_singular() ) {
 		return;
+	}
+
 	global $wp_query;
 	if ( $wp_query->max_num_pages <= 1 )
 		return;
@@ -285,6 +295,20 @@ add_action( 'before_category_list', 'product_listing_additional_styles' );
 function product_listing_additional_styles() {
 	$styles	 = '<style>';
 	$styles	 = apply_filters( 'product_listing_additional_styles', $styles );
+	$styles .= '</style>';
+	if ( $styles != '<style></style>' && !is_admin() ) {
+		echo $styles;
+	}
+}
+
+add_action( 'before_product_entry', 'product_page_additional_styles' );
+
+/**
+ * Ads product page inline styles container
+ */
+function product_page_additional_styles() {
+	$styles	 = '<style>';
+	$styles	 = apply_filters( 'product_page_additional_styles', $styles );
 	$styles .= '</style>';
 	if ( $styles != '<style></style>' && !is_admin() ) {
 		echo $styles;

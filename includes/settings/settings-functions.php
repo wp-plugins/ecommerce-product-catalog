@@ -1,5 +1,8 @@
 <?php
 
+if ( !defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 /**
  * Manages product functions folder
  *
@@ -9,8 +12,6 @@
  * @package		ecommerce-product-catalog/includes/settings
  * @author 		Norbert Dreszer
  */
-if ( !defined( 'ABSPATH' ) )
-	exit; // Exit if accessed directly
 if ( !function_exists( 'echo_ic_setting' ) ) {
 
 	function implecode_settings_radio( $option_label, $option_name, $option_value, $elements = array(), $echo = 1,

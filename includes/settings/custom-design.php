@@ -1,4 +1,7 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 /**
  * Manages custom design settings
@@ -37,7 +40,7 @@ function custom_design_content() {
 				<a id="archive-design" class="element current" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=archive-design' ) ?>"><?php _e( 'Product Listing', 'al-ecommerce-product-catalog' ); ?></a>
 				<a id="single-design" class="element" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=single-design' ) ?>"><?php _e( 'Product Page', 'al-ecommerce-product-catalog' ); ?></a>
 				<a id="design-schemes" class="element" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=design-settings&submenu=design-schemes' ) ?>"><?php _e( 'Design Schemes', 'al-ecommerce-product-catalog' ); ?></a>
-				<?php do_action( 'custom-design-submenu' ); ?>
+	<?php do_action( 'custom-design-submenu' ); ?>
 			</h3>
 		</div>
 		<div class="setting-content submenu"><?php do_action( 'custom-design-settings' ); ?>
@@ -99,7 +102,7 @@ function archive_custom_design() {
 						<td class="additional-styling"><strong><?php _e( 'Additional Settings', 'al-ecommerce-product-catalog' ); ?></strong><br><?php _e( 'Per row', 'al-ecommerce-product-catalog' ) ?>: <input type="number" min="1" step="1" class="number_box" title="<?php _e( 'The product listing element width will adjust accordingly to your theme content width.', 'al-ecommerce-product-catalog' ) ?>" name="classic_grid_settings[entries]" value="<?php echo $classic_grid_settings[ 'entries' ] ?>"><?php _e( 'products', 'al-ecommerce-product-catalog' ) ?></td>
 					</tr>
 					<tr><td colspan="2" class="separator"></td></tr>
-					<?php do_action( 'product_listing_theme_settings', $archive_template ) ?>
+		<?php do_action( 'product_listing_theme_settings', $archive_template ) ?>
 				</tbody>
 			</table>
 			<p class="submit">
@@ -213,7 +216,7 @@ function color_schemes() {
 					</tr>
 				</tbody>
 			</table>
-			<?php do_action( 'color_schemes_settings' ); ?>
+		<?php do_action( 'color_schemes_settings' ); ?>
 			<p class="submit">
 				<input type="submit" class="button-primary" value="<?php _e( 'Save changes', 'al-ecommerce-product-catalog' ); ?>" />
 			</p>
@@ -234,4 +237,11 @@ function get_default_product_image_src() {
 function get_modern_grid_settings() {
 	$settings = wp_parse_args( get_option( 'modern_grid_settings' ), array( 'attributes' => 0, 'per-row' => 2 ) );
 	return $settings;
+}
+
+function get_product_page_settings() {
+	$single_options												 = get_option( 'multi_single_options', unserialize( MULTI_SINGLE_OPTIONS ) );
+	$single_options[ 'enable_product_gallery' ]					 = isset( $single_options[ 'enable_product_gallery' ] ) ? $single_options[ 'enable_product_gallery' ] : '';
+	$single_options[ 'enable_product_gallery_only_when_exist' ]	 = isset( $single_options[ 'enable_product_gallery_only_when_exist' ] ) ? $single_options[ 'enable_product_gallery_only_when_exist' ] : '';
+	return $single_options;
 }

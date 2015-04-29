@@ -29,7 +29,7 @@ function is_ic_taxonomy_page() {
 
 /**
  * Checks if current page is main product listing
- * 
+ *
  * @return boolean
  */
 function is_ic_product_listing() {
@@ -75,6 +75,14 @@ function is_ic_sku_enabled() {
 		return true;
 	}
 	return false;
+}
+
+function is_ic_product_listing_enabled() {
+	if ( get_option( 'enable_product_listing', 1 ) == 1 ) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function ic_string_contains( $string, $contains ) {
@@ -180,6 +188,34 @@ function has_product_image( $product_id ) {
 function is_ic_shortcode_query() {
 	global $cat_shortcode_query, $shortcode_query;
 	if ( (isset( $cat_shortcode_query ) && $cat_shortcode_query[ 'enable' ] == 'yes') || isset( $shortcode_query ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Checks if a plural catalog name should be used
+ *
+ * @return boolean
+ */
+function is_plural_form_active() {
+	$lang = get_locale();
+	if ( $lang != 'de_DE' && $lang != 'pl_PL' ) {
+		echo 'ddddd';
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Checks if permalinks are enabled
+ * 
+ * @return boolean
+ */
+function is_ic_permalink_product_catalog() {
+	if ( get_option( 'permalink_structure' ) ) {
 		return true;
 	} else {
 		return false;

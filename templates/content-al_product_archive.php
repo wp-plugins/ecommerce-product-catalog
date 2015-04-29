@@ -13,16 +13,16 @@ global $post;
 $default_archive_names	 = default_archive_names();
 $multiple_settings		 = get_multiple_settings();
 $archive_names			 = get_archive_names();
-do_action( 'product_listing_begin' );
+do_action( 'product_listing_begin', $multiple_settings );
 ?>
 <article id="product_listing" <?php post_class( 'al_product responsive' ); ?>>
 	<?php do_action( 'before_product_listing_entry', $post, $archive_names ); ?>
 	<div class="entry-content">
 		<?php
-		$before_archive			 = content_product_adder_archive_before();
 		$archive_template		 = get_product_listing_template();
 		$taxonomy_name			 = apply_filters( 'current_product_catalog_taxonomy', 'al_product-cat' );
 		if ( !is_tax() && !is_search() ) {
+			$before_archive = content_product_adder_archive_before();
 			if ( $before_archive != '<div class="entry-summary"></div>' ) {
 				echo $before_archive;
 			}
@@ -44,8 +44,7 @@ do_action( 'product_listing_begin' );
 					}
 				}
 			}
-		}
-		if ( is_tax() ) {
+		} else if ( is_tax() ) {
 			$term				 = get_queried_object()->term_id;
 			$term_img			 = get_product_category_image_id( $term );
 			echo wp_get_attachment_image( $term_img, apply_filters( 'product_cat_image_size', 'large' ) );
@@ -97,5 +96,5 @@ do_action( 'product_listing_begin' );
 		?><span class="clear"></span>
 	</div>
 
-</article>
-<?php product_archive_pagination(); ?>
+</article><?php
+do_action( 'product_listing_end', $archive_template, $multiple_settings );

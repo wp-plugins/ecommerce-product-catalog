@@ -48,18 +48,21 @@ function default_product_thumbnail_url() {
 	return $url;
 }
 
+add_action( 'wp', 'redirect_listing_on_non_permalink' );
+
 /**
- * Returns product listing URL
+ * Redirects the product listing page to archive page on non permalink configuration
  *
- * @return string
  */
-function product_listing_url() {
-	if ( get_option( 'permalink_structure' ) ) {
-		$listing_url = site_url() . '/' . get_option( 'product_listing_url', __( 'products', 'al-ecommerce-product-catalog' ) ) . '/';
-	} else {
-		$listing_url = get_post_type_archive_link( 'al_product' );
+function redirect_listing_on_non_permalink() {
+	if ( !is_ic_permalink_product_catalog() ) {
+		$product_listing_id = get_product_listing_id();
+		if ( is_ic_product_listing_enabled() && is_page( $product_listing_id ) ) {
+			$url = product_listing_url();
+			wp_redirect( $url, 301 );
+			exit;
+		}
 	}
-	return $listing_url;
 }
 
 function upload_product_image( $name, $button_value, $option_name, $option_value = null, $default_image = null ) {
@@ -630,7 +633,7 @@ if ( !function_exists( 'check_permalink_options_update' ) ) {
 	function check_permalink_options_update() {
 		$options_update = get_option( 'al_permalink_options_update', 'none' );
 		if ( $options_update != 'none' ) {
-			flush_rewrite_rules( false );
+			flush_rewrite_rules();
 			update_option( 'al_permalink_options_update', 'none' );
 		}
 	}
@@ -648,17 +651,16 @@ function is_lightbox_enabled() {
 	return apply_filters( 'is_lightbox_enabled', $return );
 }
 
-function show_product_gallery( $post, $single_options ) {
-	$single_options[ 'enable_product_gallery' ]					 = isset( $single_options[ 'enable_product_gallery' ] ) ? $single_options[ 'enable_product_gallery' ] : '';
-	$single_options[ 'enable_product_gallery_only_when_exist' ]	 = isset( $single_options[ 'enable_product_gallery_only_when_exist' ] ) ? $single_options[ 'enable_product_gallery_only_when_exist' ] : '';
-	/* if (is_lightbox_enabled() && $single_options['enable_product_gallery'] == 1) {
-	  $colorbox_set = apply_filters('colorbox_set', '{transition: "elastic", initialWidth: 200, maxWidth: "90%", maxHeight: "90%", rel:"gal"}'); ?>
-	  <script>
-	  jQuery(document).ready(function () {
-	  jQuery(".a-product-image").colorbox(<?php echo $colorbox_set ?>);
-	  });
-	  </script> <?php
-	  } */
+add_action( 'before_product_details', 'show_product_gallery', 10, 2 );
+
+/**
+ * Shows product gallery on product page
+ *
+ * @param int $product_id
+ * @param array $single_options
+ * @return string
+ */
+function show_product_gallery( $product_id, $single_options ) {
 	if ( $single_options[ 'enable_product_gallery' ] == 1 ) {
 		do_action( 'before_product_image' );
 		?>
@@ -667,7 +669,7 @@ function show_product_gallery( $post, $single_options ) {
 			$image_size = apply_filters( 'product_image_size', 'medium' );
 			if ( has_post_thumbnail() ) {
 				if ( is_lightbox_enabled() ) {
-					$img_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+					$img_url = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'large' );
 					?>
 					<a class="a-product-image"
 					   href="<?php echo $img_url[ 0 ]; ?>"><?php the_post_thumbnail( $image_size ); ?></a> <?php
@@ -677,10 +679,10 @@ function show_product_gallery( $post, $single_options ) {
 			   } else if ( $single_options[ 'enable_product_gallery_only_when_exist' ] != 1 ) {
 				   echo default_product_thumbnail();
 			   }
-			   do_action( 'below_product_image', $post->ID );
+			   do_action( 'below_product_image', $product_id );
 			   ?>
 		</div> <?php
-		do_action( 'after_product_image', $post->ID );
+		do_action( 'after_product_image', $product_id );
 	} else {
 		return;
 	}
@@ -798,6 +800,10 @@ function get_product_image_id( $attachment_url = '' ) {
 	return $attachment_id;
 }
 
+/**
+ * Returns all products object
+ * @return object
+ */
 function get_all_catalog_products() {
 	$args		 = array(
 		'post_type'		 => product_post_type_array(),
@@ -840,7 +846,7 @@ add_action( 'pre_get_posts', 'set_product_order' );
  * @param object $query
  */
 function set_product_order( $query ) {
-	if ( !isset( $_GET[ 'order' ] ) && $query->is_main_query() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' )) ) {
+	if ( !is_admin() && !isset( $_GET[ 'order' ] ) && $query->is_main_query() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' )) ) {
 		$archive_multiple_settings = get_multiple_settings();
 		if ( !isset( $_GET[ 'product_order' ] ) ) {
 			if ( $archive_multiple_settings[ 'product_order' ] == 'product-name' ) {
@@ -887,7 +893,7 @@ add_action( 'before_product_list', 'show_product_order_dropdown', 10, 2 );
 function show_product_order_dropdown( $archive_template, $multiple_settings = null ) {
 	$multiple_settings = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
 	global $product_sort;
-	if ( (isset( $product_sort ) && $product_sort == 1) || (!isset( $product_sort ) && !is_ic_shortcode_query()) ) {
+	if ( (isset( $product_sort ) && $product_sort == 1) || (!is_ic_shortcode_query()) ) {
 		$sort_options	 = get_product_sort_options();
 		$selected		 = isset( $_GET[ 'product_order' ] ) ? $_GET[ 'product_order' ] : $multiple_settings[ 'product_order' ];
 		echo '<form id="product_order"><select id="product_order_selector" name="product_order">';

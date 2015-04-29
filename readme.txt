@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -191,9 +191,26 @@ This is not a store. It's main purpose is to present products or services on the
 
 == Changelog ==
 
+= 2.2.8 - 29/04/2015 = 
+
+* Fix - price with custom separators fixed
+* Tweak - validation on product settings to avoid some wrong configurations
+* Tweak - validation for price field
+* Tweak - code improvements for better performance
+* Tweak - Plural form disabled on some translation for German and Polish (feedback needed on other languages too)
+* Localisation - Romanian language introduced thanks to Alex via http://translate.implecode.com
+* Localisation - Danish language introduced thanks to Peter via http://translate.implecode.com
+* Localisation - Indonesian language introduced thanks to Tera via http://translate.implecode.com
+* Localisation - Polish language improved thanks to Adam via http://translate.implecode.com
+* Localisation - German language improved thanks to Toby via http://translate.implecode.com
+* Localisation - Greek language improved thanks to Giorgos via http://translate.implecode.com
+* Localisation - Portuguese language improved thanks to Giordano via http://translate.implecode.com
+* Localisation - Finnish language improved thanks to Sanna-Mari via http://translate.implecode.com
+
 = 2.2.7 - 20/04/2015 = 
 
 * Fix - no more conflict with recent posts widget
+
 
 = 2.2.6 - 13/04/2015 = 
 

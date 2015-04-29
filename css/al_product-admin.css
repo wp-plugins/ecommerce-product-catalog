@@ -912,3 +912,20 @@ max-width: 100%;
 	max-width: 220px;
 	position: fixed;
 }
+
+/* Admin Validation */
+
+label.error {
+    position: absolute;
+    top: 30px;
+    left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 1px 1px;
+    font-size: 15px;
+    background: #fff;
+}
+
+input.error {
+    background: #f4aeae;
+}

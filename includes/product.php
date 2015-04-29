@@ -41,20 +41,36 @@ function create_product() {
 	}
 	$names		 = get_catalog_names();
 	$query_var	 = get_product_query_var();
+	if ( is_plural_form_active() ) {
+		$labels = array(
+			'name'				 => $names[ 'plural' ],
+			'singular_name'		 => $names[ 'singular' ],
+			'add_new'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'add_new_item'		 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'edit_item'			 => sprintf( __( 'Edit %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'new_item'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'view_item'			 => sprintf( __( 'View %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'search_items'		 => sprintf( __( 'Search %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'plural' ] ) ),
+			'not_found'			 => sprintf( __( 'No %s found', 'al-ecommerce-product-catalog' ), $names[ 'plural' ] ),
+			'not_found_in_trash' => sprintf( __( 'No %s found in trash', 'al-ecommerce-product-catalog' ), $names[ 'plural' ] )
+		);
+	} else {
+		$labels = array(
+			'name'				 => $names[ 'plural' ],
+			'singular_name'		 => $names[ 'singular' ],
+			'add_new'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'add_new_item'		 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'edit_item'			 => sprintf( __( 'Edit %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'new_item'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'view_item'			 => sprintf( __( 'View %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
+			'search_items'		 => sprintf( __( 'Search %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'plural' ] ) ),
+			'not_found'			 => __( 'Nothing found', 'al-ecommerce-product-catalog' ),
+			'not_found_in_trash' => __( 'Nothing found in trash', 'al-ecommerce-product-catalog' )
+		);
+	}
 	if ( $wp_version < 3.8 ) {
 		$reg_settings = array(
-			'labels'				 => array(
-				'name'				 => $names[ 'plural' ],
-				'singular_name'		 => $names[ 'singular' ],
-				'add_new'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'add_new_item'		 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'edit_item'			 => sprintf( __( 'Edit %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'new_item'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'view_item'			 => sprintf( __( 'View %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'search_items'		 => sprintf( __( 'Search %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'plural' ] ) ),
-				'not_found'			 => sprintf( __( 'No %s found', 'al-ecommerce-product-catalog' ), $names[ 'plural' ] ),
-				'not_found_in_trash' => sprintf( __( 'No %s found in trash', 'al-ecommerce-product-catalog' ), $names[ 'plural' ] )
-			),
+			'labels'				 => $labels,
 			'public'				 => true,
 			'has_archive'			 => $product_listing_t,
 			'rewrite'				 => array( 'slug' => apply_filters( 'product_slug_value_register', $slug ), 'with_front' => false ),
@@ -83,18 +99,7 @@ function create_product() {
 		);
 	} else {
 		$reg_settings = array(
-			'labels'				 => array(
-				'name'				 => $names[ 'plural' ],
-				'singular_name'		 => $names[ 'singular' ],
-				'add_new'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'add_new_item'		 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'edit_item'			 => sprintf( __( 'Edit %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'new_item'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'view_item'			 => sprintf( __( 'View %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-				'search_items'		 => sprintf( __( 'Search %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'plural' ] ) ),
-				'not_found'			 => sprintf( __( 'No %s found', 'al-ecommerce-product-catalog' ), $names[ 'plural' ] ),
-				'not_found_in_trash' => sprintf( __( 'No %s found in trash', 'al-ecommerce-product-catalog' ), $names[ 'plural' ] )
-			),
+			'labels'				 => $labels,
 			'public'				 => true,
 			'has_archive'			 => $product_listing_t,
 			'rewrite'				 => array( 'slug' => apply_filters( 'product_slug_value_register', $slug ), 'with_front' => false ),
@@ -170,8 +175,10 @@ function al_product_price() {
 	wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
 	$price_table = '';
 	if ( is_ic_price_enabled() ) {
+		$set		 = get_currency_settings();
 		$price		 = get_post_meta( $post->ID, '_price', true );
-		$price_table = apply_filters( 'admin_price_table', '<table><tr><td class="label-column">' . __( 'Price', 'al-ecommerce-product-catalog' ) . ':</td><td class="price-column"><input type="number" min="0" step="0.01" name="_price" value="' . $price . '" class="widefat" /></td><td>' . product_currency() . '</td></tr></table>', $post );
+		$price_table = apply_filters( 'admin_price_table', '<table><tr><td class="label-column">' . __( 'Price', 'al-ecommerce-product-catalog' ) . ':</td><td class="price-column"><input type="text" title="' . sprintf( __( 'Example price format: %s or %s', 'al-ecommerce-product-catalog' ), price_format( '1587.89', 1, 0 ), '1587' . $set[ 'dec_sep' ] . '89' ) . '" pattern="^(([1-9](\\d*|\\d{0,2}(' . $set[ 'th_sep' ] . '\\d{3})*))|0)(\\' . $set[ 'dec_sep' ] . '\\d{1,2})?$" name="_price" value="' . $price . '" class="widefat" /></td><td>' . product_currency() . '</td></tr></table>', $post );
+		$price_table .= '<div id="invalid-_price" class="ui-state-error ui-corner-all message" style="padding: 0 .7em; display: none;"><p>' . sprintf( __( 'Please provide a correct price format according to your currency settings. Example price format: %s or %s', 'al-ecommerce-product-catalog' ), price_format( '1587.89', 1, 0 ), '1587' . $set[ 'dec_sep' ] . '89' ) . '</p></div>';
 	}
 	if ( is_ic_sku_enabled() ) {
 		$sku		 = get_post_meta( $post->ID, '_sku', true );
@@ -350,10 +357,15 @@ add_action( 'admin_head-post-new.php', 'change_thumbnail_html' );
 add_action( 'admin_head-post.php', 'change_thumbnail_html' );
 
 function modify_add_product_image_label( $label ) {
-	$names				 = get_catalog_names();
-	$names[ 'singular' ] = strtolower( $names[ 'singular' ] );
-	$label				 = str_replace( __( 'Set featured image' ), sprintf( __( 'Set %s image', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), $label );
-	$label				 = str_replace( __( 'Remove featured image' ), sprintf( __( 'Remove %s image', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), $label );
+	if ( is_plural_form_active() ) {
+		$names				 = get_catalog_names();
+		$names[ 'singular' ] = strtolower( $names[ 'singular' ] );
+		$label				 = str_replace( __( 'Set featured image' ), sprintf( __( 'Set %s image', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), $label );
+		$label				 = str_replace( __( 'Remove featured image' ), sprintf( __( 'Remove %s image', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), $label );
+	} else {
+		$label	 = str_replace( __( 'Set featured image' ), __( 'Set image', 'al-ecommerce-product-catalog' ), $label );
+		$label	 = str_replace( __( 'Remove featured image' ), __( 'Remove image', 'al-ecommerce-product-catalog' ), $label );
+	}
 	return $label;
 }
 
@@ -397,7 +409,7 @@ function get_product_description( $product_id ) {
 
 /**
  * Returns product short description
- * 
+ *
  * @param int $product_id
  * @return string
  */
