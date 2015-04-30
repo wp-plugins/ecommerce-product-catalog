@@ -202,7 +202,6 @@ function is_ic_shortcode_query() {
 function is_plural_form_active() {
 	$lang = get_locale();
 	if ( $lang != 'de_DE' && $lang != 'pl_PL' ) {
-		echo 'ddddd';
 		return true;
 	} else {
 		return false;
@@ -211,7 +210,7 @@ function is_plural_form_active() {
 
 /**
  * Checks if permalinks are enabled
- * 
+ *
  * @return boolean
  */
 function is_ic_permalink_product_catalog() {
