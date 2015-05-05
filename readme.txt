@@ -4,7 +4,7 @@ Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpre
 Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 2.2.9
+Stable tag: 2.2.10
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -104,6 +104,7 @@ Developers can contribute to the source code on the [eCommerce Product Catalog G
 * Japanese - Thanks to Diginatu via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Norwegian - Thanks to Oyvind via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Polish - Thanks to Norbert
+* Romanian - Thanks to Alex via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
 * Serbian - Thanks to Ogi
 * Spanish - Thanks to Andrew, Norbert and Josu
 * Turkish - Thanks to Tahir via [translate.implecode.com](http://translate.implecode.com/projects/ecommerce-product-catalog)
@@ -191,7 +192,12 @@ This is not a store. It's main purpose is to present products or services on the
 
 == Changelog ==
 
-= 2.2.8 - 30/04/2015 = 
+= 2.2.10 - 05/05/2015 = 
+
+* Tweak - code improvements for even better performance
+* Localisation - Romanian language introduced thanks to Alex via http://translate.implecode.com
+
+= 2.2.9 - 30/04/2015 = 
 
 * Fix - headers already send error that appeared on certain configurations fixed
 

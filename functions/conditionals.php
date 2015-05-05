@@ -209,6 +209,20 @@ function is_plural_form_active() {
 }
 
 /**
+ * Checks if WordPress language is english
+ *
+ * @return boolean
+ */
+function is_english_catalog_active() {
+	$lang = get_locale();
+	if ( strpos( $lang, 'en_' ) !== false ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+/**
  * Checks if permalinks are enabled
  *
  * @return boolean

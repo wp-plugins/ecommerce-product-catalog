@@ -68,27 +68,32 @@ function show_products_outside_loop( $atts ) {
 		'design_scheme'		 => '',
 		'sort'				 => 0,
 	), $atts );
-	$category			 = esc_attr( $args[ 'category' ] );
-	$product			 = esc_attr( $args[ 'product' ] );
+	$category			 = esc_html( $args[ 'category' ] );
+	$product			 = esc_html( $args[ 'product' ] );
 	$products_limit		 = intval( $args[ 'products_limit' ] );
 	$archive_template	 = esc_attr( $args[ 'archive_template' ] );
 	$design_scheme		 = esc_attr( $args[ 'design_scheme' ] );
 	$product_sort		 = intval( $args[ 'sort' ] );
 	if ( $product != 0 ) {
+
 		$product_array	 = explode( ',', $product );
 		$query_param	 = array(
 			'post_type'		 => 'al_product',
 			'post__in'		 => $product_array,
 			'posts_per_page' => $products_limit,
 		);
-	} else if ( $category != 0 ) {
+	} else if ( !empty( $category ) ) {
 		$category_array	 = explode( ',', $category );
-		$query_param	 = array(
+		$field			 = 'name';
+		if ( is_numeric( $category_array[ 0 ] ) ) {
+			$field = 'term_id';
+		}
+		$query_param = array(
 			'post_type'		 => 'al_product',
 			'tax_query'		 => array(
 				array(
 					'taxonomy'	 => 'al_product-cat',
-					'field'		 => 'term_id',
+					'field'		 => $field,
 					'terms'		 => $category_array,
 				),
 			),

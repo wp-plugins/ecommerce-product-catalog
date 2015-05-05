@@ -15,16 +15,17 @@ if ( !defined( 'ABSPATH' ) ) {
 /* General */
 
 function price_format( $price_value, $clear = 0, $format = 1, $raw = 0 ) {
-	$set		 = get_currency_settings();
-	$th_symbol	 = addslashes( $set[ 'th_sep' ] );
-	$dec_symbol	 = addslashes( $set[ 'dec_sep' ] );
-	if ( $set[ 'dec_sep' ] != '.' ) {
-		$raw_price_value = str_replace( array( $th_symbol, $dec_symbol ), array( "", '.' ), $price_value );
-	} else {
-		$raw_price_value = str_replace( $th_symbol, "", $price_value );
-	}
-	$price_value = number_format( $raw_price_value, 2, $set[ 'dec_sep' ], $set[ 'th_sep' ] );
-	$space		 = ' ';
+	$set			 = get_currency_settings();
+	$th_symbol		 = addslashes( $set[ 'th_sep' ] );
+	$dec_symbol		 = addslashes( $set[ 'dec_sep' ] );
+	/*  if ( $set[ 'dec_sep' ] != '.' ) {
+	  $raw_price_value = str_replace( array( $th_symbol, $dec_symbol ), array( "", '.' ), $price_value );
+	  } else {
+	  $raw_price_value = str_replace( $th_symbol, "", $price_value );
+	  } */
+	$raw_price_value = $price_value;
+	$price_value	 = number_format( $raw_price_value, 2, $set[ 'dec_sep' ], $set[ 'th_sep' ] );
+	$space			 = ' ';
 	if ( $set[ 'price_space' ] == 'off' ) {
 		$space = '';
 	}
@@ -41,6 +42,27 @@ function price_format( $price_value, $clear = 0, $format = 1, $raw = 0 ) {
 	} else {
 		return $price_value;
 	}
+}
+
+add_filter( 'product_price', 'raw_price_format', 5 );
+add_filter( 'unfiltered_product_price', 'raw_price_format', 5 );
+
+/**
+ * Transforms price for internal use
+ *
+ * @param int|string $price_value
+ * @return int
+ */
+function raw_price_format( $price_value ) {
+	$set		 = get_currency_settings();
+	$th_symbol	 = addslashes( $set[ 'th_sep' ] );
+	$dec_symbol	 = addslashes( $set[ 'dec_sep' ] );
+	if ( $set[ 'dec_sep' ] != '.' ) {
+		$raw_price_value = str_replace( array( $th_symbol, $dec_symbol ), array( "", '.' ), $price_value );
+	} else {
+		$raw_price_value = str_replace( $th_symbol, "", $price_value );
+	}
+	return $raw_price_value;
 }
 
 /* Classic List */
