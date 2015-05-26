@@ -153,7 +153,7 @@ add_action( 'product_listing_end', 'product_archive_pagination' );
  * @return string
  */
 function product_archive_pagination() {
-	if ( is_singular() ) {
+	if ( is_singular() || (is_ic_product_listing() && is_ic_only_main_cats()) ) {
 		return;
 	}
 
@@ -460,8 +460,8 @@ function product_list_header() {
 	if ( !empty( $archive_names[ 'all_products' ] ) && !is_ic_shortcode_query() ) {
 		if ( !is_tax() ) {
 			echo '<h2>' . do_shortcode( $archive_names[ 'all_products' ] ) . '</h2>';
-		} else if ( is_tax() && has_category_children() ) {
-			$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		} else if ( is_tax() && is_ic_product_listing_showing_cats() ) {
+			//$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 			echo '<h2>' . do_shortcode( $archive_names[ 'category_products' ] ) . '</h2>';
 		}
 	}
@@ -474,4 +474,14 @@ function product_list_header() {
  */
 function design_settings_examples_image() {
 	return AL_PLUGIN_BASE_PATH . 'templates/themes/img/example-product.jpg';
+}
+
+add_filter( 'parse_tax_query', 'exclude_products_from_child_cat' );
+
+function exclude_products_from_child_cat( $query ) {
+	if ( !is_admin() && $query->is_main_query() && $query->is_tax( 'al_product-cat' ) && is_ic_only_main_cats() ) {
+		foreach ( $query->tax_query->queries as $i => $xquery ) {
+			$query->tax_query->queries[ $i ][ 'include_children' ] = 0;
+		}
+	}
 }

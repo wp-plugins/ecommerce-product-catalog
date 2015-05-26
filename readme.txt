@@ -192,6 +192,13 @@ This is not a store. It's main purpose is to present products or services on the
 
 == Changelog ==
 
+= 2.3.0 - 26/05/2015 = 
+
+* Feature - Ability to show only subcategories on category pages (products will be shown only on assigned category pages)
+* Tweak - ability to disable image on category page
+* Fix - encoding error fixed in classic list for some languages
+* Fix - product search title now showing properly
+
 = 2.2.11 - 11/05/2015 = 
 
 * Fix - Twenty Thirteen styling fix

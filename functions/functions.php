@@ -550,7 +550,7 @@ function product_breadcrumbs() {
 				$product_archive_title = get_product_listing_title();
 			}
 		}
-		$current_product = get_the_title( $post->ID );
+		$current_product = get_the_title();
 		if ( is_ic_product_page() ) {
 			return '<p id="breadcrumbs">
 <span xmlns:v="http://rdf.data-vocabulary.org/#">
