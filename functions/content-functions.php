@@ -79,7 +79,7 @@ function c_list_desc( $post_id = null, $shortdesc = null ) {
 	if ( $desclenght > $limit ) {
 		$more = ' [...]';
 	}
-	return apply_filters( 'c_list_desc_content', mb_substr( $shortdesc, 0, $limit ) . $more, $post_id );
+	return apply_filters( 'c_list_desc_content', substr( $shortdesc, 0, $limit ) . $more, $post_id );
 }
 
 /* Single Product */
@@ -97,14 +97,3 @@ function add_back_to_products_url( $post, $single_names, $taxonomies ) {
 
 add_action( 'single_product_end', 'add_back_to_products_url', 99, 3 );
 
-/**
- * Shows product search form
- */
-function product_search_form() {
-	$search_button_text = __( 'Search', 'al-ecommerce-product-catalog' );
-	echo '<form role="search" method="get" class="search-form product_search_form" action="' . esc_url( home_url( '/' ) ) . '">
-<input type="hidden" name="post_type" value="al_product" />
-<input class="product-search-box" type="search" value="' . get_search_query() . '" id="s" name="s" placeholder="' . __( 'Product Search', 'al-ecommerce-product-catalog' ) . '" />
-<input class="search-submit product-search-submit" type="submit" value="' . $search_button_text . '" />
-</form>';
-}

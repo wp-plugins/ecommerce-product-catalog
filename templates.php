@@ -56,7 +56,7 @@ function initialize_product_adder_template() {
 }
 
 function al_product_adder_template( $template ) {
-	if ( is_ic_catalog_page() ) {
+	if ( 'al_product' == get_quasi_post_type() ) {
 		return get_product_adder_path();
 	}
 	return $template;
