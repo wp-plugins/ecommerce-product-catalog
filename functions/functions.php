@@ -518,11 +518,12 @@ function get_quasi_post_tax_name( $tax_name, $exact = true ) {
 }
 
 function product_breadcrumbs() {
-	if ( get_integration_type() != 'simple' ) {
+	if ( get_integration_type() != 'simple' && !is_front_page() ) {
 		global $post;
 		$post_type	 = get_post_type();
 		$home_page	 = get_home_url();
-		if ( function_exists( 'additional_product_listing_url' ) AND $post_type != 'al_product' ) {
+		if ( function_exists( 'additional_product_listing_url' ) && $post_type != 'al_product' ) {
+			echo $post_type;
 			$catalog_id			 = catalog_id( $post_type );
 			$product_archives	 = additional_product_listing_url();
 			$product_archive	 = $product_archives[ $catalog_id ];

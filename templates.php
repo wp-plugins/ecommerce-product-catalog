@@ -308,8 +308,10 @@ function get_page_php_path() {
 	return $path;
 }
 
-function is_home_archive() {
-	if ( is_front_page() && is_product_listing_home_set() ) {
+function is_home_archive( $query = null ) {
+	if ( !is_object( $query ) && is_front_page() && is_product_listing_home_set() ) {
+		return true;
+	} else if ( is_object( $query ) && $query->get( 'page_id' ) == get_option( 'page_on_front' ) && is_product_listing_home_set() ) {
 		return true;
 	}
 	return false;

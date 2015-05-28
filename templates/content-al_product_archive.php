@@ -79,14 +79,14 @@ do_action( 'product_listing_begin', $multiple_settings );
 				}
 			}
 		}
+		if ( is_home_archive() ) {
+			$args	 = array( 'post_type' => 'al_product', 'posts_per_page' => $multiple_settings[ 'archive_products_limit' ] );
+			query_posts( $args );
+			$is_home = 1;
+		}
 		if ( (is_tax() || is_search() || !is_ic_only_main_cats()) && more_products() ) {
 			do_action( 'before_product_list', $archive_template, $multiple_settings );
 			$product_list = '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class() . '">';
-			if ( is_home_archive() ) {
-				$args	 = array( 'post_type' => 'al_product' );
-				query_posts( $args );
-				$is_home = 1;
-			}
 			while ( have_posts() ) : the_post();
 				$product_list .= get_catalog_template( $archive_template, $post );
 			endwhile;

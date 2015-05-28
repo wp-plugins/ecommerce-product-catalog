@@ -33,7 +33,7 @@ function is_ic_taxonomy_page() {
  * @return boolean
  */
 function is_ic_product_listing() {
-	if ( is_post_type_archive( product_post_type_array() ) ) {
+	if ( is_post_type_archive( product_post_type_array() ) || is_home_archive() ) {
 		return true;
 	}
 	return false;
