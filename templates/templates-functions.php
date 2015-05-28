@@ -14,7 +14,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author 		Norbert Dreszer
  */
 function content_product_adder() {
-	if ( is_archive() || is_search() || is_home_archive() ) {
+	if ( is_archive() || is_search() || is_home_archive() || is_ic_product_listing() ) {
 		do_action( 'before_product_archive' );
 		content_product_adder_archive();
 	} else {
@@ -483,4 +483,18 @@ function exclude_products_from_child_cat( $query ) {
 			$query->tax_query->queries[ $i ][ 'include_children' ] = 0;
 		}
 	}
+}
+
+add_filter( 'product_listing_classes', 'add_classes_on_categories' );
+
+/**
+ * Adds neccessary classes for some themes
+ * @param string $classes
+ * @return string
+ */
+function add_classes_on_categories( $classes ) {
+	if ( is_tax() && is_ic_only_main_cats() ) {
+		$classes .= ' hentry status-publish';
+	}
+	return $classes;
 }
