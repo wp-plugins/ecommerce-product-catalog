@@ -10,7 +10,7 @@
  * Text Domain: al-ecommerce-product-catalog
  * Domain Path: /lang/
 
-  Copyright: 2014 impleCode.
+  Copyright: 2015 impleCode.
   License: GNU General Public License v3.0
   License URI: http://www.gnu.org/licenses/gpl-3.0.html */
 if ( !defined( 'ABSPATH' ) ) {
