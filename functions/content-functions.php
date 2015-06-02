@@ -69,8 +69,9 @@ function raw_price_format( $price_value ) {
 
 function c_list_desc( $post_id = null, $shortdesc = null ) {
 	if ( $shortdesc == '' ) {
-		$shortdesc = strip_tags( get_product_short_description( $post_id ) );
+		$shortdesc = get_product_short_description( $post_id );
 	}
+	$shortdesc	 = strip_tags( $shortdesc );
 //remove all shortcodes - discsox
 	$shortdesc	 = trim( strip_shortcodes( $shortdesc ) );
 	$desclenght	 = strlen( $shortdesc );
