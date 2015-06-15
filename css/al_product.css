@@ -1103,6 +1103,11 @@ div.relative-box {
     background-color: transparent;
 }
 
+/* Buttons */
+.button {
+    cursor: pointer;
+}
+
 /* Product Order */
 form#product_order {
     text-align: right;
