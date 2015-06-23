@@ -398,6 +398,6 @@ add_action( 'extensions-menu', 'add_product_catalog_bundle_url', 99 );
  */
 function add_product_catalog_bundle_url() {
 	if ( !function_exists( 'start_implecode_updater' ) ) {
-		echo '<a target="_blank" title="' . __( 'Now you can get multiple extensions at once with the lowest price ever.', 'al-ecommerce-product-catalog' ) . '" class="upgrade-now" href="http://implecode.com/choose-a-plan/#cam=bundles&key=extensions-top-menu">' . __( 'Get multiple extensions for a lowest price ever!', 'al-ecommerce-product-catalog' ) . '</a>';
+		echo '<a target="_blank" title="' . __( 'Now you can get multiple extensions at once with the lowest price ever.', 'al-ecommerce-product-catalog' ) . '" class="upgrade-now" href="http://implecode.com/choose-a-plan/#cam=bundles&key=extensions-top-menu">' . __( 'Now extensions bundles from $19.99!', 'al-ecommerce-product-catalog' ) . '</a>';
 	}
 }
