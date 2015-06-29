@@ -180,6 +180,20 @@ function has_product_image( $product_id ) {
 }
 
 /**
+ * Checks if product has price set
+ * @param type $product_id
+ * @return boolean
+ */
+function has_product_price( $product_id = null ) {
+	$product_id	 = empty( $product_id ) ? get_the_ID() : $product_id;
+	$price		 = product_price( $product_id, 1 );
+	if ( !empty( $price ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
  * Checks if current view is triggered by shortcode
  *
  * @global type $cat_shortcode_query
