@@ -299,6 +299,14 @@ function get_product_adder_path() {
 	return get_stylesheet_directory() . '/product-adder.php';
 }
 
+function get_custom_product_page_path() {
+	return get_stylesheet_directory() . '/implecode/product-page.php';
+}
+
+function get_custom_product_listing_path() {
+	return get_stylesheet_directory() . '/implecode/product-listing.php';
+}
+
 function get_page_php_path() {
 	if ( file_exists( get_stylesheet_directory() . '/page.php' ) ) {
 		$path = get_stylesheet_directory() . '/page.php';

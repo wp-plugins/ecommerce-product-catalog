@@ -23,11 +23,27 @@ function content_product_adder() {
 }
 
 function content_product_adder_archive() {
-	include 'content-al_product_archive.php';
+	$path = get_custom_product_listing_path();
+	if ( file_exists( $path ) ) {
+		ob_start();
+		include $path;
+		$product_listing = ob_get_clean();
+		echo do_shortcode( $product_listing );
+	} else {
+		include 'content-al_product_archive.php';
+	}
 }
 
 function content_product_adder_single() {
-	include 'content-al_product.php';
+	$path = get_custom_product_page_path();
+	if ( file_exists( $path ) ) {
+		ob_start();
+		include $path;
+		$product_page = ob_get_clean();
+		echo do_shortcode( $product_page );
+	} else {
+		include 'content-al_product.php';
+	}
 }
 
 function content_product_adder_archive_before() {

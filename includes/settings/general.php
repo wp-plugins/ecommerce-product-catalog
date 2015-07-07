@@ -137,9 +137,9 @@ function general_settings_content() {
 					</table>
 
 					<h3><?php _e( 'Product listing page', 'al-ecommerce-product-catalog' ); ?></h3><?php
-					if ( $disabled == 'simple' ) {
-						implecode_warning( sprintf( __( 'Product listing page is disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable product listing page with pagination or use [show_products] shortcode on the page selected below.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=product-listing' ) );
-					}
+					/* if ( $disabled == 'disabled' ) {
+					  implecode_warning( sprintf( __( 'Product listing page is disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable product listing page with pagination or use [show_products] shortcode on the page selected below.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=product-listing' ) );
+					  } */
 					?>
 					<table>
 						<tr>
@@ -147,10 +147,7 @@ function general_settings_content() {
 								<?php _e( 'Enable Product Listing Page', 'al-ecommerce-product-catalog' ); ?>:
 							</td>
 							<td>
-								<input <?php echo $disabled; ?>
-									title="<?php _e( 'Disable and use [show_products] shortcode to display the products.', 'al-ecommerce-product-catalog' ); ?>"
-									type="checkbox" name="enable_product_listing"
-									value="1"<?php checked( 1, $enable_product_listing ); ?> />
+								<input title="<?php _e( 'Disable and use [show_products] shortcode to display the products.', 'al-ecommerce-product-catalog' ); ?>" type="checkbox" name="enable_product_listing" value="1"<?php checked( 1, $enable_product_listing ); ?> />
 							</td>
 						</tr>
 						<tr>
@@ -180,7 +177,7 @@ function general_settings_content() {
 						  </tr> */ ?>
 						<tr>
 							<td><?php _e( 'Product listing shows at most', 'al-ecommerce-product-catalog' ); ?> </td>
-							<td><input <?php echo $disabled ?>
+							<td><input
 									title="<?php _e( 'You can also use shortcode with products_limit attribute to set this.', 'al-ecommerce-product-catalog' ); ?>"
 									size="30" class="number-box" type="number" step="1" min="0"
 									name="archive_multiple_settings[archive_products_limit]" id="archive_products_limit"
