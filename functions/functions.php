@@ -218,7 +218,9 @@ add_action( 'single_product_header', 'add_product_name' );
  * Shows product name on product page
  */
 function add_product_name() {
-	echo '<h1 class="entry-title product-name">' . get_the_title() . '</h1>';
+	if ( is_ic_product_name_enabled() ) {
+		echo '<h1 class="entry-title product-name">' . get_the_title() . '</h1>';
+	}
 }
 
 add_action( 'before_product_listing_entry', 'product_listing_header', 10, 2 );

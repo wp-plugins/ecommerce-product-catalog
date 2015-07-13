@@ -526,3 +526,38 @@ function add_classes_on_categories( $classes ) {
 	}
 	return $classes;
 }
+
+add_action( 'advanced_mode_layout_start', 'advanced_mode_styling' );
+
+/**
+ * Adds advanced mode custom styling settings
+ *
+ */
+function advanced_mode_styling() {
+	$settings	 = get_integration_settings();
+	$styling	 = '<style>';
+	if ( $settings[ 'container_width' ] != 100 ) {
+		$styling .= '#container {width: ' . $settings[ 'container_width' ] . '%; margin: 0 auto; overflow: hidden; box-sizing: border-box; float: none;}';
+	}
+	if ( $settings[ 'container_bg' ] != '' ) {
+		$styling .= '#container {background: ' . $settings[ 'container_bg' ] . ';}';
+	}
+	if ( $settings[ 'container_padding' ] != 0 ) {
+		$styling .= '#content {padding: ' . $settings[ 'container_padding' ] . 'px; box-sizing: border-box; float: none; }';
+	}
+	$styling .= '</style>';
+	if ( $styling != '<style></style>' ) {
+		echo $styling;
+	}
+}
+
+add_action( 'advanced_mode_layout_end', 'advanced_mode_default_sidebar' );
+
+/**
+ * Shows theme default sidebar if necessary
+ */
+function advanced_mode_default_sidebar() {
+	if ( is_ic_default_theme_sidebar_active() ) {
+		get_sidebar();
+	}
+}

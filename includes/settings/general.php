@@ -122,13 +122,40 @@ function general_settings_content() {
 						<h3><?php _e( 'Theme Integration', 'al-ecommerce-product-catalog' ); ?></h3><?php
 						if ( get_integration_type() == 'simple' ) {
 							$disabled = 'disabled';
-							implecode_warning( '<p>' . __( 'The simple mode allows to use eCommerce Product Catalog most features. You can build the product listing pages and category pages by using a [show_products] shortcode. Simple mode uses your theme page layout so it can show unwanted elements on product page. If it does please switch to Advanced Mode and see if it works out of the box.', 'al-ecommerce-product-catalog' ) . '</p><p>' . __( 'Switching to Advanced Mode also gives additional features: automatic product listing, category pages, product search and category widget. Building a product catalog in Advanced Mode will be less time consuming as you don’t need to use a shortcode for everything.', 'al-ecommerce-product-catalog' ) . '</p>' );
 						}
-						?>
-						<table>
-							<?php implecode_settings_radio( __( 'Choose theme integration type', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[integration_type]', $archive_multiple_settings[ 'integration_type' ], array( 'simple' => __( 'Simple Integration<br>', 'al-ecommerce-product-catalog' ), 'advanced' => __( 'Advanced Integration', 'al-ecommerce-product-catalog' ) ) ) ?>
-						</table>
-					<?php } ?>
+						if ( is_integration_mode_selected() ) {
+							$selected = true;
+							if ( get_integration_type() == 'simple' ) {
+								implecode_warning( '<p>' . __( 'The simple mode allows to use eCommerce Product Catalog most features. You can build the product listing pages and category pages by using a [show_products] shortcode. Simple mode uses your theme page layout so it can show unwanted elements on product page. If it does please switch to Advanced Mode and see if it works out of the box.', 'al-ecommerce-product-catalog' ) . '</p><p>' . __( 'Switching to Advanced Mode also gives additional features: automatic product listing, category pages, product search and category widget. Building a product catalog in Advanced Mode will be less time consuming as you don’t need to use a shortcode for everything.', 'al-ecommerce-product-catalog' ) . '</p>' . sample_product_button( 'p', __( 'Restart Integration Wizard', 'al-ecommerce-product-catalog' ) ) );
+							}
+							?>
+							<table>
+								<?php
+								implecode_settings_radio( __( 'Choose theme integration type', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[integration_type]', $archive_multiple_settings[ 'integration_type' ], array( 'simple' => __( 'Simple Integration<br>', 'al-ecommerce-product-catalog' ), 'advanced' => __( 'Advanced Integration', 'al-ecommerce-product-catalog' ) ) );
+								?></table>
+							<table class="advanced_mode_settings"><?php
+								implecode_settings_number( __( 'Catalog Container Width', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[container_width]', $archive_multiple_settings[ 'container_width' ], '%' );
+								implecode_settings_text_color( __( 'Catalog Container Background', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[container_bg]', $archive_multiple_settings[ 'container_bg' ] );
+								implecode_settings_number( __( 'Catalog Container Padding', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[container_padding]', $archive_multiple_settings[ 'container_padding' ], 'px' );
+								implecode_settings_checkbox( __( 'Disable Product Name', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[disable_name]', $archive_multiple_settings[ 'disable_name' ] );
+								?>
+							</table>
+							<?php
+							if ( get_integration_type() == 'advanced' ) {
+								echo sample_product_button( 'p', __( 'Restart Integration Wizard', 'al-ecommerce-product-catalog' ) );
+							}
+						} else {
+							$selected = false;
+							?>
+							<table style="display: none">
+								<?php
+								implecode_settings_radio( __( 'Choose theme integration type', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[integration_type]', $archive_multiple_settings[ 'integration_type' ], array( 'simple' => __( 'Simple Integration<br>', 'al-ecommerce-product-catalog' ), 'advanced' => __( 'Advanced Integration', 'al-ecommerce-product-catalog' ) ) );
+								?></table>
+							<?php
+							echo '<a href="' . sample_product_url() . '" class="button-primary">' . __( 'Start Auto Adjustment', 'al-ecommerce-product-catalog' ) . '</a>';
+						}
+					}
+					?>
 					<h3><?php _e( 'Product Catalog', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table><?php
 						implecode_settings_text( __( 'Catalog Singular Name', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[catalog_singular]', $archive_multiple_settings[ 'catalog_singular' ], null, 1, null, __( 'Admin panel customisation setting. Change it to what you sell.', 'al-ecommerce-product-catalog' ) );
@@ -195,7 +222,11 @@ function general_settings_content() {
 					?>
 					<h3><?php _e( 'Categories Settings', 'al-ecommerce-product-catalog' ); ?></h3><?php
 					if ( $disabled != '' ) {
-						implecode_warning( sprintf( __( 'Category pages are disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable category pages or use [show_products category="1"] (where "1" is category ID) on any page to show products from certain category.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=categories-settings' ) );
+						if ( $selected ) {
+							implecode_warning( sprintf( __( 'Category pages are disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable category pages or use [show_products category="1"] (where "1" is category ID) on any page to show products from certain category.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=categories-settings' ) );
+						} else {
+							implecode_warning( sprintf( __( 'Category pages are disabled due to a lack of theme integration.%s', 'al-ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
+						}
 					}
 					?>
 					<table>
@@ -226,7 +257,11 @@ function general_settings_content() {
 					</table>
 					<h3><?php _e( 'SEO Settings', 'al-ecommerce-product-catalog' ); ?></h3><?php
 					if ( $disabled != '' ) {
-						implecode_warning( sprintf( __( 'SEO settings are disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable SEO settings.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=seo-settings' ) );
+						if ( $selected ) {
+							implecode_warning( sprintf( __( 'SEO settings are disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable SEO settings.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=seo-settings' ) );
+						} else {
+							implecode_warning( sprintf( __( 'SEO settings are disabled due to a lack of theme integration.%s', 'al-ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
+						}
 					}
 					?>
 					<table>
@@ -238,7 +273,11 @@ function general_settings_content() {
 					</table>
 					<h3><?php _e( 'Breadcrumbs Settings', 'al-ecommerce-product-catalog' ); ?></h3><?php
 					if ( $disabled != '' ) {
-						implecode_warning( sprintf( __( 'Breadcrumbs are disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable product breadcrumbs.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=breadcrumbs-settings' ) );
+						if ( $selected ) {
+							implecode_warning( sprintf( __( 'Breadcrumbs are disabled with simple theme integration. See <a href="%s">Theme Integration Guide</a> to enable product breadcrumbs.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=simple-mode&key=breadcrumbs-settings' ) );
+						} else {
+							implecode_warning( sprintf( __( 'Breadcrumbs are disabled due to a lack of theme integration.%s', 'al-ecommerce-product-catalog' ), sample_product_button( 'p' ) ) );
+						}
 					}
 					?>
 					<table>
@@ -378,6 +417,10 @@ function get_multiple_settings() {
 	$archive_multiple_settings[ 'catalog_plural' ]		 = isset( $archive_multiple_settings[ 'catalog_plural' ] ) ? $archive_multiple_settings[ 'catalog_plural' ] : __( 'Products', 'al-ecommerce-product-catalog' );
 	$archive_multiple_settings[ 'catalog_singular' ]	 = isset( $archive_multiple_settings[ 'catalog_singular' ] ) ? $archive_multiple_settings[ 'catalog_singular' ] : __( 'Product', 'al-ecommerce-product-catalog' );
 	$archive_multiple_settings[ 'cat_image_disabled' ]	 = isset( $archive_multiple_settings[ 'cat_image_disabled' ] ) ? $archive_multiple_settings[ 'cat_image_disabled' ] : '';
+	$archive_multiple_settings[ 'container_width' ]		 = isset( $archive_multiple_settings[ 'container_width' ] ) ? $archive_multiple_settings[ 'container_width' ] : 100;
+	$archive_multiple_settings[ 'container_bg' ]		 = isset( $archive_multiple_settings[ 'container_bg' ] ) ? $archive_multiple_settings[ 'container_bg' ] : '';
+	$archive_multiple_settings[ 'container_padding' ]	 = isset( $archive_multiple_settings[ 'container_padding' ] ) ? $archive_multiple_settings[ 'container_padding' ] : 0;
+	$archive_multiple_settings[ 'disable_name' ]		 = isset( $archive_multiple_settings[ 'disable_name' ] ) ? $archive_multiple_settings[ 'disable_name' ] : '';
 	return apply_filters( 'catalog_multiple_settings', $archive_multiple_settings );
 }
 
