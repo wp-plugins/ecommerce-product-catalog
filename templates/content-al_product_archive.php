@@ -48,7 +48,7 @@ $listing_class			 = apply_filters( 'product_listing_classes', 'al_product respon
 			$term = get_queried_object()->term_id;
 			if ( is_ic_category_image_enabled() ) {
 				$term_img = get_product_category_image_id( $term );
-				echo wp_get_attachment_image( $term_img, apply_filters( 'product_cat_image_size', 'large' ) );
+				echo wp_get_attachment_image( $term_img, apply_filters( 'product_cat_image_size', 'large' ), false, array( 'class' => 'product-category-image' ) );
 			}
 			$term_description = term_description();
 			if ( !empty( $term_description ) ) {

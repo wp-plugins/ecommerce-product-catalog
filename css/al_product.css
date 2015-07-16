@@ -156,6 +156,10 @@
     margin-left: -20%;
 }
 
+.product-category-image {
+    max-width: 100%;
+}
+
 .product-list .al_archive .product-attributes table, #content .al_archive .product-attributes table, .al_archive .product-attributes table {
     border: none;
     font-size: 12px;

@@ -78,11 +78,11 @@ function ic_system_status() {
 					</tr>
 					<tr>
 						<td><?php _e( 'Delete all products', 'al-ecommerce-product-catalog' ); ?>:</td>
-						<td><a class="button" href="<?php echo esc_url( add_query_arg( 'delete_all_products', 1 ) ) ?>"><?php _e( 'Delete all Prodcts', 'al-ecommerce-product-catalog' ) ?></a></td>
+						<td><a class="button" href="<?php echo esc_url( add_query_arg( 'delete_all_products', 1 ) ) ?>"><?php _e( 'Delete all Products', 'al-ecommerce-product-catalog' ) ?></a></td>
 					</tr>
 					<tr>
 						<td><?php _e( 'Delete all product categories', 'al-ecommerce-product-catalog' ); ?>:</td>
-						<td><a class="button" href="<?php echo esc_url( add_query_arg( 'delete_all_product_categories', 1 ) ) ?>"><?php _e( 'Delete all Prodct Categories', 'al-ecommerce-product-catalog' ) ?></a></td>
+						<td><a class="button" href="<?php echo esc_url( add_query_arg( 'delete_all_product_categories', 1 ) ) ?>"><?php _e( 'Delete all Product Categories', 'al-ecommerce-product-catalog' ) ?></a></td>
 					</tr>
 					<tr>
 						<td><?php _e( 'Delete all products and categories on uninstall', 'al-ecommerce-product-catalog' ); ?>:</td>

@@ -388,8 +388,17 @@ function show_parent_product_categories( $echo = 1, $return = '' ) {
 	return echo_ic_setting( $return, $echo );
 }
 
+add_filter( 'the_title', 'override_product_page_title', 10, 2 );
+
+/**
+ * Replaces auto products listing, product category pages and product search title with appropriate entries
+ *
+ * @param string $page_title
+ * @param int $id
+ * @return string
+ */
 function override_product_page_title( $page_title, $id = null ) {
-	if ( !is_admin() && is_ic_catalog_page() && !is_ic_product_page() && !in_the_loop() && (empty( $id ) || (get_quasi_post_type( get_post_type( $id ) ) == 'al_product')) ) {
+	if ( !is_admin() && is_ic_catalog_page() && !is_ic_product_page() && !in_the_loop() && !is_ic_shortcode_query() && (empty( $id ) || (get_quasi_post_type( get_post_type( $id ) ) == 'al_product')) ) {
 		$archive_names = get_archive_names();
 		if ( is_ic_taxonomy_page() ) {
 			$the_tax	 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
@@ -402,8 +411,6 @@ function override_product_page_title( $page_title, $id = null ) {
 	}
 	return $page_title;
 }
-
-add_filter( 'the_title', 'override_product_page_title', 10, 2 );
 
 function get_product_listing_title() {
 	$archive_names	 = get_archive_names();

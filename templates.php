@@ -203,7 +203,7 @@ function theme_integration_wizard( $atts ) {
 			$box_content .= implecode_settings_checkbox( __( 'Disable Shipping', 'al-ecommerce-product-catalog' ), 'disable_shipping', $integration_settings[ 'disable_shipping' ], 0 );
 			$box_content .= implecode_settings_checkbox( __( 'Disable Attributes', 'al-ecommerce-product-catalog' ), 'disable_attributes', $integration_settings[ 'disable_attributes' ], 0 );
 			$box_content .= '</table>';
-			$box_content .= '<style>#integration_wizard .al-box table tbody, #integration_wizard .al-box table tr, #integration_wizard .al-box table td {border: 0} #integration_wizard .al-box table.styling-adjustments td {vertical-align: middle;font-size: 14px; color: rgb(136, 136, 136); text-align: left;} #integration_wizard .wp-picker-container {padding-top: 5px;}html #integration_wizard.fixed-box .al-box table input.wp-picker-clear {background: #ededed; transition: none; padding: 1px 6px; border: 1px solid #000; color: #000; margin: 0; margin-left: 6px;}#integration_wizard .wp-picker-holder{position: absolute;}</style>';
+			$box_content .= '<style>#integration_wizard .al-box table tbody, #integration_wizard .al-box table tr, #integration_wizard .al-box table td {border: 0; background: transparent;} #integration_wizard .al-box table.styling-adjustments td {vertical-align: middle;font-size: 14px; color: rgb(136, 136, 136); text-align: left;} #integration_wizard .wp-picker-container {padding-top: 5px;}html #integration_wizard.fixed-box .al-box table input.wp-picker-clear {background: #ededed; transition: none; padding: 1px 6px; border: 1px solid #000; color: #000; margin: 0; margin-left: 6px;}#integration_wizard .wp-picker-holder{position: absolute;}</style>';
 			$box_content .= '<script>jQuery("input[name=\"container_width\"]").change(function() { jQuery("#container").css("width", jQuery(this).val()+"%");jQuery("#container").css("margin", "0 auto");});';
 			$box_content .= 'jQuery("input[name=\"container_padding\"]").change(function() { jQuery("#container #content").css("padding", jQuery(this).val()+"px");jQuery("#container").css("box-sizing", "border-box");});';
 			$box_content .= 'jQuery("input[name=\"disable_breadcrumbs\"]").change(function() { if (jQuery(this).is(":checked")) { jQuery("p#breadcrumbs").hide();} else {jQuery("p#breadcrumbs").show();}});';
@@ -303,7 +303,7 @@ function get_integration_settings() {
 	$settings[ 'container_width' ]		 = isset( $archive_multiple_settings[ 'container_width' ] ) ? $archive_multiple_settings[ 'container_width' ] : 100;
 	$settings[ 'container_bg' ]			 = isset( $archive_multiple_settings[ 'container_bg' ] ) ? $archive_multiple_settings[ 'container_bg' ] : '';
 	$settings[ 'container_padding' ]	 = isset( $archive_multiple_settings[ 'container_padding' ] ) ? $archive_multiple_settings[ 'container_padding' ] : 0;
-	$settings[ 'disable_breadcrumbs' ]	 = $archive_multiple_settings[ 'enable_product_breadcrumbs' ] == 1 ? 0 : 1;
+	$settings[ 'disable_breadcrumbs' ]	 = isset( $archive_multiple_settings[ 'enable_product_breadcrumbs' ] ) && $archive_multiple_settings[ 'enable_product_breadcrumbs' ] == 1 ? 0 : 1;
 	$settings[ 'disable_name' ]			 = isset( $archive_multiple_settings[ 'disable_name' ] ) ? $archive_multiple_settings[ 'disable_name' ] : 0;
 	$settings[ 'disable_image' ]		 = is_ic_product_gallery_enabled() ? 0 : 1;
 	$settings[ 'disable_price' ]		 = is_ic_price_enabled() ? 0 : 1;
