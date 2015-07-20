@@ -53,13 +53,23 @@ function product_adder_theme_check_notice() {
 			</div>
 		</div><div class="clear"></div><?php
 	} else if ( is_integration_mode_selected() && get_integration_type() == 'advanced' ) {
+		/* ?>
+		  <div id="implecode_message" class="updated product-adder-message messages-connect">
+		  <div class="squeezer">
+		  <h4><?php _e( 'You are currently using eCommerce Product Catalog in Advanced Mode without the integration file. It is perfectly fine to use it this way, however the file may be very handy if you need more control over product pages. See the guide for quick integration file creation.', 'al-ecommerce-product-catalog' ); ?></h4>
+		  <p class="submit"><a href="http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=advanced-mode&key=top-message" target="_blank" class="button-primary"><?php _e( 'Theme Integration Guide', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=product-settings&submenu=support' ) ?>"><?php _e( 'Plugin Support', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo esc_url( add_query_arg( 'hide_al_product_adder_support_check', 'true' ) ); ?>"><?php _e( 'I know, don\'t bug me', 'al-ecommerce-product-catalog' ); ?></a></p>
+		  </div>
+		  </div><?php */
 		?>
 		<div id="implecode_message" class="updated product-adder-message messages-connect">
 			<div class="squeezer">
-				<h4><?php _e( 'You are currently using eCommerce Product Catalog in Advanced Mode without the integration file. It is perfectly fine to use it this way, however the file may be very handy if you need more control over product pages. See the guide for quick integration file creation.', 'al-ecommerce-product-catalog' ); ?></h4>
-				<p class="submit"><a href="http://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=advanced-mode&key=top-message" target="_blank" class="button-primary"><?php _e( 'Theme Integration Guide', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=product-settings&submenu=support' ) ?>"><?php _e( 'Plugin Support', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo esc_url( add_query_arg( 'hide_al_product_adder_support_check', 'true' ) ); ?>"><?php _e( 'I know, don\'t bug me', 'al-ecommerce-product-catalog' ); ?></a></p>
+				<h4><?php _e( 'Congratulations! Now your theme is fully integrated with eCommerce Product Catalog.', 'al-ecommerce-product-catalog' ); ?></h4>
+				<p class="submit"><a href="<?php echo admin_url( 'post-new.php?post_type=al_product' ) ?>" class="button-primary"><?php _e( 'Add Product', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php' ) ?>"><?php _e( 'Product Settings', 'al-ecommerce-product-catalog' ); ?></a></p>
 			</div>
-		</div><?php
+		</div>
+		<?php
+		$template = get_option( 'template' );
+		update_option( 'product_adder_theme_support_check', $template );
 	} else {
 		$product_id			 = sample_product_id();
 		$sample_product_url	 = get_permalink( $product_id );

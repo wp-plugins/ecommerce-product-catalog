@@ -71,15 +71,13 @@ function custom_names_content() {
 		</div><?php if ( $submenu == 'single-names' ) { ?>
 			<div id="single_names" class="setting-content submenu">
 				<script>
-		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		            jQuery( '.settings-submenu a#single-names' ).addClass( 'current' );
+					jQuery( '.settings-submenu a' ).removeClass( 'current' );
+					jQuery( '.settings-submenu a#single-names' ).addClass( 'current' );
 				</script>
 				<form method="post" action="options.php">
 					<?php
 					settings_fields( 'product_names_single' );
-					$default_single_names			 = default_single_names();
-					$single_names					 = get_option( 'single_names', $default_single_names );
-					$single_names[ 'product_sku' ]	 = isset( $single_names[ 'product_sku' ] ) ? $single_names[ 'product_sku' ] : 'SKU:';
+					$single_names = get_single_names();
 					?>
 					<h2><?php _e( 'Front-end Labels', 'al-ecommerce-product-catalog' ); ?></h2>
 					<h3><?php _e( 'Single Product Labels', 'al-ecommerce-product-catalog' ); ?></h3>
@@ -106,8 +104,8 @@ function custom_names_content() {
 			?>
 			<div id="archive_names" class="setting-content submenu">
 				<script>
-		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		            jQuery( '.settings-submenu a#archive-names' ).addClass( 'current' );
+					jQuery( '.settings-submenu a' ).removeClass( 'current' );
+					jQuery( '.settings-submenu a#archive-names' ).addClass( 'current' );
 				</script>
 				<form method="post" action="options.php"><?php
 					settings_fields( 'product_names_archive' );
@@ -153,4 +151,13 @@ function get_archive_names() {
 	$default_archive_names	 = default_archive_names();
 	$archive_names			 = wp_parse_args( get_option( 'archive_names' ), $default_archive_names );
 	return $archive_names;
+}
+
+function get_single_names() {
+	$default_single_names	 = default_single_names();
+	$single_names			 = get_option( 'single_names', $default_single_names );
+	foreach ( $default_single_names as $key => $value ) {
+		$single_names[ $key ] = isset( $single_names[ $key ] ) ? $single_names[ $key ] : $value;
+	}
+	return $single_names;
 }

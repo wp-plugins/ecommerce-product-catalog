@@ -84,6 +84,8 @@ function show_products_outside_loop( $atts ) {
 		'archive_template'	 => get_product_listing_template(),
 		'design_scheme'		 => '',
 		'sort'				 => 0,
+		'orderby'			 => '',
+		'order'				 => '',
 	) );
 	$args				 = shortcode_atts( $available_args, $atts );
 	$shortcode_args		 = $args;
@@ -126,6 +128,12 @@ function show_products_outside_loop( $atts ) {
 			'posts_per_page' => $products_limit,
 			'post__not_in'	 => $exclude_array,
 		);
+	}
+	if ( !empty( $args[ 'orderby' ] ) ) {
+		$query_param[ 'orderby' ] = esc_attr( $args[ 'orderby' ] );
+	}
+	if ( !empty( $args[ 'order' ] ) ) {
+		$query_param[ 'order' ] = esc_attr( $args[ 'order' ] );
 	}
 	$query_param	 = apply_filters( 'shortcode_query', $query_param );
 	$shortcode_query = new WP_Query( $query_param );

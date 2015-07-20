@@ -100,4 +100,153 @@ function get_sub_product_subcategories( $args, $parent_cat ) {
 	return $return;
 }
 
-?>
+add_shortcode( 'product_name', 'ic_product_name' );
+
+/**
+ * Shows product name
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_name( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_product_name( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_price', 'ic_product_price' );
+
+/**
+ * Shows product price
+ * @param type $atts
+ * @return string
+ */
+function ic_product_price( $atts ) {
+	$args	 = shortcode_atts( array(
+		'product'	 => get_the_ID(),
+		'formatted'	 => 1,
+	), $atts );
+	$price	 = product_price( $args[ 'product' ] );
+	if ( $args[ 'formatted' ] == 1 ) {
+		$price = price_format( $price );
+	}
+	return $price;
+}
+
+add_shortcode( 'product_description', 'ic_product_description' );
+
+/**
+ * Shows product description
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_description( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_product_description( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_short_description', 'ic_product_short_description' );
+
+/**
+ * Shows product short description
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_short_description( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_product_short_description( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_attributes', 'ic_product_attributes' );
+
+/**
+ * Shows product attributes table
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_attributes( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_product_attributes( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_sku', 'ic_product_sku' );
+
+/**
+ * Shows product SKU value
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_sku( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_product_sku( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_shipping', 'ic_product_shipping' );
+
+/**
+ * Shows product shipping table
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_shipping( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_shipping_options_table( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_gallery', 'ic_product_gallery' );
+
+/**
+ * Shows product gallery
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_gallery( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_product_gallery( $args[ 'product' ] );
+}
+
+add_shortcode( 'product_related_categories', 'ic_product_related_categories' );
+
+/**
+ * Shows product related categories
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_product_related_categories( $atts ) {
+	$args = shortcode_atts( array(
+		'product' => get_the_ID(),
+	), $atts );
+	return get_related_categories( $args[ 'product' ] );
+}
+
+add_shortcode( 'back_to_products_url', 'ic_product_related_categories' );
+
+/**
+ * Shows back to products URL
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_back_to_prodcts_url( $atts ) {
+	return get_back_to_products_url();
+}
