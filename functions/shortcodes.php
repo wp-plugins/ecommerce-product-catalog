@@ -128,7 +128,7 @@ function ic_product_price( $atts ) {
 		'formatted'	 => 1,
 	), $atts );
 	$price	 = product_price( $args[ 'product' ] );
-	if ( $args[ 'formatted' ] == 1 ) {
+	if ( !empty( $price ) && $args[ 'formatted' ] == 1 ) {
 		$price = price_format( $price );
 	}
 	return $price;

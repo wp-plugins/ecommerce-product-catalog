@@ -521,6 +521,7 @@ function get_related_categories( $product_id, $v_single_names = null, $taxonomy_
 	}
 	$term		 = $terms[ 0 ];
 	$categories	 = wp_list_categories( 'title_li=&taxonomy=' . $taxonomy_name . '&include=' . $term . '&echo=0&hierarchical=0' );
+	$table		 = '';
 	if ( $categories != '<li class="cat-item-none">No categories</li>' ) {
 		$table .= '<div id="product_subcategories" class="product-subcategories">';
 		$table .= '<table>';

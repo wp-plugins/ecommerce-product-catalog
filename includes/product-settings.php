@@ -59,8 +59,8 @@ function product_settings() {
 		if ( $tab == 'product-settings' OR $tab == '' ) {
 			?>
 			<script>
-		        jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
-		        jQuery( '.nav-tab-wrapper a#general-settings' ).addClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a#general-settings' ).addClass( 'nav-tab-active' );
 			</script>
 			<?php
 			general_settings_content();
@@ -69,8 +69,8 @@ function product_settings() {
 		/* ATTRIBUTES TAB */ else if ( $tab == 'attributes-settings' ) {
 			?>
 			<script>
-		        jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
-		        jQuery( '.nav-tab-wrapper a#attributes-settings' ).addClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a#attributes-settings' ).addClass( 'nav-tab-active' );
 			</script>
 			<?php
 			attributes_settings_content();
@@ -79,8 +79,8 @@ function product_settings() {
 		/* SHIPPING TAB */ else if ( $tab == 'shipping-settings' ) {
 			?>
 			<script>
-		        jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
-		        jQuery( '.nav-tab-wrapper a#shipping-settings' ).addClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a#shipping-settings' ).addClass( 'nav-tab-active' );
 			</script>
 			<?php
 			shipping_settings_content();
@@ -89,16 +89,16 @@ function product_settings() {
 		/* DESIGN TAB */ else if ( $tab == 'design-settings' ) {
 			?>
 			<script>
-		        jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
-		        jQuery( '.nav-tab-wrapper a#design-settings' ).addClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a#design-settings' ).addClass( 'nav-tab-active' );
 			</script>
 			<?php
 			custom_design_content();
 		} else if ( $tab == 'names-settings' ) {
 			?>
 			<script>
-		        jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
-		        jQuery( '.nav-tab-wrapper a#names-settings' ).addClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a' ).removeClass( 'nav-tab-active' );
+				jQuery( '.nav-tab-wrapper a#names-settings' ).addClass( 'nav-tab-active' );
 			</script>
 			<?php
 			custom_names_content();
@@ -112,48 +112,48 @@ function product_settings() {
 
 
 	<script>
-	    var fixHelper = function ( e, ui ) {
-	        ui.children().each( function () {
-	            jQuery( this ).width( jQuery( this ).width() );
-	        } );
-	        return ui;
-	    };
+		var fixHelper = function ( e, ui ) {
+			ui.children().each( function () {
+				jQuery( this ).width( jQuery( this ).width() );
+			} );
+			return ui;
+		};
 
-	    jQuery( window ).load( function ( ) {
-	        var cache = jQuery( '.helpers .wrapper, #implecode_settings .settings-submenu h3' );
-	        var top = cache.offset().top - 32;
-	        var height = jQuery( '.settings-submenu' ).height();
-	        function fixDiv() {
-	            if ( jQuery( window ).scrollTop() > top && jQuery( window ).scrollTop() < height )
-	                cache.css( { 'position': 'fixed', 'top': 20 } );
-	            else if ( jQuery( window ).scrollTop() > height )
-	                cache.css( { 'position': 'absolute', 'bottom': '0px', 'top': 'auto' } );
-	            else
-	                cache.css( { 'position': 'relative', 'top': 'auto', 'bottom': 'auto' } );
-	        }
-	        jQuery( window ).scroll( fixDiv );
-	        fixDiv();
-	    } );
+		jQuery( window ).load( function ( ) {
+			var cache = jQuery( '.helpers .wrapper, #implecode_settings .settings-submenu h3' );
+			var top = cache.offset().top - 32;
+			var height = jQuery( '.settings-submenu' ).height();
+			function fixDiv() {
+				if ( jQuery( window ).scrollTop() > top && jQuery( window ).scrollTop() < height )
+					cache.css( { 'position': 'fixed', 'top': 20 } );
+				else if ( jQuery( window ).scrollTop() > height )
+					cache.css( { 'position': 'absolute', 'bottom': '0px', 'top': 'auto' } );
+				else
+					cache.css( { 'position': 'relative', 'top': 'auto', 'bottom': 'auto' } );
+			}
+			jQuery( window ).scroll( fixDiv );
+			fixDiv();
+		} );
 
-	    jQuery( '.product-settings-table.dragable tbody' ).sortable( {
-	        update: function ( event, ui ) {
-	            jQuery( '.product-settings-table.dragable tbody tr' ).each( function () {
-	                var r = jQuery( this ).index() + 1;
-	                jQuery( this ).children( 'td:first-child' ).html( r );
-	                jQuery( this ).children( 'td:first-child' ).removeClass();
-	                jQuery( this ).children( 'td:first-child' ).addClass( 'lp-column lp' + r );
-	                jQuery( this ).find( '.product-attribute-label-column .product-attribute-label' ).attr( 'name', 'product_attribute_label[' + r + ']' );
-	                jQuery( this ).find( 'td .product-attribute' ).attr( 'name', 'product_attribute[' + r + ']' );
-	                jQuery( this ).find( 'td .product-attribute-unit' ).attr( 'name', 'product_attribute_unit[' + r + ']' );
+		jQuery( '.product-settings-table.dragable tbody' ).sortable( {
+			update: function ( event, ui ) {
+				jQuery( '.product-settings-table.dragable tbody tr' ).each( function () {
+					var r = jQuery( this ).index() + 1;
+					jQuery( this ).children( 'td:first-child' ).html( r );
+					jQuery( this ).children( 'td:first-child' ).removeClass();
+					jQuery( this ).children( 'td:first-child' ).addClass( 'lp-column lp' + r );
+					jQuery( this ).find( '.product-attribute-label-column .product-attribute-label' ).attr( 'name', 'product_attribute_label[' + r + ']' );
+					jQuery( this ).find( 'td .product-attribute' ).attr( 'name', 'product_attribute[' + r + ']' );
+					jQuery( this ).find( 'td .product-attribute-unit' ).attr( 'name', 'product_attribute_unit[' + r + ']' );
 
-	                jQuery( this ).find( '.product-shipping-label-column .product-shipping-label' ).attr( 'name', 'product_shipping_label[' + r + ']' );
-	                jQuery( this ).find( 'td .product-shipping-cost' ).attr( 'name', 'product_shipping_cost[' + r + ']' );
-	            } )
-	        },
-	        helper: fixHelper,
-	        placeholder: 'sort-placeholder',
-	    } );
-	    //jQuery('.ui-sortable').height(jQuery('.ui-sortable').height());
+					jQuery( this ).find( '.product-shipping-label-column .product-shipping-label' ).attr( 'name', 'product_shipping_label[' + r + ']' );
+					jQuery( this ).find( 'td .product-shipping-cost' ).attr( 'name', 'product_shipping_cost[' + r + ']' );
+				} )
+			},
+			helper: fixHelper,
+			placeholder: 'sort-placeholder',
+		} );
+		//jQuery('.ui-sortable').height(jQuery('.ui-sortable').height());
 
 	</script>
 	<?php
@@ -165,8 +165,8 @@ function doc_helper( $title, $url, $class = null ) {
 	__( '%s Settings in Docs', 'al-ecommerce-product-catalog' ), ucfirst( $title ) ) . '</div>
 		<div class="doc-description">' . sprintf(
 	__( 'See %s configuration tips in the impleCode documentation', 'al-ecommerce-product-catalog' ), $title ) . '.</div>
-		<div class="doc-button"><a target="_blank" href="http://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '"><input class="doc_button classic-button" type="button" value="' . __( 'See in Docs', 'al-ecommerce-product-catalog' ) . '"></a></div>
-		<a title="' . __( 'Click the button to visit impleCode documentation', 'al-ecommerce-product-catalog' ) . '" target="_blank" href="http://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '" class="background-url"></a>
+		<div class="doc-button"><a href="http://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '"><input class="doc_button classic-button" type="button" value="' . __( 'See in Docs', 'al-ecommerce-product-catalog' ) . '"></a></div>
+		<a title="' . __( 'Click the button to visit impleCode documentation', 'al-ecommerce-product-catalog' ) . '" href="http://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '" class="background-url"></a>
 		</div></div>';
 	echo $helper;
 }
@@ -176,8 +176,8 @@ function did_know_helper( $name, $desc, $url, $class = null ) {
 		<div class="doc-name green-box">' .
 	__( 'Did you know?', 'al-ecommerce-product-catalog' ) . '</div>
 		<div class="doc-description">' . $desc . '.</div>
-		<div class="doc-button"><a target="_blank" href="' . $url . '?cam=catalog-know-box&key=' . $name . '"><input class="doc_button classic-button" type="button" value="' . __( 'See Now', 'al-ecommerce-product-catalog' ) . '"></a></div>
-		<a title="' . __( 'Click the button to visit impleCode website', 'al-ecommerce-product-catalog' ) . '" target="_blank" href="' . $url . '?cam=catalog-docs-box&key=' . $name . '" class="background-url"></a>
+		<div class="doc-button"><a href="' . $url . '?cam=catalog-know-box&key=' . $name . '"><input class="doc_button classic-button" type="button" value="' . __( 'See Now', 'al-ecommerce-product-catalog' ) . '"></a></div>
+		<a title="' . __( 'Click the button to visit impleCode website', 'al-ecommerce-product-catalog' ) . '" href="' . $url . '?cam=catalog-docs-box&key=' . $name . '" class="background-url"></a>
 		</div></div>';
 	echo $helper;
 }

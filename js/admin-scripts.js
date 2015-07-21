@@ -16,11 +16,11 @@ jQuery( document ).ready( function () {
     jQuery( '.sort-settings tbody' ).sortable( {
         update: function () {
             jQuery( '.sort-settings tbody tr' ).each( function () {
-                var r = jQuery( this ).index() + 1;
+                var r = jQuery( this ).index();
                 jQuery( this ).find( 'td .attribute-label' ).attr( 'name', '_attribute-label' + r );
                 jQuery( this ).find( 'td .attribute-value' ).attr( 'name', '_attribute' + r );
                 jQuery( this ).find( 'td .attribute-unit' ).attr( 'name', '_attribute-unit' + r );
-
+                r = r + 1;
                 jQuery( this ).find( 'td .shipping-label' ).attr( 'name', '_shipping-label' + r );
                 jQuery( this ).find( 'td .shipping-value' ).attr( 'name', '_shipping' + r );
             } )

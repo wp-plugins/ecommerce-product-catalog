@@ -249,17 +249,17 @@ function al_product_attributes() {
 			$attributes_label_option_field	 = !empty( $attributes_label_option_field ) ? $attributes_label_option_field : $attributes_label_option[ $i ];
 			$attributes_unit_option_field	 = !empty( $attributes_unit_option_field ) ? $attributes_unit_option_field : $attributes_unit_option[ $i ];
 		}
-		$attribute_value_field = '<input class="attribute-value" type="text" name="_attribute' . $i . '" value="' . $attributes_option_field . '" />';
+		$attribute_value_field = '<input class="attribute-value" type="text" name="_attribute' . $i . '" value="' . htmlentities( $attributes_option_field ) . '" />';
 		?>
 		<tr>
 			<td class="attributes-label-column"><input class="attribute-label" type="text"
 													   name="_attribute-label<?php echo $i ?>"
-													   value="<?php echo $attributes_label_option_field ?>"/></td>
+													   value="<?php echo htmlentities( $attributes_label_option_field ) ?>"/></td>
 			<td class="break-column">:</td>
 			<td class="value-column"><?php echo apply_filters( 'product_attribute_value_edit', $attribute_value_field, $i, $attributes_option_field ) ?></td>
 			<td class="unit-column"><input class="attribute-unit admin-number-field" type="text"
 										   name="_attribute-unit<?php echo $i ?>"
-										   value="<?php echo $attributes_unit_option_field ?>"/></td>
+										   value="<?php echo htmlentities( $attributes_unit_option_field ) ?>"/></td>
 			<td class="dragger"></td>
 		</tr>
 	<?php } ?>
