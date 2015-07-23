@@ -40,6 +40,11 @@ function is_ic_product_listing() {
 	return false;
 }
 
+/**
+ * Checks if a product page is displayed
+ * 
+ * @return boolean
+ */
 function is_ic_product_page() {
 	if ( is_singular( product_post_type_array() ) ) {
 		return true;
@@ -332,7 +337,7 @@ function is_ic_product_name_enabled() {
 
 /**
  * Checks if theme default sidebar should be enabled on product pages
- * 
+ *
  * @return boolean
  */
 function is_ic_default_theme_sidebar_active() {

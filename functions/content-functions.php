@@ -15,6 +15,15 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 /* General */
 
+/**
+ * Transforms number to the price format
+ *
+ * @param float $price_value
+ * @param int $clear
+ * @param int $format
+ * @param int $raw
+ * @return string|float
+ */
 function price_format( $price_value, $clear = 0, $format = 1, $raw = 0 ) {
 	$set			 = get_currency_settings();
 	$th_symbol		 = addslashes( $set[ 'th_sep' ] );

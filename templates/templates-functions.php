@@ -26,11 +26,11 @@ function content_product_adder_archive() {
 	$path = get_custom_product_listing_path();
 	if ( file_exists( $path ) ) {
 		ob_start();
-		include $path;
+		include apply_filters( 'content_product_adder_archive_path', $path );
 		$product_listing = ob_get_clean();
 		echo do_shortcode( $product_listing );
 	} else {
-		include 'content-al_product_archive.php';
+		include apply_filters( 'content_product_adder_archive_path', 'content-al_product_archive.php' );
 	}
 }
 
@@ -38,11 +38,11 @@ function content_product_adder_single() {
 	$path = get_custom_product_page_path();
 	if ( file_exists( $path ) ) {
 		ob_start();
-		include $path;
+		include apply_filters( 'content_product_adder_path', $path );
 		$product_page = ob_get_clean();
 		echo do_shortcode( $product_page );
 	} else {
-		include 'content-al_product.php';
+		include apply_filters( 'content_product_adder_path', 'content-al_product.php' );
 	}
 }
 
@@ -135,7 +135,7 @@ function show_products_outside_loop( $atts ) {
 	if ( !empty( $args[ 'order' ] ) ) {
 		$query_param[ 'order' ] = esc_attr( $args[ 'order' ] );
 	}
-	$query_param	 = apply_filters( 'shortcode_query', $query_param );
+	$query_param	 = apply_filters( 'shortcode_query', $query_param, $args );
 	$shortcode_query = new WP_Query( $query_param );
 	$inside			 = '';
 	$i				 = 0;
@@ -174,7 +174,7 @@ add_action( 'pre_get_posts', 'set_products_limit', 99 );
  */
 function set_products_limit( $query ) {
 	$archive_multiple_settings = get_multiple_settings();
-	if ( !is_admin() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' ) || is_home_archive( $query )) && $query->is_main_query() ) {
+	if ( !is_admin() && $query->is_main_query() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' ) || is_home_archive( $query )) ) {
 		$query->set( 'posts_per_page', $archive_multiple_settings[ 'archive_products_limit' ] );
 	}
 }
