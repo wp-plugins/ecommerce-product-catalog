@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: impleCode, ndre
 Donate link: http://implecode.com/wordpress/plugins/premium-support/#cam=wordpress-org-catalog-page&key=donate-link
-Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue
+Tags: ecommerce, e-commerce, commerce, product catalog, product catalogue, catalog, catalogue, product, implecode, wordpress ecommerce, store, sales, sell, shop, shopping, shipping, attributes, manage, plugin, display products, list products, products, wp catalog, blog catalog, product feed, product management, product portfolio, directory, gallery, product gallery, widget, post, plugin, admin, posts, inventory, restaurant menu, responsive, wp catalogue, catalog of goods, collection, catalogs, digital goods, e-shop, ecomerce, list, listing, online shop, online store, products catalog, sell products, selling, shopping cart, woocommerce catalog, WordPress shopping cart, wordpress store, wp catalog, wp e-commerce, cart
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 2.3.7
+Stable tag: 2.3.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,22 @@ __2. Product Search__ - generates a search form that allows to search the produc
 = eCommerce Product Catalog Extensions =
 
 This eCommerce plugin is extensible. The feature packed extensions is that what makes eCommerce Product Catalog plugin a more specialized solution. [Browse the extensions](http://implecode.com/wordpress/plugins/?cam=wordpress-org-catalog-page&key=extensions-link#extensions "eCommerce Product Catalog extensions on implecode.com"). 
+
+Some extensions examples:
+
+__[Product Gallery Advanced](http://implecode.com/wordpress/plugins/product-gallery-advanced/?cam=wordpress-org-catalog-page&key=gallery-advanced)__ - Customize multiple image product gallery and use product slider. Show product slider anywhere on the website with a slider shortcode.
+
+__[Quote Form](http://implecode.com/wordpress/plugins/quote-form/?cam=wordpress-org-catalog-page&key=quote-form)__ - Get product quotes directly from product pages. Add a quote button and fully customizable quote form. Perfect for product catalogs or particular products without price.
+
+__[Order Form](http://implecode.com/wordpress/plugins/order-form/?cam=wordpress-org-catalog-page&key=order-form)__ - Get buy now orders for your priced products. Boost your eCommerce Product Catalog conversion rate with innovative, fully customisable order form. This powerful extension allows you to sell individual products by adding order button into each product page. Best when you need to offer one product at a time.
+
+__[Shopping Cart](http://implecode.com/wordpress/plugins/shopping-cart/?cam=wordpress-org-catalog-page&key=shopping-cart)__ - Full featured shopping cart with advanced customisation options. Transform your product catalog to a Web Store! High usability measures, product variations, smooth experience and more!
+
+__[Upload PDF](http://implecode.com/wordpress/plugins/upload-pdf/?cam=wordpress-org-catalog-page&key=upload-pdf)__ - Quickly attach multiple PDF files to products and make them available to download on product pages
+
+__[Product Manufacturers](http://implecode.com/wordpress/plugins/product-manufacturers/?cam=wordpress-org-catalog-page&key=product-manufacturers)__ - Manage product manufacturers & brands in separate screen and easily assign them to products. Show manufacturers / brands catalog on your website.
+
+__and many more extensions already available and in constant development. You will never be limited!__
 
 = Get involved =
 Developers can contribute to the source code on the [eCommerce Product Catalog GitHub Repository](https://github.com/impleCode/ecommerce-product-catalog).
@@ -192,6 +208,15 @@ This is not a store. It's main purpose is to present products or services on the
 6. Classic list product catalog archive.
 
 == Changelog ==
+
+= 2.3.8 - 27/07/2015 = 
+
+* Fix - attributes values with double quotes now show fine
+* Fix - uninstall function fixed
+* Fix - better handling products with empty price on show_price shortcode
+* Fix - attributes drag and drop function no works fine
+* Localisation - French language improved thanks to Clarine via http://translate.implecode.com
+* Localisation - Swedish language introduced thanks to Anders via http://translate.implecode.com
 
 = 2.3.7 - 20/07/2015 = 
 
