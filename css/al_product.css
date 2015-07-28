@@ -784,6 +784,7 @@ margin: 0;
     max-width: 509px;
     box-shadow: 0 0 1px 1px #444;
     box-sizing: border-box;
+    line-height: 1.2;
 }
 
 #product_listing_url {

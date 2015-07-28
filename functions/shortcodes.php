@@ -69,8 +69,12 @@ function product_cat_shortcode( $atts ) {
 		}
 	}
 	if ( !empty( $inside ) ) {
+		$ready	 = apply_filters( 'category_list_ready', $inside, $args[ 'archive_template' ] );
+		ob_start();
 		do_action( 'before_category_list', $archive_template );
-		$inside = $div . $inside;
+		$inside	 = ob_get_contents();
+		ob_end_clean();
+		$inside .= $div . $ready;
 		$inside .= '</div>';
 	}
 	reset_row_class();
@@ -143,10 +147,11 @@ add_shortcode( 'product_description', 'ic_product_description' );
  * @return string
  */
 function ic_product_description( $atts ) {
-	$args = shortcode_atts( array(
+	$args				 = shortcode_atts( array(
 		'product' => get_the_ID(),
 	), $atts );
-	return get_product_description( $args[ 'product' ] );
+	$product_description = get_product_description( $args[ 'product' ] );
+	return apply_filters( 'the_content', $product_description );
 }
 
 add_shortcode( 'product_short_description', 'ic_product_short_description' );
@@ -158,10 +163,11 @@ add_shortcode( 'product_short_description', 'ic_product_short_description' );
  * @return string
  */
 function ic_product_short_description( $atts ) {
-	$args = shortcode_atts( array(
+	$args		 = shortcode_atts( array(
 		'product' => get_the_ID(),
 	), $atts );
-	return get_product_short_description( $args[ 'product' ] );
+	$shortdesc	 = get_product_short_description( $args[ 'product' ] );
+	return apply_filters( 'product_short_description', $shortdesc );
 }
 
 add_shortcode( 'product_attributes', 'ic_product_attributes' );
@@ -239,7 +245,7 @@ function ic_product_related_categories( $atts ) {
 	return get_related_categories( $args[ 'product' ] );
 }
 
-add_shortcode( 'back_to_products_url', 'ic_product_related_categories' );
+add_shortcode( 'back_to_products_url', 'ic_back_to_prodcts_url' );
 
 /**
  * Shows back to products URL

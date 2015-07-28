@@ -560,6 +560,7 @@ function advanced_mode_styling() {
 	if ( $settings[ 'container_padding' ] != 0 ) {
 		$styling .= '#content {padding: ' . $settings[ 'container_padding' ] . 'px; box-sizing: border-box; float: none; }';
 	}
+	$styling .= apply_filters( 'advanced_mode_styling_rules', '' );
 	$styling .= '</style>';
 	if ( $styling != '<style></style>' ) {
 		echo $styling;
