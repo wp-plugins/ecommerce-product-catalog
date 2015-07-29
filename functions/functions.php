@@ -92,24 +92,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-		jQuery( document ).ready( function () {
-			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-				wp.media.editor.send.attachment = function ( props, attachment ) {
-					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-					jQuery( '.media-image' ).attr( "src", attachment.url );
-				}
+	    jQuery( document ).ready( function () {
+	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+	            wp.media.editor.send.attachment = function ( props, attachment ) {
+	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+	                jQuery( '.media-image' ).attr( "src", attachment.url );
+	            }
 
-				wp.media.editor.open( this );
+	            wp.media.editor.open( this );
 
-				return false;
-			} );
-		} );
+	            return false;
+	        } );
+	    } );
 
-		jQuery( '#reset-image-button' ).on( 'click', function () {
-			jQuery( '#<?php echo $name; ?>' ).val( '' );
-			src = jQuery( '#default' ).val();
-			jQuery( '.media-image' ).attr( "src", src );
-		} );
+	    jQuery( '#reset-image-button' ).on( 'click', function () {
+	        jQuery( '#<?php echo $name; ?>' ).val( '' );
+	        src = jQuery( '#default' ).val();
+	        jQuery( '.media-image' ).attr( "src", src );
+	    } );
 	</script>
 	<?php
 }
@@ -254,24 +254,44 @@ function example_price() {
 }
 
 add_action( 'example_price', 'example_price' );
+add_action( 'product_details', 'show_price', 7, 2 );
 
+/**
+ * Shows price on product page
+ *
+ * @param type $post
+ * @param type $single_names
+ */
 function show_price( $post, $single_names ) {
-	$price_value = product_price( $post->ID );
-	if ( !empty( $price_value ) ) {
-		?>
-		<table class="price-table">
-			<tr>
-				<td class="price-label"><?php echo $single_names[ 'product_price' ] ?></td>
-				<td class="price-value <?php design_schemes(); ?>"><?php echo price_format( $price_value ); ?></td>
-			</tr>
-			<?php do_action( 'price_table' ); ?>
-		</table>
-		<?php
-		do_action( 'after_price_table' );
-	}
+	echo get_product_price_table( $post->ID, $single_names );
 }
 
-add_action( 'product_details', 'show_price', 7, 2 );
+/**
+ * Returns price table for product page
+ * @param type $product_id
+ * @param type $single_names
+ * @return type
+ */
+function get_product_price_table( $product_id, $single_names ) {
+	$price_value = product_price( $product_id );
+	$table		 = '';
+	if ( !empty( $price_value ) ) {
+		$table .= '<table class="price-table">';
+		$table .= '<tr>';
+		$table .= '<td class="price-label">' . $single_names[ 'product_price' ] . '</td>';
+		$table .= '<td class="price-value ' . design_schemes( null, 0 ) . '">' . price_format( $price_value ) . '</td>';
+		$table .= '</tr>';
+		ob_start();
+		do_action( 'price_table' );
+		$table .= ob_get_clean();
+		$table .= '</table>';
+		ob_start();
+		do_action( 'after_price_table' );
+		$table .= ob_get_contents();
+	}
+	return $table;
+}
+
 add_action( 'product_details', 'show_sku', 8, 2 );
 
 /**
@@ -281,17 +301,28 @@ add_action( 'product_details', 'show_sku', 8, 2 );
  * @param array $single_names
  */
 function show_sku( $post, $single_names ) {
-	$sku_value = get_product_sku( $post->ID );
+	echo get_product_sku_table( $post->ID, $single_names );
+}
+
+/**
+ * Returns sku table for product page
+ *
+ * @param int $product_id
+ * @param array $single_names
+ * @return string
+ */
+function get_product_sku_table( $product_id, $single_names ) {
+	$sku_value	 = get_product_sku( $product_id );
+	$table		 = '';
 	if ( is_ic_sku_enabled() && !empty( $sku_value ) ) {
-		?>
-		<table class="sku-table">
-			<tr>
-				<td><?php echo $single_names[ 'product_sku' ] ?></td>
-				<td class="sku-value"><?php echo $sku_value; ?></td>
-			</tr>
-		</table>
-		<?php
+		$table .= '<table class="sku-table">';
+		$table .= '<tr>';
+		$table .= '<td>' . $single_names[ 'product_sku' ] . '</td>';
+		$table .= '<td class="sku-value">' . $sku_value . '</td>';
+		$table .= '</tr>';
+		$table .= '</table>';
 	}
+	return $table;
 }
 
 /**

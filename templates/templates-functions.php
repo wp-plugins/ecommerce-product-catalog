@@ -17,8 +17,11 @@ function content_product_adder() {
 	if ( is_archive() || is_search() || is_home_archive() || is_ic_product_listing() ) {
 		do_action( 'before_product_archive' );
 		content_product_adder_archive();
+		do_action( 'after_product_archive' );
 	} else {
+		do_action( 'before_product_page' );
 		content_product_adder_single();
+		do_action( 'after_product_page' );
 	}
 }
 

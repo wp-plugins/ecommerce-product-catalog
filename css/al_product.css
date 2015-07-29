@@ -1145,6 +1145,11 @@ form#product_order {
     padding-bottom: 10px;
 }
 
+#product_order_selector {
+    width: 250px;
+    max-width: 100%;
+}
+
 /* Responsive */
 
 @media (max-width: 700px) {
