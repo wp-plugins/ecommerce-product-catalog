@@ -555,13 +555,28 @@ function advanced_mode_styling() {
 	$settings	 = get_integration_settings();
 	$styling	 = '<style>';
 	if ( $settings[ 'container_width' ] != 100 ) {
-		$styling .= '#container {width: ' . $settings[ 'container_width' ] . '%; margin: 0 auto; overflow: hidden; box-sizing: border-box; float: none;}';
+		$styling .= '#container.product-catalog {width: ' . $settings[ 'container_width' ] . '%; margin: 0 auto; overflow: hidden; box-sizing: border-box; float: none;}';
 	}
 	if ( $settings[ 'container_bg' ] != '' ) {
-		$styling .= '#container {background: ' . $settings[ 'container_bg' ] . ';}';
+		$styling .= '#container.product-catalog {background: ' . $settings[ 'container_bg' ] . ';}';
 	}
 	if ( $settings[ 'container_padding' ] != 0 ) {
-		$styling .= '#content {padding: ' . $settings[ 'container_padding' ] . 'px; box-sizing: border-box; float: none; }';
+		$styling .= '.content-area.product-catalog #content {padding: ' . $settings[ 'container_padding' ] . 'px; box-sizing: border-box; float: none; }';
+		if ( is_ic_default_theme_sided_sidebar_active() ) {
+			$styling .= '.content-area.product-catalog #catalog_sidebar {padding: ' . $settings[ 'container_padding' ] . 'px; box-sizing: border-box;}';
+		}
+	}
+	if ( $settings[ 'default_sidebar' ] == 'left' ) {
+		$styling .= '.content-area.product-catalog #catalog_sidebar {float: left;}';
+	}
+	if ( is_ic_default_theme_sided_sidebar_active() ) {
+		$styling .= '.content-area.product-catalog #content {width: 70%;';
+		if ( $settings[ 'default_sidebar' ] == 'left' ) {
+			$styling .= 'float:right;';
+		} else if ( $settings[ 'default_sidebar' ] == 'right' ) {
+			$styling .= 'float:left;';
+		}
+		$styling .= '}';
 	}
 	$styling .= apply_filters( 'advanced_mode_styling_rules', '' );
 	$styling .= '</style>';
@@ -570,13 +585,33 @@ function advanced_mode_styling() {
 	}
 }
 
-add_action( 'advanced_mode_layout_end', 'advanced_mode_default_sidebar' );
+add_action( 'advanced_mode_layout_start', 'show_advanced_mode_default_sidebar' );
+
+/**
+ * Shows theme default catalog styled sidebar if necessary
+ */
+function show_advanced_mode_default_sidebar() {
+	if ( is_ic_default_theme_sided_sidebar_active() || (is_ic_integration_wizard_page() && $_GET[ 'test_advanced' ] == 1) ) {
+		add_action( 'advanced_mode_layout_after_content', 'advanced_mode_default_sided_sidebar' );
+	} else if ( is_ic_default_theme_sidebar_active() ) {
+		add_action( 'advanced_mode_layout_end', 'advanced_mode_default_sidebar' );
+	}
+}
 
 /**
  * Shows theme default sidebar if necessary
  */
 function advanced_mode_default_sidebar() {
-	if ( is_ic_default_theme_sidebar_active() ) {
-		get_sidebar();
-	}
+	get_sidebar();
+}
+
+/**
+ * Shows theme default sidebar if necessary
+ */
+function advanced_mode_default_sided_sidebar() {
+	echo '<div id="catalog_sidebar" role="complementary">';
+	$registered_sidebars = $GLOBALS[ 'wp_registered_sidebars' ];
+	$first_sidebar		 = key( $registered_sidebars );
+	dynamic_sidebar( $first_sidebar );
+	echo '</div>';
 }

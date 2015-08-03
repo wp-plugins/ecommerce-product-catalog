@@ -1,7 +1,7 @@
 /*!
  impleCode Admin scripts v1.0.0 - 2014-02-11
  Adds appropriate scripts to admin settings
- (c) 2014 Norbert Dreszer - http://implecode.com
+ (c) 2014 Norbert Dreszer - https://implecode.com
  */
 
 

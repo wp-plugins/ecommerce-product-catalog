@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
 get_header();
 do_action( 'advanced_mode_layout_start' );
 ?>
-<div id="container" class="content-area container">
+<div id="container" class="content-area container product-catalog">
 	<?php do_action( 'advanced_mode_layout_before_content' ); ?>
 	<div id="content" class="site-content" role="main">
 		<?php content_product_adder(); ?>

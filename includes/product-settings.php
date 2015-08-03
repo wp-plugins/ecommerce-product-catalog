@@ -106,7 +106,7 @@ function product_settings() {
 		do_action( 'settings-content' );
 		?>
 		<div class="plugin-logo">
-			<a href="http://implecode.com/#cam=catalog-settings-link&key=logo-link"><img class="en" src="<?php echo AL_PLUGIN_BASE_PATH . 'img/implecode.png'; ?>" width="282px" alt="impleCode" /></a>
+			<a href="https://implecode.com/#cam=catalog-settings-link&key=logo-link"><img class="en" src="<?php echo AL_PLUGIN_BASE_PATH . 'img/implecode.png'; ?>" width="282px" alt="impleCode" /></a>
 		</div>
 	</div>
 
@@ -165,8 +165,8 @@ function doc_helper( $title, $url, $class = null ) {
 	__( '%s Settings in Docs', 'al-ecommerce-product-catalog' ), ucfirst( $title ) ) . '</div>
 		<div class="doc-description">' . sprintf(
 	__( 'See %s configuration tips in the impleCode documentation', 'al-ecommerce-product-catalog' ), $title ) . '.</div>
-		<div class="doc-button"><a href="http://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '"><input class="doc_button classic-button" type="button" value="' . __( 'See in Docs', 'al-ecommerce-product-catalog' ) . '"></a></div>
-		<a title="' . __( 'Click the button to visit impleCode documentation', 'al-ecommerce-product-catalog' ) . '" href="http://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '" class="background-url"></a>
+		<div class="doc-button"><a href="https://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '"><input class="doc_button classic-button" type="button" value="' . __( 'See in Docs', 'al-ecommerce-product-catalog' ) . '"></a></div>
+		<a title="' . __( 'Click the button to visit impleCode documentation', 'al-ecommerce-product-catalog' ) . '" href="https://implecode.com/docs/ecommerce-product-catalog/' . $url . '/?cam=catalog-docs-box&key=' . $url . '" class="background-url"></a>
 		</div></div>';
 	echo $helper;
 }
@@ -193,7 +193,7 @@ function text_helper( $title, $desc, $class = null ) {
 function review_helper() {
 	$helper = '<div class="doc-helper review"><div class="doc-item">
 		<div class="doc-name green-box">' . __( 'Rate this Plugin!', 'al-ecommerce-product-catalog' ) . '</div>
-		<div class="doc-description">' . sprintf( __( 'Please <a target="_blank" href="%s">rate</a> this plugin and tell me if it works for you or not. It really helps development.', 'al-ecommerce-product-catalog' ), 'https://wordpress.org/support/view/plugin-reviews/ecommerce-product-catalog#postform' ) . '</div>
+		<div class="doc-description">' . sprintf( __( 'Please <a href="%s">rate</a> this plugin and tell me if it works for you or not. It really helps development.', 'al-ecommerce-product-catalog' ), 'https://wordpress.org/support/view/plugin-reviews/ecommerce-product-catalog#postform' ) . '</div>
 		</div></div>';
 	echo $helper;
 }

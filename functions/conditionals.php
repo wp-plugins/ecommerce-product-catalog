@@ -42,7 +42,7 @@ function is_ic_product_listing() {
 
 /**
  * Checks if a product page is displayed
- * 
+ *
  * @return boolean
  */
 function is_ic_product_page() {
@@ -343,6 +343,31 @@ function is_ic_product_name_enabled() {
 function is_ic_default_theme_sidebar_active() {
 	$settings = get_multiple_settings();
 	if ( isset( $settings[ 'default_sidebar' ] ) && $settings[ 'default_sidebar' ] == 1 ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if theme default sidebar catalog styled should be enabled on product pages
+ *
+ * @return boolean
+ */
+function is_ic_default_theme_sided_sidebar_active() {
+	$settings = get_multiple_settings();
+	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right') ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if current page is integration wizard page
+ * 
+ * @return boolean
+ */
+function is_ic_integration_wizard_page() {
+	if ( sample_product_id() == get_the_ID() && current_user_can( "manage_product_settings" ) && !is_advanced_mode_forced() ) {
 		return true;
 	}
 	return false;

@@ -21,7 +21,7 @@ add_action( 'product_settings_menu', 'register_product_extensions' );
 function product_extensions() {
 	?>
 	<div id="implecode_settings" class="wrap">
-		<h2><?php echo sprintf( __( 'Extensions for %s', 'al-ecommerce-product-catalog' ), 'eCommerce Product Catalog' ) ?> <a class="button-primary" style="position: absolute; margin-left: 5px" href="http://implecode.com/wordpress/plugins/#cam=extensions&key=all"><?php _e( 'Browse All Extensions', 'al-ecommerce-product-catalog' ) ?></a></h2>
+		<h2><?php echo sprintf( __( 'Extensions for %s', 'al-ecommerce-product-catalog' ), 'eCommerce Product Catalog' ) ?> <a class="button-primary" style="position: absolute; margin-left: 5px" href="https://implecode.com/wordpress/plugins/#cam=extensions&key=all"><?php _e( 'Browse All Extensions', 'al-ecommerce-product-catalog' ) ?></a></h2>
 		<h2 class="nav-tab-wrapper">
 			<a id="extensions" class="nav-tab"
 			   href="<?php echo admin_url( 'edit.php?post_type=al_product&page=extensions.php&tab=product-extensions' ) ?>"><?php _e( 'Popular', 'al-ecommerce-product-catalog' ); ?></a>
@@ -170,8 +170,8 @@ function product_extensions() {
 					echo '<li>Click the install button and wait until the installation process is done. The installer will establish a secure connection with impleCode to get the installation files;</li>';
 					echo '<li>Click the activation button;</li>';
 					echo '<li>That\'s it. Enjoy!</li></ol>';
-					echo '<p>In case you prefer to install the extension manually you will get also the installation files by email. See <a target="_blank" href="http://implecode.com/wordpress/product-catalog/plugin-installation-guide/?cam=extensions-help&key=manual-installation#manual">manual installation guide</a> for this.</p>';
-					echo '<p>Please see the <a target="_blank" href="http://implecode.com/faq/?cam=extensions-help&key=faq">FAQ</a> for additional information</p>';
+					echo '<p>In case you prefer to install the extension manually you will get also the installation files by email. See <a href="https://implecode.com/wordpress/product-catalog/plugin-installation-guide/?cam=extensions-help&key=manual-installation#manual">manual installation guide</a> for this.</p>';
+					echo '<p>Please see the <a href="https://implecode.com/faq/?cam=extensions-help&key=faq">FAQ</a> for additional information</p>';
 					?>
 				</div>
 				<div class="helpers">
@@ -185,10 +185,10 @@ function product_extensions() {
 		</div>
 
 		<div style="clear:both; height: 50px;"></div>
-		<a class="button-primary" style="position: absolute; margin-left: 5px" href="http://implecode.com/wordpress/plugins/#cam=extensions&key=all"><?php _e( 'Browse All Extensions', 'al-ecommerce-product-catalog' ) ?></a>
+		<a class="button-primary" style="position: absolute; margin-left: 5px" href="https://implecode.com/wordpress/plugins/#cam=extensions&key=all"><?php _e( 'Browse All Extensions', 'al-ecommerce-product-catalog' ) ?></a>
 		<div style="clear:both; height: 50px;"></div>
 		<div class="plugin-logo">
-			<a href="http://implecode.com/#cam=catalog-settings-link&key=logo-link"><img class="en" src="<?php echo AL_PLUGIN_BASE_PATH . 'img/implecode.png'; ?>" width="282px" alt="impleCode"/></a>
+			<a href="https://implecode.com/#cam=catalog-settings-link&key=logo-link"><img class="en" src="<?php echo AL_PLUGIN_BASE_PATH . 'img/implecode.png'; ?>" width="282px" alt="impleCode"/></a>
 		</div>
 	</div>
 	<?php
@@ -329,7 +329,7 @@ function extension_box( $name, $url, $desc, $comp = 'simple', $slug, $all_ic_plu
 	}
 
 	$return		 = '<div class="extension ' . $url . '">
-	<a class="extension-name" href="http://implecode.com/wordpress/plugins/' . $url . '/#cam=extensions&key=' . $url . '"><h3><span>' . $name . '</span></h3><span class="click-span">' . __( 'Click for more', 'al-ecommerce-product-catalog' ) . '</span></a>
+	<a class="extension-name" href="https://implecode.com/wordpress/plugins/' . $url . '/#cam=extensions&key=' . $url . '"><h3><span>' . $name . '</span></h3><span class="click-span">' . __( 'Click for more', 'al-ecommerce-product-catalog' ) . '</span></a>
 	<p>' . $desc . '</p>';
 	$disabled	 = '';
 	$current_key = get_option( 'custom_license_code' );
@@ -338,16 +338,16 @@ function extension_box( $name, $url, $desc, $comp = 'simple', $slug, $all_ic_plu
 		$current_key = '';
 	}
 	if ( !empty( $all_ic_plugins ) && is_ic_plugin_active( $slug, $all_ic_plugins ) ) {
-		$return .= '<p><a href="https://implecode.com/support/" class="button-primary">Support</a> <a target="_blank" href="https://implecode.com/docs/" class="button-primary">Docs</a> <span class="comp installed">' . __( 'Active Extension', 'al-ecommerce-product-catalog' ) . '</span></p>';
+		$return .= '<p><a href="https://implecode.com/support/" class="button-primary">Support</a> <a href="https://implecode.com/docs/" class="button-primary">Docs</a> <span class="comp installed">' . __( 'Active Extension', 'al-ecommerce-product-catalog' ) . '</span></p>';
 	} else if ( !empty( $not_active_ic_plugins ) && is_ic_plugin_active( $slug, $not_active_ic_plugins ) ) {
 		$return .= '<p><a ' . $disabled . ' href="' . wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . urlencode( $slug . '/' . $slug . '.php' ), 'activate-plugin_' . $slug . '/' . $slug . '.php' ) . '" class="button-primary">Activate Now</a><span class="comp info">' . __( 'Installed Extension', 'al-ecommerce-product-catalog' ) . '</span></p>';
 	} else {
 		if ( $comp_class == 'wrong' ) {
-			$return .= '<p><a href="http://implecode.com/wordpress/plugins/' . $url . '/#cam=extensions&key=' . $url . '" class="button-primary">See the Extension</a><span class="comp ' . $comp_class . '">' . $comp_txt . '</span></p>';
+			$return .= '<p><a href="https://implecode.com/wordpress/plugins/' . $url . '/#cam=extensions&key=' . $url . '" class="button-primary">See the Extension</a><span class="comp ' . $comp_class . '">' . $comp_txt . '</span></p>';
 		} else {
 			$return .= '<form class="license_form" action=""><input type="hidden" name="implecode_install" value="1"><input type="hidden" name="url" value="' . $url . '"><input type="hidden" name="slug" value="' . $slug . '"><input type="hidden" name="post_type" value="al_product"><input type="hidden" name="page" value="extensions.php"><input type="text" name="license_key" ' . $disabled . ' class="wide" placeholder="License Key..." value="' . $current_key . '">';
 			$return .= wp_nonce_field( 'install-implecode-plugin_' . $slug, '_wpnonce', 0, 0 );
-			$return .= '<p class="submit"><input type="submit" ' . $disabled . ' value="Install" class="button-primary"><span class="comp ' . $comp_class . '">' . $comp_txt . '</span> <a href="http://implecode.com/wordpress/plugins/' . $url . '/#cam=extensions&key=' . $url . '" class="button-secondary right">Get your key</a></form></p>';
+			$return .= '<p class="submit"><input type="submit" ' . $disabled . ' value="Install" class="button-primary"><span class="comp ' . $comp_class . '">' . $comp_txt . '</span> <a href="https://implecode.com/wordpress/plugins/' . $url . '/#cam=extensions&key=' . $url . '" class="button-secondary right">Get your key</a></form></p>';
 		}
 	}
 	$return .= '</div>';
@@ -376,20 +376,20 @@ function start_implecode_install() {
 		} else if ( !is_license_key_prevalidated( $_GET[ 'license_key' ] ) ) {
 			echo '<div id="message error" class="error product-adder-message messages-connect">
 				<div class="squeezer">
-					<h4><strong>' . sprintf( __( 'This is not a valid license key! Get it <a href="%s">here</a>.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/plugins/' . $_GET[ 'url' ] . '/#cam=extensions&key=' . $_GET[ 'url' ] ) . '</strong></h4>
+					<h4><strong>' . sprintf( __( 'This is not a valid license key! Get it <a href="%s">here</a>.', 'al-ecommerce-product-catalog' ), 'https://implecode.com/wordpress/plugins/' . $_GET[ 'url' ] . '/#cam=extensions&key=' . $_GET[ 'url' ] ) . '</strong></h4>
 				</div>
 			</div>';
 		} else {
 			echo '<div id="message error" class="error product-adder-message messages-connect">
 				<div class="squeezer">
-					<h4><strong>' . sprintf( __( 'The supplied license key is not valid for this extension! Upgrade it <a href="%s">here</a>.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/plugins/' . $_GET[ 'url' ] . '/#cam=extensions&key=' . $_GET[ 'url' ] ) . '</strong></h4>
+					<h4><strong>' . sprintf( __( 'The supplied license key is not valid for this extension! Upgrade it <a href="%s">here</a>.', 'al-ecommerce-product-catalog' ), 'https://implecode.com/wordpress/plugins/' . $_GET[ 'url' ] . '/#cam=extensions&key=' . $_GET[ 'url' ] ) . '</strong></h4>
 				</div>
 			</div>';
 		}
 	} else if ( isset( $_GET[ 'implecode_install' ] ) && !empty( $_GET[ 'slug' ] ) && empty( $_GET[ 'license_key' ] ) && current_user_can( 'install_plugins' ) ) {
 		echo '<div id="message error" class="error product-adder-message messages-connect">
 				<div class="squeezer">
-					<h4><strong>' . sprintf( __( 'You need to provide the license key to activate the extension. Get yours <a href="%s">here</a>.', 'al-ecommerce-product-catalog' ), 'http://implecode.com/wordpress/plugins/' . $_GET[ 'url' ] . '/#cam=extensions&key=' . $_GET[ 'url' ] ) . '</strong></h4>
+					<h4><strong>' . sprintf( __( 'You need to provide the license key to activate the extension. Get yours <a href="%s">here</a>.', 'al-ecommerce-product-catalog' ), 'https://implecode.com/wordpress/plugins/' . $_GET[ 'url' ] . '/#cam=extensions&key=' . $_GET[ 'url' ] ) . '</strong></h4>
 				</div>
 			</div>';
 	} else if ( !current_user_can( 'install_plugins' ) ) {
@@ -470,7 +470,7 @@ add_action( 'settings-menu', 'add_product_catalog_upgrade_url', 99 );
  */
 function add_product_catalog_upgrade_url() {
 	if ( !function_exists( 'start_implecode_updater' ) ) {
-		//echo '<a target="_blank" title="' . __( 'Now you can get multiple extensions at once with the lowest price ever.', 'al-ecommerce-product-catalog' ) . '" class="upgrade-now" href="http://implecode.com/choose-a-plan/#cam=bundles&key=settings-top-menu">' . __( 'Upgrade Now!', 'al-ecommerce-product-catalog' ) . '</a>';
+		//echo '<a target="_blank" title="' . __( 'Now you can get multiple extensions at once with the lowest price ever.', 'al-ecommerce-product-catalog' ) . '" class="upgrade-now" href="https://implecode.com/choose-a-plan/#cam=bundles&key=settings-top-menu">' . __( 'Upgrade Now!', 'al-ecommerce-product-catalog' ) . '</a>';
 	}
 }
 
@@ -482,12 +482,12 @@ add_action( 'extensions-menu', 'add_product_catalog_bundle_url', 99 );
  */
 function add_product_catalog_bundle_url() {
 	if ( !function_exists( 'start_implecode_updater' ) ) {
-		//echo '<a target="_blank" title="' . __( 'Now you can get multiple extensions at once with the lowest price ever.', 'al-ecommerce-product-catalog' ) . '" class="upgrade-now" href="http://implecode.com/choose-a-plan/#cam=bundles&key=extensions-top-menu">' . __( 'Now extensions bundles from $19.99!', 'al-ecommerce-product-catalog' ) . '</a>';
+		//echo '<a target="_blank" title="' . __( 'Now you can get multiple extensions at once with the lowest price ever.', 'al-ecommerce-product-catalog' ) . '" class="upgrade-now" href="https://implecode.com/choose-a-plan/#cam=bundles&key=extensions-top-menu">' . __( 'Now extensions bundles from $19.99!', 'al-ecommerce-product-catalog' ) . '</a>';
 	}
 }
 
 function extensions_bundle_box() {
 	if ( !function_exists( 'start_implecode_updater' ) ) {
-		echo '<div class="bundle-box">' . __( 'Do you need multiple extensions?', 'al-ecommerce-product-catalog' ) . ' <a href="http://implecode.com/choose-a-plan/#cam=bundles&key=extensions-bundle-box">' . __( 'Check out extensions bundles', 'al-ecommerce-product-catalog' ) . '</a></div>';
+		echo '<div class="bundle-box">' . __( 'Do you need multiple extensions?', 'al-ecommerce-product-catalog' ) . ' <a href="https://implecode.com/choose-a-plan/#cam=bundles&key=extensions-bundle-box">' . __( 'Check out extensions bundles', 'al-ecommerce-product-catalog' ) . '</a></div>';
 	}
 }

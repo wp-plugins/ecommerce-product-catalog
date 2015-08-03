@@ -92,24 +92,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-	    jQuery( document ).ready( function () {
-	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-	            wp.media.editor.send.attachment = function ( props, attachment ) {
-	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-	                jQuery( '.media-image' ).attr( "src", attachment.url );
-	            }
+		jQuery( document ).ready( function () {
+			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+				wp.media.editor.send.attachment = function ( props, attachment ) {
+					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+					jQuery( '.media-image' ).attr( "src", attachment.url );
+				}
 
-	            wp.media.editor.open( this );
+				wp.media.editor.open( this );
 
-	            return false;
-	        } );
-	    } );
+				return false;
+			} );
+		} );
 
-	    jQuery( '#reset-image-button' ).on( 'click', function () {
-	        jQuery( '#<?php echo $name; ?>' ).val( '' );
-	        src = jQuery( '#default' ).val();
-	        jQuery( '.media-image' ).attr( "src", src );
-	    } );
+		jQuery( '#reset-image-button' ).on( 'click', function () {
+			jQuery( '#<?php echo $name; ?>' ).val( '' );
+			src = jQuery( '#default' ).val();
+			jQuery( '.media-image' ).attr( "src", src );
+		} );
 	</script>
 	<?php
 }
@@ -904,7 +904,7 @@ function modify_product_listing_title_tag() {
  */
 function product_archive_custom_title( $title = null, $sep = null, $seplocation = null ) {
 	global $post;
-	if ( is_ic_product_listing() && $post->post_type == 'al_product' ) {
+	if ( is_ic_product_listing() && is_object( $post ) && $post->post_type == 'al_product' ) {
 		$settings = get_multiple_settings();
 		if ( $settings[ 'seo_title' ] != '' ) {
 			$settings					 = get_option( 'archive_multiple_settings', unserialize( DEFAULT_ARCHIVE_MULTIPLE_SETTINGS ) );
@@ -929,7 +929,7 @@ function product_archive_custom_title( $title = null, $sep = null, $seplocation 
 
 function product_archive_title( $title = null, $sep = null, $seplocation = null ) {
 	global $post;
-	if ( is_ic_product_listing() && $post->post_type == 'al_product' ) {
+	if ( is_ic_product_listing() && is_object( $post ) && $post->post_type == 'al_product' ) {
 		$settings = get_multiple_settings();
 		if ( $settings[ 'seo_title' ] == '' ) {
 			$id		 = get_product_listing_id();
