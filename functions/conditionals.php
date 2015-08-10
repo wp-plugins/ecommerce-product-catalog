@@ -32,10 +32,16 @@ function is_ic_taxonomy_page() {
  *
  * @return boolean
  */
-function is_ic_product_listing() {
-	$listing_id = get_product_listing_id();
-	if ( is_post_type_archive( product_post_type_array() ) || is_home_archive() || (is_ic_product_listing_enabled() && is_page( $listing_id )) ) {
-		return true;
+function is_ic_product_listing( $query = null ) {
+	if ( empty( $query ) ) {
+		$listing_id = get_product_listing_id();
+		if ( is_post_type_archive( product_post_type_array() ) || is_home_archive() || (is_ic_product_listing_enabled() && is_page( $listing_id )) ) {
+			return true;
+		}
+	} else {
+		if ( $query->is_post_type_archive( product_post_type_array() ) || is_home_archive( $query ) ) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -355,7 +361,9 @@ function is_ic_default_theme_sidebar_active() {
  */
 function is_ic_default_theme_sided_sidebar_active() {
 	$settings = get_multiple_settings();
-	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right') ) {
+	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right
+
+		') ) {
 		return true;
 	}
 	return false;
@@ -363,11 +371,55 @@ function is_ic_default_theme_sided_sidebar_active() {
 
 /**
  * Checks if current page is integration wizard page
- * 
+ *
  * @return boolean
  */
 function is_ic_integration_wizard_page() {
 	if ( sample_product_id() == get_the_ID() && current_user_can( "manage_product_settings" ) && !is_advanced_mode_forced() ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if current page is home catalog listing
+ *
+ * @param object $query
+ * @return boolean
+ */
+function is_home_archive( $query = null ) {
+	if ( !is_object( $query ) && is_front_page() && is_product_listing_home_set() ) {
+		return true;
+	} else if ( is_object( $query ) && $query->get( 'page_id' ) == get_option( 'page_on_front' ) && is_product_listing_home_set() ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if the home page catalog listing configuration is active
+ *
+ * @return boolean
+ */
+function is_product_listing_home_set() {
+	$frontpage			 = get_option( 'page_on_front' );
+	$product_listing_id	 = get_product_listing_id();
+	if ( !empty( $frontpage ) && !empty( $product_listing_id ) && $frontpage == $product_listing_id ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if sort drop down should be shown
+ *
+ * @global int $product_sort
+ * @global object $wp_query
+ * @return boolean
+ */
+function is_product_sort_bar_active() {
+	global $product_sort, $wp_query;
+	if ( (isset( $product_sort ) && $product_sort == 1) || (!is_ic_shortcode_query() && ($wp_query->max_num_pages > 1 || $wp_query->found_posts > 5)) ) {
 		return true;
 	}
 	return false;

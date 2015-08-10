@@ -491,18 +491,21 @@ function is_advanced_mode_forced() {
 }
 
 function get_product_adder_path() {
-	return get_stylesheet_directory() .
-	'/product-adder.php';
+	return get_stylesheet_directory() . '/product-adder.php';
+}
+
+function get_custom_templates_folder() {
+	return get_stylesheet_directory() . '/implecode/';
 }
 
 function get_custom_product_page_path() {
-	return get_stylesheet_directory() .
-	'/implecode/product-page.php';
+	$folder = get_custom_templates_folder();
+	return $folder . 'product-page.php';
 }
 
 function get_custom_product_listing_path() {
-	return get_stylesheet_directory() .
-	'/implecode/product-listing.php';
+	$folder = get_custom_templates_folder();
+	return $folder . 'product-listing.php';
 }
 
 function get_page_php_path() {
@@ -514,30 +517,33 @@ function get_page_php_path() {
 	return $path;
 }
 
-function is_home_archive( $query = null ) {
-	if ( !is_object( $query ) && is_front_page() && is_product_listing_home_set() ) {
-		return true;
-	} else if ( is_object( $query ) && $query->get( 'page_id' ) == get_option( 'page_on_front' ) && is_product_listing_home_set() ) {
-		return true;
-	}
-	return false;
-}
+add_filter( 'template_include', 'home_product_listing_redirect', 5 );
 
-function is_product_listing_home_set() {
-	$frontpage			 = get_option( 'page_on_front' );
-	$product_listing_id	 = get_product_listing_id();
-	if ( !empty( $frontpage ) && !empty( $product_listing_id ) && $frontpage == $product_listing_id ) {
-		return true;
-	}
-	return false;
-}
-
+/**
+ * Redirects the product listing page to homepage catalog if necessary
+ *
+ * @param type $template
+ * @return type
+ */
 function home_product_listing_redirect( $template ) {
-	if ( is_product_listing_home_set() && !is_front_page() && is_post_type_archive( 'al_product' ) && !is_search() ) {
+	if ( !is_paged() && !is_front_page() && is_ic_permalink_product_catalog() && is_product_listing_home_set() && is_post_type_archive( 'al_product' ) && !is_search() ) {
 		wp_redirect( get_site_url(), 301 );
 		exit;
 	}
 	return $template;
 }
 
-add_filter( 'template_include', 'home_product_listing_redirect', 5 );
+add_filter( 'redirect_canonical', 'ic_catalog_disable_redirect_canonical' );
+
+/**
+ * Fixes wrong pagination redirect on home page catalog listing
+ *
+ * @param boolean $redirect_url
+ * @return boolean
+ */
+function ic_catalog_disable_redirect_canonical( $redirect_url ) {
+	if ( is_paged() && is_front_page() && is_ic_permalink_product_catalog() && is_product_listing_home_set() ) {
+		$redirect_url = false;
+	}
+	return $redirect_url;
+}

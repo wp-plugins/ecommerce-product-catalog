@@ -994,16 +994,19 @@ function get_product_image_url( $product_id ) {
 }
 
 /**
- * Returns all products object
- * @return object
+ * Returns all products array
+ * @return array
  */
-function get_all_catalog_products() {
-	$args		 = array(
+function get_all_catalog_products( $orderby = null ) {
+	$args = array(
 		'post_type'		 => product_post_type_array(),
 		'post_status'	 => 'publish',
 		'posts_per_page' => -1,
 	);
-	$products	 = get_posts( $args );
+	if ( !empty( $orderby ) ) {
+		$args[ 'orderby' ] = $orderby;
+	}
+	$products = get_posts( $args );
 	return $products;
 }
 
@@ -1039,7 +1042,7 @@ add_action( 'pre_get_posts', 'set_product_order' );
  * @param object $query
  */
 function set_product_order( $query ) {
-	if ( !is_admin() && !isset( $_GET[ 'order' ] ) && $query->is_main_query() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' )) ) {
+	if ( !is_admin() && !isset( $_GET[ 'order' ] ) && $query->is_main_query() && (is_ic_product_listing( $query ) || is_ic_taxonomy_page()) ) {
 		$archive_multiple_settings = get_multiple_settings();
 		if ( !isset( $_GET[ 'product_order' ] ) ) {
 			if ( $archive_multiple_settings[ 'product_order' ] == 'product-name' ) {
@@ -1055,6 +1058,9 @@ function set_product_order( $query ) {
 		}
 	}
 }
+
+add_filter( 'shortcode_query', 'set_shortcode_product_order' );
+add_filter( 'home_product_listing_query', 'set_shortcode_product_order' );
 
 function set_shortcode_product_order( $shortcode_query ) {
 	$archive_multiple_settings = get_multiple_settings();
@@ -1073,7 +1079,6 @@ function set_shortcode_product_order( $shortcode_query ) {
 	return $shortcode_query;
 }
 
-add_filter( 'shortcode_query', 'set_shortcode_product_order' );
 add_action( 'before_product_list', 'show_product_order_dropdown', 10, 2 );
 
 /**
@@ -1084,11 +1089,10 @@ add_action( 'before_product_list', 'show_product_order_dropdown', 10, 2 );
  * @param array $multiple_settings
  */
 function show_product_order_dropdown( $archive_template, $multiple_settings = null ) {
-	$multiple_settings = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
-	global $product_sort;
-	if ( (isset( $product_sort ) && $product_sort == 1) || (!is_ic_shortcode_query()) ) {
-		$sort_options	 = get_product_sort_options();
-		$selected		 = isset( $_GET[ 'product_order' ] ) ? $_GET[ 'product_order' ] : $multiple_settings[ 'product_order' ];
+	if ( is_product_sort_bar_active() ) {
+		$multiple_settings	 = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
+		$sort_options		 = get_product_sort_options();
+		$selected			 = isset( $_GET[ 'product_order' ] ) ? $_GET[ 'product_order' ] : $multiple_settings[ 'product_order' ];
 		echo '<form id="product_order"><select id="product_order_selector" name="product_order">';
 		foreach ( $sort_options as $name => $value ) {
 			$option = '<option value="' . $name . '" ' . selected( $name, $selected, 0 ) . '>' . $value . '</option>';

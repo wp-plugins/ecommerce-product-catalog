@@ -191,13 +191,15 @@ add_action( 'product_listing_end', 'product_archive_pagination' );
  * @return string
  */
 function product_archive_pagination() {
-	if ( is_singular() || (is_ic_product_listing() && is_ic_only_main_cats()) ) {
+	if ( !is_home_archive() && is_singular() || (is_ic_product_listing() && is_ic_only_main_cats()) ) {
 		return;
 	}
 
-	global $wp_query;
-	if ( $wp_query->max_num_pages <= 1 )
+	global $paged, $wp_query;
+	if ( $wp_query->max_num_pages <= 1 ) {
 		return;
+	}
+
 	$paged	 = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
 	$max	 = intval( $wp_query->max_num_pages );
 	if ( $paged >= 1 )
@@ -502,10 +504,10 @@ add_action( 'before_product_list', 'product_list_header', 9 );
  */
 function product_list_header() {
 	$archive_names = get_archive_names();
-	if ( !empty( $archive_names[ 'all_products' ] ) && !is_ic_shortcode_query() ) {
-		if ( !is_tax() ) {
+	if ( !empty( $archive_names[ 'all_products' ] ) || !empty( $archive_names[ 'category_products' ] ) && !is_ic_shortcode_query() ) {
+		if ( !is_tax() && !empty( $archive_names[ 'all_products' ] ) ) {
 			echo '<h2>' . do_shortcode( $archive_names[ 'all_products' ] ) . '</h2>';
-		} else if ( is_tax() && is_ic_product_listing_showing_cats() ) {
+		} else if ( is_tax() && !empty( $archive_names[ 'category_products' ] ) && is_ic_product_listing_showing_cats() ) {
 			//$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 			echo '<h2>' . do_shortcode( $archive_names[ 'category_products' ] ) . '</h2>';
 		}

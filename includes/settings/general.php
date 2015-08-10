@@ -382,6 +382,10 @@ function general_settings_content() {
 	<?php
 }
 
+/**
+ * Returns currency settings array(th_sep, dec_sep, price_enable)
+ * @return array
+ */
 function get_currency_settings() {
 	$product_currency_settings					 = get_option( 'product_currency_settings', unserialize( DEF_CURRENCY_SETTINGS ) );
 	$local[ 'mon_thousands_sep' ]				 = ',';

@@ -578,7 +578,7 @@ margin: 0;
 }
 
 #product_archive_nav li {
-    margin: 0;
+    margin: 0 1px;
 }
 
 /* Shortcode */
@@ -796,7 +796,7 @@ margin: 0;
     background-image: url('images/success.png');
 }
 
-.al-box {
+.al-box, .al-box.success {
     background-repeat: no-repeat;
     background-position: 1%;
     padding: 10px 10px 10px 60px;
@@ -850,7 +850,7 @@ div.setting-content table td.longer {
 }
 
 #al_product_shipping table td.shipping-label-column {
-    width: 60%;
+    width: 55%;
     padding-right: 2px;
 }
 
