@@ -125,12 +125,13 @@ function show_products_outside_loop( $atts ) {
 			'posts_per_page' => $products_limit,
 		);
 	} else {
-		$exclude_array	 = explode( ',', $exclude );
-		$query_param	 = array(
+		$query_param = array(
 			'post_type'		 => 'al_product',
 			'posts_per_page' => $products_limit,
-			'post__not_in'	 => $exclude_array,
 		);
+		if ( !empty( $exclude ) ) {
+			$query_param[ 'post__not_in' ] = explode( ',', $exclude );
+		}
 	}
 	if ( !empty( $args[ 'orderby' ] ) ) {
 		$query_param[ 'orderby' ] = esc_attr( $args[ 'orderby' ] );
@@ -504,7 +505,7 @@ add_action( 'before_product_list', 'product_list_header', 9 );
  */
 function product_list_header() {
 	$archive_names = get_archive_names();
-	if ( !empty( $archive_names[ 'all_products' ] ) || !empty( $archive_names[ 'category_products' ] ) && !is_ic_shortcode_query() ) {
+	if ( (!empty( $archive_names[ 'all_products' ] ) || !empty( $archive_names[ 'category_products' ] )) && !is_ic_shortcode_query() ) {
 		if ( !is_tax() && !empty( $archive_names[ 'all_products' ] ) ) {
 			echo '<h2>' . do_shortcode( $archive_names[ 'all_products' ] ) . '</h2>';
 		} else if ( is_tax() && !empty( $archive_names[ 'category_products' ] ) && is_ic_product_listing_showing_cats() ) {
@@ -593,7 +594,7 @@ add_action( 'advanced_mode_layout_start', 'show_advanced_mode_default_sidebar' )
  * Shows theme default catalog styled sidebar if necessary
  */
 function show_advanced_mode_default_sidebar() {
-	if ( is_ic_default_theme_sided_sidebar_active() || (is_ic_integration_wizard_page() && $_GET[ 'test_advanced' ] == 1) ) {
+	if ( is_ic_default_theme_sided_sidebar_active() || (is_ic_integration_wizard_page() && isset( $_GET[ 'test_advanced' ] ) && $_GET[ 'test_advanced' ] == 1) ) {
 		add_action( 'advanced_mode_layout_after_content', 'advanced_mode_default_sided_sidebar' );
 	} else if ( is_ic_default_theme_sidebar_active() ) {
 		add_action( 'advanced_mode_layout_end', 'advanced_mode_default_sidebar' );

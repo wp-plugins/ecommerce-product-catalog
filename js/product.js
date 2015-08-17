@@ -11,7 +11,7 @@ jQuery( document ).ready( function ( $ ) {
         reponsive_product_catalog();
         setTimeout( "modern_grid_font_size()", 0 );
     } );
-    if ( typeof colorbox == 'object' ) {
+    if ( typeof colorbox == 'object' && $( ".a-product-image" ).length ) {
         $( ".a-product-image" ).colorbox( product_object.lightbox_settings );
     }
 

@@ -15,6 +15,7 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function add_product_caps() {
 	if ( is_user_logged_in() ) {
+
 		$role = get_role( 'administrator' );
 
 		$role->add_cap( 'publish_products' );

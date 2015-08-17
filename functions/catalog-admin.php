@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 function toolbar_link_to_products_archive_edit( $wp_admin_bar ) {
 	$listing_id = get_product_listing_id();
-	if ( is_post_type_archive( 'al_product' ) ) {
+	if ( is_post_type_archive( 'al_product' ) && $listing_id != 'noid' ) {
 		$args = array(
 			'id'	 => 'edit',
 			'title'	 => 'Edit Product Listing',

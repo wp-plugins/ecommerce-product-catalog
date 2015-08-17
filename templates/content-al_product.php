@@ -20,7 +20,7 @@ $default_single_names			 = default_single_names();
 $single_names					 = get_option( 'single_names', $default_single_names );
 $single_names[ 'product_sku' ]	 = isset( $single_names[ 'product_sku' ] ) ? $single_names[ 'product_sku' ] : 'SKU:';
 $single_options					 = get_product_page_settings();
-do_action( 'single_product_begin' );
+do_action( 'single_product_begin', $product_id );
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'al_product responsive' ); ?>>

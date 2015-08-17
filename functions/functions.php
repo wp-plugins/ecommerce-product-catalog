@@ -92,24 +92,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-		jQuery( document ).ready( function () {
-			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-				wp.media.editor.send.attachment = function ( props, attachment ) {
-					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-					jQuery( '.media-image' ).attr( "src", attachment.url );
-				}
+	    jQuery( document ).ready( function () {
+	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+	            wp.media.editor.send.attachment = function ( props, attachment ) {
+	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+	                jQuery( '.media-image' ).attr( "src", attachment.url );
+	            }
 
-				wp.media.editor.open( this );
+	            wp.media.editor.open( this );
 
-				return false;
-			} );
-		} );
+	            return false;
+	        } );
+	    } );
 
-		jQuery( '#reset-image-button' ).on( 'click', function () {
-			jQuery( '#<?php echo $name; ?>' ).val( '' );
-			src = jQuery( '#default' ).val();
-			jQuery( '.media-image' ).attr( "src", src );
-		} );
+	    jQuery( '#reset-image-button' ).on( 'click', function () {
+	        jQuery( '#<?php echo $name; ?>' ).val( '' );
+	        src = jQuery( '#default' ).val();
+	        jQuery( '.media-image' ).attr( "src", src );
+	    } );
 	</script>
 	<?php
 }
@@ -144,11 +144,13 @@ if ( !function_exists( 'select_page' ) ) {
 			$select_box .= '<option value="custom"' . selected( 'custom', $selected_value, 0 ) . '>' . __( 'Custom URL', 'al-ecommerce-product-catalog' ) . '</option>';
 		}
 		$select_box .= '</select>';
-		if ( $buttons && $selected_value != 'noid' && !empty( $selected_value ) ) {
+		if ( $buttons && ($selected_value != 'noid' || $custom_view_url != '') && !empty( $selected_value ) ) {
 			$edit_link	 = get_edit_post_link( $selected_value );
 			$front_link	 = $custom_view_url ? $custom_view_url : get_permalink( $selected_value );
 			if ( !empty( $edit_link ) ) {
 				$select_box .= ' <a class="button button-small" style="vertical-align: middle;" href="' . $edit_link . '">' . __( 'Edit' ) . '</a>';
+			}
+			if ( !empty( $front_link ) ) {
 				$select_box .= ' <a class="button button-small" style="vertical-align: middle;" href="' . $front_link . '">' . __( 'View Page' ) . '</a>';
 			}
 		}
@@ -246,7 +248,22 @@ add_action( 'product_listing_header', 'add_product_listing_name' );
  * Shows product listing title tag
  */
 function add_product_listing_name() {
-	echo '<h1 class="entry-title product-listing-name">' . get_the_title() . '</h1>';
+	if ( is_ic_taxonomy_page() ) {
+		$archive_names	 = get_archive_names();
+		$the_tax		 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		if ( !empty( $archive_names[ 'all_prefix' ] ) ) {
+			$title = $archive_names[ 'all_prefix' ] . ' ' . $the_tax->name;
+		} else {
+			$title = $the_tax->name;
+		}
+	} else if ( is_search() ) {
+		$title = __( 'Search Results for:', 'al-ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
+	} else if ( is_ic_product_listing() ) {
+		$title = get_product_listing_title();
+	} else {
+		$title = get_the_title();
+	}
+	echo '<h1 class="entry-title product-listing-name">' . $title . '</h1>';
 }
 
 function example_price() {
