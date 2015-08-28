@@ -439,21 +439,86 @@ function get_product_listing_title() {
 	return $page_title;
 }
 
+add_filter( 'nav_menu_css_class', 'product_listing_current_nav_class', 10, 2 );
+
+/**
+ * Adds product post type navigation menu current class
+ *
+ * @global type $post
+ * @param string $classes
+ * @param type $item
+ * @return string
+ */
 function product_listing_current_nav_class( $classes, $item ) {
 	global $post;
-	if ( isset( $post->ID ) && $item->object_id == get_product_listing_id() && is_post_type_archive( 'al_product' ) ) {
-		$current_post_type		 = get_post_type_object( get_post_type( $post->ID ) );
-		$current_post_type_slug	 = $current_post_type->rewrite[ 'slug' ];
-		$current_post_type_slug	 = !empty( $current_post_type_slug ) ? '/' . $current_post_type_slug . '/' : $current_post_type_slug;
-		$menu_slug				 = strtolower( trim( $item->url ) );
-		if ( strpos( $menu_slug, $current_post_type_slug ) !== false ) {
-			$classes[] = 'current-menu-item';
+	if ( isset( $post->ID ) && is_ic_product_listing() ) {
+		if ( $item->object_id == get_product_listing_id() ) {
+			$current_post_type		 = get_post_type_object( get_post_type( $post->ID ) );
+			$current_post_type_slug	 = $current_post_type->rewrite[ 'slug' ];
+			$current_post_type_slug	 = !empty( $current_post_type_slug ) ? '/' . $current_post_type_slug . '/' : $current_post_type_slug;
+			$menu_slug				 = strtolower( trim( $item->url ) );
+			if ( strpos( $menu_slug, $current_post_type_slug ) !== false ) {
+				$classes[] = 'current-menu-item';
+			}
+		} else {
+			if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+			if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+		}
+	} else if ( isset( $post->ID ) && (is_ic_product_page() || is_ic_taxonomy_page()) ) {
+		if ( strpos( $item->object, 'al_product-cat' ) === false && $item->object != 'custom' ) {
+			if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+			if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
 		}
 	}
 	return $classes;
 }
 
-add_action( 'nav_menu_css_class', 'product_listing_current_nav_class', 10, 2 );
+add_filter( 'page_css_class', 'product_listing_page_nav_class', 10, 2 );
+
+/**
+ * Adds products post type navigation class for automatic main menu
+ *
+ * @global type $post
+ * @param string $classes
+ * @param type $page
+ * @return string
+ */
+function product_listing_page_nav_class( $classes, $page ) {
+	global $post;
+	if ( isset( $post->ID ) && is_ic_product_listing() ) {
+		if ( $page->ID == get_product_listing_id() ) {
+			$current_post_type		 = get_post_type_object( get_post_type( $post->ID ) );
+			$current_post_type_slug	 = $current_post_type->rewrite[ 'slug' ];
+			$menu_slug				 = $page->post_name;
+			if ( $menu_slug == $current_post_type_slug ) {
+				$classes[] = 'current_page_item';
+			}
+		} else {
+			if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+			if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+		}
+	} else if ( isset( $post->ID ) && (is_ic_product_page() || is_ic_taxonomy_page()) ) {
+		if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+			unset( $classes[ $key ] );
+		}
+		if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+			unset( $classes[ $key ] );
+		}
+	}
+	return $classes;
+}
 
 /**
  * Defines custom classes to product or category listing div

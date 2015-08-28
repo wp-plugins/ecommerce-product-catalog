@@ -361,9 +361,7 @@ function is_ic_default_theme_sidebar_active() {
  */
 function is_ic_default_theme_sided_sidebar_active() {
 	$settings = get_multiple_settings();
-	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right
-
-		') ) {
+	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right') ) {
 		return true;
 	}
 	return false;
