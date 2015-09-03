@@ -149,6 +149,12 @@ function ecommerce_product_catalog_upgrade() {
 				$archive_multiple_settings[ 'default_sidebar' ]	 = 1;
 				update_option( 'archive_multiple_settings', $archive_multiple_settings );
 			}
+			if ( version_compare( $first_version, '2.4.0' ) < 0 && version_compare( $database_plugin_version, '2.4.0' ) < 0 ) {
+				$archive_multiple_settings				 = get_multiple_settings();
+				$archive_multiple_settings[ 'related' ]	 = 'categories';
+				update_option( 'archive_multiple_settings', $archive_multiple_settings );
+				update_option( 'old_sort_bar', 1 );
+			}
 			flush_rewrite_rules();
 		}
 	}

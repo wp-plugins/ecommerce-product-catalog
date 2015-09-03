@@ -361,9 +361,7 @@ function is_ic_default_theme_sidebar_active() {
  */
 function is_ic_default_theme_sided_sidebar_active() {
 	$settings = get_multiple_settings();
-	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right
-
-		') ) {
+	if ( isset( $settings[ 'default_sidebar' ] ) && ($settings[ 'default_sidebar' ] == 'left' || $settings[ 'default_sidebar' ] == 'right') ) {
 		return true;
 	}
 	return false;
@@ -419,7 +417,50 @@ function is_product_listing_home_set() {
  */
 function is_product_sort_bar_active() {
 	global $product_sort, $wp_query;
-	if ( (isset( $product_sort ) && $product_sort == 1) || (!is_ic_shortcode_query() && ($wp_query->max_num_pages > 1 || $wp_query->found_posts > 5)) ) {
+	if ( is_product_filters_active() || (isset( $product_sort ) && $product_sort == 1) || (!is_ic_shortcode_query() && ($wp_query->max_num_pages > 1 || $wp_query->found_posts > 5)) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if any filter is active now
+ *
+ * @return boolean
+ */
+function is_product_filters_active() {
+	if ( isset( $_SESSION[ 'filters' ] ) && !empty( $_SESSION[ 'filters' ] ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Checks if product filter is active
+ *
+ * @param string $filter_name
+ * @return boolean
+ */
+function is_product_filter_active( $filter_name, $value = null ) {
+	if ( isset( $_SESSION[ 'filters' ][ $filter_name ] ) && !empty( $_SESSION[ 'filters' ][ $filter_name ] ) ) {
+		if ( isset( $value ) && $_SESSION[ 'filters' ][ $filter_name ] == $value ) {
+			return true;
+		} else if ( !isset( $value ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * Checks if currently the filter bar is being displayed
+ *
+ * @global boolean $is_filter_bar
+ * @return boolean
+ */
+function is_filter_bar() {
+	global $is_filter_bar;
+	if ( isset( $is_filter_bar ) && $is_filter_bar ) {
 		return true;
 	}
 	return false;

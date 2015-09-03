@@ -422,6 +422,3 @@ function get_product_short_description( $product_id ) {
 }
 
 require_once(AL_BASE_PATH . '/includes/product-categories.php');
-require_once(AL_BASE_PATH . '/includes/search-widget.php');
-// require_once('product-types.php');
-?>

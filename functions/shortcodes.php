@@ -46,7 +46,7 @@ function product_cat_shortcode( $atts ) {
 		'sort'				 => 0,
 		'shortcode_query'	 => 'yes',
 	), $atts );
-	$div								 = '<div class="product-subcategories ' . $args[ 'archive_template' ] . ' ' . product_list_class( $args[ 'archive_template' ], 'category-list' ) . '">';
+	$div								 = '<div class="product-subcategories responsive ' . $args[ 'archive_template' ] . ' ' . product_list_class( $args[ 'archive_template' ], 'category-list' ) . '">';
 	$cats								 = get_terms( 'al_product-cat', $args );
 	$cat_shortcode_query[ 'count' ]		 = count( $cats );
 	$cat_shortcode_query[ 'enable' ]	 = $args[ 'shortcode_query' ];
@@ -70,7 +70,7 @@ function product_cat_shortcode( $atts ) {
 	if ( !empty( $inside ) ) {
 		$ready	 = apply_filters( 'category_list_ready', $inside, $args[ 'archive_template' ] );
 		ob_start();
-		do_action( 'before_category_list', $archive_template );
+		do_action( 'before_category_list', $args[ 'archive_template' ] );
 		$inside	 = ob_get_contents();
 		ob_end_clean();
 		$inside .= $div . $ready;
@@ -274,6 +274,21 @@ function ic_product_related_categories( $atts ) {
 		'product' => get_the_ID(),
 	), $atts );
 	return get_related_categories( $args[ 'product' ] );
+}
+
+add_shortcode( 'related_products', 'ic_related_products' );
+
+/**
+ * Shows related products
+ *
+ * @param type $atts
+ * @return string
+ */
+function ic_related_products( $atts ) {
+	$args = shortcode_atts( array(
+		'limit' => 3,
+	), $atts );
+	return get_related_products( $args[ 'limit' ] );
 }
 
 add_shortcode( 'back_to_products_url', 'ic_back_to_prodcts_url' );

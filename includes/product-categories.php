@@ -12,8 +12,6 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package		ecommerce-product-catalog/includes
  * @author 		Norbert Dreszer
  */
-require_once(AL_BASE_PATH . '/includes/category-widget.php');
-
 add_action( 'init', 'create_product_categories', 9 );
 
 /**

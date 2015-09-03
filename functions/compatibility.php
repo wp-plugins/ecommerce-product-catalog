@@ -58,3 +58,42 @@ function ic_jetpack_infinite_scroll_disable( $return ) {
 	}
 	return $return;
 }
+
+add_action( 'before_product_page', 'set_product_page_image_html' );
+
+/**
+ * Sets product page image html if was modified by third party
+ */
+function set_product_page_image_html() {
+	if ( has_filter( 'post_thumbnail_html' ) ) {
+		add_filter( 'post_thumbnail_html', 'get_default_product_page_image_html', 1 );
+		add_filter( 'post_thumbnail_html', 'product_page_image_html', 99 );
+	}
+}
+
+/**
+ * Inserts default thumbnail html to global
+ * @global type $product_page_image_html
+ * @param type $html
+ * @return type
+ */
+function get_default_product_page_image_html( $html ) {
+	global $product_page_image_html;
+	$product_page_image_html = $html;
+	return $html;
+}
+
+/**
+ * Replaces the product page image HTML with the default
+ *
+ * @global type $product_page_image_html
+ * @param type $html
+ * @return \type
+ */
+function product_page_image_html( $html ) {
+	if ( is_ic_product_page() ) {
+		global $product_page_image_html;
+		return $product_page_image_html;
+	}
+	return $html;
+}

@@ -92,24 +92,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-	    jQuery( document ).ready( function () {
-	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-	            wp.media.editor.send.attachment = function ( props, attachment ) {
-	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-	                jQuery( '.media-image' ).attr( "src", attachment.url );
-	            }
+		jQuery( document ).ready( function () {
+			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+				wp.media.editor.send.attachment = function ( props, attachment ) {
+					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+					jQuery( '.media-image' ).attr( "src", attachment.url );
+				}
 
-	            wp.media.editor.open( this );
+				wp.media.editor.open( this );
 
-	            return false;
-	        } );
-	    } );
+				return false;
+			} );
+		} );
 
-	    jQuery( '#reset-image-button' ).on( 'click', function () {
-	        jQuery( '#<?php echo $name; ?>' ).val( '' );
-	        src = jQuery( '#default' ).val();
-	        jQuery( '.media-image' ).attr( "src", src );
-	    } );
+		jQuery( '#reset-image-button' ).on( 'click', function () {
+			jQuery( '#<?php echo $name; ?>' ).val( '' );
+			src = jQuery( '#default' ).val();
+			jQuery( '.media-image' ).attr( "src", src );
+		} );
 	</script>
 	<?php
 }
@@ -550,7 +550,12 @@ add_action( 'single_product_end', 'show_related_categories', 10, 3 );
  * @return string
  */
 function show_related_categories( $post, $single_names, $taxonomy_name ) {
-	echo get_related_categories( $post->ID, $single_names, $taxonomy_name );
+	$settings = get_multiple_settings();
+	if ( $settings[ 'related' ] == 'categories' ) {
+		echo get_related_categories( $post->ID, $single_names, $taxonomy_name );
+	} else {
+		echo get_related_products( null, true );
+	}
 }
 
 /**
@@ -564,7 +569,7 @@ function show_related_categories( $post, $single_names, $taxonomy_name ) {
 function get_related_categories( $product_id, $v_single_names = null, $taxonomy_name = 'al_product-cat' ) {
 	$single_names	 = isset( $v_single_names ) ? $v_single_names : get_single_names();
 	$terms			 = wp_get_post_terms( $product_id, $taxonomy_name, array( "fields" => "ids" ) );
-	if ( empty( $terms ) || get_integration_type() == 'simple' ) {
+	if ( empty( $terms ) || is_wp_error( $terms ) || get_integration_type() == 'simple' ) {
 		return;
 	}
 	$term		 = $terms[ 0 ];
@@ -597,7 +602,7 @@ add_filter( 'the_content', 'show_simple_product_listing' );
  * @return string
  */
 function show_simple_product_listing( $content ) {
-	if ( get_integration_type() == 'simple' && is_ic_product_listing() && is_ic_product_listing_enabled() ) {
+	if ( is_main_query() && in_the_loop() && get_integration_type() == 'simple' && is_ic_product_listing() && is_ic_product_listing_enabled() ) {
 		if ( !has_shortcode( $content, 'show_products' ) ) {
 			$archive_multiple_settings = get_multiple_settings();
 			$content .= do_shortcode( '[show_products products_limit="' . $archive_multiple_settings[ 'archive_products_limit' ] . '"]' );
@@ -1096,7 +1101,7 @@ function set_shortcode_product_order( $shortcode_query ) {
 	return $shortcode_query;
 }
 
-add_action( 'before_product_list', 'show_product_order_dropdown', 10, 2 );
+//add_action( 'before_product_list', 'show_product_order_dropdown', 10, 2 );
 
 /**
  * Shows sorting drop down
@@ -1105,23 +1110,65 @@ add_action( 'before_product_list', 'show_product_order_dropdown', 10, 2 );
  * @param string $archive_template
  * @param array $multiple_settings
  */
-function show_product_order_dropdown( $archive_template, $multiple_settings = null ) {
+function show_product_order_dropdown( $archive_template = null, $multiple_settings = null ) {
+	$multiple_settings	 = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
+	$sort_options		 = get_product_sort_options();
+	$selected			 = isset( $_GET[ 'product_order' ] ) ? esc_attr( $_GET[ 'product_order' ] ) : $multiple_settings[ 'product_order' ];
+	echo '<form class="product_order"><select class="product_order_selector" name="product_order">';
+	foreach ( $sort_options as $name => $value ) {
+		$option = '<option value="' . $name . '" ' . selected( $name, $selected, 0 ) . '>' . $value . '</option>';
+		echo apply_filters( 'product_order_dropdown_options', $option, $name, $value, $multiple_settings, $selected );
+	}
+	echo '</select>';
+	foreach ( $_GET as $key => $get_value ) {
+		if ( $key != 'product_order' ) {
+			echo '<input type="hidden" value="' . esc_attr( $get_value ) . '" name="' . esc_attr( $key ) . '" />';
+		}
+	}
+	echo '</form>';
+}
+
+add_action( 'before_product_list', 'show_product_sort_bar', 10, 2 );
+
+/**
+ * Shows product sort and filters bar
+ *
+ * @global boolean $is_filter_bar
+ * @param string $archive_template
+ * @param array $multiple_settings
+ */
+function show_product_sort_bar( $archive_template = null, $multiple_settings = null ) {
 	if ( is_product_sort_bar_active() ) {
-		$multiple_settings	 = empty( $multiple_settings ) ? get_multiple_settings() : $multiple_settings;
-		$sort_options		 = get_product_sort_options();
-		$selected			 = isset( $_GET[ 'product_order' ] ) ? $_GET[ 'product_order' ] : $multiple_settings[ 'product_order' ];
-		echo '<form id="product_order"><select id="product_order_selector" name="product_order">';
-		foreach ( $sort_options as $name => $value ) {
-			$option = '<option value="' . $name . '" ' . selected( $name, $selected, 0 ) . '>' . $value . '</option>';
-			echo apply_filters( 'product_order_dropdown_options', $option, $name, $value, $multiple_settings, $selected );
+		if ( is_active_sidebar( 'product_sort_bar' ) ) {
+			global $is_filter_bar;
+			$is_filter_bar = true;
+			echo '<div class="product-sort-bar ' . design_schemes( 'box', 0 ) . '">';
+			dynamic_sidebar( 'product_sort_bar' );
+			echo '</div>';
+			unset( $is_filter_bar );
+		} else {
+			show_default_product_sort_bar( $archive_template, $multiple_settings = null );
 		}
-		echo '</select>';
-		foreach ( $_GET as $key => $get_value ) {
-			if ( $key != 'product_order' ) {
-				echo '<input type="hidden" value="' . $get_value . '" name="' . $key . '" />';
-			}
-		}
-		echo '</form>';
+	}
+}
+
+/**
+ * Shows default product sort bar content
+ *
+ */
+function show_default_product_sort_bar( $archive_template, $multiple_settings = null ) {
+	if ( get_option( 'old_sort_bar' ) == 1 ) {
+		show_product_order_dropdown( $archive_template, $multiple_settings = null );
+	} else {
+		global $is_filter_bar;
+		$is_filter_bar = true;
+		echo '<div class="product-sort-bar ' . design_schemes( 'box', 0 ) . '">';
+		the_widget( 'product_widget_search' );
+		the_widget( 'product_price_filter' );
+		the_widget( 'product_sort_filter' );
+		the_widget( 'product_category_filter' );
+		echo '</div>';
+		unset( $is_filter_bar );
 	}
 }
 
@@ -1134,4 +1181,21 @@ function translate_product_order() {
 function ic_products_count() {
 	$count = wp_count_posts( 'al_product' );
 	return $count->publish;
+}
+
+/**
+ * Returns per row setting for current product listing theme
+ * @return int
+ */
+function get_current_per_row() {
+	$archive_template	 = get_product_listing_template();
+	$per_row			 = 3;
+	if ( $archive_template == 'default' ) {
+		$settings	 = get_modern_grid_settings();
+		$per_row	 = $settings[ 'per-row' ];
+	} else if ( $archive_template == 'grid' ) {
+		$settings	 = get_classic_grid_settings();
+		$per_row	 = $settings[ 'entries' ];
+	}
+	return apply_filters( 'current_per_row', $per_row, $archive_template );
 }

@@ -439,21 +439,86 @@ function get_product_listing_title() {
 	return $page_title;
 }
 
+add_filter( 'nav_menu_css_class', 'product_listing_current_nav_class', 10, 2 );
+
+/**
+ * Adds product post type navigation menu current class
+ *
+ * @global type $post
+ * @param string $classes
+ * @param type $item
+ * @return string
+ */
 function product_listing_current_nav_class( $classes, $item ) {
 	global $post;
-	if ( isset( $post->ID ) && $item->object_id == get_product_listing_id() && is_post_type_archive( 'al_product' ) ) {
-		$current_post_type		 = get_post_type_object( get_post_type( $post->ID ) );
-		$current_post_type_slug	 = $current_post_type->rewrite[ 'slug' ];
-		$current_post_type_slug	 = !empty( $current_post_type_slug ) ? '/' . $current_post_type_slug . '/' : $current_post_type_slug;
-		$menu_slug				 = strtolower( trim( $item->url ) );
-		if ( strpos( $menu_slug, $current_post_type_slug ) !== false ) {
-			$classes[] = 'current-menu-item';
+	if ( isset( $post->ID ) && is_ic_product_listing() ) {
+		if ( $item->object_id == get_product_listing_id() ) {
+			$current_post_type		 = get_post_type_object( get_post_type( $post->ID ) );
+			$current_post_type_slug	 = $current_post_type->rewrite[ 'slug' ];
+			$current_post_type_slug	 = !empty( $current_post_type_slug ) ? '/' . $current_post_type_slug . '/' : $current_post_type_slug;
+			$menu_slug				 = strtolower( trim( $item->url ) );
+			if ( strpos( $menu_slug, $current_post_type_slug ) !== false ) {
+				$classes[] = 'current-menu-item';
+			}
+		} else {
+			if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+			if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+		}
+	} else if ( isset( $post->ID ) && (is_ic_product_page() || is_ic_taxonomy_page()) ) {
+		if ( strpos( $item->object, 'al_product-cat' ) === false && $item->object != 'custom' ) {
+			if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+			if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
 		}
 	}
 	return $classes;
 }
 
-add_action( 'nav_menu_css_class', 'product_listing_current_nav_class', 10, 2 );
+add_filter( 'page_css_class', 'product_listing_page_nav_class', 10, 2 );
+
+/**
+ * Adds products post type navigation class for automatic main menu
+ *
+ * @global type $post
+ * @param string $classes
+ * @param type $page
+ * @return string
+ */
+function product_listing_page_nav_class( $classes, $page ) {
+	global $post;
+	if ( isset( $post->ID ) && is_ic_product_listing() ) {
+		if ( $page->ID == get_product_listing_id() ) {
+			$current_post_type		 = get_post_type_object( get_post_type( $post->ID ) );
+			$current_post_type_slug	 = $current_post_type->rewrite[ 'slug' ];
+			$menu_slug				 = $page->post_name;
+			if ( $menu_slug == $current_post_type_slug ) {
+				$classes[] = 'current_page_item';
+			}
+		} else {
+			if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+			if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+				unset( $classes[ $key ] );
+			}
+		}
+	} else if ( isset( $post->ID ) && (is_ic_product_page() || is_ic_taxonomy_page()) ) {
+		if ( ($key = array_search( 'current-menu-item', $classes )) !== false ) {
+			unset( $classes[ $key ] );
+		}
+		if ( ($key = array_search( 'current_page_parent', $classes )) !== false ) {
+			unset( $classes[ $key ] );
+		}
+	}
+	return $classes;
+}
 
 /**
  * Defines custom classes to product or category listing div
@@ -617,4 +682,72 @@ function advanced_mode_default_sided_sidebar() {
 	$first_sidebar		 = key( $registered_sidebars );
 	dynamic_sidebar( $first_sidebar );
 	echo '</div>';
+}
+
+/**
+ * Returns realted products
+ *
+ * @global object $post
+ * @param int $products_limit
+ * @param boolean $markup
+ * @return string
+ */
+function get_related_products( $products_limit = null, $markup = false ) {
+	if ( !isset( $products_limit ) ) {
+		$products_limit = get_current_per_row();
+	}
+	$current_product_id	 = get_the_ID();
+	$terms				 = get_the_terms( $current_product_id, 'al_product-cat' );
+	if ( is_array( $terms ) ) {
+		$terms				 = array_reverse( $terms );
+		$archive_template	 = get_product_listing_template();
+		$i					 = 0;
+		$inside				 = '';
+		$products			 = array();
+		foreach ( $terms as $term ) {
+			$query_param = array(
+				'post_type'		 => 'al_product',
+				'tax_query'		 => array(
+					array(
+						'taxonomy'	 => 'al_product-cat',
+						'field'		 => 'slug',
+						'terms'		 => $term->slug,
+					),
+				),
+				'posts_per_page' => $products_limit,
+			);
+			$query		 = new WP_Query( $query_param );
+			while ( $query->have_posts() ) : $query->the_post();
+				global $post;
+				if ( $current_product_id != $post->ID ) {
+					$i++;
+					$products[] = $post->ID;
+				}
+				if ( $i >= $products_limit ) {
+					break;
+				}
+			endwhile;
+			wp_reset_postdata();
+			reset_row_class();
+			if ( $i >= $products_limit ) {
+				break;
+			}
+		}
+		if ( !empty( $products ) ) {
+			$products = implode( ',', $products );
+			if ( $markup ) {
+				$div			 = '<div class="related-products">';
+				$single_names	 = get_single_names();
+				if ( !empty( $single_names[ 'other_categories' ] ) ) {
+					$div .= '<h2>' . $single_names[ 'other_categories' ] . '</h2>';
+				}
+				$div .= do_shortcode( '[show_products product="' . $products . '"]' );
+				$div .= '</div>';
+			} else {
+				$div = do_shortcode( '[show_products product="' . $products . '"]' );
+			}
+		}
+		return $div;
+	}
+	return;
 }

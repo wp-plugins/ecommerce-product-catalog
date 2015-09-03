@@ -15,8 +15,8 @@ jQuery( document ).ready( function ( $ ) {
         $( ".a-product-image" ).colorbox( product_object.lightbox_settings );
     }
 
-    jQuery( "#product_order_selector" ).change( function () {
-        jQuery( "#product_order" ).submit();
+    jQuery( ".product_order_selector" ).change( function () {
+        jQuery(this).parent(".product_order" ).submit();
     } );
 
     $.ic = {

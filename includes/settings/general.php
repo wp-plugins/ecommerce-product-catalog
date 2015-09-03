@@ -88,8 +88,8 @@ function general_settings_content() {
 		<?php if ( $submenu == 'general-settings' OR $submenu == '' ) { ?>
 			<div class="setting-content submenu">
 				<script>
-		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		            jQuery( '.settings-submenu a#general-settings' ).addClass( 'current' );
+					jQuery( '.settings-submenu a' ).removeClass( 'current' );
+					jQuery( '.settings-submenu a#general-settings' ).addClass( 'current' );
 				</script>
 				<h2><?php _e( 'General Settings', 'al-ecommerce-product-catalog' ); ?></h2>
 
@@ -255,6 +255,7 @@ function general_settings_content() {
 						implecode_settings_radio( __( 'Category Page shows', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[category_top_cats]', $archive_multiple_settings[ 'category_top_cats' ], array( 'off' => __( 'Products', 'al-ecommerce-product-catalog' ), 'on' => __( 'Products & Subcategories', 'al-ecommerce-product-catalog' ), 'only_subcategories' => __( 'Subcategories', 'al-ecommerce-product-catalog' ) ) );
 						implecode_settings_radio( __( 'Categories Display', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[cat_template]', $archive_multiple_settings[ 'cat_template' ], array( 'template' => __( 'Template', 'al-ecommerce-product-catalog' ), 'link' => __( 'URLs', 'al-ecommerce-product-catalog' ) ), true, array( 'template' => __( 'Display categories with the same listing theme as products.', 'al-ecommerce-product-catalog' ), 'link' => __( 'Display categories as simple links.', 'al-ecommerce-product-catalog' ) ) );
 						implecode_settings_checkbox( __( 'Disable Image on Category Page', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[cat_image_disabled]', $archive_multiple_settings[ 'cat_image_disabled' ] );
+						implecode_settings_radio( __( 'Show Related', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[related]', $archive_multiple_settings[ 'related' ], array( 'products' => __( 'Products', 'al-ecommerce-product-catalog' ), 'categories' => __( 'Categories', 'al-ecommerce-product-catalog' ) ) );
 						do_action( 'product_category_settings', $archive_multiple_settings );
 						?>
 					</table>
@@ -342,16 +343,16 @@ function general_settings_content() {
 						</tbody>
 					</table>
 					<script>jQuery( document ).ready( function () {
-		                    jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).change( function () {
-		                        if ( jQuery( this ).val() == 'off' && jQuery( this ).is( ':checked' ) ) {
-		                            jQuery( "#payment_table tbody" ).hide( "slow" );
-		                        }
-		                        else {
-		                            jQuery( "#payment_table tbody" ).show( "slow" );
-		                        }
-		                    } );
-		                    jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).trigger( "change" );
-		                } );</script>
+							jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).change( function () {
+								if ( jQuery( this ).val() == 'off' && jQuery( this ).is( ':checked' ) ) {
+									jQuery( "#payment_table tbody" ).hide( "slow" );
+								}
+								else {
+									jQuery( "#payment_table tbody" ).show( "slow" );
+								}
+							} );
+							jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).trigger( "change" );
+		                        } );</script>
 					<h3><?php _e( 'Additional Settings', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table><?php implecode_settings_checkbox( __( 'Disable SKU', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[disable_sku]', $archive_multiple_settings[ 'disable_sku' ] ) ?>
 					</table>
@@ -429,6 +430,7 @@ function get_multiple_settings() {
 	$archive_multiple_settings[ 'container_padding' ]	 = isset( $archive_multiple_settings[ 'container_padding' ] ) ? $archive_multiple_settings[ 'container_padding' ] : 0;
 	$archive_multiple_settings[ 'disable_name' ]		 = isset( $archive_multiple_settings[ 'disable_name' ] ) ? $archive_multiple_settings[ 'disable_name' ] : '';
 	$archive_multiple_settings[ 'default_sidebar' ]		 = isset( $archive_multiple_settings[ 'default_sidebar' ] ) ? $archive_multiple_settings[ 'default_sidebar' ] : 'none';
+	$archive_multiple_settings[ 'related' ]				 = isset( $archive_multiple_settings[ 'related' ] ) ? $archive_multiple_settings[ 'related' ] : 'products';
 	return apply_filters( 'catalog_multiple_settings', $archive_multiple_settings );
 }
 
