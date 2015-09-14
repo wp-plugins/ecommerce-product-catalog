@@ -155,6 +155,7 @@ jQuery( document ).ready( function () {
             }, 100 );
         }
     } );
+
 } );
 
 jQuery( document ).ready( function ( $ ) {

@@ -63,7 +63,7 @@ function create_product_categories() {
 		'show_ui'			 => true,
 		'show_admin_column'	 => true,
 		'query_var'			 => true,
-		'rewrite'			 => array( 'slug' => apply_filters( 'product_category_slug_value_register', sanitize_title( $archive_multiple_settings[ 'category_archive_url' ] ) ), 'with_front' => false ),
+		'rewrite'			 => array( 'hierarchical' => true, 'slug' => apply_filters( 'product_category_slug_value_register', sanitize_title( $archive_multiple_settings[ 'category_archive_url' ] ) ), 'with_front' => false ),
 		'capabilities'		 => array(
 			'manage_terms'	 => 'manage_product_categories',
 			'edit_terms'	 => 'edit_product_categories',
@@ -75,5 +75,3 @@ function create_product_categories() {
 	register_taxonomy( 'al_product-cat', 'al_product', $args );
 	register_taxonomy_for_object_type( 'al_product-cat', 'al_product' );
 }
-
-?>

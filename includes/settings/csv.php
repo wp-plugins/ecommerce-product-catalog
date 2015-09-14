@@ -110,7 +110,7 @@ function simple_import_product_from_csv() {
 function simple_prepare_csv_file( $type = 'w' ) {
 	$csv_temp	 = wp_upload_dir();
 	ini_set( 'auto_detect_line_endings', true );
-	$fp			 = fopen( $csv_temp[ 'basedir' ] . '/simple-products.csv', $type );
+	$fp			 = fopen( $csv_temp[ 'basedir' ] . '/simple-products.csv', $type ) or die( implecode_warning( sprintf( __( 'Permission error. Please check WordPress uploads %sfolder permissions%s.', 'al-ecommerce-product-catalog' ), '<a href="https://codex.wordpress.org/Changing_File_Permissions">', '</a>' ), 0 ) );
 	return $fp;
 }
 
