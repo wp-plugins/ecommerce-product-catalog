@@ -417,7 +417,7 @@ function override_product_page_title( $page_title, $id = null ) {
 		if ( is_ic_taxonomy_page() ) {
 			$the_tax	 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 			$page_title	 = $archive_names[ 'all_prefix' ] . ' ' . $the_tax->name;
-		} else if ( is_search() ) {
+		} else if ( is_ic_product_search() ) {
 			$page_title = __( 'Search Results for:', 'al-ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
 		} else if ( is_ic_product_listing() ) {
 			$page_title = get_product_listing_title();
@@ -571,7 +571,7 @@ add_action( 'before_product_list', 'product_list_header', 9 );
 function product_list_header() {
 	$archive_names = get_archive_names();
 	if ( (!empty( $archive_names[ 'all_products' ] ) || !empty( $archive_names[ 'category_products' ] )) && !is_ic_shortcode_query() ) {
-		if ( !is_tax() && !empty( $archive_names[ 'all_products' ] ) ) {
+		if ( !is_tax() && !is_search() && !empty( $archive_names[ 'all_products' ] ) ) {
 			echo '<h2>' . do_shortcode( $archive_names[ 'all_products' ] ) . '</h2>';
 		} else if ( is_tax() && !empty( $archive_names[ 'category_products' ] ) && is_ic_product_listing_showing_cats() ) {
 			//$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
@@ -697,8 +697,10 @@ function get_related_products( $products_limit = null, $markup = false ) {
 		$products_limit = get_current_per_row();
 	}
 	$current_product_id	 = get_the_ID();
-	$terms				 = get_the_terms( $current_product_id, 'al_product-cat' );
-	if ( is_array( $terms ) ) {
+	$taxonomy			 = get_current_screen_tax();
+	$post_type			 = get_current_screen_post_type();
+	$terms				 = get_the_terms( $current_product_id, $taxonomy );
+	if ( is_array( $terms ) && !empty( $taxonomy ) && !empty( $post_type ) ) {
 		$terms				 = array_reverse( $terms );
 		$archive_template	 = get_product_listing_template();
 		$i					 = 0;
@@ -706,10 +708,10 @@ function get_related_products( $products_limit = null, $markup = false ) {
 		$products			 = array();
 		foreach ( $terms as $term ) {
 			$query_param = array(
-				'post_type'		 => 'al_product',
+				'post_type'		 => $post_type,
 				'tax_query'		 => array(
 					array(
-						'taxonomy'	 => 'al_product-cat',
+						'taxonomy'	 => $taxonomy,
 						'field'		 => 'slug',
 						'terms'		 => $term->slug,
 					),
@@ -733,6 +735,7 @@ function get_related_products( $products_limit = null, $markup = false ) {
 				break;
 			}
 		}
+		$div = '';
 		if ( !empty( $products ) ) {
 			$products = implode( ',', $products );
 			if ( $markup ) {

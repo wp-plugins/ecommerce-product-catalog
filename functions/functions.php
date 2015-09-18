@@ -57,7 +57,7 @@ add_action( 'wp', 'redirect_listing_on_non_permalink' );
 function redirect_listing_on_non_permalink() {
 	if ( !is_ic_permalink_product_catalog() ) {
 		$product_listing_id = get_product_listing_id();
-		if ( is_ic_product_listing_enabled() && is_page( $product_listing_id ) ) {
+		if ( !empty( $product_listing_id ) && is_ic_product_listing_enabled() && is_page( $product_listing_id ) ) {
 			$url = product_listing_url();
 			wp_redirect( $url, 301 );
 			exit;
@@ -144,7 +144,7 @@ if ( !function_exists( 'select_page' ) ) {
 			$select_box .= '<option value="custom"' . selected( 'custom', $selected_value, 0 ) . '>' . __( 'Custom URL', 'al-ecommerce-product-catalog' ) . '</option>';
 		}
 		$select_box .= '</select>';
-		if ( $buttons && ($selected_value != 'noid' || $custom_view_url != '') && !empty( $selected_value ) ) {
+		if ( $buttons && ($selected_value != 'noid' || $custom_view_url != '') ) {
 			$edit_link	 = get_edit_post_link( $selected_value );
 			$front_link	 = $custom_view_url ? $custom_view_url : get_permalink( $selected_value );
 			if ( !empty( $edit_link ) ) {
@@ -250,13 +250,14 @@ add_action( 'product_listing_header', 'add_product_listing_name' );
 function add_product_listing_name() {
 	if ( is_ic_taxonomy_page() ) {
 		$archive_names	 = get_archive_names();
-		$the_tax		 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		//$the_tax		 = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+		$the_tax		 = get_queried_object();
 		if ( !empty( $archive_names[ 'all_prefix' ] ) ) {
 			$title = $archive_names[ 'all_prefix' ] . ' ' . $the_tax->name;
 		} else {
 			$title = $the_tax->name;
 		}
-	} else if ( is_search() ) {
+	} else if ( is_ic_product_search() ) {
 		$title = __( 'Search Results for:', 'al-ecommerce-product-catalog' ) . ' ' . $_GET[ 's' ];
 	} else if ( is_ic_product_listing() ) {
 		$title = get_product_listing_title();
@@ -706,6 +707,7 @@ function product_breadcrumbs() {
 </span>
 </p>';
 		} else if ( is_ic_taxonomy_page() ) {
+			$current_product = get_queried_object()->name;
 			return '<p id="breadcrumbs">
 <span xmlns:v="http://rdf.data-vocabulary.org/#">
 	<span typeof="v:Breadcrumb">
@@ -716,6 +718,20 @@ function product_breadcrumbs() {
 	</span> »
 	<span typeof="v:Breadcrumb">
 		<span class="breadcrumb_last" property="v:title">' . $current_product . '</span>
+	</span>
+</span>
+</p>';
+		} else if ( is_search() ) {
+			return '<p id="breadcrumbs">
+<span xmlns:v="http://rdf.data-vocabulary.org/#">
+	<span typeof="v:Breadcrumb">
+		<a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a>
+	</span> »
+	<span typeof="v:Breadcrumb">
+		<a href="' . $product_archive . '" rel="v:url" property="v:title">' . $product_archive_title . '</a>
+	</span> »
+	<span typeof="v:Breadcrumb">
+		<span class="breadcrumb_last" property="v:title">' . __( 'Product Search', 'al-ecommerce-product-catalog' ) . '</span>
 	</span>
 </span>
 </p>';
@@ -898,9 +914,7 @@ function exclude_products_search( $search, &$wp_query ) {
 }
 
 function modify_product_search( $query ) {
-	if ( !is_admin() && $query->is_search == 1 && isset( $query->query_vars[ 'post_type' ] ) && $query->query_vars[ 'post_type' ] != 'al_product' ) {
-		add_filter( 'posts_search', 'exclude_products_search', 10, 2 );
-	} else if ( !is_admin() && $query->is_search == 1 && !isset( $query->query_vars[ 'post_type' ] ) ) {
+	if ( !is_admin() && $query->is_search == 1 && $query->is_main_query() && ((isset( $_GET[ 'post_type' ] ) && strpos( $_GET[ 'post_type' ], 'al_product' ) === false) || (!isset( $query->query_vars[ 'post_type' ] ) || (isset( $query->query_vars[ 'post_type' ] ) && strpos( $query->query_vars[ 'post_type' ], 'al_product' ) === false ))) ) {
 		add_filter( 'posts_search', 'exclude_products_search', 10, 2 );
 	}
 }
@@ -926,7 +940,7 @@ function modify_product_listing_title_tag() {
  */
 function product_archive_custom_title( $title = null, $sep = null, $seplocation = null ) {
 	global $post;
-	if ( is_ic_product_listing() && is_object( $post ) && $post->post_type == 'al_product' ) {
+	if ( is_post_type_archive( 'al_product' ) && is_object( $post ) && $post->post_type == 'al_product' ) {
 		$settings = get_multiple_settings();
 		if ( $settings[ 'seo_title' ] != '' ) {
 			$settings					 = get_option( 'archive_multiple_settings', unserialize( DEFAULT_ARCHIVE_MULTIPLE_SETTINGS ) );
@@ -954,8 +968,10 @@ function product_archive_title( $title = null, $sep = null, $seplocation = null 
 	if ( is_ic_product_listing() && is_object( $post ) && $post->post_type == 'al_product' ) {
 		$settings = get_multiple_settings();
 		if ( $settings[ 'seo_title' ] == '' ) {
-			$id		 = get_product_listing_id();
-			$title	 = get_single_post_title( $id, $sep, $seplocation );
+			$id = get_product_listing_id();
+			if ( !empty( $id ) ) {
+				$title = get_single_post_title( $id, $sep, $seplocation );
+			}
 		}
 	}
 	return $title;
@@ -1141,10 +1157,11 @@ function show_product_sort_bar( $archive_template = null, $multiple_settings = n
 	if ( is_product_sort_bar_active() ) {
 		if ( is_active_sidebar( 'product_sort_bar' ) ) {
 			global $is_filter_bar;
-			$is_filter_bar = true;
+			$is_filter_bar	 = true;
 			echo '<div class="product-sort-bar ' . design_schemes( 'box', 0 ) . '">';
 			dynamic_sidebar( 'product_sort_bar' );
 			echo '</div>';
+			$is_filter_bar	 = false;
 			unset( $is_filter_bar );
 		} else {
 			show_default_product_sort_bar( $archive_template, $multiple_settings = null );
@@ -1159,16 +1176,21 @@ function show_product_sort_bar( $archive_template = null, $multiple_settings = n
 function show_default_product_sort_bar( $archive_template, $multiple_settings = null ) {
 	if ( get_option( 'old_sort_bar' ) == 1 ) {
 		show_product_order_dropdown( $archive_template, $multiple_settings = null );
-	} else {
-		global $is_filter_bar;
-		$is_filter_bar = true;
-		echo '<div class="product-sort-bar ' . design_schemes( 'box', 0 ) . '">';
-		the_widget( 'product_widget_search' );
-		the_widget( 'product_price_filter' );
-		the_widget( 'product_sort_filter' );
-		the_widget( 'product_category_filter' );
-		echo '</div>';
-		unset( $is_filter_bar );
+	} else if ( current_user_can( 'edit_theme_options' ) ) {
+		$show = get_option( 'hide_empty_bar_message', 0 );
+		if ( $show == 0 ) {
+			global $is_filter_bar;
+			$is_filter_bar	 = true;
+			echo '<div class="product-sort-bar ' . design_schemes( 'box', 0 ) . '">';
+			echo '<div class="empty-filters-info">';
+			echo '<h3>' . __( 'Product Filters Bar has no widgets', 'al-ecommerce-product-catalog' ) . '</h3>';
+			$current_url	 = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ];
+			$customize_url	 = add_query_arg( array( 'url' => urlencode( $current_url ), urlencode( 'autofocus[panel]' ) => 'widgets' ), wp_customize_url() );
+			echo sprintf( __( 'Add widgets to the filters bar %snow%s or %sdismiss this notice%s.', 'al-ecommerce-product-catalog' ), '<a href="' . $customize_url . '">', '</a>', '<a class="dismiss-empty-bar" href="#">', '</a>' );
+			echo '</div>';
+			echo '</div>';
+			unset( $is_filter_bar );
+		}
 	}
 }
 
@@ -1198,4 +1220,35 @@ function get_current_per_row() {
 		$per_row	 = $settings[ 'entries' ];
 	}
 	return apply_filters( 'current_per_row', $per_row, $archive_template );
+}
+
+function get_current_screen_tax() {
+	$obj		 = get_queried_object();
+	$taxonomies	 = array();
+	if ( isset( $obj->ID ) ) {
+		$taxonomies = get_object_taxonomies( $obj );
+	} else if ( isset( $obj->taxonomies ) ) {
+		$taxonomies = $obj->taxonomies;
+	} else if ( isset( $obj->taxonomy ) ) {
+		$taxonomies = array( $obj->taxonomy );
+	}
+	foreach ( $taxonomies as $tax ) {
+		if ( strpos( $tax, 'al_product-cat' ) !== false ) {
+			return $tax;
+		}
+	}
+	return 'al_product-cat';
+}
+
+function get_current_screen_post_type( $true = false ) {
+	$obj		 = get_queried_object();
+	$post_type	 = 'al_product';
+	if ( isset( $obj->post_type ) && strpos( $obj->post_type, 'al_product' ) !== false ) {
+		$post_type = $obj->post_type;
+	} else if ( isset( $obj->name ) && strpos( $obj->name, 'al_product' ) !== false ) {
+		$post_type = $obj->name;
+	} else if ( isset( $_GET[ 'post_type' ] ) && strpos( $_GET[ 'post_type' ], 'al_product' ) !== false ) {
+		$post_type = $_GET[ 'post_type' ];
+	}
+	return $post_type;
 }

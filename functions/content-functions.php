@@ -144,7 +144,7 @@ function get_back_to_products_url( $v_single_names = null ) {
 function product_search_form() {
 	$search_button_text = __( 'Search', 'al-ecommerce-product-catalog' );
 	echo '<form role="search" method="get" class="search-form product_search_form" action="' . esc_url( home_url( '/' ) ) . '">
-<input type="hidden" name="post_type" value="al_product" />
+<input type="hidden" name="post_type" value="' . get_current_screen_post_type() . '" />
 <input class="product-search-box" type="search" value="' . get_search_query() . '" id="s" name="s" placeholder="' . __( 'Product Search', 'al-ecommerce-product-catalog' ) . '" />
 <input class="search-submit product-search-submit" type="submit" value="' . $search_button_text . '" />
 </form>';

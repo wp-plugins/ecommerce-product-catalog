@@ -198,6 +198,8 @@ function color_schemes() {
 								<option name="design_schemes[red-price]" value="red-price"<?php selected( 'red-price', $design_schemes[ 'price-color' ] ); ?>><?php _e( 'Red', 'al-ecommerce-product-catalog' ); ?></option>
 								<option name="design_schemes[orange-price]" value="orange-price"<?php selected( 'orange-price', $design_schemes[ 'price-color' ] ); ?>><?php _e( 'Orange', 'al-ecommerce-product-catalog' ); ?></option>
 								<option name="design_schemes[green-price]" value="green-price"<?php selected( 'green-price', $design_schemes[ 'price-color' ] ); ?>><?php _e( 'Green', 'al-ecommerce-product-catalog' ); ?></option>
+								<option name="design_schemes[blue-price]" value="blue-price"<?php selected( 'blue-price', $design_schemes[ 'price-color' ] ); ?>><?php _e( 'Blue', 'al-ecommerce-product-catalog' ); ?></option>
+								<option name="design_schemes[grey-price]" value="grey-price"<?php selected( 'grey-price', $design_schemes[ 'price-color' ] ); ?>><?php _e( 'Grey', 'al-ecommerce-product-catalog' ); ?></option>
 							</select>
 						</td>
 						<td><?php _e( 'single product', 'al-ecommerce-product-catalog' ); ?>, <?php _e( 'product archive', 'al-ecommerce-product-catalog' ); ?></td>
@@ -209,6 +211,8 @@ function color_schemes() {
 								<option name="design_schemes[red-box]" value="red-box"<?php selected( 'red-box', $design_schemes[ 'box-color' ] ); ?>><?php _e( 'Red', 'al-ecommerce-product-catalog' ); ?></option>
 								<option name="design_schemes[orange-box]" value="orange-box"<?php selected( 'orange-box', $design_schemes[ 'box-color' ] ); ?>><?php _e( 'Orange', 'al-ecommerce-product-catalog' ); ?></option>
 								<option name="design_schemes[green-box]" value="green-box"<?php selected( 'green-box', $design_schemes[ 'box-color' ] ); ?>><?php _e( 'Green', 'al-ecommerce-product-catalog' ); ?></option>
+								<option name="design_schemes[blue-box]" value="blue-box"<?php selected( 'blue-box', $design_schemes[ 'box-color' ] ); ?>><?php _e( 'Blue', 'al-ecommerce-product-catalog' ); ?></option>
+								<option name="design_schemes[grey-box]" value="grey-box"<?php selected( 'grey-box', $design_schemes[ 'box-color' ] ); ?>><?php _e( 'Grey', 'al-ecommerce-product-catalog' ); ?></option>
 							</select>
 						</td>
 						<td><div class="product-name example <?php design_schemes( 'box' ); ?>">Exclusive Red Lamp</div></td>

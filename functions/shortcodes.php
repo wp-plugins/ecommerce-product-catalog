@@ -45,7 +45,10 @@ function product_cat_shortcode( $atts ) {
 		'parent'			 => '',
 		'sort'				 => 0,
 		'shortcode_query'	 => 'yes',
+		'orderby'			 => 'name',
+		'order'				 => 'ASC'
 	), $atts );
+	$args								 = apply_filters( 'show_categories_args', $args );
 	$div								 = '<div class="product-subcategories responsive ' . $args[ 'archive_template' ] . ' ' . product_list_class( $args[ 'archive_template' ], 'category-list' ) . '">';
 	$cats								 = get_terms( 'al_product-cat', $args );
 	$cat_shortcode_query[ 'count' ]		 = count( $cats );
@@ -86,7 +89,8 @@ add_shortcode( 'product_category_name', 'product_category_name' );
  * Returns current product category name
  */
 function product_category_name() {
-	$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+	//$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+	$the_tax = get_queried_object();
 	return $the_tax->name;
 }
 

@@ -47,7 +47,7 @@ add_action( 'wp_enqueue_scripts', 'implecode_enqueue_styles' );
 function implecode_enqueue_styles() {
 	wp_enqueue_style( 'al_product_styles' );
 	$colorbox_set = json_decode( apply_filters( 'colorbox_set', '{"transition": "elastic", "initialWidth": 200, "maxWidth": "90%", "maxHeight": "90%", "rel":"gal"}' ) );
-	wp_localize_script( 'al_product_scripts', 'product_object', array( 'lightbox_settings' => $colorbox_set ) );
+	wp_localize_script( 'al_product_scripts', 'product_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ), 'lightbox_settings' => $colorbox_set ) );
 	wp_enqueue_script( 'al_product_scripts' );
 	do_action( 'enqueue_catalog_scripts' );
 }

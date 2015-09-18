@@ -13,7 +13,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package		ecommerce-product-catalog/includes
  * @author 		Norbert Dreszer
  */
-add_action( 'init', 'register_product_catalog_session' );
+add_action( 'init', 'register_product_catalog_session', 1 );
 
 /**
  * Registers session if not registered already
@@ -34,13 +34,17 @@ function product_filter_element( $id, $what, $label, $class = null ) {
 			$class .= ' not-active-filter';
 		}
 	}
-	return '<a class="' . $class . '" href="' . esc_url( add_query_arg( array( $what => $id ) ) ) . '">' . $label . '</a>';
+	$url = remove_query_arg( array( 'paged', $what ) );
+	return '<a class="' . $class . '" href="' . esc_url( add_query_arg( array( $what => $id ), $url ) ) . '">' . $label . '</a>';
 }
 
 function get_product_category_filter_element( $category ) {
-	$count	 = total_product_category_count( $category->term_id );
-	$name	 = $category->name . ' (' . $count . ')';
-	return product_filter_element( $category->term_id, 'product_category', $name );
+	$count = total_product_category_count( $category->term_id );
+	if ( $count > 0 ) {
+		$name = $category->name . ' (' . $count . ')';
+		return product_filter_element( $category->term_id, 'product_category', $name );
+	}
+	return;
 }
 
 add_action( 'wp_loaded', 'set_product_filter' );
@@ -125,9 +129,10 @@ function apply_product_filters( $query ) {
 	if ( !is_admin() && !is_home_archive( $query ) && $query->is_main_query() && is_product_filters_active() && (is_ic_product_listing( $query ) || is_ic_taxonomy_page()) ) {
 		if ( is_product_filter_active( 'product_category' ) ) {
 			$category_id = get_product_filter_value( 'product_category' );
+			$taxonomy	 = get_current_screen_tax();
 			$taxquery	 = array(
 				array(
-					'taxonomy'	 => 'al_product-cat',
+					'taxonomy'	 => $taxonomy,
 					'terms'		 => $category_id,
 				)
 			);
@@ -159,26 +164,40 @@ function apply_product_filters( $query ) {
 	}
 }
 
-add_filter( 'shortcode_query', 'apply_product_shortcode_filters' );
-add_filter( 'home_product_listing_query', 'apply_product_shortcode_filters' );
+add_filter( 'shortcode_query', 'apply_product_category_filter' );
+add_filter( 'home_product_listing_query', 'apply_product_category_filter' );
 
 /**
- * Applies product filters to shortcode query
+ * Applies product category filter to shortcode query
  *
  * @param type $shortcode_query
  * @return type
  */
-function apply_product_shortcode_filters( $shortcode_query ) {
+function apply_product_category_filter( $shortcode_query ) {
 	if ( is_product_filter_active( 'product_category' ) ) {
 		$category_id					 = get_product_filter_value( 'product_category' );
+		$taxonomy						 = get_current_screen_tax();
 		$taxquery						 = array(
 			array(
-				'taxonomy'	 => 'al_product-cat',
+				'taxonomy'	 => $taxonomy,
 				'terms'		 => $category_id,
 			)
 		);
 		$shortcode_query[ 'tax_query' ]	 = $taxquery;
 	}
+	return $shortcode_query;
+}
+
+add_filter( 'shortcode_query', 'apply_product_price_filter' );
+add_filter( 'home_product_listing_query', 'apply_product_price_filter' );
+add_filter( 'category_count_query', 'apply_product_price_filter' );
+
+/**
+ * Applies product price filter to shortcode query
+ * @param type $shortcode_query
+ * @return string
+ */
+function apply_product_price_filter( $shortcode_query ) {
 	if ( is_product_filter_active( 'min-price' ) || is_product_filter_active( 'max-price' ) ) {
 		$metaquery	 = array();
 		$min_price	 = get_product_filter_value( 'min-price' );
@@ -211,17 +230,22 @@ function apply_product_shortcode_filters( $shortcode_query ) {
  * @return type
  */
 function total_product_category_count( $cat_id ) {
-	$q = new WP_Query( array(
+	$taxonomy	 = get_current_screen_tax();
+	$query_args	 = apply_filters( 'category_count_query', array(
 		'nopaging'	 => true,
 		'tax_query'	 => array(
 			array(
-				'taxonomy'			 => 'al_product-cat',
+				'taxonomy'			 => $taxonomy,
 				'terms'				 => $cat_id,
 				'include_children'	 => true,
 			),
 		),
 		'fields'	 => 'ids',
 	) );
+	if ( isset( $_GET[ 's' ] ) ) {
+		$query_args[ 's' ] = $_GET[ 's' ];
+	}
+	$q = new WP_Query( $query_args );
 	return $q->post_count;
 }
 
@@ -238,4 +262,11 @@ function modify_search_widget_filter( $text ) {
 		$text = '';
 	}
 	return $text;
+}
+
+add_action( 'wp_ajax_hide_empty_bar_message', 'hide_empty_bar_message' );
+
+function hide_empty_bar_message() {
+	update_option( 'hide_empty_bar_message', 1 );
+	wp_die();
 }

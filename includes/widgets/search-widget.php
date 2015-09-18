@@ -28,9 +28,9 @@ class product_widget_search extends WP_Widget {
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
 
 			// Use current theme search form if it exists
-			$search_button_text = apply_filters( 'product_search_button_text', __( 'Search', 'al-ecommerce-product-catalog' ) );
-			echo '<form role="search" method="get" id="product_search_form" action="' . esc_url( home_url( '/' ) ) . '">
-<input type="hidden" name="post_type" value="al_product" />
+			$search_button_text = apply_filters( 'product_search_button_text', '' );
+			echo '<form role="search" class="' . design_schemes( 'box', 0 ) . '" method="get" id="product_search_form" action="' . esc_url( home_url( '/' ) ) . '">
+<input type="hidden" name="post_type" value="' . get_current_screen_post_type() . '" />
 <input class="product-search-box" type="search" value="' . get_search_query() . '" id="s" name="s" placeholder="' . __( 'Product Search', 'al-ecommerce-product-catalog' ) . '" />
 <input class="product-search-submit" type="submit" id="searchsubmit" value="' . $search_button_text . '" />
 </form>';

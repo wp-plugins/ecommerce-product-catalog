@@ -367,6 +367,7 @@ function general_settings_content() {
 				<div class="wrapper"><?php
 					main_helper();
 					doc_helper( __( 'shortcode', 'al-ecommerce-product-catalog' ), 'product-catalog-shortcodes' );
+					doc_helper( __( 'sorting', 'al-ecommerce-product-catalog' ), 'product-order-settings' );
 					//did_know_helper('support', __('You can get instant support by email','al-ecommerce-product-catalog'), 'https://implecode.com/wordpress/plugins/premium-support/')
 					?>
 				</div>
@@ -453,7 +454,10 @@ function get_product_sort_options() {
 
 function get_product_listing_id() {
 	$product_archive_created = get_option( 'product_archive_page_id', '0' );
-	$listing_id				 = get_option( 'product_archive', $product_archive_created );
+	if ( FALSE === get_post_status( $product_archive_created ) ) {
+		$product_archive_created = '0';
+	}
+	$listing_id = get_option( 'product_archive', $product_archive_created );
 	return apply_filters( 'product_listing_id', $listing_id );
 }
 
@@ -463,9 +467,13 @@ function get_product_listing_id() {
  * @return string
  */
 function product_listing_url() {
-	if ( is_ic_permalink_product_catalog() && 'noid' != ($page_id = get_product_listing_id()) ) {
-		$listing_url = get_permalink( $page_id );
-	} else {
+	$listing_url = '';
+	if ( is_ic_permalink_product_catalog() && 'noid' != ($page_id	 = get_product_listing_id()) ) {
+		if ( !empty( $page_id ) ) {
+			$listing_url = get_permalink( $page_id );
+		}
+	}
+	if ( empty( $listing_url ) ) {
 		$listing_url = get_post_type_archive_link( 'al_product' );
 	}
 	return $listing_url;

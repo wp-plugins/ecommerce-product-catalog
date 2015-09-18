@@ -21,10 +21,11 @@ class product_cat_widget extends WP_Widget {
 
 	function widget( $args, $instance ) {
 		if ( get_integration_type() != 'simple' ) {
-			$title	 = apply_filters( 'widget_title', $instance[ 'title' ], $instance, $this->id_base );
-			$c		 = !empty( $instance[ 'count' ] ) ? '1' : '0';
-			$h		 = !empty( $instance[ 'hierarchical' ] ) ? '1' : '0';
-			$d		 = !empty( $instance[ 'dropdown' ] ) ? '1' : '0';
+			$instance[ 'title' ] = isset( $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
+			$title				 = apply_filters( 'widget_title', $instance[ 'title' ], $instance, $this->id_base );
+			$c					 = !empty( $instance[ 'count' ] ) ? '1' : '0';
+			$h					 = !empty( $instance[ 'hierarchical' ] ) ? '1' : '0';
+			$d					 = !empty( $instance[ 'dropdown' ] ) ? '1' : '0';
 
 			echo $args[ 'before_widget' ];
 			if ( $title )

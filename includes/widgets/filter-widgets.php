@@ -18,7 +18,7 @@ function register_product_filter_bar() {
 	$args = array(
 		'name'			 => __( 'Product Filters Bar', 'al-ecommerce-product-catalog' ),
 		'id'			 => 'product_sort_bar',
-		'description'	 => '',
+		'description'	 => __( 'Appears above the product list. Recommended widgets: Product Search, Product Price Filter, Product Sort and Product Category Filter.', 'al-ecommerce-product-catalog' ),
 		'class'			 => '',
 		'before_widget'	 => '<div id="%1$s" class="filter-widget %2$s">',
 		'after_widget'	 => '</div>',
@@ -35,16 +35,15 @@ class product_category_filter extends WP_Widget {
 	}
 
 	function widget( $args, $instance ) {
-		if ( get_integration_type() != 'simple' ) {
+		if ( get_integration_type() != 'simple' && (is_ic_taxonomy_page() || is_ic_product_listing()) ) {
 			$title = apply_filters( 'widget_title', empty( $instance[ 'title' ] ) ? '' : $instance[ 'title' ], $instance, $this->id_base );
 
-			echo $args[ 'before_widget' ];
-			if ( $title )
-				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
-
-			// Use current theme search form if it exists
-			$taxonomies	 = product_taxonomy_array();
-			$categories	 = get_terms( $taxonomies, array( 'parent' => 0 ) );
+			$taxonomy = get_current_screen_tax();
+			if ( is_ic_taxonomy_page() && !is_product_filter_active( 'product_category' ) ) {
+				$categories = get_terms( $taxonomy, array( 'parent' => get_queried_object()->term_id ) );
+			} else {
+				$categories = get_terms( $taxonomy, array( 'parent' => 0 ) );
+			}
 			$form		 = '';
 			$child_form	 = '';
 			foreach ( $categories as $category ) {
@@ -54,24 +53,32 @@ class product_category_filter extends WP_Widget {
 			if ( is_product_filter_active( 'product_category' ) ) {
 				$class .= ' filter-active';
 				$filter_value	 = get_product_filter_value( 'product_category' );
-				$children		 = get_terms( $taxonomies, array( 'parent' => $filter_value ) );
-				$parent_term	 = get_term_by( 'id', $filter_value, 'al_product-cat' );
+				$children		 = get_terms( $taxonomy, array( 'parent' => $filter_value ) );
+				//if ( !is_ic_taxonomy_page() ) {
+				$parent_term	 = get_term_by( 'id', $filter_value, $taxonomy );
 				if ( !empty( $parent_term->parent ) ) {
 					$form .= get_product_category_filter_element( $parent_term );
 				}
+				//}
 				if ( is_array( $children ) ) {
 					foreach ( $children as $child ) {
 						$child_form .= get_product_category_filter_element( $child );
 					}
 				}
 			}
-			echo '<div class="' . $class . '">';
-			echo $form;
-			if ( !empty( $child_form ) ) {
-				echo '<div class="child-category-filters">' . $child_form . '</div>';
+			if ( !empty( $form ) || !empty( $child_form ) ) {
+				echo $args[ 'before_widget' ];
+				if ( $title ) {
+					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
+				}
+				echo '<div class="' . $class . '">';
+				echo $form;
+				if ( !empty( $child_form ) ) {
+					echo '<div class="child-category-filters">' . $child_form . '</div>';
+				}
+				echo '</div>';
+				echo $args[ 'after_widget' ];
 			}
-			echo '</div>';
-			echo $args[ 'after_widget' ];
 		}
 	}
 
@@ -212,5 +219,7 @@ add_action( 'implecode_register_widgets', 'register_filter_widgets' );
 function register_filter_widgets() {
 	register_widget( 'product_category_filter' );
 	register_widget( 'product_sort_filter' );
-	register_widget( 'product_price_filter' );
+	if ( is_ic_price_enabled() ) {
+		register_widget( 'product_price_filter' );
+	}
 }

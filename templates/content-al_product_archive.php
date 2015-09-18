@@ -99,12 +99,16 @@ $listing_class			 = apply_filters( 'product_listing_classes', 'al_product respon
 			endwhile;
 			$product_list = apply_filters( 'product_list_ready', $product_list, $archive_template, 'auto_listing' );
 			echo '<div class="product-list responsive ' . $archive_template . ' ' . product_list_class( $archive_template ) . '">' . $product_list . '</div><span class="clear"></span>';
-		} else if ( (is_search()) && !more_products() ) {
+		} else if ( (!is_product_filters_active() && is_search()) && !more_products() ) {
 			echo '<p>' . __( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'al-ecommerce-product-catalog' ) . '</p>';
 			product_search_form();
 		} else if ( is_product_filters_active() && !more_products() ) {
 			show_product_sort_bar();
-			echo '<p>' . sprintf( __( 'Sorry, but nothing matched your search terms. Please try again with some different options or %sreset filters%s.', 'al-ecommerce-product-catalog' ), '<a href="' . esc_url( remove_query_arg( get_active_product_filters() ) ) . '">', '</a>' ) . '</p>';
+			$filters = get_active_product_filters();
+			if ( isset( $_GET[ 's' ] ) ) {
+				$filters[] = 's';
+			}
+			echo '<p>' . sprintf( __( 'Sorry, but nothing matched your search terms. Please try again with some different options or %sreset filters%s.', 'al-ecommerce-product-catalog' ), '<a href="' . esc_url( remove_query_arg( $filters ) ) . '">', '</a>' ) . '</p>';
 		}
 		?>
 	</div>

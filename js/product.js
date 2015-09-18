@@ -18,6 +18,16 @@ jQuery( document ).ready( function ( $ ) {
     jQuery( ".product_order_selector" ).change( function () {
         jQuery(this).parent(".product_order" ).submit();
     } );
+    
+    jQuery(".dismiss-empty-bar").click(function(e) {
+        e.preventDefault();
+        var data = {
+            'action': 'hide_empty_bar_message'
+        };
+        jQuery.post( product_object.ajaxurl, data, function () {
+            jQuery("div.product-sort-bar").hide('slow');
+        } );
+    });
 
     $.ic = {
         /**

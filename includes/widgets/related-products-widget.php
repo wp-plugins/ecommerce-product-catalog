@@ -21,17 +21,19 @@ class related_products_widget extends WP_Widget {
 
 	function widget( $args, $instance ) {
 		if ( is_ic_product_page() ) {
-			$title = apply_filters( 'widget_title', empty( $instance[ 'title' ] ) ? '' : $instance[ 'title' ], $instance, $this->id_base );
+			$title	 = apply_filters( 'widget_title', empty( $instance[ 'title' ] ) ? '' : $instance[ 'title' ], $instance, $this->id_base );
+			$related = get_related_products();
+			if ( !empty( $related ) ) {
+				echo $args[ 'before_widget' ];
+				if ( $title )
+					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
 
-			echo $args[ 'before_widget' ];
-			if ( $title )
-				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
+				// Use current theme search form if it exists
 
-			// Use current theme search form if it exists
+				echo $related;
 
-			echo get_related_products();
-
-			echo $args[ 'after_widget' ];
+				echo $args[ 'after_widget' ];
+			}
 		}
 	}
 

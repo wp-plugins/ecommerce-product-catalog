@@ -126,7 +126,10 @@ function al_product_adder_page_template( $template ) {
 	if ( is_ic_catalog_page() ) {
 		if ( is_archive() || is_search() || is_tax() ) {
 			$product_archive = get_product_listing_id();
-			wp_redirect( get_permalink( $product_archive ) );
+			if ( !empty( $product_archive ) ) {
+				wp_redirect( get_permalink( $product_archive ) );
+				exit;
+			}
 		} else {
 			return get_page_php_path();
 		}
