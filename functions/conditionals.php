@@ -34,14 +34,26 @@ function is_ic_taxonomy_page() {
  */
 function is_ic_product_listing( $query = null ) {
 	if ( empty( $query ) ) {
-		$listing_id = get_product_listing_id();
-		if ( is_post_type_archive( product_post_type_array() ) || is_home_archive() || (!empty( $listing_id ) && is_ic_product_listing_enabled() && is_page( $listing_id )) ) {
+		if ( is_post_type_archive( product_post_type_array() ) || is_home_archive() || is_custom_product_listing_page() ) {
 			return true;
 		}
 	} else {
 		if ( $query->is_post_type_archive( product_post_type_array() ) || is_home_archive( $query ) ) {
 			return true;
 		}
+	}
+	return false;
+}
+
+/**
+ * Checks if selected page for product listing is being displayed
+ *
+ * @return boolean
+ */
+function is_custom_product_listing_page() {
+	$listing_id = get_product_listing_id();
+	if ( !empty( $listing_id ) && is_ic_product_listing_enabled() && is_page( $listing_id ) ) {
+		return true;
 	}
 	return false;
 }

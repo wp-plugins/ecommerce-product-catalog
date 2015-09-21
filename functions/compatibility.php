@@ -53,7 +53,7 @@ add_filter( 'infinite_scroll_archive_supported', 'ic_jetpack_infinite_scroll_dis
  * @return boolean
  */
 function ic_jetpack_infinite_scroll_disable( $return ) {
-	if ( is_ic_catalog_page() ) {
+	if ( is_ic_product_listing() || is_ic_taxonomy_page() ) {
 		return false;
 	}
 	return $return;

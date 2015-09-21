@@ -34,7 +34,15 @@ function product_filter_element( $id, $what, $label, $class = null ) {
 			$class .= ' not-active-filter';
 		}
 	}
-	$url = remove_query_arg( array( 'paged', $what ) );
+	if ( is_paged() ) {
+		if ( is_ic_permalink_product_catalog() ) {
+			$url = remove_query_arg( $what, get_pagenum_link( 1 ) );
+		} else {
+			$url = remove_query_arg( array( 'paged', $what ) );
+		}
+	} else {
+		$url = remove_query_arg( array( $what ) );
+	}
 	return '<a class="' . $class . '" href="' . esc_url( add_query_arg( array( $what => $id ), $url ) ) . '">' . $label . '</a>';
 }
 

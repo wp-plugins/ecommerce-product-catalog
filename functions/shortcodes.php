@@ -371,15 +371,16 @@ function ic_product_listing_categories() {
 			echo $before_archive;
 		}
 		if ( $multiple_settings[ 'product_listing_cats' ] == 'on' || $multiple_settings[ 'product_listing_cats' ] == 'cats_only' ) {
-			do_action( 'before_product_listing_category_list' );
 			if ( $multiple_settings[ 'cat_template' ] != 'template' ) {
-				$product_subcategories = wp_list_categories( 'show_option_none=No_cat&echo=0&title_li=&taxonomy=' . $taxonomy_name . '&parent=0' );
+				$product_subcategories = wp_list_categories( 'show_option_none = No_cat&echo = 0&title_li = &taxonomy = ' . $taxonomy_name . '&parent = 0' );
 				if ( !strpos( $product_subcategories, 'No_cat' ) ) {
-					echo '<div class="product-subcategories">' . $product_subcategories . '</div>';
+					do_action( 'before_product_listing_category_list' );
+					echo '<div class = "product-subcategories">' . $product_subcategories . '</div>';
 				}
 			} else {
-				$show_categories = do_shortcode( '[show_categories parent="0" shortcode_query="no"]' );
+				$show_categories = do_shortcode( '[ show_categories parent = "0" shortcode_query = "no" ]' );
 				if ( !empty( $show_categories ) ) {
+					do_action( 'before_product_listing_category_list' );
 					echo $show_categories;
 					if ( $archive_template != 'list' && !is_ic_only_main_cats() ) {
 						echo '<hr>';
@@ -395,11 +396,11 @@ function ic_product_listing_categories() {
 		}
 		$term_description = term_description();
 		if ( !empty( $term_description ) ) {
-			echo '<div class="taxonomy-description">' . $term_description . '</div>';
+			echo '<div class = "taxonomy-description">' . $term_description . '</div>';
 		}
 		if ( $multiple_settings[ 'category_top_cats' ] == 'on' || $multiple_settings[ 'category_top_cats' ] == 'only_subcategories' ) {
 			if ( $multiple_settings[ 'cat_template' ] != 'template' ) {
-				$product_subcategories = wp_list_categories( 'show_option_none=No_cat&echo=0&title_li=&taxonomy=' . $taxonomy_name . '&child_of=' . $term );
+				$product_subcategories = wp_list_categories( 'show_option_none = No_cat&echo = 0&title_li = &taxonomy = ' . $taxonomy_name . '&child_of = ' . $term );
 				if ( !strpos( $product_subcategories, 'No_cat' ) ) {
 					?>
 					<div class="product-subcategories">
@@ -411,7 +412,7 @@ function ic_product_listing_categories() {
 					<?php
 				}
 			} else {
-				$show_categories = do_shortcode( '[show_categories parent=' . get_queried_object_id() . ' shortcode_query=no]' );
+				$show_categories = do_shortcode( '[ show_categories parent = ' . get_queried_object_id() . ' shortcode_query = no ]' );
 				if ( !empty( $show_categories ) ) {
 					do_action( 'before_category_subcategories' );
 					echo $show_categories;
@@ -446,7 +447,9 @@ function ic_product_pages_class( $atts ) {
 	return ob_get_clean();
 }
 
-add_shortcode( 'product_page_id', 'ic_current_page_id' );
+add_shortcode( 'product_page_id', 'ic_current_page_id
+
+			' );
 
 /**
  * Shows current page ID for template usage

@@ -21,4 +21,8 @@ function run_ext_comp_files() {
 	if ( defined( 'WPSEO_VERSION' ) ) {
 		require_once(AL_BASE_PATH . '/ext-comp/wpseo.php');
 	}
+
+	if ( defined( 'QTS_VERSION' ) ) {
+		require_once(AL_BASE_PATH . '/ext-comp/qtranslate-slug.php');
+	}
 }

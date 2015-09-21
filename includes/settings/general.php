@@ -88,8 +88,8 @@ function general_settings_content() {
 		<?php if ( $submenu == 'general-settings' OR $submenu == '' ) { ?>
 			<div class="setting-content submenu">
 				<script>
-					jQuery( '.settings-submenu a' ).removeClass( 'current' );
-					jQuery( '.settings-submenu a#general-settings' ).addClass( 'current' );
+		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
+		            jQuery( '.settings-submenu a#general-settings' ).addClass( 'current' );
 				</script>
 				<h2><?php _e( 'General Settings', 'al-ecommerce-product-catalog' ); ?></h2>
 
@@ -343,16 +343,16 @@ function general_settings_content() {
 						</tbody>
 					</table>
 					<script>jQuery( document ).ready( function () {
-							jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).change( function () {
-								if ( jQuery( this ).val() == 'off' && jQuery( this ).is( ':checked' ) ) {
-									jQuery( "#payment_table tbody" ).hide( "slow" );
-								}
-								else {
-									jQuery( "#payment_table tbody" ).show( "slow" );
-								}
-							} );
-							jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).trigger( "change" );
-		                        } );</script>
+		                    jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).change( function () {
+		                        if ( jQuery( this ).val() == 'off' && jQuery( this ).is( ':checked' ) ) {
+		                            jQuery( "#payment_table tbody" ).hide( "slow" );
+		                        }
+		                        else {
+		                            jQuery( "#payment_table tbody" ).show( "slow" );
+		                        }
+		                    } );
+		                    jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).trigger( "change" );
+		                } );</script>
 					<h3><?php _e( 'Additional Settings', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table><?php implecode_settings_checkbox( __( 'Disable SKU', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[disable_sku]', $archive_multiple_settings[ 'disable_sku' ] ) ?>
 					</table>
@@ -476,7 +476,7 @@ function product_listing_url() {
 	if ( empty( $listing_url ) ) {
 		$listing_url = get_post_type_archive_link( 'al_product' );
 	}
-	return $listing_url;
+	return apply_filters( 'product_listing_url', $listing_url );
 }
 
 function get_product_slug() {
