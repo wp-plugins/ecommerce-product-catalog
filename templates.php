@@ -462,7 +462,7 @@ function create_sample_product_with_redirect() {
 	if ( isset( $_GET[ 'create_sample_product_page' ] ) ) {
 		$sample_product_id	 = create_sample_product();
 		$url				 = get_permalink( $sample_product_id );
-		$url				 = esc_url( add_query_arg( 'test_advanced', 1, $url ) );
+		$url				 = esc_url_raw( add_query_arg( 'test_advanced', 1, $url ) );
 		wp_redirect( $url );
 		exit();
 	}

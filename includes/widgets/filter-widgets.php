@@ -172,7 +172,7 @@ class product_price_filter extends WP_Widget {
 			$currency	 = product_currency();
 			?>
 			<div class="price-filter">
-				<span class="filter-label">Price:</span>
+				<span class="filter-label"><?php _e( 'Price', 'al-ecommerce-product-catalog' ) ?>:</span>
 				<form class="price-filter-form">
 					<?php
 					foreach ( $_GET as $key => $value ) {

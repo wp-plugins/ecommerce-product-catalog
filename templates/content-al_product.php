@@ -13,13 +13,11 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author 		Norbert Dreszer
  */
 global $post;
-$product_id						 = $post->ID;
-$current_post_type				 = get_post_type();
-$taxonomies						 = product_taxonomy_array();
-$default_single_names			 = default_single_names();
-$single_names					 = get_option( 'single_names', $default_single_names );
-$single_names[ 'product_sku' ]	 = isset( $single_names[ 'product_sku' ] ) ? $single_names[ 'product_sku' ] : 'SKU:';
-$single_options					 = get_product_page_settings();
+$product_id			 = $post->ID;
+$current_post_type	 = get_post_type();
+$taxonomies			 = product_taxonomy_array();
+$single_names		 = get_single_names();
+$single_options		 = get_product_page_settings();
 do_action( 'single_product_begin', $product_id );
 ?>
 
@@ -28,7 +26,7 @@ do_action( 'single_product_begin', $product_id );
 	<div class="entry-content product-entry"><?php
 		//do_action( 'start_product_entry', $post, $single_names );
 		do_action( 'before_product_details', $product_id, $single_options );
-		$details_class					 = product_gallery_enabled( $single_options[ 'enable_product_gallery' ], $single_options[ 'enable_product_gallery_only_when_exist' ], $post );
+		$details_class		 = product_gallery_enabled( $single_options[ 'enable_product_gallery' ], $single_options[ 'enable_product_gallery_only_when_exist' ], $post );
 		?>
 		<div id="product_details" class="product-details <?php echo $details_class; ?>">
 			<?php do_action( 'product_details', $post, $single_names ); ?>

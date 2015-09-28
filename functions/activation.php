@@ -64,7 +64,7 @@ function create_sample_product() {
 		$product_field[ '_shipping-label1' ]	 = 'UPS';
 		$product_field[ '_shipping1' ]			 = 15;
 		//$product_field[ 'excerpt' ]				 = '[theme_integration class="fixed-box"]';
-		$product_field[ 'excerpt' ] .= '<p>' . __( 'Welcome on product test page. This is short description. It should show up on the left of the product image and below product name. You shouldn\'t see nothing between product name and short description. No author, time or date. Absolutely nothing. If there is something that you don\'t want to see than you probably need Advanced Integration Mode.', 'al-ecommerce-product-catalog' ) . '</p>';
+		$product_field[ 'excerpt' ]				 = '<p>' . __( 'Welcome on product test page. This is short description. It should show up on the left of the product image and below product name. You shouldn\'t see nothing between product name and short description. No author, time or date. Absolutely nothing. If there is something that you don\'t want to see than you probably need Advanced Integration Mode.', 'al-ecommerce-product-catalog' ) . '</p>';
 		$product_field[ 'excerpt' ] .= '<p><strong>' . __( 'Please read this page carefully to fully understand the difference between simple and advanced mode and how the product page looks like.', 'al-ecommerce-product-catalog' ) . '</strong></p>';
 
 		$long_desc					 = '<p>' . __( 'This section is product long description. It should appear under the attributes table. Between the short description and the attributes table you should see the price, SKU and shipping options (all can be disabled). The attributes also can be disabled.', 'al-ecommerce-product-catalog' ) . '</p>';
