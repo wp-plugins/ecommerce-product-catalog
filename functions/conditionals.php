@@ -252,7 +252,7 @@ function is_ic_shortcode_query() {
  */
 function is_plural_form_active() {
 	$lang = get_locale();
-	if ( $lang != 'de_DE' && $lang != 'pl_PL' ) {
+	if ( strpos( $lang, 'en_' ) !== false ) {
 		return true;
 	} else {
 		return false;

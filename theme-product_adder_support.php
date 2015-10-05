@@ -64,7 +64,8 @@ function product_adder_theme_check_notice() {
 		<div id="implecode_message" class="updated product-adder-message messages-connect">
 			<div class="squeezer">
 				<h4><?php _e( 'Congratulations! Now your theme is fully integrated with eCommerce Product Catalog.', 'al-ecommerce-product-catalog' ); ?></h4>
-				<p class="submit"><a href="<?php echo admin_url( 'post-new.php?post_type=al_product' ) ?>" class="button-primary"><?php _e( 'Add Product', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php' ) ?>"><?php _e( 'Product Settings', 'al-ecommerce-product-catalog' ); ?></a></p>
+				<p class="submit"><a href="<?php echo admin_url( 'post-new.php?post_type=al_product' ) ?>" class="button-primary"><?php _e( 'Add Product', 'al-ecommerce-product-catalog' ); ?></a> <a class="skip button" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php' ) ?>"><?php _e( 'Product Settings', 'al-ecommerce-product-catalog' ); ?></a> <a href="https://implecode.com/docs/ecommerce-product-catalog/#cam=advanced-mode&key=top-message-docs" class="button"><?php _e( 'Help & Documentation', 'al-ecommerce-product-catalog' ); ?></a>
+				</p>
 			</div>
 		</div>
 		<?php
@@ -82,6 +83,7 @@ function product_adder_theme_check_notice() {
 				<h4><?php _e( '<strong>Your theme does not declare eCommerce Product Catalog support</strong> &#8211; please proceed to sample product page where automatic layout adjustment can be done.', 'al-ecommerce-product-catalog' ); ?></h4>
 				<p class="submit">
 					<?php echo sample_product_button() ?>
+					<a href="https://implecode.com/docs/ecommerce-product-catalog/theme-integration-wizard/#cam=default-mode&key=top-message-video" class="button"><?php _e( 'Theme Integration Video', 'al-ecommerce-product-catalog' ); ?></a>
 					<?php /* <a href="https://implecode.com/wordpress/product-catalog/theme-integration-guide/#cam=default-mode&key=top-message" target="_blank" class="button"><?php _e( 'Theme Integration Guide', 'al-ecommerce-product-catalog' ); ?></a> */ ?>
 					<?php /* <a class="skip button" href="<?php echo admin_url( 'edit.php?post_type=al_product&page=product-settings.php&tab=product-settings&submenu=support' ) ?>"><?php _e( 'Plugin Support', 'al-ecommerce-product-catalog' ); ?></a> */ ?>
 					<a class="skip button" href="<?php echo esc_url( add_query_arg( 'hide_al_product_adder_support_check', 'true' ) ); ?>"><?php _e( 'Hide Forever', 'al-ecommerce-product-catalog' ); ?></a>

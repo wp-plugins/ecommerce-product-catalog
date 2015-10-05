@@ -88,8 +88,8 @@ function general_settings_content() {
 		<?php if ( $submenu == 'general-settings' OR $submenu == '' ) { ?>
 			<div class="setting-content submenu">
 				<script>
-		            jQuery( '.settings-submenu a' ).removeClass( 'current' );
-		            jQuery( '.settings-submenu a#general-settings' ).addClass( 'current' );
+					jQuery( '.settings-submenu a' ).removeClass( 'current' );
+					jQuery( '.settings-submenu a#general-settings' ).addClass( 'current' );
 				</script>
 				<h2><?php _e( 'General Settings', 'al-ecommerce-product-catalog' ); ?></h2>
 
@@ -343,16 +343,16 @@ function general_settings_content() {
 						</tbody>
 					</table>
 					<script>jQuery( document ).ready( function () {
-		                    jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).change( function () {
-		                        if ( jQuery( this ).val() == 'off' && jQuery( this ).is( ':checked' ) ) {
-		                            jQuery( "#payment_table tbody" ).hide( "slow" );
-		                        }
-		                        else {
-		                            jQuery( "#payment_table tbody" ).show( "slow" );
-		                        }
-		                    } );
-		                    jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).trigger( "change" );
-		                } );</script>
+							jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).change( function () {
+								if ( jQuery( this ).val() == 'off' && jQuery( this ).is( ':checked' ) ) {
+									jQuery( "#payment_table tbody" ).hide( "slow" );
+								}
+								else {
+									jQuery( "#payment_table tbody" ).show( "slow" );
+								}
+							} );
+							jQuery( "input[name=\"product_currency_settings[price_enable]\"]" ).trigger( "change" );
+		                        } );</script>
 					<h3><?php _e( 'Additional Settings', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table><?php implecode_settings_checkbox( __( 'Disable SKU', 'al-ecommerce-product-catalog' ), 'archive_multiple_settings[disable_sku]', $archive_multiple_settings[ 'disable_sku' ] ) ?>
 					</table>
@@ -389,12 +389,15 @@ function general_settings_content() {
  * @return array
  */
 function get_currency_settings() {
-	$product_currency_settings					 = get_option( 'product_currency_settings', unserialize( DEF_CURRENCY_SETTINGS ) );
-	$local[ 'mon_thousands_sep' ]				 = ',';
-	$local[ 'decimal_point' ]					 = '.';
-	$product_currency_settings[ 'th_sep' ]		 = isset( $product_currency_settings[ 'th_sep' ] ) ? $product_currency_settings[ 'th_sep' ] : $local[ 'mon_thousands_sep' ];
-	$product_currency_settings[ 'dec_sep' ]		 = isset( $product_currency_settings[ 'dec_sep' ] ) ? $product_currency_settings[ 'dec_sep' ] : $local[ 'decimal_point' ];
-	$product_currency_settings[ 'price_enable' ] = isset( $product_currency_settings[ 'price_enable' ] ) ? $product_currency_settings[ 'price_enable' ] : 'on';
+	$product_currency_settings						 = get_option( 'product_currency_settings', unserialize( DEF_CURRENCY_SETTINGS ) );
+	$local[ 'mon_thousands_sep' ]					 = ',';
+	$local[ 'decimal_point' ]						 = '.';
+	$product_currency_settings[ 'th_sep' ]			 = isset( $product_currency_settings[ 'th_sep' ] ) ? $product_currency_settings[ 'th_sep' ] : $local[ 'mon_thousands_sep' ];
+	$product_currency_settings[ 'dec_sep' ]			 = isset( $product_currency_settings[ 'dec_sep' ] ) ? $product_currency_settings[ 'dec_sep' ] : $local[ 'decimal_point' ];
+	$product_currency_settings[ 'price_enable' ]	 = isset( $product_currency_settings[ 'price_enable' ] ) ? $product_currency_settings[ 'price_enable' ] : 'on';
+	$product_currency_settings[ 'custom_symbol' ]	 = isset( $product_currency_settings[ 'custom_symbol' ] ) ? $product_currency_settings[ 'custom_symbol' ] : '$';
+	$product_currency_settings[ 'price_format' ]	 = isset( $product_currency_settings[ 'price_format' ] ) ? $product_currency_settings[ 'price_format' ] : 'before';
+	$product_currency_settings[ 'price_space' ]		 = isset( $product_currency_settings[ 'price_space' ] ) ? $product_currency_settings[ 'price_space' ] : 'off';
 	return $product_currency_settings;
 }
 

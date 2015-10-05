@@ -1333,6 +1333,12 @@ div.relative-box {
     padding: 0;
 }
 
+input.product-search-box[type="search"] {
+    max-width: 250px;
+    width: 100%;
+    border-radius: 2px;
+}
+
 .product-sort-bar input.product-search-box[type="search"], #content .product-sort-bar input.product-search-box[type="search"] {
     max-width: 150px;
     max-height: 100%;
@@ -1360,6 +1366,7 @@ div.relative-box {
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 50%;
+    border-radius: 2px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border: 0;
@@ -1373,6 +1380,9 @@ div.relative-box {
     max-width: 50px;
 }
 
+.product-sort-bar .product_search input.product-search-submit[type="submit"] {
+    border-radius: 1px;
+}
 .product-sort-bar .product_search input.product-search-submit[type="submit"], .product-sort-bar .product_search #searchsubmit {
     max-height: 29px;
     width: 30px;

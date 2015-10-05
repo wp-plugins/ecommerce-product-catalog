@@ -61,12 +61,12 @@ function create_product() {
 		$labels = array(
 			'name'				 => $names[ 'plural' ],
 			'singular_name'		 => $names[ 'singular' ],
-			'add_new'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-			'add_new_item'		 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-			'edit_item'			 => sprintf( __( 'Edit %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-			'new_item'			 => sprintf( __( 'Add New %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-			'view_item'			 => sprintf( __( 'View %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'singular' ] ) ),
-			'search_items'		 => sprintf( __( 'Search %s', 'al-ecommerce-product-catalog' ), ucfirst( $names[ 'plural' ] ) ),
+			'add_new'			 => __( 'Add New', 'al-ecommerce-product-catalog' ),
+			'add_new_item'		 => __( 'Add New Item', 'al-ecommerce-product-catalog' ),
+			'edit_item'			 => __( 'Edit Item', 'al-ecommerce-product-catalog' ),
+			'new_item'			 => __( 'Add New Item', 'al-ecommerce-product-catalog' ),
+			'view_item'			 => __( 'View Item', 'al-ecommerce-product-catalog' ),
+			'search_items'		 => __( 'Search Items', 'al-ecommerce-product-catalog' ),
 			'not_found'			 => __( 'Nothing found', 'al-ecommerce-product-catalog' ),
 			'not_found_in_trash' => __( 'Nothing found in trash', 'al-ecommerce-product-catalog' )
 		);

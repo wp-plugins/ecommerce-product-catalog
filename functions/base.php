@@ -27,7 +27,7 @@ function al_enter_title_here( $message ) {
 			$names	 = get_catalog_names();
 			$message = sprintf( __( 'Enter %s name here', 'al-ecommerce-product-catalog' ), strtolower( $names[ 'singular' ] ) );
 		} else {
-			$message = __( 'Enter name here', 'al-ecommerce-product-catalog' );
+			$message = __( 'Enter item name here', 'al-ecommerce-product-catalog' );
 		}
 	}
 	return $message;

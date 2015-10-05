@@ -48,13 +48,19 @@ function product_cat_shortcode( $atts ) {
 		'orderby'			 => 'name',
 		'order'				 => 'ASC'
 	), $atts );
-	$args								 = apply_filters( 'show_categories_args', $args );
-	$div								 = '<div class="product-subcategories responsive ' . $args[ 'archive_template' ] . ' ' . product_list_class( $args[ 'archive_template' ], 'category-list' ) . '">';
-	$cats								 = get_terms( 'al_product-cat', $args );
-	$cat_shortcode_query[ 'count' ]		 = count( $cats );
-	$cat_shortcode_query[ 'enable' ]	 = $args[ 'shortcode_query' ];
-	$product_sort						 = intval( $args[ 'sort' ] );
-	$inside								 = '';
+	if ( $args[ 'orderby' ] == 'none' ) {
+		$args[ 'orderby' ] = 'include';
+	}
+	$args = apply_filters( 'show_categories_args', $args );
+	if ( !is_array( $args[ 'include' ] ) ) {
+		$args[ 'include' ] = explode( ',', $args[ 'include' ] );
+	}
+	$div							 = '<div class="product-subcategories responsive ' . $args[ 'archive_template' ] . ' ' . product_list_class( $args[ 'archive_template' ], 'category-list' ) . '">';
+	$cats							 = get_terms( 'al_product-cat', $args );
+	$cat_shortcode_query[ 'count' ]	 = count( $cats );
+	$cat_shortcode_query[ 'enable' ] = $args[ 'shortcode_query' ];
+	$product_sort					 = intval( $args[ 'sort' ] );
+	$inside							 = '';
 	if ( $args[ 'parent' ] == '' && empty( $args[ 'include' ] ) ) {
 		$old_args			 = $args;
 		$args[ 'parent' ]	 = 0;

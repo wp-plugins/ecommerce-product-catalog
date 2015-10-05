@@ -222,7 +222,7 @@ function main_helper() {
  */
 function all_ic_options( $which = 'all' ) {
 	$options = array( 'product_attributes_number', 'al_display_attributes', 'product_attribute', 'product_attribute_label', 'product_attribute_unit', 'archive_template', 'modern_grid_settings', 'classic_grid_settings', 'catalog_lightbox', 'multi_single_options', 'default_product_thumbnail', 'design_schemes', 'archive_names', 'single_names', 'product_listing_url', 'product_currency', 'product_currency_settings', 'product_archive', 'enable_product_listing', 'archive_multiple_settings', 'product_shipping_options_number', 'display_shipping', 'product_shipping_cost', 'product_shipping_label' );
-	$tools	 = array( 'ic_delete_products_uninstall', 'ecommerce_product_catalog_ver', 'sample_product_id', 'al_permalink_options_update', 'custom_license_code', 'implecode_license_owner', 'no_implecode_license_error', 'license_active_plugins', 'product_adder_theme_support_check', 'implecode_hide_plugin_review_info_count', 'hide_empty_bar_message' );
+	$tools	 = array( 'ic_delete_products_uninstall', 'ecommerce_product_catalog_ver', 'sample_product_id', 'al_permalink_options_update', 'custom_license_code', 'implecode_license_owner', 'no_implecode_license_error', 'license_active_plugins', 'product_adder_theme_support_check', 'implecode_hide_plugin_review_info_count', 'hide_empty_bar_message', 'old_sort_bar' );
 	if ( $which == 'all' ) {
 		return array_merge( $options, $tools );
 	} else if ( $which == 'tools' ) {

@@ -46,57 +46,6 @@ function example_default_archive_theme() {
 	<?php
 }
 
-/*
-  function default_archive_theme( $post ) {
-  $modern_grid_settings	 = get_modern_grid_settings();
-  ?>
-  <a href="<?php the_permalink(); ?>">
-  <div class="al_archive modern-grid-element" style='background-image:url(" <?php
-  $thumbnail_product		 = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-  if ( $thumbnail_product[ 0 ] ) {
-  $url = $thumbnail_product[ 0 ];
-  } else {
-  $url = default_product_thumbnail_url();
-  }
-  echo $url;
-  ?>");'>
-
-  <div class="product-name <?php design_schemes( 'box' ); ?>"><?php the_title(); ?></div>
-  <?php
-  $attributes_number	 = get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
-  $at_val				 = '';
-  $any_attribute_value = '';
-  for ( $i = 1; $i <= $attributes_number; $i++ ) {
-  $at_val = get_post_meta( $post->ID, "_attribute" . $i, true );
-  if ( !empty( $at_val ) ) {
-  $any_attribute_value = $at_val . $i;
-  }
-  }
-  if ( $attributes_number > 0 AND ! empty( $any_attribute_value ) AND $modern_grid_settings[ 'attributes' ] == 1 ) {
-  ?>
-  <div class="product-attributes">
-  <table class="attributes-table">
-  <?php
-  for ( $i = 1; $i <= $attributes_number; $i++ ) {
-  $attribute_value = get_post_meta( $post->ID, "_attribute" . $i, true );
-  if ( !empty( $attribute_value ) ) {
-  echo '<tr><td>' . get_post_meta( $post->ID, "_attribute-label" . $i, true ) . '</td><td>' . get_post_meta( $post->ID, "_attribute" . $i, true ) . ' ' . get_post_meta( $post->ID, "_attribute-unit" . $i, true ) . '</td></tr>';
-  }
-  }
-  ?>
-  </table>
-  </div>
-  <?php
-  }
-  do_action( 'archive_price', $post );
-  ?>
-
-  </div>
-  </a>
-  <?php
-  }
- */
-
 /**
  * Returns modern grid element for a given product
  *
@@ -127,29 +76,31 @@ function get_default_archive_theme( $post, $archive_template = null ) {
 		} else {
 			$url = default_product_thumbnail_url();
 		}
-		$product_name		 = get_the_title();
-		$return				 = '<div class="al_archive modern-grid-element ' . design_schemes( 'box', 0 ) . ' ' . product_listing_size_class( $thumbnail_product ) . ' ' . product_class( $post->ID ) . '">';
+		$product_name	 = get_the_title();
+		$return			 = '<div class="al_archive modern-grid-element ' . design_schemes( 'box', 0 ) . ' ' . product_listing_size_class( $thumbnail_product ) . ' ' . product_class( $post->ID ) . '">';
 		$return .= '<div class="pseudo"></div>';
 		$return .= '<a href="' . get_permalink() . '"><img' . $img_class . ' src="' . $url . '" alt="' . $product_name . '">';
 		$return .= '<h3 class="product-name ' . design_schemes( 'box', 0 ) . '">' . $product_name . '</h3>';
-		$attributes_number	 = get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
-		$at_val				 = '';
-		$any_attribute_value = '';
-		for ( $i = 1; $i <= $attributes_number; $i++ ) {
-			$at_val = get_post_meta( $post->ID, "_attribute" . $i, true );
-			if ( !empty( $at_val ) ) {
-				$any_attribute_value = $at_val . $i;
-			}
-		}
-		if ( $attributes_number > 0 AND ! empty( $any_attribute_value ) AND $modern_grid_settings[ 'attributes' ] == 1 ) {
-			$return .= '<div class="product-attributes"><table class="attributes-table">';
+		if ( $modern_grid_settings[ 'attributes' ] == 1 ) {
+			$attributes_number	 = product_attributes_number();
+			$at_val				 = '';
+			$any_attribute_value = '';
 			for ( $i = 1; $i <= $attributes_number; $i++ ) {
-				$attribute_value = get_post_meta( $post->ID, "_attribute" . $i, true );
-				if ( !empty( $attribute_value ) ) {
-					$return .= '<tr><td>' . get_post_meta( $post->ID, "_attribute-label" . $i, true ) . '</td><td>' . get_post_meta( $post->ID, "_attribute" . $i, true ) . ' ' . get_post_meta( $post->ID, "_attribute-unit" . $i, true ) . '</td></tr>';
+				$at_val = get_post_meta( $post->ID, "_attribute" . $i, true );
+				if ( !empty( $at_val ) ) {
+					$any_attribute_value = $at_val . $i;
 				}
 			}
-			$return .= '</table></div>';
+			if ( $attributes_number > 0 && !empty( $any_attribute_value ) ) {
+				$return .= '<div class="product-attributes"><table class="attributes-table">';
+				for ( $i = 1; $i <= $attributes_number; $i++ ) {
+					$attribute_value = get_post_meta( $post->ID, "_attribute" . $i, true );
+					if ( !empty( $attribute_value ) ) {
+						$return .= '<tr><td>' . get_post_meta( $post->ID, "_attribute-label" . $i, true ) . '</td><td>' . get_post_meta( $post->ID, "_attribute" . $i, true ) . ' ' . get_post_meta( $post->ID, "_attribute-unit" . $i, true ) . '</td></tr>';
+					}
+				}
+				$return .= '</table></div>';
+			}
 		}
 		$return .= $archive_price . '</a></div>';
 	}
