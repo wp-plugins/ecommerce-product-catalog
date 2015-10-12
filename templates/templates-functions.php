@@ -178,8 +178,9 @@ add_action( 'pre_get_posts', 'set_products_limit', 99 );
  */
 function set_products_limit( $query ) {
 	$archive_multiple_settings = get_multiple_settings();
-	if ( !is_admin() && $query->is_main_query() && (is_post_type_archive( 'al_product' ) || is_tax( 'al_product-cat' ) || is_home_archive( $query )) ) {
+	if ( !is_admin() && $query->is_main_query() && (is_ic_product_listing( $query ) || is_ic_taxonomy_page() || is_home_archive( $query )) ) {
 		$query->set( 'posts_per_page', $archive_multiple_settings[ 'archive_products_limit' ] );
+		do_action( 'pre_get_al_products', $query );
 	}
 }
 

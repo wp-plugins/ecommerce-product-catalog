@@ -31,6 +31,7 @@ function initialize_product_adder_template() {
 	$twentyfourteen	 = array( "twentyfourteen" );
 	$twentyfifteen	 = array( "twentyfifteen" );
 	$third_party	 = array( "storefront" );
+	$generic_content = array( "headway" );
 
 	if ( is_integraton_file_active() ) {
 		add_filter( 'template_include', 'al_product_adder_template' );
@@ -48,6 +49,8 @@ function initialize_product_adder_template() {
 		add_filter( 'template_include', 'al_product_adder_twentyfourteen_template' );
 	} else if ( in_array( $theme, $twentyfifteen ) ) {
 		add_filter( 'template_include', 'al_product_adder_twentyfifteen_template' );
+	} else if ( in_array( $theme, $generic_content ) ) {
+		add_filter( 'template_include', 'al_product_enable_generic_content' );
 	} else if ( get_integration_type() == 'simple' && file_exists( get_page_php_path() ) ) {
 		add_filter( 'template_include', 'al_product_adder_page_template' );
 	} else {
@@ -118,6 +121,13 @@ function al_product_adder_twentyfourteen_template( $template ) {
 function al_product_adder_twentyfifteen_template( $template ) {
 	if ( is_ic_catalog_page() ) {
 		return dirname( __FILE__ ) . '/templates/product-twentyfifteen-adder.php';
+	}
+	return $template;
+}
+
+function al_product_enable_generic_content( $template ) {
+	if ( is_ic_catalog_page() ) {
+		add_action( 'generic_content', 'content_product_adder' );
 	}
 	return $template;
 }
@@ -472,7 +482,7 @@ add_action( 'admin_init', 'create_sample_product_with_redirect' );
 
 function implecode_supported_themes() {
 	return array( 'twentythirteen', 'twentyeleven', 'twentytwelve', 'twentyten', 'twentyfourteen', 'twentyfifteen', 'pub/minileven',
-		'storefront' );
+		'storefront', 'headway' );
 }
 
 function is_theme_implecode_supported() {

@@ -212,7 +212,7 @@ function al_product_shipping() {
 		} else {
 			$shipping_label = isset( $shipping_label_option[ $i ] ) ? $shipping_label_option[ $i ] : '';
 		}
-		echo '<tr><td class="dragger"></td><td class="shipping-label-column"><input class="shipping-label" type="text" name="_shipping-label' . $i . '" value="' . $shipping_label . '" /></td><td><input class="shipping-value" type="number" min="0" step="0.01" name="_shipping' . $i . '" value="' . $shipping . '" />' . $currency . '</td></tr>';
+		echo '<tr><td class="dragger"></td><td class="shipping-label-column"><input class="shipping-label" type="text" name="_shipping-label' . $i . '" value="' . esc_html( $shipping_label ) . '" /></td><td><input class="shipping-value" type="number" min="0" step="0.01" name="_shipping' . $i . '" value="' . floatval( $shipping ) . '" />' . $currency . '</td></tr>';
 	}
 	echo '</tbody></table>';
 }
@@ -249,17 +249,17 @@ function al_product_attributes() {
 			$attributes_label_option_field	 = !empty( $attributes_label_option_field ) ? $attributes_label_option_field : $attributes_label_option[ $i ];
 			$attributes_unit_option_field	 = !empty( $attributes_unit_option_field ) ? $attributes_unit_option_field : $attributes_unit_option[ $i ];
 		}
-		$attribute_value_field = '<input class="attribute-value" type="text" name="_attribute' . $i . '" value="' . htmlentities( $attributes_option_field ) . '" />';
+		$attribute_value_field = '<input class="attribute-value" type="text" name="_attribute' . $i . '" value="' . esc_html( $attributes_option_field ) . '" />';
 		?>
 		<tr>
 			<td class="attributes-label-column"><input class="attribute-label" type="text"
 													   name="_attribute-label<?php echo $i ?>"
-													   value="<?php echo htmlentities( $attributes_label_option_field ) ?>"/></td>
+													   value="<?php echo esc_html( $attributes_label_option_field ) ?>"/></td>
 			<td class="break-column">:</td>
 			<td class="value-column"><?php echo apply_filters( 'product_attribute_value_edit', $attribute_value_field, $i, $attributes_option_field ) ?></td>
 			<td class="unit-column"><input class="attribute-unit admin-number-field" type="text"
 										   name="_attribute-unit<?php echo $i ?>"
-										   value="<?php echo htmlentities( $attributes_unit_option_field ) ?>"/></td>
+										   value="<?php echo esc_html( $attributes_unit_option_field ) ?>"/></td>
 			<td class="dragger"></td>
 		</tr>
 	<?php } ?>

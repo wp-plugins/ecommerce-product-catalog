@@ -99,7 +99,7 @@ if ( !function_exists( 'echo_ic_setting' ) ) {
 		if ( $option_label != '' ) {
 			$return .= '<td>' . $option_label . $star . ':</td>';
 		}
-		$return .= '<td><input ' . $regired_field . ' ' . $disabled . 'class="' . $class . '" ' . $tip . 'type="text" name="' . $option_name . '" value="' . $option_value . '" /></td>';
+		$return .= '<td><input ' . $regired_field . ' ' . $disabled . 'class="' . $class . '" ' . $tip . 'type="text" name="' . $option_name . '" value="' . esc_html( $option_value ) . '" /></td>';
 		$return .= '</tr>';
 
 		return echo_ic_setting( $return, $echo );
@@ -126,7 +126,7 @@ if ( !function_exists( 'echo_ic_setting' ) ) {
 		$tip	 = !empty( $tip ) ? 'title="' . $tip . '" ' : '';
 		$min	 = isset( $min ) ? 'min="' . intval( $min ) . '" ' : '';
 		$max	 = isset( $max ) ? 'max="' . intval( $max ) . '" ' : '';
-		$return .= '<td><input type="number" step="' . $step . '" ' . $min . ' ' . $max . ' ' . $tip . ' class="number_box" name="' . $option_name . '" value="' . $option_value . '" />' . $unit . '</td>';
+		$return .= '<td><input type="number" step="' . $step . '" ' . $min . ' ' . $max . ' ' . $tip . ' class="number_box" name="' . $option_name . '" value="' . floatval( $option_value ) . '" />' . $unit . '</td>';
 		$return .= '</tr>';
 
 		return echo_ic_setting( $return, $echo );
@@ -135,7 +135,7 @@ if ( !function_exists( 'echo_ic_setting' ) ) {
 	function implecode_settings_textarea( $option_label, $option_name, $option_value, $echo = 1 ) {
 		$return = '<tr>';
 		$return .= '<td>' . $option_label . ':</td>';
-		$return .= '<td><textarea name="' . $option_name . '">' . $option_value . '</textarea></td>';
+		$return .= '<td><textarea name="' . $option_name . '">' . esc_textarea( $option_value ) . '</textarea></td>';
 		$return .= '</tr>';
 
 		return echo_ic_setting( $return, $echo );

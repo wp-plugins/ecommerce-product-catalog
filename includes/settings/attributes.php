@@ -86,9 +86,9 @@ function attributes_settings_content() {
 									?>
 									<tr>
 										<td class="lp-column lp'.$i.'"><?php echo $i ?>.</td>
-										<td class="product-attribute-label-column"><input class="product-attribute-label" type="text" name="product_attribute_label[<?php echo $i ?>]" value="<?php echo $attribute_label[ $i ] ?>" /></td><td class="lp-column">:</td>
-										<td><input id="admin-number-field" class="product-attribute" type="text" name="product_attribute[<?php echo $i ?>]" value="<?php echo $attribute[ $i ] ?>" /></td>
-										<td><input id="admin-number-field" class="product-attribute-unit" type="text" name="product_attribute_unit[<?php echo $i ?>]" value="<?php echo $attribute_unit[ $i ] ?>" /></td>
+										<td class="product-attribute-label-column"><input class="product-attribute-label" type="text" name="product_attribute_label[<?php echo $i ?>]" value="<?php echo esc_html( $attribute_label[ $i ] ) ?>" /></td><td class="lp-column">:</td>
+										<td><input class="product-attribute" type="text" name="product_attribute[<?php echo $i ?>]" value="<?php echo esc_html( $attribute[ $i ] ) ?>" /></td>
+										<td><input id="admin-number-field" class="product-attribute-unit" type="text" name="product_attribute_unit[<?php echo $i ?>]" value="<?php echo esc_html( $attribute_unit[ $i ] ) ?>" /></td>
 										<?php do_action( 'product_attributes_settings_table_td', $i ); ?>
 										<td class="dragger"></td>
 									</tr> <?php }
