@@ -14,7 +14,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author 		Norbert Dreszer
  */
 function is_ic_catalog_page() {
-	if ( is_ic_product_page() || is_ic_product_listing() || is_ic_taxonomy_page() ) {
+	if ( is_ic_product_page() || is_ic_product_listing() || is_ic_taxonomy_page() || is_ic_product_search() ) {
 		return true;
 	}
 	return false;
@@ -333,7 +333,7 @@ function is_ic_category_image_enabled() {
  * @return boolean
  */
 function is_ic_shipping_enabled() {
-	$shipping_count = get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER );
+	$shipping_count = get_shipping_options_number();
 	if ( $shipping_count > 0 ) {
 		return true;
 	}
@@ -346,7 +346,7 @@ function is_ic_shipping_enabled() {
  * @return boolean
  */
 function is_ic_attributes_enabled() {
-	$attributes_count = get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
+	$attributes_count = product_attributes_number();
 	if ( $attributes_count > 0 ) {
 		return true;
 	}

@@ -163,10 +163,10 @@ function add_product_metaboxes() {
 	if ( is_ic_price_enabled() || is_ic_sku_enabled() ) {
 		add_meta_box( 'al_product_price', sprintf( __( '%s Details', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), 'al_product_price', 'al_product', apply_filters( 'product_price_box_column', 'side' ), apply_filters( 'product_price_box_priority', 'default' ) );
 	}
-	if ( get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER ) > 0 ) {
+	if ( get_shipping_options_number() > 0 ) {
 		add_meta_box( 'al_product_shipping', sprintf( __( '%s Shipping', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), 'al_product_shipping', 'al_product', apply_filters( 'product_shipping_box_column', 'side' ), apply_filters( 'product_shipping_box_priority', 'default' ) );
 	}
-	if ( get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER ) > 0 ) {
+	if ( product_attributes_number() > 0 ) {
 		add_meta_box( 'al_product_attributes', sprintf( __( '%s Attributes', 'al-ecommerce-product-catalog' ), $names[ 'singular' ] ), 'al_product_attributes', 'al_product', apply_filters( 'product_attributes_box_column', 'normal' ), apply_filters( 'product_attributes_box_priority', 'default' ) );
 	}
 	do_action( 'add_product_metaboxes', $names );
@@ -197,7 +197,7 @@ function al_product_shipping() {
 	wp_create_nonce( plugin_basename( __FILE__ ) ) . '" />';
 	$currency = product_currency();
 	echo '<table class="sort-settings shipping"><tbody>';
-	for ( $i = 1; $i <= get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER ); $i++ ) {
+	for ( $i = 1; $i <= get_shipping_options_number(); $i++ ) {
 		$shipping_option		 = get_option( 'product_shipping_cost' );
 		$shipping_label_option	 = get_option( 'product_shipping_label' );
 		$shipping_option_field	 = get_post_meta( $post->ID, '_shipping' . $i, true );
@@ -237,7 +237,7 @@ function al_product_attributes() {
 	$attributes_option		 = get_option( 'product_attribute' );
 	$attributes_label_option = get_option( 'product_attribute_label' );
 	$attributes_unit_option	 = get_option( 'product_attribute_unit' );
-	for ( $i = 1; $i <= get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER ); $i++ ) {
+	for ( $i = 1; $i <= product_attributes_number(); $i++ ) {
 		$attributes_option_field		 = get_post_meta( $post->ID, '_attribute' . $i, true );
 		$attributes_label_option_field	 = get_post_meta( $post->ID, '_attribute-label' . $i, true );
 		$attributes_unit_option_field	 = get_post_meta( $post->ID, '_attribute-unit' . $i, true );
@@ -316,11 +316,11 @@ function implecode_save_products_meta( $post_id, $post ) {
 		$product_meta[ '_sku' ]		 = !empty( $_POST[ '_sku' ] ) ? $_POST[ '_sku' ] : '';
 		$product_meta[ 'excerpt' ]	 = !empty( $_POST[ 'excerpt' ] ) ? $_POST[ 'excerpt' ] : '';
 		$product_meta[ 'content' ]	 = !empty( $_POST[ 'content' ] ) ? $_POST[ 'content' ] : '';
-		for ( $i = 1; $i <= get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER ); $i++ ) {
+		for ( $i = 1; $i <= get_shipping_options_number(); $i++ ) {
 			$product_meta[ '_shipping' . $i ]		 = isset( $_POST[ '_shipping' . $i ] ) ? $_POST[ '_shipping' . $i ] : '';
 			$product_meta[ '_shipping-label' . $i ]	 = !empty( $_POST[ '_shipping-label' . $i ] ) ? $_POST[ '_shipping-label' . $i ] : '';
 		}
-		for ( $i = 1; $i <= get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER ); $i++ ) {
+		for ( $i = 1; $i <= product_attributes_number(); $i++ ) {
 			$product_meta[ '_attribute' . $i ]		 = !empty( $_POST[ '_attribute' . $i ] ) ? $_POST[ '_attribute' . $i ] : '';
 			$product_meta[ '_attribute-label' . $i ] = !empty( $_POST[ '_attribute-label' . $i ] ) ? $_POST[ '_attribute-label' . $i ] : '';
 			$product_meta[ '_attribute-unit' . $i ]	 = !empty( $_POST[ '_attribute-unit' . $i ] ) ? $_POST[ '_attribute-unit' . $i ] : '';
