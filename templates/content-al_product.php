@@ -21,7 +21,7 @@ $single_options		 = get_product_page_settings();
 do_action( 'single_product_begin', $product_id );
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'al_product responsive' ); ?>>
+<article id="product-<?php the_ID(); ?>" <?php post_class( 'al_product responsive product-' . $product_id ); ?>>
 	<?php do_action( 'before_product_entry', $post, $single_names ); ?>
 	<div class="entry-content product-entry"><?php
 		//do_action( 'start_product_entry', $post, $single_names );

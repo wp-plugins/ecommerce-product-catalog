@@ -180,8 +180,13 @@
     margin-left: -20%;
 }
 
-.product-category-image {
-    max-width: 100%;
+.product-category-image, .entry-content img.product-category-image {
+    max-width: 40%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    float: right;
 }
 
 .product-list .al_archive .product-attributes table, #content .al_archive .product-attributes table, .al_archive .product-attributes table {
@@ -191,6 +196,10 @@
     line-height: 14px;
     color: #fff;
     box-shadow: none;
+}
+
+.catalog-header {
+    clear: both;
 }
 
 .product-list .al_archive .product-attributes table td, #content .al_archive .product-attributes table td {
@@ -241,10 +250,12 @@
     overflow: hidden;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 .content-area.product-catalog #catalog_sidebar {
     width: 30%;
     float: right;
+    box-sizing: border-box;
 }
 
 #catalog_sidebar > li {

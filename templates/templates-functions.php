@@ -51,7 +51,7 @@ function content_product_adder_single() {
 
 function content_product_adder_archive_before() {
 	$page_id = apply_filters( 'before_archive_post_id', get_product_listing_id() );
-	$page	 = get_post( $page_id );
+	$page	 = empty( $page_id ) ? '' : get_post( $page_id );
 	if ( $page != '' ) {
 		if ( get_integration_type() != 'simple' ) {
 			$content = apply_filters( "the_content", $page->post_content );
@@ -68,7 +68,7 @@ function content_product_adder_archive_before_title() {
 	$def_page_id	 = get_product_listing_id();
 	$archive_names	 = get_archive_names();
 	$page_id		 = apply_filters( 'before_archive_post_id', $def_page_id );
-	$page			 = get_post( $page_id );
+	$page			 = empty( $page_id ) ? '' : get_post( $page_id );
 	if ( $page == '' ) {
 		echo '<h1 class="entry-title">' . $archive_names[ 'all_products' ] . '</h1>';
 	} else {
@@ -431,7 +431,7 @@ function get_product_listing_title() {
 	$archive_names	 = get_archive_names();
 	$def_page_id	 = get_product_listing_id();
 	$page_id		 = apply_filters( 'before_archive_post_id', $def_page_id );
-	$page			 = get_post( $page_id );
+	$page			 = empty( $page_id ) ? '' : get_post( $page_id );
 	if ( $page == '' ) {
 		$page_title = $archive_names[ 'all_products' ];
 	} else {
@@ -546,7 +546,7 @@ add_action( 'before_product_listing_category_list', 'product_list_categories_hea
 function product_list_categories_header() {
 	$archive_names = get_archive_names();
 	if ( !empty( $archive_names[ 'all_main_categories' ] ) && !isset( $shortcode_query ) ) {
-		echo '<h2>' . do_shortcode( $archive_names[ 'all_main_categories' ] ) . '</h2>';
+		echo '<h2 class="catalog-header">' . do_shortcode( $archive_names[ 'all_main_categories' ] ) . '</h2>';
 	}
 }
 
@@ -559,7 +559,7 @@ add_action( 'before_category_subcategories', 'category_list_subcategories_header
 function category_list_subcategories_header() {
 	$archive_names = get_archive_names();
 	if ( !empty( $archive_names[ 'all_subcategories' ] ) && !is_ic_shortcode_query() ) {
-		echo '<h2>' . do_shortcode( $archive_names[ 'all_subcategories' ] ) . '</h2>';
+		echo '<h2 class="catalog-header">' . do_shortcode( $archive_names[ 'all_subcategories' ] ) . '</h2>';
 	}
 }
 
@@ -573,10 +573,10 @@ function product_list_header() {
 	$archive_names = get_archive_names();
 	if ( (!empty( $archive_names[ 'all_products' ] ) || !empty( $archive_names[ 'category_products' ] )) && !is_ic_shortcode_query() ) {
 		if ( !is_tax() && !is_search() && !empty( $archive_names[ 'all_products' ] ) ) {
-			echo '<h2>' . do_shortcode( $archive_names[ 'all_products' ] ) . '</h2>';
+			echo '<h2 class="catalog-header">' . do_shortcode( $archive_names[ 'all_products' ] ) . '</h2>';
 		} else if ( is_tax() && !empty( $archive_names[ 'category_products' ] ) && is_ic_product_listing_showing_cats() ) {
 			//$the_tax = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
-			echo '<h2>' . do_shortcode( $archive_names[ 'category_products' ] ) . '</h2>';
+			echo '<h2 class="catalog-header">' . do_shortcode( $archive_names[ 'category_products' ] ) . '</h2>';
 		}
 	}
 }
@@ -743,7 +743,7 @@ function get_related_products( $products_limit = null, $markup = false ) {
 				$div			 = '<div class="related-products">';
 				$single_names	 = get_single_names();
 				if ( !empty( $single_names[ 'other_categories' ] ) ) {
-					$div .= '<h2>' . $single_names[ 'other_categories' ] . '</h2>';
+					$div .= '<h2 class="catalog-header">' . $single_names[ 'other_categories' ] . '</h2>';
 				}
 				$div .= do_shortcode( '[show_products product="' . $products . '"]' );
 				$div .= '</div>';

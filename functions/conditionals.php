@@ -14,7 +14,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author 		Norbert Dreszer
  */
 function is_ic_catalog_page() {
-	if ( is_ic_product_page() || is_ic_product_listing() || is_ic_taxonomy_page() ) {
+	if ( is_ic_product_page() || is_ic_product_listing() || is_ic_taxonomy_page() || is_ic_product_search() ) {
 		return true;
 	}
 	return false;
@@ -333,7 +333,7 @@ function is_ic_category_image_enabled() {
  * @return boolean
  */
 function is_ic_shipping_enabled() {
-	$shipping_count = get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER );
+	$shipping_count = get_shipping_options_number();
 	if ( $shipping_count > 0 ) {
 		return true;
 	}
@@ -346,7 +346,7 @@ function is_ic_shipping_enabled() {
  * @return boolean
  */
 function is_ic_attributes_enabled() {
-	$attributes_count = get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
+	$attributes_count = product_attributes_number();
 	if ( $attributes_count > 0 ) {
 		return true;
 	}
@@ -454,7 +454,8 @@ function is_product_sort_bar_active() {
  * @return boolean
  */
 function is_product_filters_active() {
-	if ( isset( $_SESSION[ 'filters' ] ) && !empty( $_SESSION[ 'filters' ] ) ) {
+	$session = get_product_catalog_session();
+	if ( isset( $session[ 'filters' ] ) && !empty( $session[ 'filters' ] ) ) {
 		return true;
 	}
 	return false;
@@ -467,8 +468,9 @@ function is_product_filters_active() {
  * @return boolean
  */
 function is_product_filter_active( $filter_name, $value = null ) {
-	if ( isset( $_SESSION[ 'filters' ][ $filter_name ] ) && !empty( $_SESSION[ 'filters' ][ $filter_name ] ) ) {
-		if ( isset( $value ) && $_SESSION[ 'filters' ][ $filter_name ] == $value ) {
+	$session = get_product_catalog_session();
+	if ( isset( $session[ 'filters' ][ $filter_name ] ) && !empty( $session[ 'filters' ][ $filter_name ] ) ) {
+		if ( isset( $value ) && $session[ 'filters' ][ $filter_name ] == $value ) {
 			return true;
 		} else if ( !isset( $value ) ) {
 			return true;

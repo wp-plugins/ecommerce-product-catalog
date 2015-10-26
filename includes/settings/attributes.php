@@ -49,16 +49,18 @@ function attributes_settings_content() {
 				</script>
 				<h2><?php _e( 'Attributes Settings', 'al-ecommerce-product-catalog' ); ?></h2>
 				<form method="post" action="options.php">
-					<?php settings_fields( 'product_attributes' ); ?>
+					<?php
+					settings_fields( 'product_attributes' );
+					$attributes_count = product_attributes_number();
+					?>
 					<h3><?php _e( 'Product attributes options', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table>
 						<tr>
-							<td colspan="2"><?php _e( 'Number of product attributes', 'al-ecommerce-product-catalog' ); ?> <input size="30" type="number" step="1" min="0" name="product_attributes_number" id="admin-number-field" value="<?php echo get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER ); ?>" /><input type="submit" class="button" value="<?php _e( 'Update', 'al-ecommerce-product-catalog' ); ?>" />
+							<td colspan="2"><?php _e( 'Number of product attributes', 'al-ecommerce-product-catalog' ); ?> <input size="30" type="number" step="1" min="0" name="product_attributes_number" id="admin-number-field" value="<?php echo $attributes_count; ?>" /><input type="submit" class="button" value="<?php _e( 'Update', 'al-ecommerce-product-catalog' ); ?>" />
 							</td>
 						</tr>
 					</table>
 					<?php
-					$attributes_count = get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
 					if ( $attributes_count > 0 ) {
 						?>
 						<div class="al-box info">
@@ -71,7 +73,7 @@ function attributes_settings_content() {
 									<th></th>
 									<th class="title"><b><?php _e( 'Attribute default value', 'al-ecommerce-product-catalog' ); ?></b></th>
 									<th class="title"><b><?php _e( 'Attribute default unit', 'al-ecommerce-product-catalog' ); ?></b></th>
-									<?php do_action( 'product_attributes_settings_table_th' ); ?>
+			<?php do_action( 'product_attributes_settings_table_th' ); ?>
 									<th class="dragger"></th>
 								</tr>
 							</thead>
@@ -79,7 +81,7 @@ function attributes_settings_content() {
 								$attribute		 = get_option( 'product_attribute' );
 								$attribute_label = get_option( 'product_attribute_label' );
 								$attribute_unit	 = get_option( 'product_attribute_unit' );
-								for ( $i = 1; $i <= get_option( 'product_attributes_number', '3' ); $i++ ) {
+								for ( $i = 1; $i <= product_attributes_number(); $i++ ) {
 									$attribute_label[ $i ]	 = isset( $attribute_label[ $i ] ) ? $attribute_label[ $i ] : '';
 									$attribute[ $i ]		 = isset( $attribute[ $i ] ) ? $attribute[ $i ] : '';
 									$attribute_unit[ $i ]	 = isset( $attribute_unit[ $i ] ) ? $attribute_unit[ $i ] : '';
@@ -89,13 +91,13 @@ function attributes_settings_content() {
 										<td class="product-attribute-label-column"><input class="product-attribute-label" type="text" name="product_attribute_label[<?php echo $i ?>]" value="<?php echo esc_html( $attribute_label[ $i ] ) ?>" /></td><td class="lp-column">:</td>
 										<td><input class="product-attribute" type="text" name="product_attribute[<?php echo $i ?>]" value="<?php echo esc_html( $attribute[ $i ] ) ?>" /></td>
 										<td><input id="admin-number-field" class="product-attribute-unit" type="text" name="product_attribute_unit[<?php echo $i ?>]" value="<?php echo esc_html( $attribute_unit[ $i ] ) ?>" /></td>
-										<?php do_action( 'product_attributes_settings_table_td', $i ); ?>
+				<?php do_action( 'product_attributes_settings_table_td', $i ); ?>
 										<td class="dragger"></td>
 									</tr> <?php }
-									?>
+			?>
 							</tbody>
 						</table>
-						<?php do_action( 'attributes-settings' ); ?>
+			<?php do_action( 'attributes-settings' ); ?>
 						<p class="submit">
 							<input type="submit" class="button-primary" value="<?php _e( 'Save changes', 'al-ecommerce-product-catalog' ); ?>" />
 						</p><?php
@@ -116,7 +118,7 @@ function attributes_settings_content() {
 					doc_helper( __( 'attributes', 'al-ecommerce-product-catalog' ), 'product-attributes' )
 					?>
 				</div></div>
-		<?php } do_action( 'product-attributes' ); ?>
+	<?php } do_action( 'product-attributes' ); ?>
 	</div><?php
 }
 
@@ -128,7 +130,7 @@ add_action( 'general_settings', 'attributes_settings_content' );
  * @return int
  */
 function product_attributes_number() {
-	return get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
+	return get_option( 'product_attributes_number', 3 );
 }
 
 /**

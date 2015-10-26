@@ -384,7 +384,7 @@ function ic_product_listing_categories() {
 					echo '<div class = "product-subcategories">' . $product_subcategories . '</div>';
 				}
 			} else {
-				$show_categories = do_shortcode( '[ show_categories parent = "0" shortcode_query = "no" ]' );
+				$show_categories = do_shortcode( '[show_categories parent = "0" shortcode_query = "no"]' );
 				if ( !empty( $show_categories ) ) {
 					do_action( 'before_product_listing_category_list' );
 					echo $show_categories;
@@ -418,7 +418,7 @@ function ic_product_listing_categories() {
 					<?php
 				}
 			} else {
-				$show_categories = do_shortcode( '[ show_categories parent = ' . get_queried_object_id() . ' shortcode_query = no ]' );
+				$show_categories = do_shortcode( '[show_categories parent = ' . get_queried_object_id() . ' shortcode_query = no]' );
 				if ( !empty( $show_categories ) ) {
 					do_action( 'before_category_subcategories' );
 					echo $show_categories;

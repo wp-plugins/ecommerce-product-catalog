@@ -77,7 +77,7 @@ function get_default_archive_theme( $post, $archive_template = null ) {
 			$url = default_product_thumbnail_url();
 		}
 		$product_name	 = get_the_title();
-		$return			 = '<div class="al_archive modern-grid-element ' . design_schemes( 'box', 0 ) . ' ' . product_listing_size_class( $thumbnail_product ) . ' ' . product_class( $post->ID ) . '">';
+		$return			 = '<div class="al_archive product-' . $post->ID . ' modern-grid-element ' . design_schemes( 'box', 0 ) . ' ' . product_listing_size_class( $thumbnail_product ) . ' ' . product_class( $post->ID ) . '">';
 		$return .= '<div class="pseudo"></div>';
 		$return .= '<a href="' . get_permalink() . '"><img' . $img_class . ' src="' . $url . '" alt="' . $product_name . '">';
 		$return .= '<h3 class="product-name ' . design_schemes( 'box', 0 ) . '">' . $product_name . '</h3>';
@@ -129,7 +129,7 @@ function get_default_category_theme( $product_cat, $archive_template ) {
 		$url = default_product_thumbnail_url();
 	}
 	//$modern_grid_settings	 = get_modern_grid_settings();
-	$return = '<div class="al_archive modern-grid-element ' . product_listing_size_class( $thumbnail_product ) . '">';
+	$return = '<div class="al_archive category-' . $product_cat->term_id . ' modern-grid-element ' . product_listing_size_class( $thumbnail_product ) . '">';
 	//$return .= '<a class="pseudo-a" href="' . get_term_link($product_cat) . '"></a>';
 	$return .= '<div class="pseudo"></div>';
 	$return .= '<a href="' . get_term_link( $product_cat ) . '"><img' . $img_class . ' src="' . $url . '" alt="' . $product_cat->name . '">';

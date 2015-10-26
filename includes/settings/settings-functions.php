@@ -83,7 +83,7 @@ if ( !function_exists( 'echo_ic_setting' ) ) {
 	 * @return string
 	 */
 	function implecode_settings_text( $option_label, $option_name, $option_value, $required = null, $echo = 1,
-								   $class = null, $tip = null, $disabled = '' ) {
+								   $class = null, $tip = null, $disabled = '', $attributes = null ) {
 		if ( !empty( $disabled ) ) {
 			$disabled .= ' ';
 		}
@@ -99,7 +99,7 @@ if ( !function_exists( 'echo_ic_setting' ) ) {
 		if ( $option_label != '' ) {
 			$return .= '<td>' . $option_label . $star . ':</td>';
 		}
-		$return .= '<td><input ' . $regired_field . ' ' . $disabled . 'class="' . $class . '" ' . $tip . 'type="text" name="' . $option_name . '" value="' . esc_html( $option_value ) . '" /></td>';
+		$return .= '<td><input ' . $attributes . ' ' . $regired_field . ' ' . $disabled . 'class="' . $class . '" ' . $tip . 'type="text" name="' . $option_name . '" value="' . esc_html( $option_value ) . '" /></td>';
 		$return .= '</tr>';
 
 		return echo_ic_setting( $return, $echo );

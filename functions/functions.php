@@ -92,24 +92,24 @@ function upload_product_image( $name, $button_value, $option_name, $option_value
 		   href="#"><?php _e( 'Reset image', 'al-ecommerce-product-catalog' ); ?></a>
 	</div>
 	<script>
-		jQuery( document ).ready( function () {
-			jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
-				wp.media.editor.send.attachment = function ( props, attachment ) {
-					jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
-					jQuery( '.media-image' ).attr( "src", attachment.url );
-				}
+	    jQuery( document ).ready( function () {
+	        jQuery( '#button_<?php echo $name; ?>' ).on( 'click', function () {
+	            wp.media.editor.send.attachment = function ( props, attachment ) {
+	                jQuery( '#<?php echo $name; ?>' ).val( attachment.url );
+	                jQuery( '.media-image' ).attr( "src", attachment.url );
+	            }
 
-				wp.media.editor.open( this );
+	            wp.media.editor.open( this );
 
-				return false;
-			} );
-		} );
+	            return false;
+	        } );
+	    } );
 
-		jQuery( '#reset-image-button' ).on( 'click', function () {
-			jQuery( '#<?php echo $name; ?>' ).val( '' );
-			src = jQuery( '#default' ).val();
-			jQuery( '.media-image' ).attr( "src", src );
-		} );
+	    jQuery( '#reset-image-button' ).on( 'click', function () {
+	        jQuery( '#<?php echo $name; ?>' ).val( '' );
+	        src = jQuery( '#default' ).val();
+	        jQuery( '.media-image' ).attr( "src", src );
+	    } );
 	</script>
 	<?php
 }
@@ -387,8 +387,12 @@ function product_currency() {
 	return $currency;
 }
 
+function get_shipping_options_number() {
+	return get_option( 'product_shipping_options_number', 1 );
+}
+
 function get_shipping_options( $product_id ) {
-	$shipping_options	 = get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER );
+	$shipping_options	 = get_shipping_options_number();
 	$shipping_values	 = array();
 	for ( $i = 1; $i <= $shipping_options; $i++ ) {
 		$sh_val = get_post_meta( $product_id, "_shipping" . $i, true );
@@ -490,7 +494,7 @@ function show_product_attributes( $post, $single_names ) {
  */
 function get_product_attributes( $product_id, $v_single_names = null ) {
 	$single_names		 = isset( $v_single_names ) ? $v_single_names : get_single_names();
-	$attributes_number	 = get_option( 'product_attributes_number', DEF_ATTRIBUTES_OPTIONS_NUMBER );
+	$attributes_number	 = product_attributes_number();
 	$at_val				 = '';
 	$any_attribute_value = '';
 	for ( $i = 1; $i <= $attributes_number; $i++ ) {
@@ -691,63 +695,69 @@ function product_breadcrumbs() {
 				$product_archive_title = get_product_listing_title();
 			}
 		}
-		$current_product = get_the_title();
+		$additional = '';
 		if ( is_ic_product_page() ) {
-			return '<p id="breadcrumbs">
-<span xmlns:v="http://rdf.data-vocabulary.org/#">
-	<span typeof="v:Breadcrumb">
-		<a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<a href="' . $product_archive . '" rel="v:url" property="v:title">' . $product_archive_title . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<span class="breadcrumb_last" property="v:title">' . $current_product . '</span>
-	</span>
-</span>
-</p>';
+			$current_product = get_the_title();
 		} else if ( is_ic_taxonomy_page() ) {
-			$current_product = get_queried_object()->name;
-			return '<p id="breadcrumbs">
-<span xmlns:v="http://rdf.data-vocabulary.org/#">
-	<span typeof="v:Breadcrumb">
-		<a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<a href="' . $product_archive . '" rel="v:url" property="v:title">' . $product_archive_title . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<span class="breadcrumb_last" property="v:title">' . $current_product . '</span>
-	</span>
-</span>
-</p>';
+			$obj				 = get_queried_object();
+			$current_product	 = $obj->name;
+			$taxonomy			 = isset( $obj->taxonomy ) ? $obj->taxonomy : 'al_product-cat';
+			$current_category_id = $obj->term_id;
+			$parents			 = array_filter( explode( '|', ic_get_product_category_parents( $current_category_id, $taxonomy, true, '|' ) ) );
+			array_pop( $parents );
+			foreach ( $parents as $parent ) {
+				if ( !empty( $parent ) ) {
+					$additional .= ' » <span typeof="v:Breadcrumb">
+		<span class="breadcrumb_last" property="v:title">' . $parent . '</span>
+	</span>';
+				}
+			}
 		} else if ( is_search() ) {
-			return '<p id="breadcrumbs">
-<span xmlns:v="http://rdf.data-vocabulary.org/#">
-	<span typeof="v:Breadcrumb">
-		<a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<a href="' . $product_archive . '" rel="v:url" property="v:title">' . $product_archive_title . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<span class="breadcrumb_last" property="v:title">' . __( 'Product Search', 'al-ecommerce-product-catalog' ) . '</span>
-	</span>
-</span>
-</p>';
+			$current_product = __( 'Product Search', 'al-ecommerce-product-catalog' );
 		} else {
-			return '<p id="breadcrumbs">
-<span xmlns:v="http://rdf.data-vocabulary.org/#">
-	<span typeof="v:Breadcrumb">
-		<a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a>
-	</span> »
-	<span typeof="v:Breadcrumb">
-		<span class="breadcrumb_last" property="v:title">' . $product_archive_title . '</span>
-	</span>
-</span>
-</p>';
+			$current_product = '';
 		}
+		$bread = '<p id="breadcrumbs"><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb"><a href="' . $home_page . '" rel="v:url" property="v:title">' . __( 'Home', 'al-ecommerce-product-catalog' ) . '</a></span>';
+		if ( !empty( $product_archive ) ) {
+			$bread .= ' » <span typeof="v:Breadcrumb"><a href="' . $product_archive . '" rel="v:url" property="v:title">' . $product_archive_title . '</a></span>';
+		}
+		if ( !empty( $additional ) ) {
+			$bread .= $additional;
+		}
+		if ( !empty( $current_product ) ) {
+			$bread .= ' » <span typeof="v:Breadcrumb"><span class="breadcrumb_last" property="v:title">' . $current_product . '</span></span></span>';
+		}
+		$bread .= '</p>';
+		return $bread;
 	}
+}
+
+function ic_get_product_category_parents( $id, $taxonomy, $link = false, $separator = '/', $nicename = false,
+										  $visited = array() ) {
+	$chain	 = '';
+	$parent	 = get_term( $id, $taxonomy );
+
+	if ( is_wp_error( $parent ) ) {
+		return $parent;
+	}
+
+	if ( $nicename )
+		$name	 = $parent->slug;
+	else
+		$name	 = $parent->name;
+
+	if ( $parent->parent && ($parent->parent != $parent->term_id) && !in_array( $parent->parent, $visited ) ) {
+		$visited[] = $parent->parent;
+		$chain .= ic_get_product_category_parents( $parent->parent, $taxonomy, $link, $separator, $nicename, $visited );
+	}
+
+	if ( !$link ) {
+		$chain .= $name . $separator;
+	} else {
+		$url = get_term_link( $parent );
+		$chain .= '<a href="' . $url . '">' . $name . '</a>' . $separator;
+	}
+	return $chain;
 }
 
 function get_product_name( $product_id = null ) {
@@ -842,11 +852,11 @@ function get_product_gallery( $product_id, $v_single_options = null ) {
 	if ( $single_options[ 'enable_product_gallery' ] == 1 ) {
 		$product_gallery = '';
 		ob_start();
-		do_action( 'before_product_image' );
+		do_action( 'before_product_image', $product_id );
 		$product_gallery .= ob_get_clean();
 		$product_gallery .= '<div class="entry-thumbnail product-image">';
 		ob_start();
-		do_action( 'above_product_image' );
+		do_action( 'above_product_image', $product_id );
 		$product_gallery .= ob_get_clean();
 		$image_size		 = apply_filters( 'product_image_size', 'medium' );
 		if ( has_post_thumbnail( $product_id ) ) {
@@ -1202,7 +1212,11 @@ function translate_product_order() {
 
 function ic_products_count() {
 	$count = wp_count_posts( 'al_product' );
-	return $count->publish;
+	if ( isset( $count->publish ) ) {
+		return $count->publish;
+	} else {
+		return 0;
+	}
 }
 
 /**

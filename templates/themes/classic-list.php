@@ -61,7 +61,7 @@ function get_list_archive_theme( $post, $archive_template = null ) {
 			$url = default_product_thumbnail_url();
 		}
 		$product_name	 = get_product_name();
-		$return			 = '<div class="archive-listing list ' . product_class( $post->ID ) . '">';
+		$return			 = '<div class="archive-listing product-' . $post->ID . ' list ' . product_class( $post->ID ) . '">';
 		$return .= '<a href="' . get_permalink() . '"><span class="div-link"></span></a>';
 		$return .= '<div class="classic-list-image-wrapper"><div class="pseudo"></div><img src="' . $url . '" class="classic-list-image" alt="' . $product_name . '" ></div>';
 		$return .= '<div class="product-name">' . $product_name . '</div>';
@@ -80,7 +80,7 @@ function get_list_category_theme( $product_cat, $archive_template ) {
 		} else {
 			$class = 'child-category';
 		}
-		$return	 = '<div class="archive-listing list ' . $class . '">';
+		$return	 = '<div class="archive-listing category-' . $product_cat->term_id . ' list ' . $class . '">';
 		$return .= '<a href="' . get_term_link( $product_cat ) . '"><span class="div-link"></span></a>';
 		$return .= '<div class="classic-list-image-wrapper"><div class="pseudo"></div><img src="' . $url . '" class="classic-list-image" alt="' . $product_cat->name . '" ></div>';
 		$return .= '<div class="product-name">' . $product_cat->name . '</div>';

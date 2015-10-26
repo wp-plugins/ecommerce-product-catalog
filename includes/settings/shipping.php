@@ -47,15 +47,16 @@ function shipping_settings_content() {
 				</script>
 				<h2><?php _e( 'Shipping Settings', 'al-ecommerce-product-catalog' ); ?></h2>
 				<form method="post" action="options.php">
-					<?php settings_fields( 'product_shipping' ); ?>
+					<?php settings_fields( 'product_shipping' );
+					$shipping_count = get_shipping_options_number();
+					?>
 					<h3><?php _e( 'Product shipping options', 'al-ecommerce-product-catalog' ); ?></h3>
 					<table>
 						<tr>
-							<td colspan="2"><?php _e( 'Number of shipping options', 'al-ecommerce-product-catalog' ); ?> <input size="30" type="number" step="1" min="0" name="product_shipping_options_number" id="admin-number-field" value="<?php echo get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER ); ?>" /><input type="submit" class="button" value="<?php _e( 'Update', 'al-ecommerce-product-catalog' ); ?>" /></td>
+							<td colspan="2"><?php _e( 'Number of shipping options', 'al-ecommerce-product-catalog' ); ?> <input size="30" type="number" step="1" min="0" name="product_shipping_options_number" id="admin-number-field" value="<?php echo $shipping_count; ?>" /><input type="submit" class="button" value="<?php _e( 'Update', 'al-ecommerce-product-catalog' ); ?>" /></td>
 						</tr>
 					</table>
 					<?php
-					$shipping_count = get_option( 'product_shipping_options_number', DEF_SHIPPING_OPTIONS_NUMBER );
 					if ( $shipping_count > 0 ) {
 						?>
 						<div class="al-box info"><p><?php _e( "If you fill out the fields below, system will automatically pre-fill the fields on product pages so you doesn't have to fill them every time you add product.</p><p>When every product in your catalogue has different shipping options you can leave all or just a part of these fields empty.", 'al-ecommerce-product-catalog' ); ?></p><p><?php _e( 'You can change these default values on every product page.', 'al-ecommerce-product-catalog' ); ?></p></div>
@@ -73,23 +74,23 @@ function shipping_settings_content() {
 								}
 								?>
 							</tbody></table>
-						<?php //do_action('product-attributes');   ?>
+			<?php //do_action('product-attributes');    ?>
 						<p class="submit">
 							<input type="submit" class="button-primary" value="<?php _e( 'Save changes', 'al-ecommerce-product-catalog' ); ?>" />
 						</p>
-					<?php } else { ?>
+		<?php } else { ?>
 						<tr><td colspan="2">
 								<div class="al-box warning"><?php _e( 'Shipping disabled. To enable set minimum 1 shipping option.', 'al-ecommerce-product-catalog' ); ?></div>
 							</td></tr>
 						</table>
-					<?php } ?>
+		<?php } ?>
 
 				</form>
 			</div>
 			<div class="helpers"><div class="wrapper"><?php main_helper(); ?>
 				</div></div>
 
-		<?php } do_action( 'product-shipping' ); ?>
+	<?php } do_action( 'product-shipping' ); ?>
 	</div><?php
 }
 

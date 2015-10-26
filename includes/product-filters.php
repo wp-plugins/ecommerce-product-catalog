@@ -13,15 +13,13 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package		ecommerce-product-catalog/includes
  * @author 		Norbert Dreszer
  */
-add_action( 'init', 'register_product_catalog_session', 1 );
+if ( !function_exists( 'get_product_catalog_session' ) ) {
 
-/**
- * Registers session if not registered already
- */
-function register_product_catalog_session() {
-	if ( !session_id() ) {
-		session_start();
+	function get_product_catalog_session() {
+		$wp_session = WP_Session::get_instance();
+		return $wp_session;
 	}
+
 }
 
 function product_filter_element( $id, $what, $label, $class = null ) {
@@ -64,27 +62,39 @@ add_action( 'wp_loaded', 'set_product_filter' );
 
 function set_product_filter() {
 	if ( isset( $_GET[ 'product_category' ] ) ) {
-		$filter_value = intval( $_GET[ 'product_category' ] );
+		$session		 = get_product_catalog_session();
+		$filter_value	 = intval( $_GET[ 'product_category' ] );
 		if ( !empty( $filter_value ) ) {
-			$_SESSION[ 'filters' ][ 'product_category' ] = $filter_value;
+			if ( !isset( $session[ 'filters' ] ) ) {
+				$session[ 'filters' ] = array();
+			}
+			$session[ 'filters' ][ 'product_category' ] = $filter_value;
 		} else {
-			unset( $_SESSION[ 'filters' ][ 'product_category' ] );
+			unset( $session[ 'filters' ][ 'product_category' ] );
 		}
 	}
 	if ( isset( $_GET[ 'min-price' ] ) ) {
-		$filter_value = floatval( $_GET[ 'min-price' ] );
+		$session		 = get_product_catalog_session();
+		$filter_value	 = floatval( $_GET[ 'min-price' ] );
 		if ( !empty( $filter_value ) ) {
-			$_SESSION[ 'filters' ][ 'min-price' ] = $filter_value;
+			if ( !isset( $session[ 'filters' ] ) ) {
+				$session[ 'filters' ] = array();
+			}
+			$session[ 'filters' ][ 'min-price' ] = $filter_value;
 		} else {
-			unset( $_SESSION[ 'filters' ][ 'min-price' ] );
+			unset( $session[ 'filters' ][ 'min-price' ] );
 		}
 	}
 	if ( isset( $_GET[ 'max-price' ] ) ) {
-		$filter_value = floatval( $_GET[ 'max-price' ] );
+		$session		 = get_product_catalog_session();
+		$filter_value	 = floatval( $_GET[ 'max-price' ] );
 		if ( !empty( $filter_value ) ) {
-			$_SESSION[ 'filters' ][ 'max-price' ] = $filter_value;
+			if ( !isset( $session[ 'filters' ] ) ) {
+				$session[ 'filters' ] = array();
+			}
+			$session[ 'filters' ][ 'max-price' ] = $filter_value;
 		} else {
-			unset( $_SESSION[ 'filters' ][ 'max-price' ] );
+			unset( $session[ 'filters' ][ 'max-price' ] );
 		}
 	}
 }
@@ -105,7 +115,8 @@ function delete_product_filters( $query ) {
 			}
 		}
 		if ( !$out ) {
-			unset( $_SESSION[ 'filters' ] );
+			$session = get_product_catalog_session();
+			unset( $session[ 'filters' ] );
 		}
 	}
 }
@@ -121,7 +132,8 @@ function get_active_product_filters() {
 
 function get_product_filter_value( $filter_name ) {
 	if ( is_product_filter_active( $filter_name ) ) {
-		return $_SESSION[ 'filters' ][ $filter_name ];
+		$session = get_product_catalog_session();
+		return $session[ 'filters' ][ $filter_name ];
 	}
 	return '';
 }

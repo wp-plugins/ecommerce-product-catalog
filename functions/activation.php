@@ -20,28 +20,31 @@ function epc_activation_function() {
 }
 
 function create_products_page() {
-	$product_page = array(
-		'post_title'	 => __( 'Products', 'al-ecommerce-product-catalog' ),
-		'post_type'		 => 'page',
-		'post_content'	 => '',
-		'post_status'	 => 'publish',
-		'comment_status' => 'closed'
-	);
+	if ( current_user_can( 'publish_pages' ) ) {
+		$product_page = array(
+			'post_title'	 => __( 'Products', 'al-ecommerce-product-catalog' ),
+			'post_type'		 => 'page',
+			'post_content'	 => '',
+			'post_status'	 => 'publish',
+			'comment_status' => 'closed'
+		);
 
-	$plugin_data	 = get_plugin_data( AL_PLUGIN_MAIN_FILE );
-	$plugin_version	 = $plugin_data[ "Version" ];
-	$first_version	 = get_option( 'first_activation_version', '1.0' );
+		$plugin_data	 = get_plugin_data( AL_PLUGIN_MAIN_FILE );
+		$plugin_version	 = $plugin_data[ "Version" ];
+		$first_version	 = get_option( 'first_activation_version', '1.0' );
 
-	if ( $first_version == '1.0' ) {
-		add_option( 'first_activation_version', $plugin_version );
-		add_option( 'ecommerce_product_catalog_ver', $plugin_version );
-		$post_id = wp_insert_post( $product_page );
-		add_option( 'product_archive_page_id', $post_id );
+		if ( $first_version == '1.0' ) {
+			add_option( 'first_activation_version', $plugin_version );
+			add_option( 'ecommerce_product_catalog_ver', $plugin_version );
+			$post_id = wp_insert_post( $product_page );
+			add_option( 'product_archive_page_id', $post_id );
+		}
 	}
 }
 
 function create_sample_product() {
-	if ( !is_advanced_mode_forced() ) {
+	$sample_id = sample_product_id();
+	if ( current_user_can( 'publish_products' ) && ((!is_advanced_mode_forced() && empty( $sample_id )) || isset( $_GET[ 'create_sample_product_page' ] )) ) {
 		$product_sample							 = array(
 			'post_title'	 => __( 'Sample Product Page', 'al-ecommerce-product-catalog' ),
 			'post_type'		 => 'al_product',

@@ -14,7 +14,7 @@ if ( !defined( 'ABSPATH' ) ) {
  * @author 		Norbert Dreszer
  */
 function add_product_caps() {
-	if ( is_user_logged_in() ) {
+	if ( is_user_logged_in() && current_user_can( 'install_plugins' ) ) {
 
 		$role = get_role( 'administrator' );
 
@@ -101,5 +101,3 @@ function products_map_meta_cap( $caps, $cap, $user_id, $args ) {
 	/* Return the capabilities required by the user. */
 	return $caps;
 }
-
-?>
