@@ -1315,6 +1315,7 @@ div.relative-box {
     margin: 10px auto;
     overflow: hidden;
     font-size: 14px;
+    clear:both;
 }
 
 .filter-widget, .product-sort-bar .widget {

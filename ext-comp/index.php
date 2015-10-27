@@ -32,6 +32,7 @@ if ( !function_exists( 'run_ic_session' ) ) {
 
 	function run_ic_session() {
 		if ( !is_admin() && !class_exists( 'WP_Session' ) ) {
+
 			if ( !defined( 'WP_SESSION_COOKIE' ) ) {
 				define( 'WP_SESSION_COOKIE', '_wp_session' );
 			}
@@ -46,13 +47,17 @@ if ( !function_exists( 'run_ic_session' ) ) {
 			}
 			require_once(AL_BASE_PATH . '/ext-comp/wp_session/class-wp-session.php');
 			require_once(AL_BASE_PATH . '/ext-comp/wp_session/wp-session.php');
-			add_filter( 'wp_session_expiration_variant', function() {
-				return 30 * 60 * 23;
-			}, 99999 );
-			add_filter( 'wp_session_expiration', function() {
-				return 30 * 60 * 24;
-			}, 99999 );
+			add_filter( 'wp_session_expiration_variant', 'ic_wp_session_expiration_variant', 99999 );
+			add_filter( 'wp_session_expiration', 'ic_wp_session_expiration', 99999 );
 		}
+	}
+
+	function ic_wp_session_expiration_variant() {
+		return 30 * 60 * 23;
+	}
+
+	function ic_wp_session_expiration() {
+		return 30 * 60 * 24;
 	}
 
 }
